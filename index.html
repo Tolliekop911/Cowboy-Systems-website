@@ -1,0 +1,1702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Cowboy Systems — The EHR That Gives Providers Their Time Back</title>
+<meta name="description" content="AI documentation, scheduling, billing, patient records, telehealth, referrals, and patient engagement — all in one modern platform."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --purple:#6D28D9;
+  --purple-light:#7C3AED;
+  --purple-dark:#4C1D95;
+  --purple-50:#F5F3FF;
+  --purple-100:#EDE9FE;
+  --purple-200:#DDD6FE;
+  --white:#fff;
+  --gray-50:#F9FAFB;
+  --gray-100:#F3F4F6;
+  --gray-200:#E5E7EB;
+  --gray-400:#9CA3AF;
+  --gray-500:#6B7280;
+  --gray-700:#374151;
+  --gray-900:#111827;
+  --font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  --radius:12px;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.04);
+  --shadow:0 4px 16px rgba(0,0,0,.08),0 2px 4px rgba(0,0,0,.04);
+  --shadow-lg:0 12px 40px rgba(0,0,0,.1),0 4px 8px rgba(0,0,0,.04);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);color:var(--gray-900);line-height:1.6;background:#fff;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+
+/* ── UTILITIES ── */
+.container{max-width:1200px;margin:0 auto;padding:0 32px}
+.tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--purple);background:var(--purple-50);padding:5px 12px;border-radius:100px;margin-bottom:20px}
+.section-title{font-size:clamp(28px,3.5vw,42px);font-weight:800;letter-spacing:-.8px;line-height:1.15;color:var(--gray-900);margin-bottom:16px}
+.section-sub{font-size:17px;color:var(--gray-500);line-height:1.7;max-width:580px}
+.purple{color:var(--purple)}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:100px;font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all .18s;font-family:var(--font)}
+.btn-primary{background:var(--purple);color:#fff}
+.btn-primary:hover{background:var(--purple-dark);transform:translateY(-1px);box-shadow:0 8px 24px rgba(109,40,217,.28)}
+.btn-secondary{background:#fff;color:var(--gray-700);border:1.5px solid var(--gray-200)}
+.btn-secondary:hover{border-color:var(--purple);color:var(--purple);transform:translateY(-1px)}
+.btn-lg{padding:15px 32px;font-size:15px}
+.btn-ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.4)}
+.btn-ghost:hover{background:rgba(255,255,255,.1);border-color:#fff}
+
+/* ── NAV ── */
+header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);border-bottom:1px solid var(--gray-200);backdrop-filter:blur(12px)}
+.nav{max-width:1200px;margin:0 auto;padding:0 32px;height:68px;display:flex;align-items:center;gap:40px}
+.logo{display:flex;align-items:center;gap:14px;margin-right:8px;text-decoration:none}
+.logo-mark{display:flex;align-items:center;flex-shrink:0}
+.logo-divider{width:1px;height:32px;background:#e5e7eb;flex-shrink:0}
+.logo-text{display:flex;flex-direction:column;gap:0}
+.logo-text strong{display:block;font-size:18px;font-weight:900;color:#1e1047;letter-spacing:-.5px;line-height:1}
+.logo-text span{display:block;font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#7c3aed;line-height:1;margin-top:3px}
+.nav-links{display:flex;gap:4px;flex:1;justify-content:center}
+.nav-links a{font-size:14px;font-weight:500;color:var(--gray-500);padding:6px 14px;border-radius:8px;transition:all .15s}
+.nav-links a:hover{color:var(--gray-900);background:var(--gray-50)}
+.nav-actions{display:flex;align-items:center;gap:10px;margin-left:auto}
+.nav-login{font-size:14px;font-weight:500;color:var(--gray-600);padding:8px 16px;border-radius:8px;transition:all .15s}
+.nav-login:hover{color:var(--gray-900);background:var(--gray-50)}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--gray-700);border-radius:2px;transition:all .3s}
+.mobile-nav{display:none;position:fixed;inset:0;top:68px;background:#fff;z-index:99;padding:20px 24px;flex-direction:column;border-top:1px solid var(--gray-200)}
+.mobile-nav.open{display:flex}
+.mobile-nav a{padding:14px 0;font-size:16px;font-weight:500;border-bottom:1px solid var(--gray-100)}
+
+/* ── HERO ── */
+.hero{padding:80px 32px 64px;background:#fff}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.hero h1{font-size:clamp(36px,4.5vw,56px);font-weight:900;letter-spacing:-1.5px;line-height:1.07;color:var(--gray-900);margin-bottom:22px}
+.hero-sub{font-size:18px;color:var(--gray-500);line-height:1.7;margin-bottom:36px;max-width:480px}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px}
+.hero-trust{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.trust-pill{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--gray-500);padding:6px 12px;border:1px solid var(--gray-200);border-radius:100px}
+.trust-pill svg{color:var(--purple)}
+
+/* Workflow diagram */
+.workflow{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:20px;padding:28px;position:relative}
+.wf-step{background:#fff;border:1px solid var(--gray-200);border-radius:12px;padding:16px 20px;display:flex;align-items:center;gap:14px;margin-bottom:8px;transition:all .2s;position:relative}
+.wf-step:last-child{margin-bottom:0}
+.wf-step:hover{border-color:var(--purple-200);box-shadow:var(--shadow-sm)}
+.wf-num{width:28px;height:28px;border-radius:50%;background:var(--purple-50);color:var(--purple);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.wf-step.active-step .wf-num{background:var(--purple);color:#fff}
+.wf-step.active-step{border-color:var(--purple-200);background:var(--purple-50)}
+.wf-text strong{display:block;font-size:13px;font-weight:700;color:var(--gray-900)}
+.wf-text span{font-size:12px;color:var(--gray-400)}
+.wf-badge{margin-left:auto;font-size:11px;font-weight:700;padding:3px 10px;border-radius:100px;white-space:nowrap}
+.badge-green{background:#D1FAE5;color:#065F46}
+.badge-blue{background:#DBEAFE;color:#1D4ED8}
+.badge-purple{background:var(--purple-100);color:var(--purple)}
+.badge-amber{background:#FEF3C7;color:#92400E}
+.wf-connector{width:2px;height:10px;background:var(--gray-200);margin:0 0 0 13px}
+.wf-header{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gray-400);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.live-dot{width:7px;height:7px;border-radius:50%;background:#22C55E;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(.9)}}
+.wf-footer{margin-top:16px;padding-top:14px;border-top:1px solid var(--gray-200);display:flex;gap:16px}
+.wf-stat{text-align:center;flex:1}
+.wf-stat strong{display:block;font-size:18px;font-weight:800;color:var(--purple)}
+.wf-stat span{font-size:11px;color:var(--gray-400)}
+
+/* ── TRUST BAR ── */
+.trust-bar{border-top:1px solid var(--gray-100);border-bottom:1px solid var(--gray-100);padding:28px 32px;background:#fff}
+.trust-bar-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.trust-bar-label{font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--gray-400);white-space:nowrap}
+.trust-items{display:flex;gap:32px;flex-wrap:wrap;align-items:center}
+.trust-item{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--gray-600)}
+.trust-item svg{color:var(--purple);flex-shrink:0}
+
+/* ── OUTCOMES ── */
+.outcomes{padding:96px 32px;background:var(--gray-50)}
+.outcomes-inner{max-width:1200px;margin:0 auto}
+.outcomes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--gray-200);border:1px solid var(--gray-200);border-radius:16px;overflow:hidden;margin-top:56px}
+.outcome-card{background:#fff;padding:36px 32px;transition:background .2s}
+.outcome-card:hover{background:var(--purple-50)}
+.outcome-icon{width:44px;height:44px;border-radius:10px;background:var(--purple-50);display:flex;align-items:center;justify-content:center;margin-bottom:20px;color:var(--purple)}
+.outcome-card h3{font-size:22px;font-weight:800;color:var(--gray-900);margin-bottom:8px;letter-spacing:-.3px}
+.outcome-card p{font-size:14px;color:var(--gray-500);line-height:1.65}
+
+/* ── PLATFORM ── */
+.platform{padding:96px 32px;background:#fff}
+.platform-inner{max-width:1200px;margin:0 auto}
+.platform-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px;flex-wrap:wrap;gap:20px}
+.platform-tabs{display:flex;gap:2px;border-bottom:1px solid var(--gray-200);margin-bottom:48px;overflow-x:auto;padding-bottom:0}
+.ptab{padding:11px 20px;font-size:14px;font-weight:500;color:var(--gray-500);cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;transition:all .15s;font-family:var(--font);display:flex;align-items:center;gap:8px}
+.ptab:hover{color:var(--gray-900)}
+.ptab.active{color:var(--purple);border-bottom-color:var(--purple);font-weight:600}
+.ptab svg{width:16px;height:16px}
+.tab-panel{display:none;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.tab-panel.active{display:grid}
+.tp-content h3{font-size:26px;font-weight:800;letter-spacing:-.5px;margin-bottom:14px}
+.tp-content p{font-size:16px;color:var(--gray-500);line-height:1.75;margin-bottom:28px}
+.tp-metrics{display:flex;gap:24px;margin-bottom:32px}
+.tp-metric strong{display:block;font-size:24px;font-weight:900;color:var(--purple)}
+.tp-metric span{font-size:12px;color:var(--gray-400)}
+.tp-features{display:flex;flex-direction:column;gap:10px}
+.tp-feature{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--gray-600)}
+.tp-feature svg{color:var(--purple);flex-shrink:0}
+.tp-visual{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:16px;overflow:hidden;aspect-ratio:4/3}
+.tp-visual-header{background:var(--purple-dark);padding:14px 18px;display:flex;align-items:center;gap:8px}
+.tp-visual-header span{font-size:12px;font-weight:600;color:rgba(255,255,255,.8)}
+.tp-visual-body{padding:18px}
+.tp-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--gray-200);font-size:13px;color:var(--gray-500)}
+.tp-row:last-child{border:none}
+.tp-row strong{color:var(--gray-800);font-weight:600}
+.chip{font-size:11px;font-weight:700;padding:3px 9px;border-radius:100px}
+.chip-green{background:#D1FAE5;color:#065F46}
+.chip-amber{background:#FEF3C7;color:#92400E}
+.chip-purple{background:var(--purple-100);color:var(--purple)}
+.chip-blue{background:#DBEAFE;color:#1D4ED8}
+
+/* ── ROI ── */
+.roi{padding:96px 32px;background:#fff}
+.roi-inner{max-width:1100px;margin:0 auto}
+.roi-top{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin-bottom:64px}
+.roi-top h2{font-size:clamp(30px,3.5vw,44px);font-weight:800;letter-spacing:-.8px;color:var(--gray-900);margin-bottom:14px}
+.roi-top p{font-size:16px;color:var(--gray-500);line-height:1.7}
+.roi-quote{background:#f5f3ff;border:1px solid #ede9fe;border-radius:16px;padding:28px}
+.roi-quote blockquote{font-size:15px;color:var(--gray-700);line-height:1.75;font-style:italic;margin-bottom:20px}
+.roi-author{display:flex;align-items:center;gap:12px}
+.roi-avatar{width:38px;height:38px;border-radius:50%;background:var(--purple);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0}
+.roi-author strong{display:block;font-size:13px;font-weight:700;color:var(--gray-900)}
+.roi-author span{font-size:12px;color:var(--gray-400)}
+.roi-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:#ede9fe;border:1px solid #ede9fe;border-radius:16px;overflow:hidden}
+.roi-stat{background:#fff;padding:32px 24px;text-align:center}
+.roi-stat strong{display:block;font-size:clamp(32px,3.5vw,48px);font-weight:900;color:var(--purple);letter-spacing:-1px;margin-bottom:6px}
+.roi-stat span{font-size:13px;color:var(--gray-500)}
+
+/* ── TESTIMONIALS ── */
+.testimonials{padding:96px 32px;background:var(--gray-50)}
+.testimonials-inner{max-width:1200px;margin:0 auto}
+.testimonials-header{text-align:center;margin-bottom:52px}
+.testimonials-header .section-sub{margin:0 auto}
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.tcard{background:#fff;border:1px solid var(--gray-200);border-radius:16px;padding:30px;transition:all .2s}
+.tcard:hover{box-shadow:var(--shadow);transform:translateY(-3px)}
+.stars{display:flex;gap:3px;margin-bottom:16px}
+.stars svg{color:#F59E0B}
+.tcard blockquote{font-size:14px;line-height:1.75;color:var(--gray-600);margin-bottom:22px}
+.tcard-author{display:flex;align-items:center;gap:12px}
+.tcard-avatar{width:38px;height:38px;border-radius:50%;background:var(--purple);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+.tcard-info strong{display:block;font-size:13px;font-weight:700;color:var(--gray-900)}
+.tcard-info span{font-size:12px;color:var(--gray-400)}
+.tcard-badge{margin-left:auto;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--purple);border:1px solid var(--purple-200);padding:4px 9px;border-radius:6px}
+
+/* ── PRICING ── */
+.pricing{padding:96px 32px;background:#fff}
+.pricing-inner{max-width:1100px;margin:0 auto}
+.pricing-header{text-align:center;margin-bottom:52px}
+.pricing-toggle{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:20px;font-size:14px;font-weight:500;color:var(--gray-500)}
+.toggle-switch{position:relative;width:44px;height:24px;cursor:pointer}
+.toggle-switch input{opacity:0;width:0;height:0;position:absolute}
+.toggle-track{position:absolute;inset:0;background:var(--gray-200);border-radius:100px;transition:.3s}
+.toggle-switch input:checked~.toggle-track{background:var(--purple)}
+.toggle-thumb{position:absolute;top:3px;left:3px;width:18px;height:18px;background:#fff;border-radius:50%;transition:.3s;pointer-events:none}
+.toggle-switch input:checked~.toggle-thumb{transform:translateX(20px)}
+.save-badge{background:var(--purple-50);color:var(--purple);font-size:12px;font-weight:700;padding:2px 10px;border-radius:100px}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start;margin-top:40px}
+.pcard{background:#fff;border:1px solid var(--gray-200);border-radius:16px;padding:32px;position:relative;transition:box-shadow .2s}
+.pcard:hover{box-shadow:var(--shadow)}
+.pcard.featured{background:linear-gradient(135deg,#5b21b6,#7c3aed);border-color:#7c3aed;color:#fff}
+.popular-tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--purple);color:#fff;font-size:11px;font-weight:700;padding:5px 16px;border-radius:100px;white-space:nowrap}
+.pcard h3{font-size:17px;font-weight:700;margin-bottom:6px}
+.pcard.featured h3{color:#fff}
+.pcard .price{font-size:40px;font-weight:900;letter-spacing:-1.5px;margin:12px 0 4px;color:var(--gray-900)}
+.pcard.featured .price{color:#fff}
+.pcard .per{font-size:14px;font-weight:400;color:var(--gray-400);letter-spacing:0}
+.pcard.featured .per{color:rgba(255,255,255,.5)}
+.pcard .desc{font-size:13px;color:var(--gray-400);margin-bottom:24px;line-height:1.5}
+.pcard.featured .desc{color:rgba(255,255,255,.5)}
+.pcard-btn{display:block;text-align:center;padding:12px;border-radius:100px;font-size:14px;font-weight:600;margin-bottom:28px;cursor:pointer;border:none;font-family:var(--font);transition:all .18s;width:100%}
+.pcard:not(.featured) .pcard-btn{background:var(--purple);color:#fff}
+.pcard:not(.featured) .pcard-btn:hover{background:var(--purple-dark)}
+.pcard.featured .pcard-btn{background:#fff;color:var(--gray-900)}
+.pcard.featured .pcard-btn:hover{background:var(--gray-100)}
+.pcard-features li{display:flex;align-items:flex-start;gap:9px;font-size:13px;color:var(--gray-500);margin-bottom:11px;line-height:1.5}
+.pcard.featured .pcard-features li{color:rgba(255,255,255,.7)}
+.check{color:var(--purple);flex-shrink:0;margin-top:1px}
+.pcard.featured .check{color:#A78BFA}
+
+/* ── SECURITY ── */
+.security{padding:96px 32px;background:var(--gray-50)}
+.security-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.security-visual{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.sec-card{background:#fff;border:1px solid var(--gray-200);border-radius:14px;padding:24px;transition:all .2s}
+.sec-card:hover{box-shadow:var(--shadow);border-color:var(--purple-200)}
+.sec-card-icon{width:40px;height:40px;border-radius:10px;background:var(--purple-50);color:var(--purple);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.sec-card strong{display:block;font-size:14px;font-weight:700;color:var(--gray-900);margin-bottom:6px}
+.sec-card p{font-size:13px;color:var(--gray-400);line-height:1.6}
+.security-content .section-sub{margin-bottom:36px}
+.sec-list{display:flex;flex-direction:column;gap:14px}
+.sec-item{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500;color:var(--gray-700)}
+.sec-item svg{color:var(--purple);flex-shrink:0}
+
+/* ── CTA ── */
+.cta{padding:96px 32px;background:var(--purple)}
+.cta-inner{max-width:720px;margin:0 auto;text-align:center}
+.cta h2{font-size:clamp(30px,4vw,48px);font-weight:900;letter-spacing:-1px;color:#fff;margin-bottom:16px}
+.cta p{font-size:17px;color:rgba(255,255,255,.75);margin-bottom:36px}
+.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+/* ── FOOTER ── */
+footer{background:#fff;padding:64px 32px 32px;color:var(--gray-500);border-top:1px solid var(--gray-200)}
+.footer-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.8fr repeat(4,1fr);gap:40px;margin-bottom:48px}
+.footer-brand p{font-size:13px;line-height:1.7;margin-top:14px;max-width:220px;color:var(--gray-400)}
+.footer-brand .logo-text strong{color:var(--gray-900)}
+.footer-col h4{font-size:13px;font-weight:700;color:var(--gray-900);margin-bottom:16px}
+.footer-col a{display:block;font-size:13px;color:var(--gray-400);margin-bottom:10px;transition:color .15s}
+.footer-col a:hover{color:var(--purple)}
+.footer-bottom{max-width:1200px;margin:0 auto;padding-top:24px;border-top:1px solid var(--gray-200);display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--gray-400);flex-wrap:wrap;gap:12px}
+.footer-social{display:flex;gap:14px}
+.footer-social a{color:var(--gray-400);font-size:13px;font-weight:500;transition:color .15s}
+.footer-social a:hover{color:var(--purple)}
+
+/* ── MODAL ── */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1000;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.open{display:flex}
+.modal{background:#fff;border-radius:20px;padding:44px;max-width:480px;width:100%;position:relative;animation:modalIn .25s ease}
+@keyframes modalIn{from{opacity:0;transform:translateY(-16px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+.modal-close{position:absolute;top:16px;right:18px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--gray-400);line-height:1}
+.modal .tag{margin-bottom:10px}
+.modal h3{font-size:24px;font-weight:800;color:var(--gray-900);margin-bottom:6px;letter-spacing:-.3px}
+.modal>p{font-size:14px;color:var(--gray-400);margin-bottom:24px}
+.fgroup{margin-bottom:14px}
+.fgroup label{display:block;font-size:13px;font-weight:600;color:var(--gray-700);margin-bottom:6px}
+.fgroup input,.fgroup select{width:100%;padding:11px 14px;border:1.5px solid var(--gray-200);border-radius:10px;font-size:14px;font-family:var(--font);outline:none;color:var(--gray-900);transition:border-color .15s;background:#fff}
+.fgroup input:focus,.fgroup select:focus{border-color:var(--purple)}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.modal .btn-primary{width:100%;justify-content:center;padding:14px;margin-top:4px}
+.success-state{text-align:center;padding:16px 0}
+.success-icon{font-size:48px;margin-bottom:16px}
+
+/* ── SCROLL ANIMATIONS ── */
+.fade-in{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+.stagger-1{transition-delay:.06s}
+.stagger-2{transition-delay:.12s}
+.stagger-3{transition-delay:.18s}
+.stagger-4{transition-delay:.24s}
+.stagger-5{transition-delay:.30s}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .outcomes-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  .nav-links,.nav-login,nav .btn{display:none}
+  .hamburger{display:flex}
+  .hero-inner{grid-template-columns:1fr}
+  .workflow{display:none}
+  .trust-bar-inner{flex-direction:column;align-items:flex-start}
+  .roi-top{grid-template-columns:1fr}
+  .roi-stats{grid-template-columns:repeat(2,1fr)}
+  .tgrid{grid-template-columns:1fr}
+  .pgrid{grid-template-columns:1fr}
+  .pcard.featured{transform:none}
+  .security-inner{grid-template-columns:1fr}
+  .security-visual{order:-1}
+  .tab-panel.active{grid-template-columns:1fr}
+  .platform-header{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:640px){
+  .hero{padding:56px 20px 48px}
+  .container,.trust-bar,.hero,.outcomes,.platform,.roi,.testimonials,.pricing,.security,.cta,.footer-grid,.footer-bottom{padding-left:20px;padding-right:20px}
+  .roi-stats{grid-template-columns:1fr}
+  .outcomes-grid{grid-template-columns:1fr}
+  .security-visual{grid-template-columns:1fr}
+  .frow{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header>
+  <nav class="nav">
+    <a href="#" class="logo">
+      <div class="logo-mark">
+        <svg width="42" height="38" viewBox="0 0 52 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 23L23 3L46 17L27 23Z" fill="#a78bfa"/>
+          <path d="M4 23L27 23L46 29L23 43Z" fill="#7c3aed"/>
+        </svg>
+      </div>
+      <div class="logo-divider"></div>
+      <div class="logo-text">
+        <strong>Cowboy</strong>
+        <span>SYSTEMS</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="#platform">Platform</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#security">Security</a>
+      <a href="#testimonials">Customers</a>
+    </div>
+    <div class="nav-actions">
+      <button class="btn btn-primary" onclick="openModal()">Book Demo</button>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="#platform">Platform</a>
+  <a href="#pricing">Pricing</a>
+  <a href="#security">Security</a>
+  <a href="#testimonials">Customers</a>
+  <div style="margin-top:20px"><button class="btn btn-primary btn-lg" style="width:100%;justify-content:center" onclick="openModal()">Book Demo</button></div>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div>
+      <div class="tag">Healthcare Operating System</div>
+      <h1>The EHR That Gives Providers Their Time Back</h1>
+      <p class="hero-sub">AI documentation, scheduling, billing, patient records, telehealth, referrals, and patient engagement — all in one modern platform built for clinic owners.</p>
+      <div class="hero-ctas">
+        <button class="btn btn-primary btn-lg" onclick="openModal()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Book Demo
+        </button>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-pill">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          HIPAA Compliant
+        </div>
+        <div class="trust-pill">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          99.9% Uptime SLA
+        </div>
+      </div>
+    </div>
+
+    <!-- App Dashboard Mockup -->
+    <div class="workflow" style="background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,0.18),0 0 0 1px rgba(0,0,0,0.06);font-family:'DM Sans','Inter',sans-serif;padding:0;border:none;">
+      <!-- Browser chrome -->
+      <div style="background:#f0f0f0;padding:10px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #e0e0e0;">
+        <div style="width:12px;height:12px;border-radius:50%;background:#ff5f57;flex-shrink:0;"></div>
+        <div style="width:12px;height:12px;border-radius:50%;background:#febc2e;flex-shrink:0;"></div>
+        <div style="width:12px;height:12px;border-radius:50%;background:#28c840;flex-shrink:0;"></div>
+        <div style="flex:1;background:#fff;border-radius:7px;padding:5px 12px;font-size:12px;color:#9ca3af;margin:0 12px;letter-spacing:.2px;">app.cowboysystems.com/dashboard</div>
+      </div>
+      <!-- App shell -->
+      <div style="display:grid;grid-template-columns:182px 1fr;height:420px;">
+
+        <!-- ── Sidebar ── -->
+        <div style="background:#1e1047;display:flex;flex-direction:column;overflow:hidden;">
+          <!-- Logo -->
+          <div style="padding:18px 16px 14px;border-bottom:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;gap:10px;">
+            <svg width="28" height="25" viewBox="0 0 52 46" fill="none"><path d="M4 23L23 3L46 17L27 23Z" fill="#a78bfa"/><path d="M4 23L27 23L46 29L23 43Z" fill="#7c3aed"/></svg>
+            <div>
+              <div style="font-size:13px;font-weight:800;color:#fff;letter-spacing:-.3px;line-height:1;">Cowboy</div>
+              <div style="font-size:8px;font-weight:700;color:#7c3aed;letter-spacing:2.5px;text-transform:uppercase;margin-top:2px;">SYSTEMS</div>
+            </div>
+          </div>
+          <!-- Nav -->
+          <div style="padding:12px 10px;flex:1;display:flex;flex-direction:column;gap:2px;">
+            <div style="background:rgba(255,255,255,0.13);border-radius:9px;padding:9px 12px;display:flex;align-items:center;gap:10px;margin-bottom:2px;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+              <span style="font-size:12px;font-weight:700;color:#fff;">Dashboard</span>
+            </div>
+            <div style="padding:9px 12px;display:flex;align-items:center;gap:10px;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgba(167,139,250,0.55)" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+              <span style="font-size:12px;color:rgba(196,181,253,0.65);">Patients</span>
+            </div>
+            <div style="padding:9px 12px;display:flex;align-items:center;gap:10px;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgba(167,139,250,0.55)" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <span style="font-size:12px;color:rgba(196,181,253,0.65);">Schedule</span>
+            </div>
+            <div style="padding:9px 12px;display:flex;align-items:center;gap:10px;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgba(167,139,250,0.55)" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
+              <span style="font-size:12px;color:rgba(196,181,253,0.65);">Inbox</span>
+            </div>
+            <div style="margin:10px 0 6px;height:1px;background:rgba(255,255,255,0.07);"></div>
+            <div style="padding:4px 12px 6px;font-size:9px;font-weight:700;color:rgba(196,181,253,0.35);text-transform:uppercase;letter-spacing:1.2px;">Clinical</div>
+            <div style="padding:9px 12px;display:flex;align-items:center;gap:10px;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgba(167,139,250,0.55)" stroke-width="2"><path d="M12 3c.5 2 2 3.5 4 4-2 .5-3.5 2-4 4-.5-2-2-3.5-4-4 2-.5 3.5-2 4-4z"/></svg>
+              <span style="font-size:12px;color:rgba(196,181,253,0.65);">AI Assist</span>
+            </div>
+            <div style="padding:9px 12px;display:flex;align-items:center;gap:10px;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgba(167,139,250,0.55)" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+              <span style="font-size:12px;color:rgba(196,181,253,0.65);">Billing</span>
+            </div>
+            <div style="padding:9px 12px;display:flex;align-items:center;gap:10px;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgba(167,139,250,0.55)" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+              <span style="font-size:12px;color:rgba(196,181,253,0.65);">Analytics</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Main ── -->
+        <div style="display:flex;flex-direction:column;overflow:hidden;background:#f4f3fb;">
+
+          <!-- Purple header -->
+          <div style="background:linear-gradient(135deg,#1e1047 0%,#3b1580 40%,#7c3aed 100%);padding:20px 22px 18px;position:relative;overflow:hidden;flex-shrink:0;">
+            <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:24px 24px;"></div>
+            <div style="position:relative;z-index:1;display:flex;align-items:flex-start;justify-content:space-between;">
+              <div>
+                <div style="font-size:9px;font-weight:700;color:rgba(196,181,253,0.55);text-transform:uppercase;letter-spacing:2px;margin-bottom:6px;">Cowboy Healthcare EHR</div>
+                <div style="font-size:22px;font-weight:800;color:#fff;letter-spacing:-.5px;line-height:1.1;">Good afternoon,<br/>Provider</div>
+                <div style="font-size:11px;color:rgba(196,181,253,0.55);margin-top:6px;">Thursday, 19 June 2026</div>
+              </div>
+              <!-- KPI chips -->
+              <div style="display:flex;gap:8px;flex-shrink:0;">
+                <div style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);border-radius:12px;padding:10px 14px;text-align:center;min-width:56px;">
+                  <div style="font-size:22px;font-weight:900;color:#fff;line-height:1;">24</div>
+                  <div style="font-size:8px;color:rgba(196,181,253,0.65);text-transform:uppercase;letter-spacing:.8px;margin-top:3px;">Active Pts</div>
+                </div>
+                <div style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);border-radius:12px;padding:10px 14px;text-align:center;min-width:56px;">
+                  <div style="font-size:22px;font-weight:900;color:#fff;line-height:1;">8</div>
+                  <div style="font-size:8px;color:rgba(196,181,253,0.65);text-transform:uppercase;letter-spacing:.8px;margin-top:3px;">Today</div>
+                </div>
+                <div style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);border-radius:12px;padding:10px 14px;text-align:center;min-width:56px;">
+                  <div style="font-size:22px;font-weight:900;color:#f59e0b;line-height:1;">3</div>
+                  <div style="font-size:8px;color:rgba(196,181,253,0.65);text-transform:uppercase;letter-spacing:.8px;margin-top:3px;">Claims</div>
+                </div>
+                <div style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);border-radius:12px;padding:10px 14px;text-align:center;min-width:56px;">
+                  <div style="font-size:22px;font-weight:900;color:#34d399;line-height:1;">5/8</div>
+                  <div style="font-size:8px;color:rgba(196,181,253,0.65);text-transform:uppercase;letter-spacing:.8px;margin-top:3px;">Done</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Content grid -->
+          <div style="display:grid;grid-template-columns:1.55fr 1fr;gap:12px;padding:12px;flex:1;overflow:hidden;">
+
+            <!-- Today's Sessions -->
+            <div style="background:#fff;border-radius:12px;border:1px solid #ece9f8;padding:14px;overflow:hidden;">
+              <div style="font-size:13px;font-weight:700;color:#1e1047;margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+                <div style="width:3px;height:14px;border-radius:3px;background:linear-gradient(to bottom,#7c3aed,#a78bfa);flex-shrink:0;"></div>
+                Today's Sessions
+              </div>
+              <div style="display:flex;flex-direction:column;gap:7px;">
+                <!-- Sarah Johnson - Done -->
+                <div style="display:flex;align-items:center;gap:10px;padding:9px 11px;background:#f5f3ff;border-radius:10px;border:1px solid #ede9fe;">
+                  <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#a78bfa);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;flex-shrink:0;">SJ</div>
+                  <div style="flex:1;min-width:0;">
+                    <div style="font-size:13px;font-weight:700;color:#1e1047;">Sarah Johnson</div>
+                    <div style="font-size:11px;color:#9ca3af;margin-top:1px;">09:00 · Initial Assessment</div>
+                  </div>
+                  <div style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:6px;background:#dcfce7;color:#15803d;white-space:nowrap;flex-shrink:0;">Done</div>
+                </div>
+                <!-- Marcus Webb - In Session -->
+                <div style="display:flex;align-items:center;gap:10px;padding:9px 11px;background:#eff6ff;border-radius:10px;border:1px solid #bfdbfe;">
+                  <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#60a5fa);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;flex-shrink:0;">MW</div>
+                  <div style="flex:1;min-width:0;">
+                    <div style="font-size:13px;font-weight:700;color:#1e1047;">Marcus Webb</div>
+                    <div style="font-size:11px;color:#9ca3af;margin-top:1px;">10:30 · Treatment Session</div>
+                  </div>
+                  <div style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:6px;background:#dbeafe;color:#1d4ed8;white-space:nowrap;flex-shrink:0;">In Session</div>
+                </div>
+                <!-- Lisa Park - Upcoming -->
+                <div style="display:flex;align-items:center;gap:10px;padding:9px 11px;background:#fff;border-radius:10px;border:1px solid #e5e7eb;">
+                  <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#059669,#34d399);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;flex-shrink:0;">LP</div>
+                  <div style="flex:1;min-width:0;">
+                    <div style="font-size:13px;font-weight:700;color:#1e1047;">Lisa Park</div>
+                    <div style="font-size:11px;color:#9ca3af;margin-top:1px;">13:00 · Re-assessment</div>
+                  </div>
+                  <div style="font-size:11px;font-weight:600;color:#9ca3af;flex-shrink:0;">14:00</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- AI Command Centre -->
+            <div style="background:linear-gradient(160deg,#1e1047 0%,#2d1472 60%,#3b1a8a 100%);border-radius:12px;padding:14px;position:relative;overflow:hidden;">
+              <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:20px 20px;"></div>
+              <div style="position:relative;z-index:1;">
+                <div style="font-size:10px;font-weight:700;color:rgba(196,181,253,0.6);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px;">AI Command Centre</div>
+                <div style="display:flex;flex-direction:column;gap:7px;">
+                  <div style="background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.14);border-radius:10px;padding:10px 12px;display:flex;align-items:center;gap:10px;">
+                    <div style="width:30px;height:30px;border-radius:8px;background:rgba(124,58,237,0.4);border:1px solid rgba(167,139,250,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#c4b5fd" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4z"/></svg>
+                    </div>
+                    <div>
+                      <div style="font-size:12px;font-weight:700;color:#e0e7ff;">SOAP Note</div>
+                      <div style="font-size:10px;color:rgba(196,181,253,0.6);margin-top:1px;">Voice-to-note in 4s</div>
+                    </div>
+                  </div>
+                  <div style="background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.14);border-radius:10px;padding:10px 12px;display:flex;align-items:center;gap:10px;">
+                    <div style="width:30px;height:30px;border-radius:8px;background:rgba(124,58,237,0.4);border:1px solid rgba(167,139,250,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#c4b5fd" stroke-width="2"><path d="M12 3c.5 2 2 3.5 4 4-2 .5-3.5 2-4 4-.5-2-2-3.5-4-4 2-.5 3.5-2 4-4z"/></svg>
+                    </div>
+                    <div>
+                      <div style="font-size:12px;font-weight:700;color:#e0e7ff;">Pre-Session Brief</div>
+                      <div style="font-size:10px;color:rgba(196,181,253,0.6);margin-top:1px;">AI clinical summary</div>
+                    </div>
+                  </div>
+                  <div style="background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.14);border-radius:10px;padding:10px 12px;display:flex;align-items:center;gap:10px;">
+                    <div style="width:30px;height:30px;border-radius:8px;background:rgba(124,58,237,0.4);border:1px solid rgba(167,139,250,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#c4b5fd" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+                    </div>
+                    <div>
+                      <div style="font-size:12px;font-weight:700;color:#e0e7ff;">CPT Auto-Code</div>
+                      <div style="font-size:10px;color:rgba(196,181,253,0.6);margin-top:1px;">AI billing codes</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <span class="trust-bar-label">Built for compliance</span>
+    <div class="trust-items">
+      <div class="trust-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        HIPAA Compliant
+      </div>
+      <div class="trust-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        256-bit AES Encryption
+      </div>
+      <div class="trust-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        BAA Available
+      </div>
+      <div class="trust-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        Geo-Redundant Cloud
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OUTCOMES -->
+<section class="outcomes" id="outcomes">
+  <div class="outcomes-inner">
+    <div class="fade-in">
+      <div class="tag">Why Cowboy Systems</div>
+      <h2 class="section-title">Measurable outcomes from day one</h2>
+      <p class="section-sub">Physical therapy and wellness practices switching to Cowboy Systems report significant improvements — across time savings, revenue, and patient satisfaction.</p>
+    </div>
+    <div class="outcomes-grid">
+      <div class="outcome-card fade-in stagger-1">
+        <div class="outcome-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>10+ hrs / week</h3>
+        <p>Time saved per provider through AI documentation, automated scheduling, and streamlined workflows that eliminate manual data entry.</p>
+      </div>
+      <div class="outcome-card fade-in stagger-2">
+        <div class="outcome-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <h3>32% revenue increase</h3>
+        <p>Average revenue lift from improved code capture, reduced claim denials, and faster reimbursement cycles powered by automated billing.</p>
+      </div>
+      <div class="outcome-card fade-in stagger-3">
+        <div class="outcome-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        </div>
+        <h3>85% less documentation</h3>
+        <p>AI SOAP notes generated in under 4 seconds from ambient voice capture — coded, compliant, and ready for provider sign-off.</p>
+      </div>
+      <div class="outcome-card fade-in stagger-1">
+        <div class="outcome-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>40% fewer no-shows</h3>
+        <p>Automated reminders, two-way texting, and waitlist management keep your schedule full and reduce last-minute gaps in the day.</p>
+      </div>
+      <div class="outcome-card fade-in stagger-2">
+        <div class="outcome-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        </div>
+        <h3>99.2% clean claims</h3>
+        <p>Real-time eligibility verification and automated claim scrubbing before submission reduces denials and accelerates reimbursement.</p>
+      </div>
+      <div class="outcome-card fade-in stagger-3">
+        <div class="outcome-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h3>100% referral capture</h3>
+        <p>Never lose a referral. Automated intake, fax parsing, and tracking ensure every referral moves seamlessly from receipt to scheduled appointment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORM -->
+<section class="platform" id="platform">
+  <div class="platform-inner">
+    <div class="platform-header fade-in">
+      <div>
+        <div class="tag">Platform</div>
+        <h2 class="section-title">Every tool your practice needs.<br>Nothing it doesn't.</h2>
+      </div>
+      <p class="section-sub" style="max-width:340px">Ten deeply integrated modules replacing disconnected tools and closing the gaps where revenue is lost.</p>
+    </div>
+    <div class="platform-tabs">
+      <button class="ptab active" data-tab="t-soap">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        AI Documentation
+      </button>
+      <button class="ptab" data-tab="t-scheduling">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Scheduling
+      </button>
+      <button class="ptab" data-tab="t-records">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Patient Records
+      </button>
+      <button class="ptab" data-tab="t-billing">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        Billing &amp; Claims
+      </button>
+      <button class="ptab" data-tab="t-telehealth">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+        Telehealth
+      </button>
+      <button class="ptab" data-tab="t-referrals">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+        Referrals
+      </button>
+      <button class="ptab" data-tab="t-analytics">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        Analytics
+      </button>
+    </div>
+
+    <!-- AI Documentation -->
+    <div class="tab-panel active" id="t-soap">
+      <div class="tp-content">
+        <h3>Clinical documentation on autopilot</h3>
+        <p>Speak naturally during your session. Our AI captures the conversation, understands clinical context, and generates complete SOAP notes in seconds — coded and ready for your review.</p>
+        <div class="tp-metrics">
+          <div class="tp-metric"><strong>&lt; 4s</strong><span>Note generation</span></div>
+          <div class="tp-metric"><strong>99.1%</strong><span>Accuracy rate</span></div>
+          <div class="tp-metric"><strong>12 min</strong><span>Saved per visit</span></div>
+        </div>
+        <div class="tp-features">
+          <div class="tp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Ambient voice-to-SOAP in real time</div>
+          <div class="tp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Automatic CPT and ICD-10 coding</div>
+          <div class="tp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Specialty-specific templates</div>
+          <div class="tp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 1-click provider review and sign-off</div>
+        </div>
+      </div>
+      <!-- AI Documentation mockup -->
+      <div class="tp-visual" style="background:#fff;font-family:'DM Sans','Inter',sans-serif;display:flex;flex-direction:column;">
+        <!-- App header bar -->
+        <div style="background:linear-gradient(135deg,#1e1047,#4c1d95);padding:10px 14px;display:flex;align-items:center;gap:8px;flex-shrink:0;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          <span style="font-size:11px;font-weight:700;color:rgba(255,255,255,.9);">AI SOAP Note — David Snyman · PT Session</span>
+          <div style="margin-left:auto;display:flex;align-items:center;gap:6px;background:rgba(239,68,68,0.25);border:1px solid rgba(239,68,68,0.5);border-radius:5px;padding:3px 8px;">
+            <div style="width:6px;height:6px;border-radius:50%;background:#ef4444;animation:pulse 1s infinite;"></div>
+            <span style="font-size:10px;font-weight:700;color:#fca5a5;">Recording</span>
+          </div>
+        </div>
+        <!-- SOAP note body -->
+        <div style="flex:1;padding:12px 14px;overflow:hidden;display:flex;flex-direction:column;gap:8px;">
+          <!-- Subjective -->
+          <div style="background:#f5f3ff;border:1px solid #ede9fe;border-radius:8px;padding:9px 11px;">
+            <div style="font-size:9px;font-weight:800;color:#7c3aed;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">S — Subjective</div>
+            <div style="font-size:11px;color:#374151;line-height:1.4;">Patient reports 6/10 lower back pain, improved from 8/10 at last visit. Pain localised to L4-L5, worse with prolonged sitting. No radiating symptoms.</div>
+          </div>
+          <!-- Objective -->
+          <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:9px 11px;">
+            <div style="font-size:9px;font-weight:800;color:#059669;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">O — Objective</div>
+            <div style="font-size:11px;color:#374151;line-height:1.4;">ROM: lumbar flex 80° (prev 65°), ext 20°. Strength L4/L5 myotomes 4/5. SLR negative bilaterally. Palpation: mild tenderness paraspinals.</div>
+          </div>
+          <!-- Assessment + Plan row -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:9px 11px;">
+              <div style="font-size:9px;font-weight:800;color:#2563eb;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">A — Assessment</div>
+              <div style="font-size:11px;color:#374151;line-height:1.4;">LBP improving with PT. Goal: full ROM by week 6.</div>
+            </div>
+            <div style="background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:9px 11px;">
+              <div style="font-size:9px;font-weight:800;color:#d97706;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">P — Plan</div>
+              <div style="font-size:11px;color:#374151;line-height:1.4;">Continue 2×/wk × 4 wks. Add McKenzie protocol.</div>
+            </div>
+          </div>
+          <!-- CPT codes + sign-off -->
+          <div style="display:flex;align-items:center;justify-content:space-between;background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:8px 11px;">
+            <div style="display:flex;align-items:center;gap:6px;">
+              <span style="font-size:10px;font-weight:700;color:#6b7280;">CPT:</span>
+              <span style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;background:#ede9fe;color:#7c3aed;">97110</span>
+              <span style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;background:#ede9fe;color:#7c3aed;">97014</span>
+              <span style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;background:#ede9fe;color:#7c3aed;">97530</span>
+            </div>
+            <div style="font-size:10px;font-weight:700;padding:3px 10px;border-radius:5px;background:linear-gradient(135deg,#7c3aed,#6d28d9);color:#fff;cursor:pointer;">Sign &amp; Submit</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scheduling -->
+    <div class="tab-panel" id="t-scheduling">
+      <div class="tp-content">
+        <h3>Smart scheduling that fills itself</h3>
+        <p>Automated reminders, two-way patient texting, and intelligent waitlist management keep your schedule full and your no-show rate low.</p>
+        <div class="tp-metrics">
+          <div class="tp-metric"><strong>40%</strong><span>Fewer no-shows</span></div>
+          <div class="tp-metric"><strong>2 min</strong><span>Avg booking time</span></div>
+          <div class="tp-metric"><strong>100%</strong><span>Calendar sync</span></div>
+        </div>
+        <div class="tp-features">
+          <div class="tp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Online patient self-scheduling</div>
+          <div class="tp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Automated SMS and email reminders</div>
+          <div class="tp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Waitlist auto-fill on cancellations</div>
+          <div class="tp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Multi-provider, multi-location views</div>
+        </div>
+      </div>
+      <!-- Scheduling mockup -->
+      <div class="tp-visual" style="background:#fff;font-family:'DM Sans','Inter',sans-serif;display:flex;flex-direction:column;">
+        <div style="background:linear-gradient(135deg,#1e1047,#4c1d95);padding:10px 14px;display:flex;align-items:center;gap:8px;flex-shrink:0;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <span style="font-size:11px;font-weight:700;color:rgba(255,255,255,.9);">Schedule — Thursday, 19 June 2026</span>
+          <div style="margin-left:auto;display:flex;gap:5px;">
+            <div style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;background:rgba(255,255,255,0.2);color:#fff;">Day</div>
+            <div style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;color:rgba(255,255,255,0.5);">Week</div>
+          </div>
+        </div>
+        <div style="flex:1;padding:10px 12px;display:flex;flex-direction:column;gap:5px;overflow:hidden;">
+          <!-- Time slots -->
+          <div style="display:flex;gap:8px;align-items:stretch;">
+            <div style="width:34px;font-size:9px;color:#9ca3af;font-weight:600;flex-shrink:0;padding-top:4px;">09:00</div>
+            <div style="flex:1;background:#f0fdf4;border:1px solid #bbf7d0;border-left:3px solid #22c55e;border-radius:7px;padding:6px 10px;display:flex;align-items:center;justify-content:space-between;">
+              <div>
+                <div style="font-size:11px;font-weight:700;color:#1e1b4b;">Sarah Johnson</div>
+                <div style="font-size:9px;color:#6b7280;">Initial Assessment · 60 min</div>
+              </div>
+              <span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;background:#dcfce7;color:#15803d;">Done</span>
+            </div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:stretch;">
+            <div style="width:34px;font-size:9px;color:#9ca3af;font-weight:600;flex-shrink:0;padding-top:4px;">10:30</div>
+            <div style="flex:1;background:#eff6ff;border:1px solid #bfdbfe;border-left:3px solid #3b82f6;border-radius:7px;padding:6px 10px;display:flex;align-items:center;justify-content:space-between;">
+              <div>
+                <div style="font-size:11px;font-weight:700;color:#1e1b4b;">Marcus Webb</div>
+                <div style="font-size:9px;color:#6b7280;">Treatment Session · 45 min</div>
+              </div>
+              <span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;background:#dbeafe;color:#1d4ed8;">In Session</span>
+            </div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:stretch;">
+            <div style="width:34px;font-size:9px;color:#9ca3af;font-weight:600;flex-shrink:0;padding-top:4px;">12:00</div>
+            <div style="flex:1;background:#fff7ed;border:1px solid #fed7aa;border-left:3px solid #f59e0b;border-radius:7px;padding:6px 10px;display:flex;align-items:center;justify-content:space-between;">
+              <div>
+                <div style="font-size:11px;font-weight:700;color:#1e1b4b;">Lisa Park</div>
+                <div style="font-size:9px;color:#6b7280;">Re-assessment · 60 min</div>
+              </div>
+              <span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;background:#fef3c7;color:#d97706;">Reminder Sent</span>
+            </div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:stretch;">
+            <div style="width:34px;font-size:9px;color:#9ca3af;font-weight:600;flex-shrink:0;padding-top:4px;">14:00</div>
+            <div style="flex:1;background:#f5f3ff;border:1px dashed #a78bfa;border-left:3px solid #7c3aed;border-radius:7px;padding:6px 10px;display:flex;align-items:center;justify-content:space-between;">
+              <div>
+                <div style="font-size:11px;font-weight:700;color:#7c3aed;">Open Slot</div>
+                <div style="font-size:9px;color:#6b7280;">45 min available</div>
+              </div>
+              <span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;background:#ede9fe;color:#7c3aed;">Waitlist: 3</span>
+            </div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:stretch;">
+            <div style="width:34px;font-size:9px;color:#9ca3af;font-weight:600;flex-shrink:0;padding-top:4px;">15:30</div>
+            <div style="flex:1;background:#f0f9ff;border:1px solid #bae6fd;border-left:3px solid #0ea5e9;border-radius:7px;padding:6px 10px;display:flex;align-items:center;justify-content:space-between;">
+              <div>
+                <div style="font-size:11px;font-weight:700;color:#1e1b4b;">Tom Rivera</div>
+                <div style="font-size:9px;color:#6b7280;">Telehealth · Follow-up</div>
+              </div>
+              <span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;background:#e0f2fe;color:#0369a1;">Video</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Patient Records -->
+    <div class="tab-panel" id="t-records">
+      <div class="tp-content">
+        <h3>Unified patient records, zero paperwork</h3>
+        <p>Centralized digital records with e-intake forms, visit history, communication logs, and a secure patient portal — accessible from anywhere.</p>
+        <div class="tp-metrics">
+          <div class="tp-metric"><strong>0</strong><span>Paper forms</span></div>
+          <div class="tp-metric"><strong>All history</strong><span>One place</span></div>
+          <div class="tp-metric"><strong>HIPAA</strong><span>Secure portal</span></div>
+        </div>
+        <div class="tp-features">
+          <div class="tp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Digital intake sent before first visit</div>
+          <div class="tp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Full visit history and care timeline</div>
+          <div class="tp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Secure two-way patient messaging</div>
+          <div class="tp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Patient portal with document access</div>
+        </div>
+      </div>
+      <!-- Patient Records mockup -->
+      <div class="tp-visual" style="background:#fff;font-family:'DM Sans','Inter',sans-serif;display:flex;flex-direction:column;">
+        <div style="background:linear-gradient(135deg,#1e1047,#4c1d95);padding:10px 14px;display:flex;align-items:center;gap:10px;flex-shrink:0;">
+          <div style="width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#7c3aed,#a78bfa);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff;flex-shrink:0;">JD</div>
+          <div>
+            <div style="font-size:11px;font-weight:700;color:#fff;">James Davis</div>
+            <div style="font-size:9px;color:rgba(196,181,253,0.7);">DOB: 14 Mar 1985 · MRN: 00412</div>
+          </div>
+          <span style="margin-left:auto;font-size:9px;font-weight:700;padding:2px 8px;border-radius:4px;background:rgba(34,197,94,0.2);color:#4ade80;border:1px solid rgba(34,197,94,0.3);">Active Patient</span>
+        </div>
+        <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:0;overflow:hidden;">
+          <!-- Left column -->
+          <div style="padding:10px 12px;border-right:1px solid #f3f4f6;display:flex;flex-direction:column;gap:7px;">
+            <div style="font-size:9px;font-weight:800;color:#7c3aed;text-transform:uppercase;letter-spacing:1px;">Insurance</div>
+            <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:7px;padding:7px 9px;">
+              <div style="font-size:10px;font-weight:700;color:#15803d;">BlueCross BlueShield</div>
+              <div style="font-size:9px;color:#6b7280;margin-top:1px;">Member ID: BCB-884-22-10</div>
+              <div style="font-size:9px;color:#6b7280;">Copay: $25 · Auth: 20 visits</div>
+            </div>
+            <div style="font-size:9px;font-weight:800;color:#7c3aed;text-transform:uppercase;letter-spacing:1px;margin-top:2px;">Visit History</div>
+            <div style="display:flex;flex-direction:column;gap:4px;">
+              <div style="display:flex;justify-content:space-between;font-size:10px;padding:4px 0;border-bottom:1px solid #f3f4f6;"><span style="color:#374151;">Jun 14 — PT Session</span><span style="font-weight:700;color:#22c55e;">Signed</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:10px;padding:4px 0;border-bottom:1px solid #f3f4f6;"><span style="color:#374151;">Jun 7 — Treatment</span><span style="font-weight:700;color:#22c55e;">Signed</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:10px;padding:4px 0;"><span style="color:#374151;">May 31 — Initial Eval</span><span style="font-weight:700;color:#22c55e;">Signed</span></div>
+            </div>
+          </div>
+          <!-- Right column -->
+          <div style="padding:10px 12px;display:flex;flex-direction:column;gap:7px;">
+            <div style="font-size:9px;font-weight:800;color:#7c3aed;text-transform:uppercase;letter-spacing:1px;">Clinical Overview</div>
+            <div style="background:#f5f3ff;border:1px solid #ede9fe;border-radius:7px;padding:7px 9px;">
+              <div style="font-size:9px;font-weight:700;color:#6b7280;margin-bottom:3px;">Active Goals</div>
+              <div style="display:flex;flex-direction:column;gap:3px;">
+                <div style="display:flex;align-items:center;gap:5px;font-size:10px;color:#374151;">
+                  <div style="flex:1;height:4px;background:#e5e7eb;border-radius:2px;"><div style="width:75%;height:100%;background:linear-gradient(to right,#7c3aed,#a78bfa);border-radius:2px;"></div></div>
+                  <span style="font-size:9px;color:#7c3aed;font-weight:700;">75%</span>
+                </div>
+                <div style="font-size:9px;color:#6b7280;">ROM — Lumbar Flexion to 90°</div>
+              </div>
+            </div>
+            <div style="font-size:9px;font-weight:800;color:#7c3aed;text-transform:uppercase;letter-spacing:1px;margin-top:2px;">Quick Info</div>
+            <div style="display:flex;flex-direction:column;gap:4px;">
+              <div style="display:flex;justify-content:space-between;font-size:10px;padding:4px 0;border-bottom:1px solid #f3f4f6;"><span style="color:#6b7280;">Balance</span><span style="font-weight:700;color:#22c55e;">$0.00</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:10px;padding:4px 0;border-bottom:1px solid #f3f4f6;"><span style="color:#6b7280;">Intake</span><span style="font-weight:700;color:#22c55e;">Complete</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:10px;padding:4px 0;"><span style="color:#6b7280;">Portal</span><span style="color:#374151;">Active 2d ago</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Billing -->
+    <div class="tab-panel" id="t-billing">
+      <div class="tp-content">
+        <h3>Revenue cycle management, automated</h3>
+        <p>From eligibility verification to claim submission to ERA posting — the entire revenue cycle runs automatically with industry-leading clean claim rates.</p>
+        <div class="tp-metrics">
+          <div class="tp-metric"><strong>99.2%</strong><span>Clean claims</span></div>
+          <div class="tp-metric"><strong>2.1 days</strong><span>Avg reimbursement</span></div>
+          <div class="tp-metric"><strong>32%</strong><span>Revenue increase</span></div>
+        </div>
+        <div class="tp-features">
+          <div class="tp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Real-time eligibility verification</div>
+          <div class="tp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Automated claim scrubbing and submission</div>
+          <div class="tp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> ERA/EOB posting and reconciliation</div>
+          <div class="tp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Denial management and auto-appeals</div>
+        </div>
+      </div>
+      <!-- Billing mockup -->
+      <div class="tp-visual" style="background:#fff;font-family:'DM Sans','Inter',sans-serif;display:flex;flex-direction:column;">
+        <div style="background:linear-gradient(135deg,#1e1047,#4c1d95);padding:10px 14px;display:flex;align-items:center;gap:8px;flex-shrink:0;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <span style="font-size:11px;font-weight:700;color:rgba(255,255,255,.9);">Revenue Cycle — June 2026</span>
+        </div>
+        <div style="flex:1;padding:10px 12px;display:flex;flex-direction:column;gap:8px;overflow:hidden;">
+          <!-- KPI row -->
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;">
+            <div style="background:#f5f3ff;border:1px solid #ede9fe;border-radius:8px;padding:8px 10px;text-align:center;">
+              <div style="font-size:16px;font-weight:800;color:#7c3aed;line-height:1;">$84.5k</div>
+              <div style="font-size:8px;color:#9ca3af;margin-top:2px;text-transform:uppercase;letter-spacing:.5px;">Month Revenue</div>
+            </div>
+            <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:8px 10px;text-align:center;">
+              <div style="font-size:16px;font-weight:800;color:#15803d;line-height:1;">99.2%</div>
+              <div style="font-size:8px;color:#9ca3af;margin-top:2px;text-transform:uppercase;letter-spacing:.5px;">Clean Claims</div>
+            </div>
+            <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:8px 10px;text-align:center;">
+              <div style="font-size:16px;font-weight:800;color:#2563eb;line-height:1;">2.1d</div>
+              <div style="font-size:8px;color:#9ca3af;margin-top:2px;text-transform:uppercase;letter-spacing:.5px;">Avg Reimb.</div>
+            </div>
+          </div>
+          <!-- Claims table -->
+          <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;">
+            <div style="display:grid;grid-template-columns:1fr 80px 70px 70px;gap:0;padding:5px 10px;background:#f3f4f6;border-bottom:1px solid #e5e7eb;">
+              <div style="font-size:9px;font-weight:700;color:#6b7280;text-transform:uppercase;">Patient</div>
+              <div style="font-size:9px;font-weight:700;color:#6b7280;text-transform:uppercase;">CPT</div>
+              <div style="font-size:9px;font-weight:700;color:#6b7280;text-transform:uppercase;">Amount</div>
+              <div style="font-size:9px;font-weight:700;color:#6b7280;text-transform:uppercase;">Status</div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 80px 70px 70px;gap:0;padding:6px 10px;border-bottom:1px solid #f3f4f6;align-items:center;">
+              <div style="font-size:10px;font-weight:600;color:#1e1b4b;">Sarah Johnson</div>
+              <div style="font-size:10px;color:#6b7280;">97110, 97014</div>
+              <div style="font-size:10px;font-weight:700;color:#374151;">$185.00</div>
+              <span style="font-size:9px;font-weight:700;padding:2px 6px;border-radius:4px;background:#dcfce7;color:#15803d;width:fit-content;">Paid</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 80px 70px 70px;gap:0;padding:6px 10px;border-bottom:1px solid #f3f4f6;align-items:center;">
+              <div style="font-size:10px;font-weight:600;color:#1e1b4b;">Marcus Webb</div>
+              <div style="font-size:10px;color:#6b7280;">97530, 97110</div>
+              <div style="font-size:10px;font-weight:700;color:#374151;">$210.00</div>
+              <span style="font-size:9px;font-weight:700;padding:2px 6px;border-radius:4px;background:#dbeafe;color:#1d4ed8;width:fit-content;">ERA</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 80px 70px 70px;gap:0;padding:6px 10px;align-items:center;">
+              <div style="font-size:10px;font-weight:600;color:#1e1b4b;">Lisa Park</div>
+              <div style="font-size:10px;color:#6b7280;">97001</div>
+              <div style="font-size:10px;font-weight:700;color:#374151;">$275.00</div>
+              <span style="font-size:9px;font-weight:700;padding:2px 6px;border-radius:4px;background:#fef3c7;color:#d97706;width:fit-content;">Pending</span>
+            </div>
+          </div>
+          <!-- Denial alert -->
+          <div style="background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:7px 10px;display:flex;align-items:center;gap:8px;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <div style="font-size:10px;color:#92400e;flex:1;"><strong>1 denial</strong> — CO-4 modifier missing. <span style="color:#7c3aed;font-weight:700;">Auto-appeal filed.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Telehealth -->
+    <div class="tab-panel" id="t-telehealth">
+      <div class="tp-content">
+        <h3>HIPAA-compliant telehealth, built in</h3>
+        <p>Video visits with integrated note-taking, real-time billing, and automated follow-ups — no third-party tools, no extra logins, no additional cost.</p>
+        <div class="tp-metrics">
+          <div class="tp-metric"><strong>1-click</strong><span>Patient joins</span></div>
+          <div class="tp-metric"><strong>Auto</strong><span>Note generation</span></div>
+          <div class="tp-metric"><strong>HIPAA</strong><span>Compliant video</span></div>
+        </div>
+        <div class="tp-features">
+          <div class="tp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Patients join from any device, no download</div>
+          <div class="tp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> AI note generated during the call</div>
+          <div class="tp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Billing codes auto-assigned post-visit</div>
+          <div class="tp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Integrated with scheduling and records</div>
+        </div>
+      </div>
+      <!-- Telehealth mockup -->
+      <div class="tp-visual" style="background:#111827;font-family:'DM Sans','Inter',sans-serif;display:flex;flex-direction:column;">
+        <!-- Video header bar -->
+        <div style="background:rgba(0,0,0,0.4);padding:9px 14px;display:flex;align-items:center;gap:8px;flex-shrink:0;border-bottom:1px solid rgba(255,255,255,0.08);">
+          <div style="width:6px;height:6px;border-radius:50%;background:#ef4444;"></div>
+          <span style="font-size:11px;font-weight:700;color:rgba(255,255,255,.8);">Telehealth — Maria Gonzalez</span>
+          <div style="margin-left:auto;font-size:11px;font-weight:800;color:#22c55e;font-variant-numeric:tabular-nums;">18:42</div>
+        </div>
+        <!-- Video area -->
+        <div style="flex:1;display:grid;grid-template-columns:1fr 140px;gap:0;overflow:hidden;">
+          <!-- Main video feed -->
+          <div style="background:linear-gradient(135deg,#1f2937,#111827);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;padding:10px;">
+            <!-- Patient avatar -->
+            <div style="width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#60a5fa);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:#fff;margin-bottom:6px;">MG</div>
+            <div style="font-size:11px;font-weight:700;color:#f9fafb;">Maria Gonzalez</div>
+            <div style="font-size:9px;color:rgba(255,255,255,0.4);margin-top:2px;">Patient · Connected</div>
+            <!-- Recording badge -->
+            <div style="position:absolute;top:8px;left:8px;display:flex;align-items:center;gap:5px;background:rgba(239,68,68,0.2);border:1px solid rgba(239,68,68,0.4);border-radius:5px;padding:3px 7px;">
+              <div style="width:5px;height:5px;border-radius:50%;background:#ef4444;"></div>
+              <span style="font-size:9px;font-weight:700;color:#fca5a5;">AI Capturing</span>
+            </div>
+          </div>
+          <!-- Right panel -->
+          <div style="background:#1f2937;border-left:1px solid rgba(255,255,255,0.08);padding:8px;display:flex;flex-direction:column;gap:6px;">
+            <!-- Provider self-view -->
+            <div style="background:#374151;border-radius:7px;padding:16px 8px;text-align:center;border:1px solid rgba(255,255,255,0.1);">
+              <div style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#a78bfa);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;margin:0 auto 4px;">Dr</div>
+              <div style="font-size:9px;color:rgba(255,255,255,0.5);">You</div>
+            </div>
+            <!-- AI note preview -->
+            <div style="background:#111827;border:1px solid rgba(124,58,237,0.4);border-radius:7px;padding:7px;flex:1;">
+              <div style="font-size:8px;font-weight:700;color:#a78bfa;margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px;">Live Note</div>
+              <div style="font-size:9px;color:rgba(255,255,255,0.6);line-height:1.4;">Patient reports knee pain 4/10, stable. ROM 110° flex...</div>
+              <div style="margin-top:4px;font-size:8px;color:rgba(124,58,237,0.7);">AI writing...</div>
+            </div>
+            <!-- Billing code -->
+            <div style="background:#064e3b;border:1px solid #065f46;border-radius:7px;padding:6px 7px;">
+              <div style="font-size:8px;font-weight:700;color:#34d399;margin-bottom:2px;">CPT Auto-Coded</div>
+              <div style="font-size:10px;font-weight:800;color:#6ee7b7;">G0439</div>
+            </div>
+          </div>
+        </div>
+        <!-- Controls bar -->
+        <div style="background:rgba(0,0,0,0.5);padding:8px 14px;display:flex;align-items:center;justify-content:center;gap:10px;border-top:1px solid rgba(255,255,255,0.08);">
+          <div style="width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;cursor:pointer;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="2"><line x1="1" y1="1" x2="23" y2="23"/><path d="M9 9v3a3 3 0 0 0 5.12 2.12M15 9.34V4a3 3 0 0 0-5.94-.6"/></svg>
+          </div>
+          <div style="width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;cursor:pointer;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="2"><path d="M17 14l5-5-5-5"/><path d="M3 9v10a2 2 0 0 0 2 2h6"/><line x1="22" y1="9" x2="9" y2="9"/></svg>
+          </div>
+          <div style="width:36px;height:36px;border-radius:50%;background:#ef4444;display:flex;align-items:center;justify-content:center;cursor:pointer;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Referrals -->
+    <div class="tab-panel" id="t-referrals">
+      <div class="tp-content">
+        <h3>Never lose a referral again</h3>
+        <p>Automated intake, fax parsing, and follow-up tracking ensure every referral moves from receipt to scheduled appointment — with zero manual effort.</p>
+        <div class="tp-metrics">
+          <div class="tp-metric"><strong>100%</strong><span>Referral capture</span></div>
+          <div class="tp-metric"><strong>&lt; 24 hr</strong><span>Contact time</span></div>
+          <div class="tp-metric"><strong>Auto</strong><span>Follow-ups</span></div>
+        </div>
+        <div class="tp-features">
+          <div class="tp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> AI-powered fax and document parsing</div>
+          <div class="tp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Automated outreach to referred patients</div>
+          <div class="tp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Referring provider portal and updates</div>
+          <div class="tp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Full pipeline tracking dashboard</div>
+        </div>
+      </div>
+      <!-- Referrals mockup -->
+      <div class="tp-visual" style="background:#fff;font-family:'DM Sans','Inter',sans-serif;display:flex;flex-direction:column;">
+        <div style="background:linear-gradient(135deg,#1e1047,#4c1d95);padding:10px 14px;display:flex;align-items:center;gap:8px;flex-shrink:0;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/></svg>
+          <span style="font-size:11px;font-weight:700;color:rgba(255,255,255,.9);">Referral Pipeline</span>
+          <div style="margin-left:auto;font-size:10px;font-weight:700;color:#a78bfa;">34 this month</div>
+        </div>
+        <div style="flex:1;padding:10px 12px;display:flex;flex-direction:column;gap:6px;overflow:hidden;">
+          <!-- Pipeline stages row -->
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-bottom:4px;">
+            <div style="background:#f5f3ff;border:1px solid #ede9fe;border-radius:7px;padding:6px 8px;text-align:center;">
+              <div style="font-size:14px;font-weight:800;color:#7c3aed;">8</div>
+              <div style="font-size:8px;color:#9ca3af;text-transform:uppercase;letter-spacing:.5px;margin-top:1px;">New</div>
+            </div>
+            <div style="background:#fff7ed;border:1px solid #fed7aa;border-radius:7px;padding:6px 8px;text-align:center;">
+              <div style="font-size:14px;font-weight:800;color:#d97706;">12</div>
+              <div style="font-size:8px;color:#9ca3af;text-transform:uppercase;letter-spacing:.5px;margin-top:1px;">Contact</div>
+            </div>
+            <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:7px;padding:6px 8px;text-align:center;">
+              <div style="font-size:14px;font-weight:800;color:#2563eb;">9</div>
+              <div style="font-size:8px;color:#9ca3af;text-transform:uppercase;letter-spacing:.5px;margin-top:1px;">Sched.</div>
+            </div>
+            <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:7px;padding:6px 8px;text-align:center;">
+              <div style="font-size:14px;font-weight:800;color:#15803d;">5</div>
+              <div style="font-size:8px;color:#9ca3af;text-transform:uppercase;letter-spacing:.5px;margin-top:1px;">Active</div>
+            </div>
+          </div>
+          <!-- Referral cards -->
+          <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:7px 10px;display:flex;align-items:center;gap:8px;">
+            <div style="width:6px;height:36px;border-radius:3px;background:#7c3aed;flex-shrink:0;"></div>
+            <div style="flex:1;min-width:0;">
+              <div style="font-size:11px;font-weight:700;color:#1e1b4b;">PT Evaluation</div>
+              <div style="font-size:9px;color:#6b7280;">Ref: Dr. Amanda Smith · Fax received 9:14 AM</div>
+            </div>
+            <div style="text-align:right;">
+              <span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;background:#ede9fe;color:#7c3aed;display:block;margin-bottom:3px;">New</span>
+              <div style="font-size:8px;color:#9ca3af;">AI parsed</div>
+            </div>
+          </div>
+          <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:7px 10px;display:flex;align-items:center;gap:8px;">
+            <div style="width:6px;height:36px;border-radius:3px;background:#f59e0b;flex-shrink:0;"></div>
+            <div style="flex:1;min-width:0;">
+              <div style="font-size:11px;font-weight:700;color:#1e1b4b;">Post-Op Rehab — R. Knee</div>
+              <div style="font-size:9px;color:#6b7280;">Ref: Dr. Raj Patel · Auto-outreach sent</div>
+            </div>
+            <div style="text-align:right;">
+              <span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;background:#fef3c7;color:#d97706;display:block;margin-bottom:3px;">Contacting</span>
+              <div style="font-size:8px;color:#9ca3af;">2 attempts</div>
+            </div>
+          </div>
+          <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:7px 10px;display:flex;align-items:center;gap:8px;">
+            <div style="width:6px;height:36px;border-radius:3px;background:#22c55e;flex-shrink:0;"></div>
+            <div style="flex:1;min-width:0;">
+              <div style="font-size:11px;font-weight:700;color:#1e1b4b;">Strength &amp; Conditioning</div>
+              <div style="font-size:9px;color:#6b7280;">Ref: Dr. J. Lee · Appt Jun 24 @ 10:00</div>
+            </div>
+            <div style="text-align:right;">
+              <span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;background:#dcfce7;color:#15803d;display:block;margin-bottom:3px;">Scheduled</span>
+              <div style="font-size:8px;color:#9ca3af;">Confirmed</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Analytics -->
+    <div class="tab-panel" id="t-analytics">
+      <div class="tp-content">
+        <h3>Real-time data across your entire practice</h3>
+        <p>Dashboards for revenue, provider productivity, clinical outcomes, and patient retention. Know exactly what's working and where to improve — in real time.</p>
+        <div class="tp-metrics">
+          <div class="tp-metric"><strong>Real-time</strong><span>Dashboards</span></div>
+          <div class="tp-metric"><strong>30+</strong><span>KPI reports</span></div>
+          <div class="tp-metric"><strong>Custom</strong><span>Export &amp; API</span></div>
+        </div>
+        <div class="tp-features">
+          <div class="tp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Revenue cycle and payer mix reporting</div>
+          <div class="tp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Provider productivity and utilization</div>
+          <div class="tp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Clinical outcomes and goal tracking</div>
+          <div class="tp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Scheduled reports to inbox</div>
+        </div>
+      </div>
+      <!-- Analytics mockup -->
+      <div class="tp-visual" style="background:#fff;font-family:'DM Sans','Inter',sans-serif;display:flex;flex-direction:column;">
+        <div style="background:linear-gradient(135deg,#1e1047,#4c1d95);padding:10px 14px;display:flex;align-items:center;gap:8px;flex-shrink:0;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          <span style="font-size:11px;font-weight:700;color:rgba(255,255,255,.9);">Analytics — June 2026</span>
+          <span style="margin-left:auto;font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;background:rgba(34,197,94,0.2);color:#4ade80;border:1px solid rgba(34,197,94,0.3);">Live</span>
+        </div>
+        <div style="flex:1;padding:10px 12px;display:flex;flex-direction:column;gap:8px;overflow:hidden;">
+          <!-- KPI cards -->
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;">
+            <div style="background:#f5f3ff;border:1px solid #ede9fe;border-radius:8px;padding:8px 10px;">
+              <div style="font-size:15px;font-weight:800;color:#7c3aed;line-height:1;">$84.5k</div>
+              <div style="font-size:8px;color:#9ca3af;margin-top:1px;">Revenue</div>
+              <div style="font-size:9px;font-weight:700;color:#22c55e;margin-top:3px;">+18% vs last mo.</div>
+            </div>
+            <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:8px 10px;">
+              <div style="font-size:15px;font-weight:800;color:#15803d;line-height:1;">91%</div>
+              <div style="font-size:8px;color:#9ca3af;margin-top:1px;">Retention</div>
+              <div style="font-size:9px;font-weight:700;color:#22c55e;margin-top:3px;">+4pts vs last mo.</div>
+            </div>
+            <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:8px 10px;">
+              <div style="font-size:15px;font-weight:800;color:#2563eb;line-height:1;">85%</div>
+              <div style="font-size:8px;color:#9ca3af;margin-top:1px;">Docs Saved</div>
+              <div style="font-size:9px;font-weight:700;color:#22c55e;margin-top:3px;">15 hrs/provider</div>
+            </div>
+          </div>
+          <!-- Revenue bar chart -->
+          <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:10px 12px;">
+            <div style="font-size:9px;font-weight:700;color:#374151;margin-bottom:8px;">Monthly Revenue — 2026</div>
+            <div style="display:flex;align-items:flex-end;gap:4px;height:52px;">
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;">
+                <div style="width:100%;background:linear-gradient(to top,#7c3aed,#a78bfa);border-radius:3px 3px 0 0;height:32px;"></div>
+                <div style="font-size:7px;color:#9ca3af;">Jan</div>
+              </div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;">
+                <div style="width:100%;background:linear-gradient(to top,#7c3aed,#a78bfa);border-radius:3px 3px 0 0;height:36px;"></div>
+                <div style="font-size:7px;color:#9ca3af;">Feb</div>
+              </div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;">
+                <div style="width:100%;background:linear-gradient(to top,#7c3aed,#a78bfa);border-radius:3px 3px 0 0;height:30px;"></div>
+                <div style="font-size:7px;color:#9ca3af;">Mar</div>
+              </div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;">
+                <div style="width:100%;background:linear-gradient(to top,#7c3aed,#a78bfa);border-radius:3px 3px 0 0;height:38px;"></div>
+                <div style="font-size:7px;color:#9ca3af;">Apr</div>
+              </div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;">
+                <div style="width:100%;background:linear-gradient(to top,#7c3aed,#a78bfa);border-radius:3px 3px 0 0;height:42px;"></div>
+                <div style="font-size:7px;color:#9ca3af;">May</div>
+              </div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;">
+                <div style="width:100%;background:linear-gradient(to top,#4c1d95,#7c3aed);border-radius:3px 3px 0 0;height:52px;border:2px solid #a78bfa;box-sizing:border-box;"></div>
+                <div style="font-size:7px;font-weight:700;color:#7c3aed;">Jun</div>
+              </div>
+            </div>
+          </div>
+          <!-- Provider stats row -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+            <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:8px 10px;">
+              <div style="font-size:8px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;">Clean Claim Rate</div>
+              <div style="height:6px;background:#e5e7eb;border-radius:3px;overflow:hidden;"><div style="width:99.2%;height:100%;background:linear-gradient(to right,#7c3aed,#a78bfa);border-radius:3px;"></div></div>
+              <div style="display:flex;justify-content:space-between;margin-top:3px;"><div style="font-size:11px;font-weight:800;color:#1e1b4b;">99.2%</div><div style="font-size:9px;color:#22c55e;font-weight:700;">+1.1%</div></div>
+            </div>
+            <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:8px 10px;">
+              <div style="font-size:8px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;">Avg Reimbursement</div>
+              <div style="height:6px;background:#e5e7eb;border-radius:3px;overflow:hidden;"><div style="width:78%;height:100%;background:linear-gradient(to right,#059669,#34d399);border-radius:3px;"></div></div>
+              <div style="display:flex;justify-content:space-between;margin-top:3px;"><div style="font-size:11px;font-weight:800;color:#1e1b4b;">2.1 days</div><div style="font-size:9px;color:#22c55e;font-weight:700;">-0.4d</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROI -->
+<section class="roi" id="roi">
+  <div class="roi-inner">
+    <div class="roi-top fade-in">
+      <div>
+        <div class="tag" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.7)">Results</div>
+        <h2>The numbers speak for themselves.</h2>
+        <p>Physical therapy and wellness practices using Cowboy Systems see measurable improvements quickly — across time savings, revenue, and administrative overhead.</p>
+      </div>
+      <div class="roi-quote">
+        <blockquote>"Cowboy SYSTEMS cut our documentation time by 75%. My providers actually leave the office on time now — and our revenue is up 28% because we're not missing codes anymore."</blockquote>
+        <div class="roi-author">
+          <div class="roi-avatar">SM</div>
+          <div>
+            <strong>Dr. Sarah Mitchell</strong>
+            <span>Owner, Summit Physical Therapy</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="roi-stats fade-in">
+      <div class="roi-stat">
+        <strong><span data-target="15" data-suffix="+">15+</span></strong>
+        <span>Hours saved per provider weekly</span>
+      </div>
+      <div class="roi-stat">
+        <strong><span data-target="32" data-suffix="%">32%</span></strong>
+        <span>Average revenue increase</span>
+      </div>
+      <div class="roi-stat">
+        <strong><span data-target="70" data-suffix="%">70%</span></strong>
+        <span>Administrative task reduction</span>
+      </div>
+      <div class="roi-stat">
+        <strong><span data-target="10" data-suffix="x">10x</span></strong>
+        <span>Faster documentation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="testimonials-inner">
+    <div class="testimonials-header fade-in">
+      <div class="tag">Customer Stories</div>
+      <h2 class="section-title">Trusted by practices that demand more</h2>
+      <p class="section-sub">Clinic owners and providers who switched from fragmented tools to one platform.</p>
+    </div>
+    <div class="tgrid">
+      <div class="tcard fade-in stagger-1">
+        <div class="stars">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <blockquote>"Cowboy SYSTEMS cut our documentation time by 75%. My providers actually leave the office on time — and our revenue is up 28% because we're not missing codes anymore."</blockquote>
+        <div class="tcard-author">
+          <div class="tcard-avatar">SM</div>
+          <div class="tcard-info">
+            <strong>Dr. Sarah Mitchell</strong>
+            <span>Owner, Summit Physical Therapy</span>
+          </div>
+          <div class="tcard-badge">Clinic Owner</div>
+        </div>
+      </div>
+      <div class="tcard fade-in stagger-2">
+        <div class="stars">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <blockquote>"The AI SOAP notes are a game-changer. I used to spend 2 hours after my last patient finishing notes. Now they're done before the patient even leaves the room."</blockquote>
+        <div class="tcard-author">
+          <div class="tcard-avatar">JR</div>
+          <div class="tcard-info">
+            <strong>Dr. James Rivera</strong>
+            <span>Physical Therapist, Rivera Sports Medicine</span>
+          </div>
+          <div class="tcard-badge">Provider</div>
+        </div>
+      </div>
+      <div class="tcard fade-in stagger-3">
+        <div class="stars">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <blockquote>"We evaluated every EHR on the market. Cowboy was the only platform that handled intake, billing, scheduling, and telehealth without needing five other tools bolted on."</blockquote>
+        <div class="tcard-author">
+          <div class="tcard-avatar">AC</div>
+          <div class="tcard-info">
+            <strong>Amanda Chen</strong>
+            <span>Practice Manager, Coastal Rehab Group</span>
+          </div>
+          <div class="tcard-badge">Practice Manager</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="pricing-inner">
+    <div class="pricing-header fade-in">
+      <div class="tag">Pricing</div>
+      <h2 class="section-title">Simple pricing. Transparent costs.</h2>
+      <p style="font-size:16px;color:var(--gray-400);margin-top:8px">No hidden fees. No setup costs. All plans include onboarding support.</p>
+      <div class="pricing-toggle">
+        <span>Monthly</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="annualToggle"/>
+          <div class="toggle-track"></div>
+          <div class="toggle-thumb"></div>
+        </label>
+        <span>Annual <span class="save-badge">Save 15%</span></span>
+      </div>
+    </div>
+    <div class="pgrid">
+      <div class="pcard fade-in stagger-1">
+        <h3>Starter</h3>
+        <div class="price" id="starterPrice">$249 <span class="per">/ provider / mo</span></div>
+        <p class="desc">Everything a solo practitioner needs to run a modern practice.</p>
+        <button class="pcard-btn" onclick="openModal()">Get Started &rsaquo;</button>
+        <ul class="pcard-features">
+          <li><svg class="check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> AI SOAP Notes (100/mo)</li>
+          <li><svg class="check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Scheduling &amp; Calendar</li>
+          <li><svg class="check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Patient Management</li>
+          <li><svg class="check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Telehealth (50 sessions/mo)</li>
+          <li><svg class="check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Basic Billing &amp; Claims</li>
+          <li><svg class="check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Email Support</li>
+          <li><svg class="check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> HIPAA-Ready Infrastructure</li>
+        </ul>
+      </div>
+      <div class="pcard featured fade-in stagger-2">
+        <div class="popular-tag">Most Popular</div>
+        <h3>Growth</h3>
+        <div class="price" id="growthPrice">$499 <span class="per">/ provider / mo</span></div>
+        <p class="desc">For growing practices that need automation and advanced revenue tools.</p>
+        <button class="pcard-btn" onclick="openModal()">Get Started &rsaquo;</button>
+        <ul class="pcard-features">
+          <li><svg class="check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Unlimited AI SOAP Notes</li>
+          <li><svg class="check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Advanced Scheduling &amp; Waitlist</li>
+          <li><svg class="check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Telehealth (Unlimited)</li>
+          <li><svg class="check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Full Revenue Cycle Management</li>
+          <li><svg class="check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Eligibility Verification</li>
+          <li><svg class="check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Referral Intake Management</li>
+          <li><svg class="check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Analytics Dashboard</li>
+          <li><svg class="check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Priority Support &amp; Signed BAA</li>
+        </ul>
+      </div>
+      <div class="pcard fade-in stagger-3">
+        <h3>Enterprise</h3>
+        <div class="price">Custom <span class="per">volume pricing</span></div>
+        <p class="desc">For multi-location practices and health systems that require scale.</p>
+        <button class="pcard-btn" onclick="openModal()">Contact Sales &rsaquo;</button>
+        <ul class="pcard-features">
+          <li><svg class="check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Everything in Growth</li>
+          <li><svg class="check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> AI Treatment Plans</li>
+          <li><svg class="check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Marketing Automation</li>
+          <li><svg class="check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Custom Integrations &amp; API</li>
+          <li><svg class="check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Dedicated Account Manager</li>
+          <li><svg class="check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> SLA &amp; Uptime Guarantee</li>
+          <li><svg class="check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Staff Training &amp; Onboarding</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECURITY -->
+<section class="security" id="security">
+  <div class="security-inner">
+    <div class="security-visual fade-in">
+      <div class="sec-card">
+        <div class="sec-card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <strong>HIPAA Infrastructure</strong>
+        <p>Built from the ground up with HIPAA compliance. BAA included with every Enterprise plan.</p>
+      </div>
+      <div class="sec-card">
+        <div class="sec-card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <strong>End-to-End Encryption</strong>
+        <p>AES-256 at rest and TLS 1.3 in transit. Patient data protected at every layer.</p>
+      </div>
+      <div class="sec-card">
+        <div class="sec-card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        </div>
+        <strong>Geo-Redundant Backups</strong>
+        <p>Multi-region cloud infrastructure with automated backups and point-in-time recovery.</p>
+      </div>
+      <div class="sec-card">
+        <div class="sec-card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <strong>Compliance Automation</strong>
+        <p>Automated audit trails, access logging, and consent management. Always audit-ready.</p>
+      </div>
+    </div>
+    <div class="security-content fade-in">
+      <div class="tag">Security &amp; Compliance</div>
+      <h2 class="section-title">Enterprise-grade security. <span class="purple">Zero compromise.</span></h2>
+      <p class="section-sub" style="margin-bottom:36px">Patient trust starts with data security. Cowboy SYSTEMS is built on a security-first architecture designed for the most sensitive healthcare environments.</p>
+      <div class="sec-list">
+        <div class="sec-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          HIPAA-compliant infrastructure with signed BAA
+        </div>
+        <div class="sec-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Geo-redundant cloud hosting with 99.99% uptime
+        </div>
+        <div class="sec-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          256-bit AES encryption at rest and in transit
+        </div>
+        <div class="sec-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          99.99% uptime SLA with geo-redundant backups
+        </div>
+        <div class="sec-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Role-based access control and audit logging
+        </div>
+        <div class="sec-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Automated compliance and consent management
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-inner fade-in">
+    <div class="tag" style="background:rgba(255,255,255,.15);color:rgba(255,255,255,.85)">Get Started</div>
+    <h2>Give providers their time back.</h2>
+    <p>Join leading physical therapy and wellness practices that replaced complexity with clarity. Schedule a personalized demo and see the difference from day one.</p>
+    <div class="cta-btns">
+      <button class="btn btn-lg" style="background:#fff;color:var(--purple-dark);font-weight:700" onclick="openModal()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Book a Demo
+      </button>
+      <a href="#pricing" class="btn btn-lg btn-ghost">View Pricing</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo">
+        <div class="logo-mark">
+          <svg width="42" height="38" viewBox="0 0 52 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 23L23 3L46 17L27 23Z" fill="#a78bfa"/>
+            <path d="M4 23L27 23L46 29L23 43Z" fill="#7c3aed"/>
+          </svg>
+        </div>
+        <div class="logo-divider"></div>
+        <div class="logo-text">
+          <strong>Cowboy</strong>
+          <span>SYSTEMS</span>
+        </div>
+      </div>
+      <p>The EHR built for physical therapy practices.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Product</h4>
+      <a href="#platform">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#security">Security</a>
+      <a href="#platform">Integrations</a>
+    </div>
+    <div class="footer-col">
+      <h4>Solutions</h4>
+      <a href="#platform">Physical Therapy</a>
+      <a href="#platform">Wellness Practices</a>
+      <a href="#platform">Multi-Location</a>
+      <a href="#platform">Solo Practitioner</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#">About</a>
+      <a href="#">Blog</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="privacy-policy.html" target="_blank">Privacy Policy</a>
+      <a href="terms-of-service.html" target="_blank">Terms of Service</a>
+      <a href="hipaa-compliance.html" target="_blank">HIPAA Compliance</a>
+      <a href="baa.html" target="_blank">BAA</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Cowboy Systems. All rights reserved.</span>
+    <div class="footer-social">
+      <a href="#">Twitter</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">YouTube</a>
+    </div>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="demoModal">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <div class="tag">Book a Demo</div>
+    <h3>See Cowboy Systems in action</h3>
+    <p>Get a personalized walkthrough tailored to your physical therapy or wellness practice.</p>
+    <form id="demoForm" action="https://formspree.io/f/mzdqlnng" method="POST">
+      <input type="hidden" name="_subject" value="New Demo Request — Cowboy Systems"/>
+      <input type="hidden" name="_next" value=""/>
+      <div class="frow">
+        <div class="fgroup"><label>First Name</label><input type="text" name="first_name" placeholder="Sarah" required/></div>
+        <div class="fgroup"><label>Last Name</label><input type="text" name="last_name" placeholder="Mitchell" required/></div>
+      </div>
+      <div class="fgroup"><label>Work Email</label><input type="email" name="email" placeholder="sarah@summitpt.com" required/></div>
+      <div class="fgroup"><label>Practice Name</label><input type="text" name="practice_name" placeholder="Summit Physical Therapy" required/></div>
+      <div class="fgroup">
+        <label>Number of Providers</label>
+        <select name="team_size" required>
+          <option value="">Select...</option>
+          <option>Solo (1 provider)</option>
+          <option>2–5 providers</option>
+          <option>6–15 providers</option>
+          <option>16–50 providers</option>
+          <option>50+ providers</option>
+        </select>
+      </div>
+      <div class="fgroup"><label>Phone (optional)</label><input type="tel" name="phone" placeholder="+1 (555) 000-0000"/></div>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:14px;margin-top:4px">Request Demo &rsaquo;</button>
+    </form>
+  </div>
+</div>
+
+<script>
+// Mobile nav
+const hamburger = document.getElementById('hamburger');
+const mobileNav = document.getElementById('mobileNav');
+hamburger?.addEventListener('click', () => {
+  mobileNav.classList.toggle('open');
+  const ss = hamburger.querySelectorAll('span');
+  if (mobileNav.classList.contains('open')) {
+    ss[0].style.transform = 'rotate(45deg) translate(5px,5px)';
+    ss[1].style.opacity = '0';
+    ss[2].style.transform = 'rotate(-45deg) translate(5px,-5px)';
+  } else {
+    ss.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+  }
+});
+mobileNav?.querySelectorAll('a,button').forEach(el => el.addEventListener('click', () => {
+  mobileNav.classList.remove('open');
+  hamburger.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+}));
+
+// Modal
+const modalOverlay = document.getElementById('modalOverlay');
+const demoModal = document.getElementById('demoModal');
+function openModal() { modalOverlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeModal() { modalOverlay.classList.remove('open'); document.body.style.overflow = ''; }
+window.openModal = openModal;
+window.closeModal = closeModal;
+modalOverlay?.addEventListener('click', e => { if (e.target === modalOverlay) closeModal(); });
+document.querySelectorAll('[data-demo]').forEach(el => el.addEventListener('click', openModal));
+
+// Demo form — submits to Formspree, shows success screen
+document.getElementById('demoForm')?.addEventListener('submit', async e => {
+  e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector('button[type="submit"]');
+  const originalText = btn.innerHTML;
+  btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="animation:spin .8s linear infinite"><polyline points="23 4 23 11 16 11"/><path d="M20.49 15a9 9 0 1 1-.07-6.49"/></svg> Sending...';
+  btn.disabled = true;
+
+  // Add spin keyframe if not present
+  if (!document.getElementById('spinStyle')) {
+    const s = document.createElement('style');
+    s.id = 'spinStyle';
+    s.textContent = '@keyframes spin{to{transform:rotate(360deg)}}';
+    document.head.appendChild(s);
+  }
+
+  try {
+    const data = new FormData(form);
+    const resp = await fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { Accept: 'application/json' }
+    });
+
+    if (resp.ok) {
+      demoModal.innerHTML = `
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+        <div style="text-align:center;padding:20px 0">
+          <div style="width:64px;height:64px;border-radius:50%;background:#f0fdf4;border:2px solid #bbf7d0;display:flex;align-items:center;justify-content:center;margin:0 auto 20px">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h3 style="font-size:22px;font-weight:800;color:#1e1047;margin-bottom:10px">Request received!</h3>
+          <p style="color:#6b7280;font-size:14px;line-height:1.6;max-width:280px;margin:0 auto">We'll be in touch within <strong>1 business day</strong> to schedule your personalized demo.</p>
+          <button onclick="closeModal()" class="btn btn-primary" style="margin:28px auto 0;display:flex;padding:12px 32px">Done</button>
+        </div>`;
+    } else {
+      throw new Error('Form error');
+    }
+  } catch {
+    btn.innerHTML = originalText;
+    btn.disabled = false;
+    alert('Something went wrong. Please email us directly at hello@cowboysystems.com');
+  }
+});
+
+// Platform tabs
+document.querySelectorAll('.ptab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.ptab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.tab)?.classList.add('active');
+  });
+});
+
+// Pricing toggle
+const toggle = document.getElementById('annualToggle');
+toggle?.addEventListener('change', () => {
+  const a = toggle.checked;
+  document.getElementById('starterPrice').innerHTML = (a ? '$211' : '$249') + ' <span class="per">/ provider / mo</span>';
+  document.getElementById('growthPrice').innerHTML = (a ? '$424' : '$499') + ' <span class="per">/ provider / mo</span>';
+});
+
+// Scroll animations
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// Counter animation
+function animateCount(el) {
+  const target = parseFloat(el.dataset.target);
+  const suffix = el.dataset.suffix || '';
+  const dur = 1400;
+  const start = performance.now();
+  function step(now) {
+    const p = Math.min((now - start) / dur, 1);
+    const ease = 1 - Math.pow(1 - p, 3);
+    const val = target * ease;
+    el.textContent = (Number.isInteger(target) ? Math.floor(val) : val.toFixed(1)) + suffix;
+    if (p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+const counterObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting && !e.target.dataset.counted) {
+      e.target.dataset.counted = '1';
+      animateCount(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('[data-target]').forEach(el => counterObs.observe(el));
+
+// Watch overview
+document.getElementById('watchOverview')?.addEventListener('click', () => {
+  alert('Demo video coming soon. Book a live demo to see Cowboy Systems in action.');
+});
+</script>
+</body>
+</html>
