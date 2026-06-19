@@ -1342,7 +1342,7 @@ footer{background:#fff;padding:64px 32px 32px;color:var(--gray-500);border-top:1
         <h3>Starter</h3>
         <div class="price" id="starterPrice">$249 <span class="per">/ provider / mo</span></div>
         <p class="desc">For solo practitioners and small practices <strong>up to 2 providers</strong>. Everything you need to run a modern PT practice.</p>
-        <a href="https://buy.stripe.com/9B66oGcipgN81RH0TPg7e00" target="_blank" class="pcard-btn">Get Started &rsaquo;</a>
+        <a id="starterBtn" href="https://buy.stripe.com/9B66oGcipgN81RH0TPg7e00" target="_blank" class="pcard-btn">Get Started &rsaquo;</a>
         <ul class="pcard-features">
           <li><svg class="check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> AI SOAP Notes (100/mo)</li>
           <li><svg class="check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Scheduling &amp; Calendar</li>
@@ -1358,7 +1358,7 @@ footer{background:#fff;padding:64px 32px 32px;color:var(--gray-500);border-top:1
         <h3>Growth</h3>
         <div class="price" id="growthPrice">$499 <span class="per">/ provider / mo</span></div>
         <p class="desc">For growing practices <strong>up to 5 providers</strong> that need full automation and advanced revenue tools.</p>
-        <a href="https://buy.stripe.com/aFa14m6Y5aoK9k9fOJg7e01" target="_blank" class="pcard-btn">Get Started &rsaquo;</a>
+        <a id="growthBtn" href="https://buy.stripe.com/aFa14m6Y5aoK9k9fOJg7e01" target="_blank" class="pcard-btn">Get Started &rsaquo;</a>
         <ul class="pcard-features">
           <li><svg class="check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Unlimited AI SOAP Notes</li>
           <li><svg class="check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Advanced Scheduling &amp; Waitlist</li>
@@ -1640,11 +1640,17 @@ document.querySelectorAll('.ptab').forEach(tab => {
 });
 
 // Pricing toggle
+const STRIPE = {
+  starter: { monthly: 'https://buy.stripe.com/9B66oGcipgN81RH0TPg7e00', annual: 'https://buy.stripe.com/4gM9AS0zH2WidApaupg7e02' },
+  growth:  { monthly: 'https://buy.stripe.com/aFa14m6Y5aoK9k9fOJg7e01', annual: 'https://buy.stripe.com/9B68wO82954q1RH6e9g7e03' }
+};
 const toggle = document.getElementById('annualToggle');
 toggle?.addEventListener('change', () => {
   const a = toggle.checked;
   document.getElementById('starterPrice').innerHTML = (a ? '$211' : '$249') + ' <span class="per">/ provider / mo</span>';
   document.getElementById('growthPrice').innerHTML = (a ? '$424' : '$499') + ' <span class="per">/ provider / mo</span>';
+  document.getElementById('starterBtn').href = a ? STRIPE.starter.annual : STRIPE.starter.monthly;
+  document.getElementById('growthBtn').href  = a ? STRIPE.growth.annual  : STRIPE.growth.monthly;
 });
 
 // Scroll animations
