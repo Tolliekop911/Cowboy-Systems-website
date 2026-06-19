@@ -130,7 +130,8 @@ header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);border
 .platform{padding:96px 32px;background:#fff}
 .platform-inner{max-width:1200px;margin:0 auto}
 .platform-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px;flex-wrap:wrap;gap:20px}
-.platform-tabs{display:flex;gap:2px;border-bottom:1px solid var(--gray-200);margin-bottom:48px;overflow-x:auto;padding-bottom:0}
+.platform-tabs{display:flex;gap:2px;border-bottom:1px solid var(--gray-200);margin-bottom:48px;overflow-x:auto;padding-bottom:0;scrollbar-width:none;-ms-overflow-style:none}
+.platform-tabs::-webkit-scrollbar{display:none}
 .ptab{padding:11px 20px;font-size:14px;font-weight:500;color:var(--gray-500);cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;transition:all .15s;font-family:var(--font);display:flex;align-items:center;gap:8px}
 .ptab:hover{color:var(--gray-900)}
 .ptab.active{color:var(--purple);border-bottom-color:var(--purple);font-weight:600}
