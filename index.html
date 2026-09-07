@@ -7,7 +7,7 @@
 <title>Cowboy Systems: One Platform. Every Service. Real Revenue Growth.</title>
 <meta name="description" content="AI-powered EMR, scheduling, billing, and embeddable booking widgets for PT, Yoga, and every modality you add next. Built by clinicians who run multi-service practices."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -26,6 +26,8 @@
   --gray-700:#374151;
   --gray-900:#111827;
   --font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  --font-display:'Space Grotesk','Inter',-apple-system,sans-serif;
+  --ink:#140a2e;
   --radius:12px;
   --shadow-sm:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.04);
   --shadow:0 4px 16px rgba(0,0,0,.08),0 2px 4px rgba(0,0,0,.04);
@@ -381,6 +383,60 @@ footer{background:#fff;padding:64px 32px 32px;color:var(--gray-500);border-top:1
   .security-visual{grid-template-columns:1fr}
   .frow{grid-template-columns:1fr}
 }
+
+/* ══ ART DIRECTION LAYER ══ */
+.hero h1,.section-title,.cta h2,.roi-top h2,.growth-top .section-title,
+.tp-content h3,.pcard h3,.modal h3,.outcome-card h3{
+  font-family:var(--font-display);letter-spacing:-1.2px;font-weight:700}
+.hero h1{font-weight:700;letter-spacing:-2px}
+
+/* Eyebrow tag – sharper, with a dot */
+.tag{background:transparent;border:1px solid var(--purple-200);color:var(--purple-dark);
+  letter-spacing:1.8px;font-size:10.5px;padding:6px 14px;display:inline-flex;align-items:center;gap:8px}
+.tag::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--purple-light);
+  box-shadow:0 0 0 3px var(--purple-100)}
+
+/* HERO – layered light, editorial */
+.hero{position:relative;overflow:hidden;
+  background:
+    radial-gradient(120% 90% at 88% 8%, rgba(124,58,237,.16), transparent 46%),
+    radial-gradient(90% 80% at 6% 96%, rgba(76,29,149,.10), transparent 50%),
+    linear-gradient(180deg,#fbfaff 0%,#fff 60%)}
+.hero::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(rgba(76,29,149,.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(76,29,149,.045) 1px,transparent 1px);
+  background-size:56px 56px;
+  -webkit-mask-image:radial-gradient(120% 100% at 50% 0%,#000 30%,transparent 78%);
+  mask-image:radial-gradient(120% 100% at 50% 0%,#000 30%,transparent 78%)}
+.hero-inner{position:relative;z-index:1}
+.hero h1{color:var(--ink)}
+.hero h1 .hl{position:relative;white-space:nowrap;
+  background:linear-gradient(120deg,var(--purple-light),#a855f7);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.hero h1 .hl::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:10px;z-index:-1;
+  background:linear-gradient(90deg,rgba(124,58,237,.22),rgba(168,85,247,.12));border-radius:4px}
+
+/* Buttons – depth + sheen */
+.btn-primary{background:linear-gradient(135deg,#7c3aed,#5b21b6);
+  box-shadow:0 1px 0 rgba(255,255,255,.25) inset,0 6px 18px rgba(91,33,182,.28)}
+.btn-primary:hover{background:linear-gradient(135deg,#8b47ff,#6d28d9);
+  box-shadow:0 1px 0 rgba(255,255,255,.3) inset,0 10px 30px rgba(91,33,182,.4)}
+.btn-lg{padding:16px 34px;font-size:15px}
+
+/* Trust pills – frosted */
+.trust-pill{background:rgba(255,255,255,.7);backdrop-filter:blur(6px);
+  border-color:rgba(76,29,149,.14);box-shadow:0 2px 8px rgba(76,29,149,.05)}
+
+/* Nav – tighter brand */
+header{background:rgba(255,255,255,.72);backdrop-filter:saturate(180%) blur(16px)}
+.nav-links a{font-weight:600;letter-spacing:-.1px}
+
+/* Section titles get the display face + optical tightening */
+.section-title{letter-spacing:-1.4px}
+
+/* Cards lift a touch more deliberately */
+.outcome-card h3,.pcard h3{font-family:var(--font-display)}
+.tag.solid{background:var(--purple);color:#fff;border-color:var(--purple)}
 </style>
 <!-- Calendly widget CSS -->
 <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
@@ -427,7 +483,7 @@ footer{background:#fff;padding:64px 32px 32px;color:var(--gray-500);border-top:1
   <div class="hero-inner">
     <div>
       <div class="tag">Built by Clinicians. Designed for Practice Owners.</div>
-      <h1>A full initial evaluation in 4 minutes. Not 20.</h1>
+      <h1>A full initial evaluation in <span class="hl">4 minutes</span>. Not 20.</h1>
       <p class="hero-sub">Cowboy is the AI-native EHR built by clinicians who run their own PT and Yoga practice. Speak through the visit, and the eval, note, codes, and claim are done before your next patient. Scheduling, billing, booking widgets, and a patient portal live in the same system. And if you want, we'll run the billing for you.</p>
       <div class="hero-ctas">
         <button class="btn btn-primary btn-lg" onclick="openModal()">
