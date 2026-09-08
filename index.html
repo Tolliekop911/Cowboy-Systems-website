@@ -290,6 +290,7 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
     <a href="#platform">Platform</a>
     <a href="#billing">Billing Service</a>
     <a href="#pricing">Pricing</a>
+    <a href="addons.html">Add-ons</a>
     <a href="#security">Security</a>
   </div>
   <a href="#demo" class="nav-cta mag">Book a Demo</a>
@@ -491,7 +492,7 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
       </ul>
     </div>
   </div>
-  <p class="pnote">Prefer billing done for you? Add full RCM for 4% of collections on any plan.</p>
+  <p class="pnote">Start with a plan, then <a href="addons.html">add what you need</a>: full-service billing at 4%, a custom website, a branded patient app, and more.</p>
 </div></section>
 
 <!-- SECURITY -->
@@ -590,7 +591,7 @@ addEventListener('load',()=>{
     .from('.hero-meta',{y:20,opacity:0,duration:.8},'-=.7')
     .add(()=>hero.classList.add('lit'),'-=.5');
   if(window.ScrollTrigger){gsap.registerPlugin(ScrollTrigger);
-    gsap.utils.toArray('.card,.band,.rc,.pcard,.sitem,.sec-panel').forEach(c=>{
+    gsap.utils.toArray('.card,.band,.rc,.pcard,.sitem,.sec-panel,.addon,.addon-feature').forEach(c=>{
       gsap.from(c,{y:38,opacity:0,duration:.85,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 90%'}});});
   }
 });
