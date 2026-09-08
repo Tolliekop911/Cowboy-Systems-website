@@ -4,39 +4,10 @@
 <meta charset="UTF-8"/>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM0YzFkOTUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjN2MzYWVkIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHJ4PSI3IiBmaWxsPSJ1cmwoI2JnKSIvPgogIDxwYXRoIGQ9Ik02IDE2TDE1LjUgNi41TDI1IDEyTDE4IDE2WiIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjk1KSIvPgogIDxwYXRoIGQ9Ik02IDE2TDE4IDE2TDI1IDIwTDE1LjUgMjUuNVoiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC43NSkiLz4KPC9zdmc+"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Blog — Cowboy Systems</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap');
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'DM Sans','Helvetica Neue',Arial,sans-serif;color:#1f2937;background:#fff;line-height:1.7;font-size:15px}
-.doc-header{background:linear-gradient(135deg,#1e1047,#4c1d95,#7c3aed);padding:48px 40px 36px;color:#fff}
-.doc-header .logo{display:flex;align-items:center;gap:10px;margin-bottom:24px;text-decoration:none}
-.doc-header h1{font-size:32px;font-weight:800;letter-spacing:-.5px;margin-bottom:8px}
-.doc-header .meta{font-size:13px;color:rgba(196,181,253,0.7)}
-.doc-body{max-width:900px;margin:0 auto;padding:48px 40px 80px}
-h2{font-size:18px;font-weight:700;color:#1e1047;margin:36px 0 16px}
-a{color:#7c3aed;text-decoration:none}
-.blog-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-bottom:48px}
-.blog-card{background:#f9fafb;border:1px solid #e5e7eb;border-radius:14px;overflow:hidden;transition:box-shadow .2s;cursor:pointer}
-.blog-card:hover{box-shadow:0 8px 32px rgba(124,58,237,.12);transform:translateY(-2px)}
-.blog-card-img{height:160px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.blog-card-body{padding:22px}
-.blog-tag{display:inline-block;font-size:10px;font-weight:700;color:#7c3aed;text-transform:uppercase;letter-spacing:1.2px;background:#ede9fe;padding:3px 8px;border-radius:4px;margin-bottom:10px}
-.blog-card-body h3{margin:0 0 8px;font-size:17px;color:#1e1047;line-height:1.35;font-weight:700}
-.blog-card-body p{margin:0 0 14px;font-size:13px;color:#6b7280;line-height:1.6}
-.blog-meta{font-size:12px;color:#9ca3af;display:flex;align-items:center;gap:12px}
-.featured{grid-column:1/-1}
-.featured .blog-card-img{height:220px}
-.featured .blog-card-body h3{font-size:22px}
-.subscribe-box{background:linear-gradient(135deg,#1e1047,#7c3aed);border-radius:16px;padding:40px;text-align:center;margin-top:24px;color:#fff}
-.subscribe-box h3{font-size:22px;font-weight:800;margin-bottom:8px}
-.subscribe-box p{color:rgba(196,181,253,.8);margin-bottom:24px}
-.sub-form{display:flex;gap:10px;max-width:420px;margin:0 auto}
-.sub-form input{flex:1;padding:12px 16px;border-radius:10px;border:none;font-size:14px;font-family:inherit;outline:none}
-.sub-form button{padding:12px 20px;background:#a78bfa;color:#fff;border:none;border-radius:10px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap}
-.doc-footer{text-align:center;padding:24px 40px;background:#f9fafb;border-top:1px solid #e5e7eb;font-size:12px;color:#9ca3af}
-@media(max-width:640px){.doc-header{padding:32px 24px 24px}.doc-body{padding:32px 24px 60px}.blog-grid{grid-template-columns:1fr}.featured{grid-column:1}.sub-form{flex-direction:column}}
-</style>
+<title>Blog, Cowboy Systems</title>
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin/>
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700,500&f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/site.css"/>
 </head>
 <body>
 <div class="doc-header">
@@ -56,7 +27,7 @@ a{color:#7c3aed;text-decoration:none}
       <div class="blog-card-body">
         <span class="blog-tag">AI &amp; Documentation</span>
         <h3>How AI SOAP Notes Are Giving Physical Therapists 2 Hours Back Every Day</h3>
-        <p>Documentation burden is the leading driver of PT burnout. We looked at how AI-assisted note generation is transforming clinic workflows — and what it means for patient care.</p>
+        <p>Documentation burden is the leading driver of PT burnout. We looked at how AI-assisted note generation is transforming clinic workflows, and what it means for patient care.</p>
         <div class="blog-meta">
           <span>June 15, 2026</span><span>&middot;</span><span>8 min read</span>
         </div>
@@ -82,7 +53,7 @@ a{color:#7c3aed;text-decoration:none}
       <div class="blog-card-body">
         <span class="blog-tag">Practice Management</span>
         <h3>No-Show Rates in PT Clinics: What the Data Says and How to Fix It</h3>
-        <p>The average PT clinic loses 12% of revenue to no-shows and late cancellations. Here's what drives them — and the systems that consistently reduce them.</p>
+        <p>The average PT clinic loses 12% of revenue to no-shows and late cancellations. Here's what drives them, and the systems that consistently reduce them.</p>
         <div class="blog-meta"><span>May 30, 2026</span><span>&middot;</span><span>5 min read</span></div>
       </div>
     </a>
@@ -94,7 +65,7 @@ a{color:#7c3aed;text-decoration:none}
       <div class="blog-card-body">
         <span class="blog-tag">HIPAA</span>
         <h3>HIPAA Compliance for Small PT Clinics: A Practical Checklist</h3>
-        <p>A straightforward compliance checklist for independent and small-group practices — covering the safeguards, policies, and documentation you actually need.</p>
+        <p>A straightforward compliance checklist for independent and small-group practices, covering the safeguards, policies, and documentation you actually need.</p>
         <div class="blog-meta"><span>May 20, 2026</span><span>&middot;</span><span>7 min read</span></div>
       </div>
     </a>
@@ -103,9 +74,9 @@ a{color:#7c3aed;text-decoration:none}
 
   <div class="subscribe-box">
     <h3>Stay in the loop</h3>
-    <p>Monthly insights on PT practice management, billing, and technology — no fluff.</p>
+    <p>Monthly insights on PT practice management, billing, and technology, no fluff.</p>
     <form class="sub-form" action="https://formspree.io/f/mzdqlnng" method="POST">
-      <input type="hidden" name="_subject" value="Blog Subscribe — Cowboy Systems"/>
+      <input type="hidden" name="_subject" value="Blog Subscribe, Cowboy Systems"/>
       <input type="email" name="email" placeholder="your@email.com" required/>
       <button type="submit">Subscribe</button>
     </form>
