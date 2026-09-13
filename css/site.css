@@ -20,14 +20,26 @@ img{max-width:100%}
 ul{list-style:none}
 ::selection{background:var(--purple);color:#fff}
 
-/* ---- top site nav ---- */
-.site-nav{background:rgba(251,250,255,.85);backdrop-filter:saturate(180%) blur(14px);
-  border-bottom:1px solid var(--line);padding:0 5vw;height:66px;display:flex;align-items:center;
-  justify-content:space-between;position:sticky;top:0;z-index:50}
-.site-nav .brand,.site-nav strong{font-family:var(--disp);font-weight:600;font-size:19px;
-  letter-spacing:-.5px;color:var(--ink)}
-.site-nav a{color:var(--ink-soft);font-size:14px;font-weight:500}
-.site-nav a:hover{color:var(--purple)}
+/* ---- top nav (same as homepage, always solid on subpages) ---- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;
+  justify-content:space-between;padding:14px 5vw;line-height:1.6;
+  background:rgba(251,250,255,.82);-webkit-backdrop-filter:saturate(180%) blur(16px);backdrop-filter:saturate(180%) blur(16px);
+  box-shadow:0 1px 0 rgba(22,15,46,.07)}
+.brand{display:flex;align-items:baseline;gap:11px;font-family:var(--disp);font-weight:600;
+  font-size:21px;letter-spacing:-.5px;color:var(--ink)}
+.brand:hover{color:var(--ink)}
+.brand small{font-family:var(--body);font-weight:600;font-size:10px;letter-spacing:3px;
+  text-transform:uppercase;color:var(--purple)}
+.nav-links{display:flex;gap:32px;font-size:14px;font-weight:500}
+.nav-links a{position:relative;color:var(--ink-soft)}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:1.5px;
+  background:var(--purple);transition:width .3s}
+.nav-links a:hover,.nav-links a[aria-current="page"]{color:var(--ink)}
+.nav-links a:hover::after,.nav-links a[aria-current="page"]::after{width:100%}
+.nav-cta{font-size:13px;font-weight:700;background:var(--ink);color:#fff;padding:11px 20px;border-radius:100px;
+  transition:background .3s}
+.nav-cta:hover{background:var(--purple);color:#fff}
+@media(max-width:860px){.nav-links{display:none}}
 
 /* ---- hero headers (dark, holds the white logo) ---- */
 .doc-header,.post-hero,.post-hero-inner{position:relative}
@@ -141,11 +153,17 @@ table{border-collapse:collapse;width:100%;margin:20px 0;font-size:14px}
 th,td{border:1px solid var(--line);padding:10px 12px;text-align:left}
 th{background:var(--paper-2);font-weight:700;color:var(--ink)}
 
-/* ---- footer ---- */
-.doc-footer,.post-footer{background:var(--ink);color:rgba(221,214,254,.6);
-  padding:40px 5vw;text-align:center;font-size:13px}
-.doc-footer a,.post-footer a{color:#c4a3ff;font-weight:600}
-.post-footer{text-align:left;padding:48px 5vw}
+/* ---- footer (same as homepage) ---- */
+footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px;line-height:1.6}
+.fgrid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:44px}
+.fbrand .brand{color:#fff;margin-bottom:14px}
+.fbrand p{font-size:13px;line-height:1.7;max-width:240px;margin:0;color:inherit}
+.fcol h4{font-size:12px;font-weight:700;color:#fff;letter-spacing:1px;text-transform:uppercase;margin-bottom:16px}
+.fcol a{display:block;font-size:13.5px;margin-bottom:11px;color:inherit;transition:color .2s}
+.fcol a:hover{color:#fff}
+.fbot{max-width:1280px;margin:0 auto;border-top:1px solid rgba(255,255,255,.1);padding-top:22px;
+  display:flex;justify-content:space-between;font-size:12px;flex-wrap:wrap;gap:10px}
+@media(max-width:760px){.fgrid{grid-template-columns:1fr 1fr}}
 
 @media(max-width:760px){
   .contact-grid,.team-grid,.blog-grid,.safeguard-grid,.sig-grid{grid-template-columns:1fr}
