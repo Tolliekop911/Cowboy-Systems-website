@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<link rel="icon" href="favicon.ico?v=2" sizes="any"/>
+<link rel="icon" href="/favicon.ico?v=3" sizes="any"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Cowboy Systems: The 4-Minute Evaluation</title>
 <meta name="description" content="The AI-native EHR built by clinicians. A full initial evaluation in four minutes, not twenty. Documentation, scheduling, billing, and booking in one platform."/>
@@ -285,12 +286,12 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
 
 <!-- NAV -->
 <nav class="nav" id="nav">
-  <a href="#top" class="brand">Cowboy <small>Systems</small></a>
+  <a href="/" class="brand">Cowboy <small>Systems</small></a>
   <div class="nav-links">
     <a href="#platform">Platform</a>
     <a href="#billing">Billing Service</a>
     <a href="#pricing">Pricing</a>
-    <a href="addons.html">Add-ons</a>
+    <a href="/addons">Add-ons</a>
     <a href="#security">Security</a>
   </div>
   <a href="#demo" class="nav-cta mag">Book a Demo</a>
@@ -482,7 +483,7 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
       <div class="pname">Enterprise</div>
       <div class="price">Custom</div>
       <div class="pdesc">Multi-location practices and health systems.</div>
-      <a href="contact.html" class="pcta">Contact sales</a>
+      <a href="/contact" class="pcta">Contact sales</a>
       <ul class="pfeat">
         <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Everything in Growth</li>
         <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Marketing and website builder</li>
@@ -492,7 +493,7 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
       </ul>
     </div>
   </div>
-  <p class="pnote">Start with a plan, then <a href="addons.html">add what you need</a>: full-service billing at 4%, a custom website, a branded patient app, and more. Prices in USD, excluding applicable taxes.</p>
+  <p class="pnote">Start with a plan, then <a href="/addons">add what you need</a>: full-service billing at 4%, a custom website, a branded patient app, and more. Prices in USD, excluding applicable taxes.</p>
 </div></section>
 
 <!-- SECURITY -->
@@ -525,7 +526,7 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
   <h2>Twenty minutes.<br>Then you will get it.</h2>
   <p>Book a demo and watch a full initial evaluation go from spoken visit to signed, coded, and billed.</p>
   <div class="final-ctas">
-    <a href="contact.html" class="btn mag"><span class="dot"></span> Book a Demo</a>
+    <a href="/contact" class="btn mag"><span class="dot"></span> Book a Demo</a>
     <a href="#pricing" class="btn-line">View pricing <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 6h17M13 1l5 5-5 5"/></svg></a>
   </div>
 </section>
@@ -534,12 +535,12 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
 <footer>
   <div class="fgrid">
     <div class="fbrand">
-      <a href="#top" class="brand" style="color:#fff">Cowboy <small>Systems</small></a>
+      <a href="/" class="brand" style="color:#fff">Cowboy <small>Systems</small></a>
       <p>The AI-native EHR built by clinicians who run their own PT and Yoga practice. One platform for documentation, scheduling, billing, and growth.</p>
     </div>
-    <div class="fcol"><h4>Product</h4><a href="#platform">Platform</a><a href="#billing">Billing Service</a><a href="#pricing">Pricing</a><a href="addons.html">Add-ons</a><a href="#security">Security</a></div>
-    <div class="fcol"><h4>Company</h4><a href="about.html">About</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a></div>
-    <div class="fcol"><h4>Legal</h4><a href="privacy-policy.html">Privacy</a><a href="terms-of-service.html">Terms</a><a href="hipaa-compliance.html">HIPAA</a><a href="baa.html">BAA</a></div>
+    <div class="fcol"><h4>Product</h4><a href="#platform">Platform</a><a href="#billing">Billing Service</a><a href="#pricing">Pricing</a><a href="/addons">Add-ons</a><a href="#security">Security</a></div>
+    <div class="fcol"><h4>Company</h4><a href="/about">About</a><a href="/blog">Blog</a><a href="/contact">Contact</a></div>
+    <div class="fcol"><h4>Legal</h4><a href="/privacy-policy">Privacy</a><a href="/terms-of-service">Terms</a><a href="/hipaa-compliance">HIPAA</a><a href="/baa">BAA</a></div>
   </div>
   <div class="fbot"><span>© 2026 Cowboy Systems. All rights reserved.</span><span>Built by clinicians, for practice owners.</span></div>
 </footer>
@@ -574,9 +575,26 @@ document.querySelectorAll('[data-tilt]').forEach(card=>{
 });
 
 /* Lenis */
-if(window.Lenis && !reduce){const lenis=new Lenis({lerp:.09});
+if(window.Lenis && !reduce){const lenis=window.lenis=new Lenis({lerp:.09});
   (function raf(t){lenis.raf(t);requestAnimationFrame(raf);})();
   if(window.ScrollTrigger) lenis.on('scroll',ScrollTrigger.update);}
+
+/* Clean URLs: scroll to sections without a #hash in the address bar */
+const toSection=(id,smooth)=>{
+  if(!id||id==='top'){window.lenis&&smooth?window.lenis.scrollTo(0):scrollTo({top:0,behavior:smooth&&!reduce?'smooth':'auto'});return true;}
+  const el=document.getElementById(id); if(!el) return false;
+  if(window.lenis&&smooth) window.lenis.scrollTo(el); else el.scrollIntoView({behavior:smooth&&!reduce?'smooth':'auto'});
+  return true;
+};
+document.addEventListener('click',e=>{
+  const a=e.target.closest('a[href^="#"],a[href^="/#"],a[href="/"]'); if(!a||e.metaKey||e.ctrlKey||e.shiftKey) return;
+  const h=a.getAttribute('href'); if(h==='#') return;
+  if(toSection(h.includes('#')?h.split('#')[1]:'',true)) e.preventDefault();
+});
+const stripHash=()=>{const id=decodeURIComponent(location.hash.slice(1));
+  history.replaceState(null,'',location.pathname+location.search); return id;};
+if(location.hash){const id=stripHash(); addEventListener('load',()=>setTimeout(()=>toSection(id,false),50));}
+addEventListener('hashchange',()=>{if(location.hash) toSection(stripHash(),true);});
 
 /* Reveals */
 addEventListener('load',()=>{
