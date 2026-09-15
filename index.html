@@ -245,6 +245,22 @@ ul{list-style:none}
 .pnote{text-align:center;font-size:13px;color:var(--ink-soft);margin-top:24px}
 @media(max-width:820px){.pgrid{grid-template-columns:1fr}}
 
+/* ── REAL PRODUCT ── */
+.shots-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.shots-tabs button{font-family:var(--body);font-weight:600;font-size:13.5px;padding:10px 16px;border-radius:100px;cursor:pointer;
+  border:1px solid rgba(22,15,46,.12);background:#fff;color:var(--ink-soft);transition:background .2s,color .2s,border-color .2s}
+.shots-tabs button:hover{border-color:var(--purple);color:var(--ink)}
+.shots-tabs button[aria-selected="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.shot-frame{background:#fff;border:1px solid rgba(22,15,46,.1);border-radius:18px;overflow:hidden;
+  box-shadow:0 50px 90px -60px rgba(22,15,46,.6)}
+.shot-bar{display:flex;align-items:center;gap:6px;padding:10px 14px;background:var(--paper-2);border-bottom:1px solid rgba(22,15,46,.08)}
+.shot-bar i{width:9px;height:9px;border-radius:50%;background:rgba(22,15,46,.14)}
+.shot-bar span{margin-left:10px;font-size:11.5px;color:var(--ink-soft)}
+.shot-frame img{display:block;width:100%;height:auto;aspect-ratio:1600/760;object-fit:cover;object-position:top left;background:var(--paper-2)}
+.shot-cap{display:flex;justify-content:space-between;align-items:baseline;gap:8px 24px;flex-wrap:wrap;margin-top:14px;font-size:14px;color:var(--ink-soft)}
+@media(max-width:640px){.shots-tabs{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;margin-right:-5vw;scrollbar-width:none}.shots-tabs button{flex-shrink:0}}
+.shot-cap .demo{font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--purple);white-space:nowrap}
+
 /* ── HOW IT WORKS ── */
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .card.step{padding:28px}
@@ -339,7 +355,7 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
     <p class="hero-sub reveal">Note, assessment, goals, and codes, billing-ready in <b>about four minutes of documentation time</b>, against roughly twenty on a legacy system. Your therapist reviews and signs every note.</p>
     <div class="hero-ctas reveal">
       <a href="#demo" class="btn mag"><span class="dot"></span> Book a Demo</a>
-      <a href="#how" class="btn-line">See how it works <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 6h17M13 1l5 5-5 5"/></svg></a>
+      <a href="#product" class="btn-line">See the real product <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 6h17M13 1l5 5-5 5"/></svg></a>
     </div>
   </div>
   <div class="hero-meta reveal">
@@ -350,11 +366,33 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
   <div class="hero-scroll"><span class="bar"></span> Scroll</div>
 </header>
 
+<!-- REAL PRODUCT -->
+<section class="sec" id="product"><div class="wrap">
+  <div class="sec-head">
+    <div>
+      <div class="kicker"><span class="num">01</span> The real product</div>
+      <h2 class="sec-title">No mockups.<br>This is the EHR.</h2>
+    </div>
+    <p class="sec-note">Screens from the live Cowboy Systems EHR, shown on a test patient. Everything you see here ships today.</p>
+  </div>
+  <div class="shots-tabs" role="tablist" aria-label="Product screens">
+    <button type="button" role="tab" aria-selected="true" aria-controls="shot-img" data-src="/assets/product/chart-signed-eval.webp" data-alt="Patient chart in Cowboy Systems showing a signed Lower Extremity Initial Evaluation for a test patient" data-cap="A signed Lower Extremity Initial Evaluation on the patient chart: diagnoses, history, and every section of the exam.">Signed initial eval</button>
+    <button type="button" role="tab" aria-selected="false" aria-controls="shot-img" data-src="/assets/product/notes-billing.webp" data-alt="Notes tab in Cowboy Systems with initial evaluation, progress note, re-evaluation, discharge summary, and Send to Billing and Fax actions" data-cap="Every note type in one place. Send a signed note to billing, fax it, or print it in one click.">Notes and billing</button>
+    <button type="button" role="tab" aria-selected="false" aria-controls="shot-img" data-src="/assets/product/hep-flowsheet.webp" data-alt="HEP and flowsheet screen in Cowboy Systems with an exercise library and a home exercise program builder" data-cap="Build home exercise programs and daily flowsheets from the exercise library, or quick-fill by diagnosis.">HEP and flowsheet</button>
+    <button type="button" role="tab" aria-selected="false" aria-controls="shot-img" data-src="/assets/product/smart-forms.webp" data-alt="Smart Forms screen in Cowboy Systems listing 42 clinical templates across specialties" data-cap="42 ready-made templates: evaluations, re-evaluations, flowsheets, and charge sheets for nine specialties.">42 clinical templates</button>
+  </div>
+  <figure class="shot-frame" role="tabpanel">
+    <div class="shot-bar"><i></i><i></i><i></i><span>ehr.cowboy-systems.com</span></div>
+    <img id="shot-img" src="/assets/product/chart-signed-eval.webp" alt="Patient chart in Cowboy Systems showing a signed Lower Extremity Initial Evaluation for a test patient" width="1600" height="760" loading="lazy" decoding="async"/>
+  </figure>
+  <div class="shot-cap"><span id="shot-cap">A signed Lower Extremity Initial Evaluation on the patient chart: diagnoses, history, and every section of the exam.</span><span class="demo">Test patient · demo data</span></div>
+</div></section>
+
 <!-- HOW IT WORKS -->
 <section class="sec" id="how"><div class="wrap">
   <div class="sec-head">
     <div>
-      <div class="kicker"><span class="num">01</span> How it works</div>
+      <div class="kicker"><span class="num">02</span> How it works</div>
       <h2 class="sec-title">From exam to<br>claim in four steps.</h2>
     </div>
     <p class="sec-note">The AI does the typing. Your therapist stays in charge: nothing is final until they review and sign it.</p>
@@ -371,7 +409,7 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
 <section class="sec" id="platform"><div class="wrap">
   <div class="sec-head">
     <div>
-      <div class="kicker"><span class="num">02</span> The platform</div>
+      <div class="kicker"><span class="num">03</span> The platform</div>
       <h2 class="sec-title">One system that<br>actually does the work.</h2>
     </div>
     <p class="sec-note">Not a note-taker with integrations bolted on. Documentation, the front office, and the revenue cycle share one patient record.</p>
@@ -474,7 +512,7 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
 <section class="sec" id="billing"><div class="wrap">
   <div class="sec-head">
     <div>
-      <div class="kicker"><span class="num">03</span> Billing, done for you</div>
+      <div class="kicker"><span class="num">04</span> Billing, done for you</div>
       <h2 class="sec-title">Get your billing<br>off your desk.</h2>
     </div>
     <p class="sec-note">Most clinics pay a legacy vendor for the EHR, then pay a billing company on top. We do both, for less.</p>
@@ -506,7 +544,7 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
 <section class="sec" id="pricing"><div class="wrap">
   <div class="sec-head">
     <div>
-      <div class="kicker"><span class="num">04</span> Pricing</div>
+      <div class="kicker"><span class="num">05</span> Pricing</div>
       <h2 class="sec-title">Flat plans. No<br>per-seat games.</h2>
     </div>
     <p class="sec-note">Start with a 3-month minimum, billed monthly, or save 15% on a 12-month term. Every paid plan includes a signed BAA and onboarding, and founding clinics pay no setup or migration fees.</p>
@@ -566,7 +604,7 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
 <section class="sec" id="security"><div class="wrap">
   <div class="sec-head">
     <div>
-      <div class="kicker"><span class="num">05</span> Trust and compliance</div>
+      <div class="kicker"><span class="num">06</span> Trust and compliance</div>
       <h2 class="sec-title">Compliant by default.<br>Clinician in control.</h2>
     </div>
     <p class="sec-note">Built for HIPAA from the first line of code. <a href="/hipaa-compliance" style="color:var(--purple);font-weight:600">Read our HIPAA statement</a>.</p>
@@ -582,7 +620,7 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
 
 <!-- FINAL CTA -->
 <section class="final" id="demo">
-  <div class="kicker" style="justify-content:center"><span class="num">06</span> See it live</div>
+  <div class="kicker" style="justify-content:center"><span class="num">07</span> See it live</div>
   <h2>Twenty minutes.<br>Then you will get it.</h2>
   <p>Book a 20-minute live demo on a real note type. Watch an initial evaluation go from exam to a signed, coded note, ready to bill.</p>
   <div class="final-ctas">
@@ -673,6 +711,19 @@ addEventListener('load',()=>{
       gsap.from(c,{y:38,opacity:0,duration:.85,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 90%'}});});
   }
 });
+
+/* Real product screens: tab switcher */
+(function(){
+  const tabs=[...document.querySelectorAll('.shots-tabs [role="tab"]')], img=document.getElementById('shot-img'), cap=document.getElementById('shot-cap');
+  if(!tabs.length||!img) return;
+  const show=t=>{tabs.forEach(b=>b.setAttribute('aria-selected',String(b===t)));img.src=t.dataset.src;img.alt=t.dataset.alt;cap.textContent=t.dataset.cap;};
+  tabs.forEach((t,i)=>{
+    t.addEventListener('click',()=>show(t));
+    t.addEventListener('keydown',e=>{if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft')return;e.preventDefault();
+      const n=tabs[(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length];n.focus();show(n);});
+  });
+  addEventListener('load',()=>tabs.slice(1).forEach(t=>{const p=new Image();p.src=t.dataset.src;}));
+})();
 
 /* SOAP typewriter */
 (function(){
