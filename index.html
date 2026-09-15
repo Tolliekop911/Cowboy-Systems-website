@@ -256,7 +256,9 @@ ul{list-style:none}
 .shot-bar{display:flex;align-items:center;gap:6px;padding:10px 14px;background:var(--paper-2);border-bottom:1px solid rgba(22,15,46,.08)}
 .shot-bar i{width:9px;height:9px;border-radius:50%;background:rgba(22,15,46,.14)}
 .shot-bar span{margin-left:10px;font-size:11.5px;color:var(--ink-soft)}
-.shot-frame img{display:block;width:100%;height:auto;aspect-ratio:1600/760;object-fit:cover;object-position:top left;background:var(--paper-2)}
+.shot-stack{display:grid;background:var(--paper-2)}
+.shot-stack img{grid-area:1/1;display:block;width:100%;height:auto;aspect-ratio:1600/760;object-fit:cover;object-position:top left;opacity:0;transition:opacity .22s ease}
+.shot-stack img.on{opacity:1}
 .shot-cap{display:flex;justify-content:space-between;align-items:baseline;gap:8px 24px;flex-wrap:wrap;margin-top:14px;font-size:14px;color:var(--ink-soft)}
 @media(max-width:640px){.shots-tabs{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;margin-right:-5vw;scrollbar-width:none}.shots-tabs button{flex-shrink:0}}
 .shot-cap .demo{font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--purple);white-space:nowrap}
@@ -376,14 +378,19 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
     <p class="sec-note">Screens from the live Cowboy Systems EHR, shown on a test patient. Everything you see here ships today.</p>
   </div>
   <div class="shots-tabs" role="tablist" aria-label="Product screens">
-    <button type="button" role="tab" aria-selected="true" aria-controls="shot-img" data-src="/assets/product/chart-signed-eval.webp" data-alt="Patient chart in Cowboy Systems showing a signed Lower Extremity Initial Evaluation for a test patient" data-cap="A signed Lower Extremity Initial Evaluation on the patient chart: diagnoses, history, and every section of the exam.">Signed initial eval</button>
-    <button type="button" role="tab" aria-selected="false" aria-controls="shot-img" data-src="/assets/product/notes-billing.webp" data-alt="Notes tab in Cowboy Systems with initial evaluation, progress note, re-evaluation, discharge summary, and Send to Billing and Fax actions" data-cap="Every note type in one place. Send a signed note to billing, fax it, or print it in one click.">Notes and billing</button>
-    <button type="button" role="tab" aria-selected="false" aria-controls="shot-img" data-src="/assets/product/hep-flowsheet.webp" data-alt="HEP and flowsheet screen in Cowboy Systems with an exercise library and a home exercise program builder" data-cap="Build home exercise programs and daily flowsheets from the exercise library, or quick-fill by diagnosis.">HEP and flowsheet</button>
-    <button type="button" role="tab" aria-selected="false" aria-controls="shot-img" data-src="/assets/product/smart-forms.webp" data-alt="Smart Forms screen in Cowboy Systems listing 42 clinical templates across specialties" data-cap="42 ready-made templates: evaluations, re-evaluations, flowsheets, and charge sheets for nine specialties.">42 clinical templates</button>
+    <button type="button" role="tab" aria-selected="true" aria-controls="shot-stack" data-src="/assets/product/chart-signed-eval.webp" data-alt="Patient chart in Cowboy Systems showing a signed Lower Extremity Initial Evaluation for a test patient" data-cap="A signed Lower Extremity Initial Evaluation on the patient chart: diagnoses, history, and every section of the exam.">Signed initial eval</button>
+    <button type="button" role="tab" aria-selected="false" aria-controls="shot-stack" data-src="/assets/product/notes-billing.webp" data-alt="Notes tab in Cowboy Systems with initial evaluation, progress note, re-evaluation, discharge summary, and Send to Billing and Fax actions" data-cap="Every note type in one place. Send a signed note to billing, fax it, or print it in one click.">Notes and billing</button>
+    <button type="button" role="tab" aria-selected="false" aria-controls="shot-stack" data-src="/assets/product/hep-flowsheet.webp" data-alt="HEP and flowsheet screen in Cowboy Systems with an exercise library and a home exercise program builder" data-cap="Build home exercise programs and daily flowsheets from the exercise library, or quick-fill by diagnosis.">HEP and flowsheet</button>
+    <button type="button" role="tab" aria-selected="false" aria-controls="shot-stack" data-src="/assets/product/smart-forms.webp" data-alt="Smart Forms screen in Cowboy Systems listing 42 clinical templates across specialties" data-cap="42 ready-made templates: evaluations, re-evaluations, flowsheets, and charge sheets for nine specialties.">42 clinical templates</button>
   </div>
   <figure class="shot-frame" role="tabpanel">
     <div class="shot-bar"><i></i><i></i><i></i><span>ehr.cowboy-systems.com</span></div>
-    <img id="shot-img" src="/assets/product/chart-signed-eval.webp" alt="Patient chart in Cowboy Systems showing a signed Lower Extremity Initial Evaluation for a test patient" width="1600" height="760" loading="lazy" decoding="async"/>
+    <div class="shot-stack" id="shot-stack">
+      <img src="/assets/product/chart-signed-eval.webp" alt="Patient chart in Cowboy Systems showing a signed Lower Extremity Initial Evaluation for a test patient" width="1600" height="760" loading="lazy" decoding="async" class="on"/>
+      <img src="/assets/product/notes-billing.webp" alt="Notes tab in Cowboy Systems with initial evaluation, progress note, re-evaluation, discharge summary, and Send to Billing and Fax actions" width="1600" height="760" loading="lazy" decoding="async" aria-hidden="true"/>
+      <img src="/assets/product/hep-flowsheet.webp" alt="HEP and flowsheet screen in Cowboy Systems with an exercise library and a home exercise program builder" width="1600" height="760" loading="lazy" decoding="async" aria-hidden="true"/>
+      <img src="/assets/product/smart-forms.webp" alt="Smart Forms screen in Cowboy Systems listing 42 clinical templates across specialties" width="1600" height="760" loading="lazy" decoding="async" aria-hidden="true"/>
+    </div>
   </figure>
   <div class="shot-cap"><span id="shot-cap">A signed Lower Extremity Initial Evaluation on the patient chart: diagnoses, history, and every section of the exam.</span><span class="demo">Test patient · demo data</span></div>
 </div></section>
@@ -712,17 +719,18 @@ addEventListener('load',()=>{
   }
 });
 
-/* Real product screens: tab switcher */
+/* Real product screens: tab switcher (all screens preloaded, instant switch) */
 (function(){
-  const tabs=[...document.querySelectorAll('.shots-tabs [role="tab"]')], img=document.getElementById('shot-img'), cap=document.getElementById('shot-cap');
-  if(!tabs.length||!img) return;
-  const show=t=>{tabs.forEach(b=>b.setAttribute('aria-selected',String(b===t)));img.src=t.dataset.src;img.alt=t.dataset.alt;cap.textContent=t.dataset.cap;};
+  const tabs=[...document.querySelectorAll('.shots-tabs [role="tab"]')], imgs=[...document.querySelectorAll('#shot-stack img')], cap=document.getElementById('shot-cap');
+  if(!tabs.length||tabs.length!==imgs.length) return;
+  const show=i=>{tabs.forEach((b,j)=>b.setAttribute('aria-selected',String(i===j)));
+    imgs.forEach((im,j)=>{im.classList.toggle('on',i===j);i===j?im.removeAttribute('aria-hidden'):im.setAttribute('aria-hidden','true');});
+    cap.textContent=tabs[i].dataset.cap;};
   tabs.forEach((t,i)=>{
-    t.addEventListener('click',()=>show(t));
+    t.addEventListener('click',()=>show(i));
     t.addEventListener('keydown',e=>{if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft')return;e.preventDefault();
-      const n=tabs[(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length];n.focus();show(n);});
+      const n=(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;tabs[n].focus();show(n);});
   });
-  addEventListener('load',()=>tabs.slice(1).forEach(t=>{const p=new Image();p.src=t.dataset.src;}));
 })();
 
 /* SOAP typewriter */
