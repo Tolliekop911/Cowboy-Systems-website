@@ -7,7 +7,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=5"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Cowboy Systems: The 4-Minute Evaluation</title>
-<meta name="description" content="The AI-native EHR built by clinicians. A full initial evaluation in four minutes, not twenty. Documentation, scheduling, billing, and booking in one platform."/>
+<meta name="description" content="The EHR for outpatient PT and multi-service clinics, built by clinicians. A full initial evaluation in about four minutes of documentation time: note, assessment, goals, and codes, billing-ready."/>
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin/>
 <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700,500&f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet"/>
 <style>
@@ -243,20 +243,48 @@ ul{list-style:none}
 .pnote{text-align:center;font-size:13px;color:var(--ink-soft);margin-top:24px}
 @media(max-width:820px){.pgrid{grid-template-columns:1fr}}
 
-/* ── SECURITY ── */
-.sec-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
-.sec-list{display:flex;flex-direction:column;gap:2px;margin-top:8px}
-.sitem{display:flex;align-items:center;gap:14px;padding:18px 0;border-bottom:1px solid rgba(22,15,46,.09);font-size:15px;font-weight:500}
-.sitem:last-child{border-bottom:none}
-.sitem svg{color:var(--purple);flex-shrink:0}
-.sec-panel{background:var(--ink);color:#fff;border-radius:24px;padding:40px;position:relative;overflow:hidden}
-.sec-panel::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 60% at 20% 0%,rgba(124,58,237,.4),transparent 60%)}
-.sec-panel .pt{position:relative}
-.sec-panel .big{font-family:var(--disp);font-weight:600;font-size:30px;letter-spacing:-1px;margin-bottom:10px}
-.sec-panel p{font-size:14px;color:rgba(237,233,254,.65);line-height:1.6}
-.lock{width:52px;height:52px;border-radius:14px;background:rgba(147,102,240,.22);border:1px solid rgba(147,102,240,.4);
-  display:flex;align-items:center;justify-content:center;margin-bottom:22px;position:relative}
-@media(max-width:820px){.sec-grid{grid-template-columns:1fr;gap:36px}}
+/* ── HOW IT WORKS ── */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card.step{padding:28px}
+.step .sn{font-family:var(--disp);font-weight:600;font-size:15px;color:var(--purple);letter-spacing:1px}
+.card.step h3{font-size:21px;margin:10px 0 8px}
+.step .out{display:inline-block;margin-top:14px;font-size:10.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+  color:var(--purple-dark);background:var(--lav);padding:5px 10px;border-radius:100px}
+@media(max-width:980px){.steps{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.steps{grid-template-columns:1fr}}
+
+/* ── WHAT'S INCLUDED ── */
+.incl{margin-top:64px}
+.incl-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;margin-bottom:22px}
+.incl-head h3{font-family:var(--disp);font-weight:600;font-size:clamp(24px,2.6vw,34px);letter-spacing:-1px;line-height:1.05}
+.incl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card.incl-col{padding:26px}
+.incl-col ul{margin-top:6px}
+.incl-col li{padding:12px 0;border-top:1px solid rgba(22,15,46,.07)}
+.incl-col li:first-child{border-top:none}
+.incl-col li b{display:block;font-size:14.5px;font-weight:700;color:var(--ink)}
+.incl-col li span{display:block;font-size:12.5px;color:var(--ink-soft);line-height:1.5;margin-top:2px}
+@media(max-width:900px){.incl-grid{grid-template-columns:1fr}}
+
+/* ── PRICING SPLIT ── */
+.psplit{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:22px}
+.ps{border-radius:18px;padding:22px 26px;border:1px solid rgba(22,15,46,.09);background:#fff}
+.ps.plus{background:linear-gradient(150deg,#1E1047,#4C1D95);color:#fff;border-color:transparent}
+.ps .lab{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--purple)}
+.ps.plus .lab{color:#c4a3ff}
+.ps .amt{font-family:var(--disp);font-weight:600;font-size:26px;letter-spacing:-.8px;margin:6px 0 4px}
+.ps p{font-size:13px;color:var(--ink-soft);line-height:1.55}
+.ps.plus p{color:rgba(237,233,254,.75)}
+@media(max-width:820px){.psplit{grid-template-columns:1fr}}
+
+/* ── TRUST ROW ── */
+.trust{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.card.titem{padding:24px}
+.titem svg{color:var(--purple);display:block;margin-bottom:12px}
+.titem b{display:block;font-size:14.5px;font-weight:700;line-height:1.3}
+.titem span{display:block;font-size:12.5px;color:var(--ink-soft);margin-top:4px;line-height:1.45}
+@media(max-width:1000px){.trust{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.trust{grid-template-columns:1fr}}
 
 /* ── FINAL CTA ── */
 .final{text-align:center;padding:130px 5vw}
@@ -300,16 +328,16 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
 
 <!-- HERO -->
 <header class="hero" id="top">
-  <div class="hero-eyebrow reveal"><span class="line"></span> Built by clinicians · Run in a real clinic</div>
+  <div class="hero-eyebrow reveal"><span class="line"></span> Built for outpatient PT &amp; multi-service clinics</div>
   <h1 aria-label="A full initial evaluation in four minutes.">
     <span class="word"><span>A full</span></span> <span class="word"><span>initial</span></span> <span class="word"><span>evaluation</span></span><br>
     <span class="word"><span>in</span></span> <span class="word"><span><em>four&nbsp;minutes</em></span></span>.
   </h1>
   <div class="hero-lower">
-    <p class="hero-sub reveal">The AI-native EHR that listens through the visit and has the full note, codes, and claim ready before your next patient. <b>Four minutes for a complete initial evaluation</b>, against roughly twenty on a legacy system.</p>
+    <p class="hero-sub reveal">Note, assessment, goals, and codes, billing-ready in <b>about four minutes of documentation time</b>, against roughly twenty on a legacy system. Your therapist reviews and signs every note.</p>
     <div class="hero-ctas reveal">
       <a href="#demo" class="btn mag"><span class="dot"></span> Book a Demo</a>
-      <a href="#platform" class="btn-line">See the platform <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 6h17M13 1l5 5-5 5"/></svg></a>
+      <a href="#how" class="btn-line">See how it works <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 6h17M13 1l5 5-5 5"/></svg></a>
     </div>
   </div>
   <div class="hero-meta reveal">
@@ -320,14 +348,31 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
   <div class="hero-scroll"><span class="bar"></span> Scroll</div>
 </header>
 
+<!-- HOW IT WORKS -->
+<section class="sec" id="how"><div class="wrap">
+  <div class="sec-head">
+    <div>
+      <div class="kicker"><span class="num">01</span> How it works</div>
+      <h2 class="sec-title">From exam to<br>claim in four steps.</h2>
+    </div>
+    <p class="sec-note">The AI does the typing. Your therapist stays in charge: nothing is final until they review and sign it.</p>
+  </div>
+  <div class="steps">
+    <article class="card step" data-tilt><div class="sn">01</div><h3>Examine as usual</h3><p>Run the visit the way you already do. Findings, special tests, and outcome scores like LEFS go straight into the chart.</p><span class="out">Nothing new to learn</span></article>
+    <article class="card step" data-tilt><div class="sn">02</div><h3>AI drafts the note</h3><p>The SOAP note is built from the visit and the chart, not a blank template.</p><span class="out">No after-hours charting</span></article>
+    <article class="card step" data-tilt><div class="sn">03</div><h3>Assessment and goals</h3><p>An assessment grounded in chart findings, special tests, and outcome scores, with timed short- and long-term goals.</p><span class="out">Clinically specific</span></article>
+    <article class="card step" data-tilt><div class="sn">04</div><h3>Codes, sign, bill</h3><p>CPT and ICD codes like 97162 and 97110 are suggested. The therapist reviews and signs, and the claim is ready.</p><span class="out">Claim-ready</span></article>
+  </div>
+</div></section>
+
 <!-- PLATFORM / BENTO -->
 <section class="sec" id="platform"><div class="wrap">
   <div class="sec-head">
     <div>
-      <div class="kicker"><span class="num">01</span> The platform</div>
+      <div class="kicker"><span class="num">02</span> The platform</div>
       <h2 class="sec-title">One system that<br>actually does the work.</h2>
     </div>
-    <p class="sec-note">Not a note-taker with integrations bolted on. Every surface below is the real product: documentation, scheduling, and the revenue cycle, sharing one patient record.</p>
+    <p class="sec-note">Not a note-taker with integrations bolted on. Documentation, the front office, and the revenue cycle share one patient record.</p>
   </div>
   <div class="bento">
     <article class="card c-soap" data-tilt>
@@ -400,6 +445,18 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
       </div>
     </article>
   </div>
+
+  <div class="incl">
+    <div class="incl-head">
+      <h3>Everything in one system.</h3>
+      <p class="sec-note">Clinical, front office, and billing, sharing one patient record.</p>
+    </div>
+    <div class="incl-grid">
+      <div class="card incl-col"><div class="kick">Clinical</div><ul><li><b>AI notes and intake</b><span>Evals, daily notes, re-evals, and discharges drafted from the visit.</span></li><li><b>Assessment and goals</b><span>Grounded in findings, special tests, and outcome scores like LEFS.</span></li><li><b>Nine documentation suites</b><span>Lower and upper extremity, spine, neuro, cardiac, pelvic, vestibular, bariatric, wound.</span></li><li><b>Home exercise programs and flowsheets</b><span>Built from the plan of care and tracked visit to visit.</span></li></ul></div>
+      <div class="card incl-col"><div class="kick">Front office</div><ul><li><b>AI receptionist and pre-visit calls</b><span>Answers, books, confirms visits, and checks insurance before the patient arrives.</span></li><li><b>Intake and faxes</b><span>Referral faxes parsed straight into the patient record.</span></li><li><b>Scheduling and waitlist</b><span>Open slots filled from the waitlist automatically.</span></li><li><b>PT plus wellness, and telehealth</b><span>Run PT, Yoga, and studio services, plus video visits, from one schedule and record.</span></li></ul></div>
+      <div class="card incl-col"><div class="kick">Revenue</div><ul><li><b>Coding support</b><span>CPT and ICD codes suggested from the note and checked before the claim.</span></li><li><b>Prior auth and appeal letters</b><span>Drafted from the chart, so they are ready when payers ask.</span></li><li><b>Eligibility and claims</b><span>Eligibility checks, claim scrubbing, and submission through Availity.</span></li><li><b>Full billing at 4%</b><span>Optional: we run your entire revenue cycle, ERA posting and denials included.</span></li></ul></div>
+    </div>
+  </div>
 </div></section>
 
 <!-- STATS BAND -->
@@ -415,7 +472,7 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
 <section class="sec" id="billing"><div class="wrap">
   <div class="sec-head">
     <div>
-      <div class="kicker"><span class="num">02</span> Billing, done for you</div>
+      <div class="kicker"><span class="num">03</span> Billing, done for you</div>
       <h2 class="sec-title">Get your billing<br>off your desk.</h2>
     </div>
     <p class="sec-note">Most clinics pay a legacy vendor for the EHR, then pay a billing company on top. We do both, for less.</p>
@@ -447,10 +504,14 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
 <section class="sec" id="pricing"><div class="wrap">
   <div class="sec-head">
     <div>
-      <div class="kicker"><span class="num">03</span> Pricing</div>
+      <div class="kicker"><span class="num">04</span> Pricing</div>
       <h2 class="sec-title">Flat plans. No<br>per-seat games.</h2>
     </div>
     <p class="sec-note">Every paid plan includes a signed BAA and onboarding. Founding clinics pay no setup or migration fees.</p>
+  </div>
+  <div class="psplit">
+    <div class="ps"><div class="lab">Software</div><div class="amt">Your plan, flat monthly</div><p>The full EHR, including billing and claims tools. Your own team submits and works the claims.</p></div>
+    <div class="ps plus"><div class="lab">Software + full billing</div><div class="amt">Your plan + 4% of collections</div><p>We run all of your billing: eligibility, coding review, claim scrubbing, submission, ERA posting, and denials and appeals.</p></div>
   </div>
   <div class="pgrid">
     <div class="pcard">
@@ -497,37 +558,31 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
   <p class="pnote">Start with a plan, then <a href="/addons">add what you need</a>: full-service billing at 4%, a custom website, a branded patient app, and more. Prices in USD, excluding applicable taxes.</p>
 </div></section>
 
-<!-- SECURITY -->
+<!-- TRUST -->
 <section class="sec" id="security"><div class="wrap">
-  <div class="sec-grid">
+  <div class="sec-head">
     <div>
-      <div class="kicker"><span class="num">04</span> Security and compliance</div>
-      <h2 class="sec-title">PHI security is the foundation, not a feature.</h2>
-      <div class="sec-list">
-        <div class="sitem"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg> Signed BAA included with every paid plan</div>
-        <div class="sitem"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg> 256-bit AES encryption at rest and in transit</div>
-        <div class="sitem"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg> Encrypted, automated daily backups</div>
-        <div class="sitem"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg> Role-based access control and audit logging</div>
-        <div class="sitem"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg> Automated consent and compliance management</div>
-      </div>
+      <div class="kicker"><span class="num">05</span> Trust and compliance</div>
+      <h2 class="sec-title">Compliant by default.<br>Clinician in control.</h2>
     </div>
-    <div class="sec-panel" data-tilt>
-      <div class="pt">
-        <div class="lock"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#c4a3ff" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
-        <div class="big">Built for HIPAA, from the first line of code.</div>
-        <p>Every piece of patient data is encrypted, every access is logged, and a signed BAA comes standard on every paid plan. You stay compliant without thinking about it.</p>
-      </div>
-    </div>
+    <p class="sec-note">Built for HIPAA from the first line of code. <a href="/hipaa-compliance" style="color:var(--purple);font-weight:600">Read our HIPAA statement</a>.</p>
+  </div>
+  <div class="trust">
+    <div class="card titem"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg><b>HIPAA and signed BAA</b><span>A signed BAA comes with every paid plan.</span></div>
+    <div class="card titem"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><b>256-bit encryption</b><span>Patient data encrypted at rest and in transit.</span></div>
+    <div class="card titem"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/></svg><b>Audit logs</b><span>Every access recorded, with role-based permissions.</span></div>
+    <div class="card titem"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18h10a4 4 0 0 0 .5-8A6 6 0 0 0 6 9.5 4.3 4.3 0 0 0 7 18z"/><path d="M12 11v5M9.5 13.5 12 16l2.5-2.5"/></svg><b>Daily encrypted backups</b><span>Automated, every day.</span></div>
+    <div class="card titem"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg><b>Therapist signs off</b><span>The AI drafts. Nothing is final until your therapist reviews and signs.</span></div>
   </div>
 </div></section>
 
 <!-- FINAL CTA -->
 <section class="final" id="demo">
-  <div class="kicker" style="justify-content:center"><span class="num">05</span> See it live</div>
+  <div class="kicker" style="justify-content:center"><span class="num">06</span> See it live</div>
   <h2>Twenty minutes.<br>Then you will get it.</h2>
-  <p>Book a demo and watch a full initial evaluation go from spoken visit to signed, coded, and billed.</p>
+  <p>Book a 20-minute live demo on a real note type. Watch an initial evaluation go from exam to a signed, coded note, ready to bill.</p>
   <div class="final-ctas">
-    <a href="/contact" class="btn mag"><span class="dot"></span> Book a Demo</a>
+    <a href="/contact" class="btn mag"><span class="dot"></span> Book a 20-minute demo</a>
     <a href="#pricing" class="btn-line">View pricing <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 6h17M13 1l5 5-5 5"/></svg></a>
   </div>
 </section>
@@ -537,7 +592,7 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
   <div class="fgrid">
     <div class="fbrand">
       <a href="/" class="brand" style="color:#fff">Cowboy <small>Systems</small></a>
-      <p>The AI-native EHR built by clinicians who run their own PT and Yoga practice. One platform for documentation, scheduling, billing, and growth.</p>
+      <p>The EHR for outpatient PT and multi-service clinics, built by clinicians who run their own PT and Yoga practice. One platform for documentation, scheduling, billing, and growth.</p>
     </div>
     <div class="fcol"><h4>Product</h4><a href="#platform">Platform</a><a href="#billing">Billing Service</a><a href="#pricing">Pricing</a><a href="/addons">Add-ons</a><a href="#security">Security</a></div>
     <div class="fcol"><h4>Company</h4><a href="/about">About</a><a href="/blog">Blog</a><a href="/contact">Contact</a></div>
