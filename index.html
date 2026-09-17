@@ -215,6 +215,8 @@ ul{list-style:none}
 .rc small{font-size:14px;font-weight:600;opacity:.6}
 .rc p{font-size:12.5px;line-height:1.5;margin-top:10px;opacity:.75}
 @media(max-width:820px){.rcm{grid-template-columns:1fr;gap:36px}}
+.rcm>*{min-width:0}
+@media(max-width:560px){.rcm-compare{grid-template-columns:1fr}}
 
 /* ── PRICING ── */
 .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}
@@ -311,6 +313,12 @@ ul{list-style:none}
 .final h2{font-family:var(--disp);font-weight:600;font-size:clamp(38px,6vw,86px);letter-spacing:-2.5px;line-height:.98;margin-bottom:22px}
 .final p{font-size:17px;color:var(--ink-soft);max-width:46ch;margin:0 auto 36px}
 .final-ctas{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.book{max-width:1060px;margin:48px auto 0;background:#fff;border:1px solid rgba(22,15,46,.1);border-radius:22px;overflow:hidden;
+  box-shadow:0 40px 70px -50px rgba(76,29,149,.5)}
+.book .calendly-inline-widget{min-width:300px;height:720px}
+.final .book-alt{font-size:14px;margin:18px auto 0}
+.final .book-alt a{color:var(--purple);font-weight:600}
+@media(max-width:640px){.final{padding:100px 16px}.book{margin-top:36px;border-radius:16px}.book .calendly-inline-widget{height:1000px}}
 
 /* ── FOOTER ── */
 footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
@@ -358,20 +366,27 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
 @media(max-width:560px){.vid-grid{grid-template-columns:1fr}}
 
 /* ── COMPARE ── */
-.cmp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.card.cmp{padding:26px}
-.card.cmp.us{background:linear-gradient(150deg,#1E1047,#4C1D95);color:#fff;border-color:transparent}
-.cmp h3{font-size:22px;margin:4px 0 12px}
-.cmp dl{display:flex;flex-direction:column}
-.cmp dt{font-size:10.5px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;color:var(--purple);margin-top:10px}
-.cmp dd{font-size:13px;color:var(--ink-soft);line-height:1.5;padding-bottom:10px;border-bottom:1px solid rgba(22,15,46,.07)}
-.cmp dd:last-of-type{border-bottom:0}
-.cmp.us .kick,.cmp.us dt{color:#c4a3ff}
-.cmp.us dd{color:rgba(237,233,254,.85);border-color:rgba(255,255,255,.12)}
-.cmp .srcs{margin-top:8px;display:flex;gap:4px 12px;flex-wrap:wrap}
+.cmp-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid rgba(22,15,46,.1);border-radius:22px;background:#fff;
+  box-shadow:0 18px 44px -30px rgba(22,15,46,.45)}
+.wrap.wide{max-width:1440px}
+.cmp-table{width:100%;min-width:1130px;table-layout:fixed;border-collapse:separate;border-spacing:0;font-size:12.5px;line-height:1.45}
+.cmp-table th,.cmp-table td{padding:14px 12px;text-align:left;vertical-align:top;border-bottom:1px solid rgba(22,15,46,.07)}
+.cmp-table tbody tr:last-child th,.cmp-table tbody tr:last-child td{border-bottom:0}
+.cmp-table thead th{font-family:var(--disp);font-weight:600;font-size:15px;letter-spacing:-.2px;color:var(--ink);background:var(--paper-2);vertical-align:bottom}
+.cmp-table tbody th{font-size:10.5px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--purple-dark)}
+.cmp-table col.c-row{width:118px}.cmp-table col.c-us{width:156px}
+.cmp-table td{color:var(--ink-soft)}
+.cmp-table .rowh{position:sticky;left:0;z-index:1;background:#fff;box-shadow:1px 0 0 rgba(22,15,46,.08)}
+.cmp-table thead .rowh{background:var(--paper-2)}
+.cmp-table .us{background:linear-gradient(180deg,#2A1560,#4C1D95);color:#fff;font-weight:600}
+.cmp-table thead th.us{color:#fff}
+.cmp-table td.us{background:#3B1580;color:rgba(237,233,254,.95)}
+.cmp-table .ns{color:rgba(92,84,115,.6);font-style:italic}
+.cmp-table .src{display:inline-block;margin:0 8px 2px 0}
+.cmp-hint{display:none;font-size:12px;font-weight:600;color:var(--purple);margin-bottom:10px}
 .cmp-note{font-size:12.5px;color:var(--ink-soft);margin-top:22px;max-width:90ch;line-height:1.6}
-@media(max-width:1000px){.cmp-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:640px){.cmp-grid{grid-template-columns:1fr}}
+.cmp-hint.on{display:block}
+@media(max-width:640px){.cmp-table col.c-row{width:104px}.cmp-table tbody th{padding:12px 10px}}
 
 /* ── FAMILY ── */
 .fam{display:grid;grid-template-columns:1fr 2fr;gap:48px;align-items:start}
@@ -809,7 +824,7 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
 </div></section>
 
 <!-- COMPARE -->
-<section class="sec" id="compare"><div class="wrap">
+<section class="sec" id="compare"><div class="wrap wide">
   <div class="sec-head">
     <div>
       <div class="kicker"><span class="num">06</span> How we compare</div>
@@ -817,99 +832,24 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
     </div>
     <p class="sec-note">Only what each company says on its own website, with the page linked. Where a price or feature is not published, we say so instead of guessing.</p>
   </div>
-  <div class="cmp-grid">
-    <article class="card cmp us" data-tilt>
-      <div class="kick">Cowboy Systems</div>
-      <h3>Flat, published pricing</h3>
-      <dl>
-        <dt>Pricing</dt><dd>Starter $249/month for up to 2 providers. Growth $499/month for up to 5.</dd>
-        <dt>AI documentation</dt><dd>Included: 100 AI notes a month on Starter, unlimited on Growth.</dd>
-        <dt>Billing service</dt><dd>Optional, 4% of collections.</dd>
-        <dt>Apps</dt><dd>Provider app included. Branded patient app $99/month.</dd>
-      </dl>
-    </article>
-    <article class="card cmp" data-tilt>
-      <div class="kick">WebPT</div>
-      <h3>Rehab therapy platform</h3>
-      <dl>
-        <dt>Pricing</dt><dd>Not published. Quoted per provider per month or per visit, across Starter, Enhanced and Ultimate plans.</dd>
-        <dt>AI documentation</dt><dd>AI documentation tools promoted.</dd>
-        <dt>Billing service</dt><dd>RCM service offered; rate not published.</dd>
-      </dl>
-      <div class="srcs"><a class="src" href="https://www.webpt.com/pricing" target="_blank" rel="noopener">Pricing page</a><a class="src" href="https://www.webpt.com/products/rcm-service" target="_blank" rel="noopener">RCM service page</a></div>
-    </article>
-    <article class="card cmp" data-tilt>
-      <div class="kick">Prompt Health</div>
-      <h3>PT EMR with AI scribe</h3>
-      <dl>
-        <dt>Pricing</dt><dd>Not published.</dd>
-        <dt>AI documentation</dt><dd>Sidekick AI scribing with real-time CPT feedback.</dd>
-        <dt>Apps</dt><dd>Custom patient app (Engage) and check-in kiosk.</dd>
-      </dl>
-      <div class="srcs"><a class="src" href="https://www.prompthealth.com/" target="_blank" rel="noopener">Homepage</a></div>
-    </article>
-    <article class="card cmp" data-tilt>
-      <div class="kick">Raintree</div>
-      <h3>Rehab EMR for larger groups</h3>
-      <dl>
-        <dt>Pricing</dt><dd>Not published.</dd>
-        <dt>AI documentation</dt><dd>NoteIQ AI documentation.</dd>
-        <dt>Billing service</dt><dd>Therapy RCM with a managed services option; rate not published.</dd>
-      </dl>
-      <div class="srcs"><a class="src" href="https://www.raintreeinc.com/" target="_blank" rel="noopener">Homepage</a></div>
-    </article>
-    <article class="card cmp" data-tilt>
-      <div class="kick">Net Health</div>
-      <h3>ReDoc therapy EHR</h3>
-      <dl>
-        <dt>Pricing</dt><dd>Not published.</dd>
-        <dt>AI documentation</dt><dd>Ambient AI documentation in ReDoc.</dd>
-        <dt>Focus</dt><dd>Outpatient and hospital rehab settings.</dd>
-      </dl>
-      <div class="srcs"><a class="src" href="https://www.nethealth.com/" target="_blank" rel="noopener">Homepage</a></div>
-    </article>
-    <article class="card cmp" data-tilt>
-      <div class="kick">SPRY</div>
-      <h3>PT EMR, visit-based pricing</h3>
-      <dl>
-        <dt>Pricing</dt><dd>No dollar amounts. Based on visits per full-time provider.</dd>
-        <dt>AI documentation</dt><dd>AI Scribe in the SPRY Plus tier.</dd>
-        <dt>Billing service</dt><dd>4 to 6% of collections.</dd>
-        <dt>Apps</dt><dd>Companion mobile app in SPRY Plus.</dd>
-      </dl>
-      <div class="srcs"><a class="src" href="https://www.sprypt.com/pricing" target="_blank" rel="noopener">Pricing page</a></div>
-    </article>
-    <article class="card cmp" data-tilt>
-      <div class="kick">Jane</div>
-      <h3>Multi-discipline clinic software</h3>
-      <dl>
-        <dt>Pricing</dt><dd>Published monthly plans: Balance, Practice and Thrive.</dd>
-        <dt>AI documentation</dt><dd>Unlimited AI Scribe is a per-practitioner add-on.</dd>
-        <dt>Insurance billing</dt><dd>Monthly add-on, plus a fee per additional practitioner.</dd>
-      </dl>
-      <div class="srcs"><a class="src" href="https://jane.app/pricing" target="_blank" rel="noopener">Pricing page</a></div>
-    </article>
-    <article class="card cmp" data-tilt>
-      <div class="kick">SimplePractice</div>
-      <h3>Private practice EHR</h3>
-      <dl>
-        <dt>Pricing</dt><dd>Solo plans $49, $79 and $99/month. Group Plus $99/month for the first practitioner and $74 for each additional.</dd>
-        <dt>AI documentation</dt><dd>Care Aide add-on, $59/month.</dd>
-      </dl>
-      <div class="srcs"><a class="src" href="https://www.simplepractice.com/pricing/" target="_blank" rel="noopener">Pricing page</a></div>
-    </article>
-    <article class="card cmp" data-tilt>
-      <div class="kick">TheraOffice by Netsmart</div>
-      <h3>Rehab therapy EMR</h3>
-      <dl>
-        <dt>Pricing</dt><dd>Not published.</dd>
-        <dt>Documentation</dt><dd>40+ customizable templates and AI speech-to-text.</dd>
-        <dt>Worth knowing</dt><dd>ONC-certified, with 175+ built-in reports.</dd>
-      </dl>
-      <div class="srcs"><a class="src" href="https://www.ntst.com/physical-therapy-software" target="_blank" rel="noopener">Product page</a></div>
-    </article>
+  <p class="cmp-hint">Swipe the table to see every system.</p>
+  <div class="cmp-scroll" role="region" aria-label="Comparison table" tabindex="0">
+    <table class="cmp-table">
+      <colgroup><col class="c-row"/><col class="c-us"/><col span="8"/></colgroup>
+      <thead><tr><th class="rowh" scope="col">&nbsp;</th><th class="us" scope="col">Cowboy Systems</th><th scope="col">WebPT</th><th scope="col">Prompt Health</th><th scope="col">Raintree</th><th scope="col">Net Health</th><th scope="col">SPRY</th><th scope="col">Jane</th><th scope="col">SimplePractice</th><th scope="col">TheraOffice</th></tr></thead>
+      <tbody>
+        <tr><th class="rowh" scope="row">Published pricing</th><td class="us">Yes. Starter $249/mo for up to 2 providers; Growth $499/mo for up to 5</td><td>No. Quoted per provider per month or per visit</td><td>No</td><td>No</td><td>No</td><td>No. Based on visits per full-time provider</td><td>Yes. Balance, Practice and Thrive monthly plans</td><td>Yes. Solo $49, $79 or $99/mo; group Plus $99/mo plus $74 per added practitioner</td><td>No</td></tr>
+        <tr><th class="rowh" scope="row">AI documentation</th><td class="us">Included. 100 AI notes/mo on Starter, unlimited on Growth</td><td>AI documentation tools promoted</td><td>Sidekick AI scribe with real-time CPT feedback</td><td>NoteIQ AI documentation</td><td>Ambient AI documentation in ReDoc</td><td>AI Scribe in the SPRY Plus tier</td><td>Unlimited AI Scribe is a per-practitioner add-on</td><td>Care Aide add-on, $59/mo</td><td>AI speech-to-text documentation</td></tr>
+        <tr><th class="rowh" scope="row">Insurance billing software</th><td class="us">Included on every plan, with Availity eligibility and claim checks</td><td>Billing and claim scrubbing in plans</td><td>Claims and billing workflows in the platform</td><td>Therapy-specific billing and RCM</td><td>Billing in ReDoc</td><td>Clearinghouse and ERA auto-posting are add-ons on Essentials</td><td>Monthly add-on, plus a fee per added practitioner</td><td><span class="ns">Not stated</span></td><td>ERA processing and denial tracking</td></tr>
+        <tr><th class="rowh" scope="row">Billing done for you</th><td class="us">Optional, 4% of collections</td><td>RCM service offered; rate not published</td><td><span class="ns">Not stated</span></td><td>Managed services option; rate not published</td><td><span class="ns">Not stated</span></td><td>4 to 6% of collections</td><td><span class="ns">Not stated</span></td><td><span class="ns">Not stated</span></td><td><span class="ns">Not stated</span></td></tr>
+        <tr><th class="rowh" scope="row">Reminders</th><td class="us">Text reminders with YES or NO confirmation on the schedule</td><td>Reminders included in Care</td><td>AI-assisted scheduling and online booking</td><td>Automated reminders</td><td><span class="ns">Not stated</span></td><td>Appointment reminders and two-way messaging</td><td>Email on Balance; unlimited SMS from Practice</td><td><span class="ns">Not stated</span></td><td>Online booking and waitlist management</td></tr>
+        <tr><th class="rowh" scope="row">Mobile apps</th><td class="us">Provider app included; branded patient app $99/mo</td><td><span class="ns">Not stated</span></td><td>Custom patient app (Engage) and check-in kiosk</td><td><span class="ns">Not stated</span></td><td>Limber patient engagement tool</td><td>Companion mobile app in SPRY Plus</td><td><span class="ns">Not stated</span></td><td><span class="ns">Not stated</span></td><td>Mobile check-in</td></tr>
+        <tr><th class="rowh" scope="row">Worth knowing</th><td class="us">Built and used in our own PT clinic</td><td>Supports over 20,000 clinics</td><td>Reports 1,000+ practices</td><td>3,500+ locations</td><td>Outpatient and hospital rehab settings</td><td>G2 rating 4.8 out of 5</td><td>Multi-discipline clinic software</td><td>Private practice EHR</td><td>ONC-certified; 175+ built-in reports</td></tr>
+        <tr><th class="rowh" scope="row">Source</th><td class="us">This page</td><td><a class="src" href="https://www.webpt.com/pricing" target="_blank" rel="noopener">Pricing</a><a class="src" href="https://www.webpt.com/products/rcm-service" target="_blank" rel="noopener">RCM service</a></td><td><a class="src" href="https://www.prompthealth.com/" target="_blank" rel="noopener">Homepage</a></td><td><a class="src" href="https://www.raintreeinc.com/" target="_blank" rel="noopener">Homepage</a></td><td><a class="src" href="https://www.nethealth.com/" target="_blank" rel="noopener">Homepage</a></td><td><a class="src" href="https://www.sprypt.com/pricing" target="_blank" rel="noopener">Pricing</a></td><td><a class="src" href="https://jane.app/pricing" target="_blank" rel="noopener">Pricing</a></td><td><a class="src" href="https://www.simplepractice.com/pricing/" target="_blank" rel="noopener">Pricing</a></td><td><a class="src" href="https://www.ntst.com/physical-therapy-software" target="_blank" rel="noopener">Product page</a></td></tr>
+      </tbody>
+    </table>
   </div>
-  <p class="cmp-note">Checked September 17, 2026 on each company's public website. Products and prices change; if something here is out of date, <a href="/contact" style="color:var(--purple);font-weight:600">tell us</a> and we will fix it. Company names are trademarks of their owners and are used here only to identify their products.</p>
+  <p class="cmp-note">Checked September 17, 2026 on each company's public website. "Not stated" means the page we checked does not say; it does not mean the product lacks it. Products and prices change; if something here is out of date, <a href="/contact" style="color:var(--purple);font-weight:600">tell us</a> and we will fix it. Company names are trademarks of their owners and are used here only to identify their products.</p>
 </div></section>
 
 <!-- FAMILY -->
@@ -1017,9 +957,14 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
   <h2>Twenty minutes.<br>Then you will get it.</h2>
   <p>Book a 20-minute live demo on a real note type. Watch an initial evaluation go from exam to a signed, coded note, ready to bill.</p>
   <div class="final-ctas">
-    <a href="/contact" class="btn mag"><span class="dot"></span> Book a 20-minute demo</a>
+    <a href="#book" class="btn mag"><span class="dot"></span> Pick a time below</a>
     <a href="#pricing" class="btn-line">View pricing <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 6h17M13 1l5 5-5 5"/></svg></a>
   </div>
+  <div class="book" id="book">
+    <div class="calendly-inline-widget" data-url="https://calendly.com/snyman4d/cowboy-systems-discovery?hide_gdpr_banner=1&amp;primary_color=6d28d9"></div>
+    <noscript><p><a href="https://calendly.com/snyman4d/cowboy-systems-discovery">Open the booking calendar</a></p></noscript>
+  </div>
+  <p class="book-alt">Prefer to write? <a href="/contact">Send us a message</a> and we will reply within one business day.</p>
 </section>
 
 <!-- FOOTER -->
@@ -1037,6 +982,7 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
 </footer>
 
 <!-- LIBS -->
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
@@ -1118,6 +1064,10 @@ addEventListener('load',()=>{
       const n=(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;tabs[n].focus();show(n);});
   });
 })();
+
+/* Comparison table: show the swipe hint only when the table is wider than its box */
+(function(){const s=document.querySelector('.cmp-scroll'),h=document.querySelector('.cmp-hint');if(!s||!h)return;
+  const f=()=>h.classList.toggle('on',s.scrollWidth>s.clientWidth+2);f();addEventListener('resize',f,{passive:true});})();
 
 /* Product videos: a slot with data-video set becomes playable; empty slots stay "Coming soon" */
 document.querySelectorAll('.vid').forEach(v=>{
