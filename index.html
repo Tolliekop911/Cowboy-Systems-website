@@ -324,6 +324,68 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
   display:flex;justify-content:space-between;font-size:12px;flex-wrap:wrap;gap:10px}
 @media(max-width:760px){.fgrid{grid-template-columns:1fr 1fr}}
 
+/* ── SERVICES ── */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card.svc{padding:28px;display:flex;flex-direction:column}
+.card.svc h3{font-size:21px}
+.svc ul{margin:12px 0 0;display:flex;flex-direction:column;gap:6px}
+.svc li{font-size:13px;color:var(--ink-soft);line-height:1.5;padding-left:14px;position:relative}
+.svc li::before{content:"";position:absolute;left:0;top:.62em;width:5px;height:5px;background:var(--purple);transform:rotate(45deg)}
+.vs{margin-top:auto;padding-top:16px}
+.vs div{border-top:1px dashed rgba(22,15,46,.15);padding-top:12px;font-size:12.5px;line-height:1.55;color:var(--ink)}
+.vs b{display:block;font-size:10.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--purple);margin-bottom:3px}
+.src{font-size:11px;font-weight:600;color:var(--purple);white-space:nowrap}
+.src:hover{text-decoration:underline}
+@media(max-width:1000px){.svc-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.svc-grid{grid-template-columns:1fr}}
+
+/* ── VIDEOS ── */
+.vids{margin-top:64px}
+.vid-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.vid{display:flex;flex-direction:column;gap:10px}
+.vid-frame{position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;border:1px solid rgba(22,15,46,.1);
+  background:linear-gradient(150deg,#1E1047,#3B1580 60%,#4C1D95);color:#fff}
+.vid-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top left;opacity:.35}
+.vid-frame iframe,.vid-frame video{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;border:0;background:none;color:#fff;cursor:pointer;font:inherit}
+.vid-play[disabled]{cursor:default}
+.vid-play i{width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center}
+.vid-soon{position:absolute;left:10px;top:10px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:rgba(22,15,46,.55);padding:4px 9px;border-radius:100px}
+.vid b{font-size:14px;font-weight:700;line-height:1.3}
+.vid span{font-size:12.5px;color:var(--ink-soft);line-height:1.45}
+@media(max-width:1000px){.vid-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.vid-grid{grid-template-columns:1fr}}
+
+/* ── COMPARE ── */
+.cmp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card.cmp{padding:26px}
+.card.cmp.us{background:linear-gradient(150deg,#1E1047,#4C1D95);color:#fff;border-color:transparent}
+.cmp h3{font-size:22px;margin:4px 0 12px}
+.cmp dl{display:flex;flex-direction:column}
+.cmp dt{font-size:10.5px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;color:var(--purple);margin-top:10px}
+.cmp dd{font-size:13px;color:var(--ink-soft);line-height:1.5;padding-bottom:10px;border-bottom:1px solid rgba(22,15,46,.07)}
+.cmp dd:last-of-type{border-bottom:0}
+.cmp.us .kick,.cmp.us dt{color:#c4a3ff}
+.cmp.us dd{color:rgba(237,233,254,.85);border-color:rgba(255,255,255,.12)}
+.cmp .srcs{margin-top:8px;display:flex;gap:4px 12px;flex-wrap:wrap}
+.cmp-note{font-size:12.5px;color:var(--ink-soft);margin-top:22px;max-width:90ch;line-height:1.6}
+@media(max-width:1000px){.cmp-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.cmp-grid{grid-template-columns:1fr}}
+
+/* ── FAMILY ── */
+.fam{display:grid;grid-template-columns:1fr 2fr;gap:48px;align-items:start}
+.fam-lead h2{font-family:var(--disp);font-weight:600;font-size:clamp(32px,4.4vw,58px);line-height:1.02;letter-spacing:-1.8px;margin-bottom:18px}
+.fam-lead p{font-size:16px;color:var(--ink-soft);line-height:1.7;max-width:40ch}
+.fam-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.card.fitem{padding:22px 24px}
+.fitem b{display:block;font-size:15px;font-weight:700;line-height:1.3;margin-bottom:4px}
+.fitem span{display:block;font-size:13px;color:var(--ink-soft);line-height:1.55}
+@media(max-width:900px){.fam{grid-template-columns:1fr;gap:30px}}
+@media(max-width:560px){.fam-grid{grid-template-columns:1fr}}
+@media(max-width:1120px){.nav-links{gap:22px}}
+@media(max-width:1000px){.nav-links{display:none}}
+
 .reveal{opacity:1}
 .js .reveal{opacity:0}
 @media(prefers-reduced-motion:reduce){*{animation:none!important}}
@@ -338,7 +400,9 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
   <a href="/" class="brand">Cowboy <small>Systems</small></a>
   <div class="nav-links">
     <a href="#platform">Platform</a>
+    <a href="#services">Services</a>
     <a href="#billing">Billing Service</a>
+    <a href="#compare">Compare</a>
     <a href="#pricing">Pricing</a>
     <a href="/addons">Add-ons</a>
     <a href="#security">Security</a>
@@ -441,8 +505,8 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
 
     <article class="card c-sched" data-tilt>
       <div class="kick">Scheduling</div>
-      <h3>A calendar that fills itself.</h3>
-      <p>Waitlist auto-fills the gap the moment it opens.</p>
+      <h3>A calendar that stays full.</h3>
+      <p>A shared waitlist books into an open slot in one click.</p>
       <div class="cal">
         <div class="col"><div class="day">Mon</div><div class="slot b"></div><div class="slot"></div><div class="slot b"></div><div class="slot"></div></div>
         <div class="col"><div class="day">Tue</div><div class="slot"></div><div class="slot b"></div><div class="slot p"></div><div class="slot b"></div></div>
@@ -450,7 +514,7 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
         <div class="col"><div class="day">Thu</div><div class="slot"></div><div class="slot b"></div><div class="slot b"></div><div class="slot"></div></div>
         <div class="col"><div class="day">Fri</div><div class="slot b"></div><div class="slot"></div><div class="slot b"></div><div class="slot p"></div></div>
       </div>
-      <div class="cal-cap"><b>●</b> Wed 10:00 gap, filled from waitlist</div>
+      <div class="cal-cap"><b>&#9679;</b> Wed 10:00 opening, booked from waitlist</div>
     </article>
 
     <article class="card c-rcm" data-tilt>
@@ -500,8 +564,205 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
     </div>
     <div class="incl-grid">
       <div class="card incl-col"><div class="kick">Clinical</div><ul><li><b>AI notes and intake</b><span>Evals, daily notes, re-evals, and discharges drafted from the visit.</span></li><li><b>Assessment and goals</b><span>Grounded in findings, special tests, and outcome scores like LEFS.</span></li><li><b>Nine documentation suites</b><span>Lower and upper extremity, spine, neuro, cardiac, pelvic, vestibular, bariatric, wound.</span></li><li><b>Home exercise programs and flowsheets</b><span>Built from the plan of care and tracked visit to visit.</span></li></ul></div>
-      <div class="card incl-col"><div class="kick">Front office</div><ul><li><b>AI receptionist and pre-visit calls</b><span>Answers, books, confirms visits, and checks insurance before the patient arrives.</span></li><li><b>Intake and faxes</b><span>Referral faxes parsed straight into the patient record.</span></li><li><b>Scheduling and waitlist</b><span>Open slots filled from the waitlist automatically.</span></li><li><b>PT plus wellness, and telehealth</b><span>Run PT, Yoga, and studio services, plus video visits, from one schedule and record.</span></li></ul></div>
+      <div class="card incl-col"><div class="kick">Front office</div><ul><li><b>AI receptionist and pre-visit calls</b><span>Answers, books, confirms visits, and checks insurance before the patient arrives.</span></li><li><b>Intake and faxes</b><span>Referral faxes parsed straight into the patient record.</span></li><li><b>Scheduling and waitlist</b><span>Recurring visits, double-booking checks, and a shared waitlist that books in one click.</span></li><li><b>PT plus wellness, and telehealth</b><span>Run PT, Yoga, and studio services, plus video visits, from one schedule and record.</span></li></ul></div>
       <div class="card incl-col"><div class="kick">Revenue</div><ul><li><b>Coding support</b><span>CPT and ICD codes suggested from the note and checked before the claim.</span></li><li><b>Prior auth and appeal letters</b><span>Drafted from the chart, so they are ready when payers ask.</span></li><li><b>Eligibility and claims</b><span>Eligibility checks, claim scrubbing, and submission through Availity.</span></li><li><b>Full billing at 4%</b><span>Optional: we run your entire revenue cycle, ERA posting and denials included.</span></li></ul></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- SERVICES -->
+<section class="sec" id="services" style="padding-top:0"><div class="wrap">
+  <div class="sec-head">
+    <div>
+      <div class="kicker"><span class="num">04</span> Services</div>
+      <h2 class="sec-title">What each part<br>does for you.</h2>
+    </div>
+    <p class="sec-note">Every service, what it takes off your plate, and how it stacks up. Competitor details come from their own public websites, checked September 2026, with the source linked.</p>
+  </div>
+  <div class="svc-grid">
+    <article class="card svc" data-tilt>
+      <div class="kick">AI documentation</div>
+      <h3>Finish the note before the next patient.</h3>
+      <p>The AI drafts the note from the visit and the chart. Your therapist reviews and signs, so charting stops following them home.</p>
+      <ul>
+        <li>Evals, daily notes, re-evals and discharges with carry-forward</li>
+        <li>AI assessment and goals grounded in chart findings</li>
+        <li>AI check for goals met on re-evaluations, marked for review</li>
+        <li>Text snippets that expand anywhere in a note</li>
+      </ul>
+      <div class="vs"><div><b>Cheaper</b>AI notes come in the base plan: 100 a month on Starter, unlimited on Growth. SimplePractice sells its AI Care Aide as a $59/month add-on, and Jane sells unlimited AI Scribe as a per-practitioner add-on. <a class="src" href="https://www.simplepractice.com/pricing/" target="_blank" rel="noopener">SimplePractice</a> <a class="src" href="https://jane.app/pricing" target="_blank" rel="noopener">Jane</a></div></div>
+    </article>
+
+    <article class="card svc" data-tilt>
+      <div class="kick">Clinical and plan of care</div>
+      <h3>Never miss a recert or a progress report.</h3>
+      <p>The chart tells you what is due, so nothing slips and no visit goes unbillable.</p>
+      <ul>
+        <li>Nine region suites and 42 ready-made templates</li>
+        <li>Alerts for recertification, physician certification, progress reports every 10 visits and the Medicare therapy threshold</li>
+        <li>Outcome measures scored against MCID, printed as scorecards</li>
+        <li>PTA co-sign, home exercise programs and flowsheets</li>
+      </ul>
+      <div class="vs"><div><b>Better value</b>Template depth on par with enterprise PT systems (TheraOffice lists 40+ templates), with a flat price published on this page. WebPT, Raintree, Prompt, Net Health and TheraOffice do not publish prices. <a class="src" href="https://www.ntst.com/physical-therapy-software" target="_blank" rel="noopener">TheraOffice</a> <a class="src" href="https://www.webpt.com/pricing" target="_blank" rel="noopener">WebPT</a></div></div>
+    </article>
+
+    <article class="card svc" data-tilt>
+      <div class="kick">Scheduling and reminders</div>
+      <h3>Fewer no-shows. Fewer phone calls.</h3>
+      <p>Patients confirm by text, and the schedule shows who is coming without anyone picking up the phone.</p>
+      <ul>
+        <li>Reminder texts 24 hours ahead; a YES or NO reply shows as Confirmed or Wants to reschedule</li>
+        <li>Recurring series booked in one step, with provider hours and double-booking checks</li>
+        <li>Shared waitlist that books into an opening in one click</li>
+        <li>Online booking straight into your schedule</li>
+      </ul>
+      <div class="vs"><div><b>More included</b>Text reminders are on the Starter plan. Jane's entry Balance plan sends email reminders only; unlimited SMS reminders start on its Practice plan. <a class="src" href="https://jane.app/pricing" target="_blank" rel="noopener">Jane</a></div></div>
+    </article>
+
+    <article class="card svc" data-tilt>
+      <div class="kick">Billing and claims software</div>
+      <h3>Clean claims without a billing department.</h3>
+      <p>Claims are filled in from the chart and checked before they go, so fewer come back.</p>
+      <ul>
+        <li>Real-time eligibility and authorization checks through Availity</li>
+        <li>Diagnosis, GP modifier and units checked against documented minutes</li>
+        <li>Batch submit, ERA posting, and denials sent to the Inbox with the fix</li>
+        <li>The right Medicare contractor and payer IDs for your state</li>
+      </ul>
+      <div class="vs"><div><b>More included</b>Claims tools are part of every plan. Jane charges a separate monthly insurance billing add-on, and SPRY lists its clearinghouse and ERA auto-posting as add-ons on its Essentials plan. <a class="src" href="https://jane.app/pricing" target="_blank" rel="noopener">Jane</a> <a class="src" href="https://www.sprypt.com/pricing" target="_blank" rel="noopener">SPRY</a></div></div>
+    </article>
+
+    <article class="card svc" data-tilt>
+      <div class="kick">Full-service billing</div>
+      <h3>Hand us the whole revenue cycle.</h3>
+      <p>We work the claims inside the EHR your team already uses. You treat patients; we chase the money.</p>
+      <ul>
+        <li>Eligibility, coding review and claim scrubbing</li>
+        <li>Submission, ERA posting, denials and appeals</li>
+        <li>One monthly statement showing exactly what was collected</li>
+      </ul>
+      <div class="vs"><div><b>Cheaper</b>4% of collections. SPRY publishes 4 to 6% for its billing service, and a WebPT article puts typical RCM services at 6 to 12% of collections. <a class="src" href="https://www.sprypt.com/pricing" target="_blank" rel="noopener">SPRY</a> <a class="src" href="https://www.webpt.com/blog/billing-software-vs-rcm-service-whats-the-difference-and-whats-right-for-your-practice" target="_blank" rel="noopener">WebPT</a></div></div>
+    </article>
+
+    <article class="card svc" data-tilt>
+      <div class="kick">AI front office</div>
+      <h3>The phone gets answered while you treat.</h3>
+      <p>Routine calls and insurance details are handled before the patient reaches the front desk.</p>
+      <ul>
+        <li>AI receptionist answers FAQs, books visits and takes messages</li>
+        <li>AI pre-visit calls confirm the visit and check insurance</li>
+        <li>Scan an insurance card and the payer, member ID and plan fill in</li>
+      </ul>
+      <div class="vs"><div><b>Pay for what you use</b>Pre-visit calls come in packs from $49 for 50 calls, not another front-desk salary.</div></div>
+    </article>
+
+    <article class="card svc" data-tilt>
+      <div class="kick">Intake, fax and referrals</div>
+      <h3>Referrals into charts, not piles.</h3>
+      <p>Faxes and referrals land in one inbox and get filed to the right patient in a few clicks.</p>
+      <ul>
+        <li>eFax inbox with a full-screen viewer and filing to the chart</li>
+        <li>Referral hub and digital intake forms</li>
+        <li>Batch fax to referring providers, with opt-outs handled</li>
+      </ul>
+      <div class="vs"><div><b>More included</b>eFax is built into the EHR. SPRY lists Fax AI as an add-on. <a class="src" href="https://www.sprypt.com/pricing" target="_blank" rel="noopener">SPRY</a></div></div>
+    </article>
+
+    <article class="card svc" data-tilt>
+      <div class="kick">Provider mobile app</div>
+      <h3>The clinic in your pocket.</h3>
+      <p>Check the day, sign a note, or text a patient from your phone, without opening a laptop.</p>
+      <ul>
+        <li>Today's schedule, charts, and notes written and signed with the web forms</li>
+        <li>Book visits, add patients, and text patients from the clinic number</li>
+        <li>Unsigned notes, plan-of-care and authorization alerts in one list</li>
+        <li>Face ID lock and access logging</li>
+      </ul>
+      <div class="vs"><div><b>More included</b>The provider app comes with Cowboy. SPRY puts its companion mobile app in its higher SPRY Plus tier. <a class="src" href="https://www.sprypt.com/pricing" target="_blank" rel="noopener">SPRY</a></div></div>
+    </article>
+
+    <article class="card svc" data-tilt>
+      <div class="kick">Patient app and portal</div>
+      <h3>Patients handle the small stuff themselves.</h3>
+      <p>Fewer calls to reschedule, fewer paper handouts, and balances paid from home.</p>
+      <ul>
+        <li>Book, message the clinic and pay a balance</li>
+        <li>Home exercises with demo videos and check-offs</li>
+        <li>Progress screen with the patient's real scores and visits</li>
+      </ul>
+      <div class="vs"><div><b>Your brand</b>Your clinic's own app on the App Store and Google Play for $99/month.</div></div>
+    </article>
+
+    <article class="card svc" data-tilt>
+      <div class="kick">Telehealth</div>
+      <h3>Video visits without another subscription.</h3>
+      <p>Book, see and document a video visit from the same schedule and chart.</p>
+      <ul>
+        <li>Built-in video visits with private, random room links</li>
+        <li>50 sessions a month on Starter</li>
+      </ul>
+      <div class="vs"><div><b>One login</b>No separate video tool to buy, sign a BAA for, or train staff on.</div></div>
+    </article>
+
+    <article class="card svc" data-tilt>
+      <div class="kick">Payments</div>
+      <h3>Get paid at the desk and from home.</h3>
+      <p>Card and cash payments are tied to the chart with a receipt, so the day closes out cleanly.</p>
+      <ul>
+        <li>Card payments go straight to your own bank through Stripe</li>
+        <li>Cash with change due, and patient portal payments</li>
+      </ul>
+      <div class="vs"><div><b>No markup</b>Cowboy takes no platform fee on card payments.</div></div>
+    </article>
+
+    <article class="card svc" data-tilt>
+      <div class="kick">Security and compliance</div>
+      <h3>Ready when the auditor calls.</h3>
+      <p>The records an auditor asks for are already kept, and you can check them yourself.</p>
+      <ul>
+        <li>Signed BAA, two-step sign-in and sign-in lockout</li>
+        <li>Tamper-evident audit log with a one-click integrity check</li>
+        <li>Your clinic's own trail of who opened, printed, faxed or exported records</li>
+      </ul>
+      <div class="vs"><div><b>See it yourself</b>One button confirms the audit log has not been edited.</div></div>
+    </article>
+
+    <article class="card svc" data-tilt>
+      <div class="kick">Growth and marketing</div>
+      <h3>Turn discharges into reviews and referrals.</h3>
+      <p>The follow-ups that bring patients back happen without a marketing hire.</p>
+      <ul>
+        <li>Google review request texted and emailed at discharge</li>
+        <li>Birthday and 6- and 12-month follow-up reminders on the chart</li>
+        <li>Marketing studio, plus a custom website with booking built in</li>
+      </ul>
+      <div class="vs"><div><b>No monthly website bill</b>A custom website with online booking for $599, one time.</div></div>
+    </article>
+  </div>
+
+  <!-- VIDEOS: set data-video to a YouTube/Vimeo embed URL or an .mp4 path to switch a placeholder on -->
+  <div class="vids" id="videos">
+    <div class="incl-head">
+      <h3>Watch it work.</h3>
+      <p class="sec-note">Short clips of the real product on a test patient.</p>
+    </div>
+    <div class="vid-grid">
+      <div class="vid" data-video="">
+        <div class="vid-frame"><img src="/assets/product/chart-signed-eval.webp" alt="" loading="lazy"/><span class="vid-soon">Coming soon</span><button type="button" class="vid-play" aria-label="Play: initial evaluation, exam to signed note" disabled><i><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></i></button></div>
+        <b>Initial evaluation, exam to signed note</b><span>About 90 seconds</span>
+      </div>
+      <div class="vid" data-video="">
+        <div class="vid-frame"><img src="/assets/product/notes-billing.webp" alt="" loading="lazy"/><span class="vid-soon">Coming soon</span><button type="button" class="vid-play" aria-label="Play: from signed note to submitted claim" disabled><i><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></i></button></div>
+        <b>From signed note to submitted claim</b><span>About 60 seconds</span>
+      </div>
+      <div class="vid" data-video="">
+        <div class="vid-frame"><span class="vid-soon">Coming soon</span><button type="button" class="vid-play" aria-label="Play: sign a note on your phone" disabled><i><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></i></button></div>
+        <b>Sign a note on your phone</b><span>About 60 seconds</span>
+      </div>
+      <div class="vid" data-video="">
+        <div class="vid-frame"><span class="vid-soon">Coming soon</span><button type="button" class="vid-play" aria-label="Play: reminder texts and confirmations" disabled><i><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></i></button></div>
+        <b>Reminder texts and confirmations</b><span>About 45 seconds</span>
+      </div>
     </div>
   </div>
 </div></section>
@@ -519,7 +780,7 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
 <section class="sec" id="billing"><div class="wrap">
   <div class="sec-head">
     <div>
-      <div class="kicker"><span class="num">04</span> Billing, done for you</div>
+      <div class="kicker"><span class="num">05</span> Billing, done for you</div>
       <h2 class="sec-title">Get your billing<br>off your desk.</h2>
     </div>
     <p class="sec-note">Most clinics pay a legacy vendor for the EHR, then pay a billing company on top. We do both, for less.</p>
@@ -547,11 +808,136 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
   </div>
 </div></section>
 
+<!-- COMPARE -->
+<section class="sec" id="compare"><div class="wrap">
+  <div class="sec-head">
+    <div>
+      <div class="kicker"><span class="num">06</span> How we compare</div>
+      <h2 class="sec-title">Cowboy next to<br>the systems you know.</h2>
+    </div>
+    <p class="sec-note">Only what each company says on its own website, with the page linked. Where a price or feature is not published, we say so instead of guessing.</p>
+  </div>
+  <div class="cmp-grid">
+    <article class="card cmp us" data-tilt>
+      <div class="kick">Cowboy Systems</div>
+      <h3>Flat, published pricing</h3>
+      <dl>
+        <dt>Pricing</dt><dd>Starter $249/month for up to 2 providers. Growth $499/month for up to 5.</dd>
+        <dt>AI documentation</dt><dd>Included: 100 AI notes a month on Starter, unlimited on Growth.</dd>
+        <dt>Billing service</dt><dd>Optional, 4% of collections.</dd>
+        <dt>Apps</dt><dd>Provider app included. Branded patient app $99/month.</dd>
+      </dl>
+    </article>
+    <article class="card cmp" data-tilt>
+      <div class="kick">WebPT</div>
+      <h3>Rehab therapy platform</h3>
+      <dl>
+        <dt>Pricing</dt><dd>Not published. Quoted per provider per month or per visit, across Starter, Enhanced and Ultimate plans.</dd>
+        <dt>AI documentation</dt><dd>AI documentation tools promoted.</dd>
+        <dt>Billing service</dt><dd>RCM service offered; rate not published.</dd>
+      </dl>
+      <div class="srcs"><a class="src" href="https://www.webpt.com/pricing" target="_blank" rel="noopener">Pricing page</a><a class="src" href="https://www.webpt.com/products/rcm-service" target="_blank" rel="noopener">RCM service page</a></div>
+    </article>
+    <article class="card cmp" data-tilt>
+      <div class="kick">Prompt Health</div>
+      <h3>PT EMR with AI scribe</h3>
+      <dl>
+        <dt>Pricing</dt><dd>Not published.</dd>
+        <dt>AI documentation</dt><dd>Sidekick AI scribing with real-time CPT feedback.</dd>
+        <dt>Apps</dt><dd>Custom patient app (Engage) and check-in kiosk.</dd>
+      </dl>
+      <div class="srcs"><a class="src" href="https://www.prompthealth.com/" target="_blank" rel="noopener">Homepage</a></div>
+    </article>
+    <article class="card cmp" data-tilt>
+      <div class="kick">Raintree</div>
+      <h3>Rehab EMR for larger groups</h3>
+      <dl>
+        <dt>Pricing</dt><dd>Not published.</dd>
+        <dt>AI documentation</dt><dd>NoteIQ AI documentation.</dd>
+        <dt>Billing service</dt><dd>Therapy RCM with a managed services option; rate not published.</dd>
+      </dl>
+      <div class="srcs"><a class="src" href="https://www.raintreeinc.com/" target="_blank" rel="noopener">Homepage</a></div>
+    </article>
+    <article class="card cmp" data-tilt>
+      <div class="kick">Net Health</div>
+      <h3>ReDoc therapy EHR</h3>
+      <dl>
+        <dt>Pricing</dt><dd>Not published.</dd>
+        <dt>AI documentation</dt><dd>Ambient AI documentation in ReDoc.</dd>
+        <dt>Focus</dt><dd>Outpatient and hospital rehab settings.</dd>
+      </dl>
+      <div class="srcs"><a class="src" href="https://www.nethealth.com/" target="_blank" rel="noopener">Homepage</a></div>
+    </article>
+    <article class="card cmp" data-tilt>
+      <div class="kick">SPRY</div>
+      <h3>PT EMR, visit-based pricing</h3>
+      <dl>
+        <dt>Pricing</dt><dd>No dollar amounts. Based on visits per full-time provider.</dd>
+        <dt>AI documentation</dt><dd>AI Scribe in the SPRY Plus tier.</dd>
+        <dt>Billing service</dt><dd>4 to 6% of collections.</dd>
+        <dt>Apps</dt><dd>Companion mobile app in SPRY Plus.</dd>
+      </dl>
+      <div class="srcs"><a class="src" href="https://www.sprypt.com/pricing" target="_blank" rel="noopener">Pricing page</a></div>
+    </article>
+    <article class="card cmp" data-tilt>
+      <div class="kick">Jane</div>
+      <h3>Multi-discipline clinic software</h3>
+      <dl>
+        <dt>Pricing</dt><dd>Published monthly plans: Balance, Practice and Thrive.</dd>
+        <dt>AI documentation</dt><dd>Unlimited AI Scribe is a per-practitioner add-on.</dd>
+        <dt>Insurance billing</dt><dd>Monthly add-on, plus a fee per additional practitioner.</dd>
+      </dl>
+      <div class="srcs"><a class="src" href="https://jane.app/pricing" target="_blank" rel="noopener">Pricing page</a></div>
+    </article>
+    <article class="card cmp" data-tilt>
+      <div class="kick">SimplePractice</div>
+      <h3>Private practice EHR</h3>
+      <dl>
+        <dt>Pricing</dt><dd>Solo plans $49, $79 and $99/month. Group Plus $99/month for the first practitioner and $74 for each additional.</dd>
+        <dt>AI documentation</dt><dd>Care Aide add-on, $59/month.</dd>
+      </dl>
+      <div class="srcs"><a class="src" href="https://www.simplepractice.com/pricing/" target="_blank" rel="noopener">Pricing page</a></div>
+    </article>
+    <article class="card cmp" data-tilt>
+      <div class="kick">TheraOffice by Netsmart</div>
+      <h3>Rehab therapy EMR</h3>
+      <dl>
+        <dt>Pricing</dt><dd>Not published.</dd>
+        <dt>Documentation</dt><dd>40+ customizable templates and AI speech-to-text.</dd>
+        <dt>Worth knowing</dt><dd>ONC-certified, with 175+ built-in reports.</dd>
+      </dl>
+      <div class="srcs"><a class="src" href="https://www.ntst.com/physical-therapy-software" target="_blank" rel="noopener">Product page</a></div>
+    </article>
+  </div>
+  <p class="cmp-note">Checked September 17, 2026 on each company's public website. Products and prices change; if something here is out of date, <a href="/contact" style="color:var(--purple);font-weight:600">tell us</a> and we will fix it. Company names are trademarks of their owners and are used here only to identify their products.</p>
+</div></section>
+
+<!-- FAMILY -->
+<section class="sec" id="family" style="padding-top:0"><div class="wrap">
+  <div class="fam">
+    <div class="fam-lead">
+      <div class="kicker"><span class="num">07</span> We care about the family</div>
+      <h2>The small things that get your evenings back.</h2>
+      <p>We run our own clinic, so we built the little details that save a text, a phone call, or a trip back to the office. Your team, and the families waiting at home, notice.</p>
+    </div>
+    <div class="fam-grid">
+      <div class="card fitem"><b>Your schedule in your Google Calendar</b><span>Each provider sends their visits to their own Google Calendar with one click, without patient names, next to school pickups and family plans.</span></div>
+      <div class="card fitem"><b>Time off, blocked in seconds</b><span>Block a provider's time off from the web or the phone, or close the whole clinic for a holiday in one step. No one gets booked on a day off.</span></div>
+      <div class="card fitem"><b>Patients confirm by text</b><span>Reminders go out 24 hours ahead. A YES or NO reply shows on the schedule, so no one spends the morning calling to confirm.</span></div>
+      <div class="card fitem"><b>Text patients from the clinic number</b><span>Staff text a patient from the chart or the app. It comes from the clinic's number, never a therapist's personal phone.</span></div>
+      <div class="card fitem"><b>Sign the last note from the couch</b><span>The provider app opens the same note forms as the web. Sign on your phone and the claim and appointment update on their own.</span></div>
+      <div class="card fitem"><b>Reach a colleague fast</b><span>Call, text or email anyone on staff from the app's staff list, without hunting for a number.</span></div>
+      <div class="card fitem"><b>Book the whole plan of care at once</b><span>Pick the days and the number of weeks, and every visit is booked with conflicts checked.</span></div>
+      <div class="card fitem"><b>Remembering the people</b><span>Birthday and 6- and 12-month follow-ups show on each chart, and discharged patients are asked for a Google review automatically.</span></div>
+    </div>
+  </div>
+</div></section>
+
 <!-- PRICING -->
 <section class="sec" id="pricing"><div class="wrap">
   <div class="sec-head">
     <div>
-      <div class="kicker"><span class="num">05</span> Pricing</div>
+      <div class="kicker"><span class="num">08</span> Pricing</div>
       <h2 class="sec-title">Flat plans. No<br>per-seat games.</h2>
     </div>
     <p class="sec-note">Start with a 3-month minimum, billed monthly, or save 15% on a 12-month term. Every paid plan includes a signed BAA and onboarding, and founding clinics pay no setup or migration fees.</p>
@@ -611,7 +997,7 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
 <section class="sec" id="security"><div class="wrap">
   <div class="sec-head">
     <div>
-      <div class="kicker"><span class="num">06</span> Trust and compliance</div>
+      <div class="kicker"><span class="num">09</span> Trust and compliance</div>
       <h2 class="sec-title">Compliant by default.<br>Clinician in control.</h2>
     </div>
     <p class="sec-note">Built for HIPAA from the first line of code. <a href="/hipaa-compliance" style="color:var(--purple);font-weight:600">Read our HIPAA statement</a>.</p>
@@ -627,7 +1013,7 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
 
 <!-- FINAL CTA -->
 <section class="final" id="demo">
-  <div class="kicker" style="justify-content:center"><span class="num">07</span> See it live</div>
+  <div class="kicker" style="justify-content:center"><span class="num">10</span> See it live</div>
   <h2>Twenty minutes.<br>Then you will get it.</h2>
   <p>Book a 20-minute live demo on a real note type. Watch an initial evaluation go from exam to a signed, coded note, ready to bill.</p>
   <div class="final-ctas">
@@ -643,7 +1029,7 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
       <a href="/" class="brand" style="color:#fff">Cowboy <small>Systems</small></a>
       <p>The EHR for outpatient PT and multi-service clinics, built by clinicians who run their own PT and Yoga practice. One platform for documentation, scheduling, billing, and growth.</p>
     </div>
-    <div class="fcol"><h4>Product</h4><a href="#platform">Platform</a><a href="#billing">Billing Service</a><a href="#pricing">Pricing</a><a href="/addons">Add-ons</a><a href="#security">Security</a></div>
+    <div class="fcol"><h4>Product</h4><a href="#platform">Platform</a><a href="#services">Services</a><a href="#billing">Billing Service</a><a href="#compare">Compare</a><a href="#pricing">Pricing</a><a href="/addons">Add-ons</a><a href="#security">Security</a></div>
     <div class="fcol"><h4>Company</h4><a href="/about">About</a><a href="/blog">Blog</a><a href="/contact">Contact</a></div>
     <div class="fcol"><h4>Legal</h4><a href="/privacy-policy">Privacy</a><a href="/terms-of-service">Terms</a><a href="/hipaa-compliance">HIPAA</a><a href="/baa">BAA</a></div>
   </div>
@@ -732,6 +1118,18 @@ addEventListener('load',()=>{
       const n=(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;tabs[n].focus();show(n);});
   });
 })();
+
+/* Product videos: a slot with data-video set becomes playable; empty slots stay "Coming soon" */
+document.querySelectorAll('.vid').forEach(v=>{
+  const src=(v.dataset.video||'').trim(), btn=v.querySelector('.vid-play'), frame=v.querySelector('.vid-frame');
+  if(!src||!btn) return;
+  v.querySelector('.vid-soon')?.remove(); btn.disabled=false;
+  btn.addEventListener('click',()=>{
+    const el=/\.(mp4|webm)(\?|$)/i.test(src)?Object.assign(document.createElement('video'),{src,controls:true,autoplay:true,playsInline:true})
+      :Object.assign(document.createElement('iframe'),{src:src+(src.includes('?')?'&':'?')+'autoplay=1',allow:'autoplay; fullscreen; picture-in-picture',title:v.querySelector('b')?.textContent||'Product video'});
+    frame.innerHTML=''; frame.appendChild(el);
+  });
+});
 
 /* SOAP typewriter */
 (function(){
