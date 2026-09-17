@@ -374,21 +374,33 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
 .cmp-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid rgba(22,15,46,.1);border-radius:22px;background:#fff;
   box-shadow:0 18px 44px -30px rgba(22,15,46,.45)}
 .wrap.wide{max-width:1440px}
-.tv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:56px}
-.card.tv{padding:0;display:flex;flex-direction:column}
-.card.tv .kick{padding:22px 22px 0}
-.tv-them{padding:10px 22px 18px;flex:1}
-.tv-them b,.tv-us b{display:block;font-size:10.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px}
-.tv-them b{color:var(--ink-soft)}
-.tv-them p{font-size:13px;color:var(--ink-soft);line-height:1.5}
+.tv-wrap{border:1px solid rgba(22,15,46,.1);border-radius:22px;background:#fff;overflow:hidden;margin-bottom:56px;
+  box-shadow:0 18px 44px -30px rgba(22,15,46,.45)}
+.tv-table{width:100%;border-collapse:separate;border-spacing:0;text-align:left}
+.tv-table thead th{font-size:11px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--ink-soft);
+  background:var(--paper-2);padding:14px 22px;border-bottom:1px solid rgba(22,15,46,.08)}
+.tv-table thead th.tv-us-head{background:#2A1560;color:#c4a3ff}
+.tv-table tbody th{width:180px;font-family:var(--disp);font-weight:600;font-size:17px;letter-spacing:-.4px;color:var(--ink);
+  padding:20px 22px;vertical-align:top;border-bottom:1px solid rgba(22,15,46,.07)}
+.tv-table td{padding:20px 22px;vertical-align:top;font-size:13.5px;line-height:1.55;color:var(--ink-soft);
+  border-bottom:1px solid rgba(22,15,46,.07)}
+.tv-table td.tv-us-cell{background:linear-gradient(180deg,rgba(76,29,149,.96),rgba(30,16,71,.96));color:#fff;font-weight:600;font-size:14px;width:34%}
+.tv-table tbody tr:last-child th,.tv-table tbody tr:last-child td{border-bottom:0}
+.tv-table .tv-lab{display:none;font-size:10.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px}
 .tv-src{display:block;margin-top:8px;font-size:11px;color:rgba(92,84,115,.7)}
 .tv-src .src{margin-right:6px}
-.tv-us{background:linear-gradient(150deg,#1E1047,#4C1D95);color:#fff;padding:18px 22px 22px}
-.tv-us b{color:#c4a3ff}
-.tv-us p{font-size:14px;font-weight:600;line-height:1.5}
-.tv-table-head{font-family:var(--disp);font-weight:600;font-size:clamp(24px,2.6vw,34px);letter-spacing:-1px;margin-bottom:16px}
-@media(max-width:1100px){.tv-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:560px){.tv-grid{grid-template-columns:1fr}}
+.tv-table td.tv-us-cell a{color:#c4a3ff;font-weight:700}
+@media(max-width:820px){
+  .tv-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .tv-table tbody th,.tv-table td{display:block;width:auto;border-bottom:0}
+  .tv-table tbody th{padding:20px 20px 0;font-size:19px}
+  .tv-table td{padding:10px 20px 0}
+  .tv-table td.tv-us-cell{width:auto;margin:12px 0 0;padding:16px 20px 18px;border-radius:0}
+  .tv-table .tv-lab{display:block;color:var(--ink-soft)}
+  .tv-table td.tv-us-cell .tv-lab{color:#c4a3ff}
+  .tv-table tbody tr{display:block;border-bottom:1px solid rgba(22,15,46,.08)}
+  .tv-table tbody tr:last-child{border-bottom:0}
+}
 .cmp-table{width:100%;min-width:1130px;table-layout:fixed;border-collapse:separate;border-spacing:0;font-size:12.5px;line-height:1.45}
 .cmp-table th,.cmp-table td{padding:14px 12px;text-align:left;vertical-align:top;border-bottom:1px solid rgba(22,15,46,.07)}
 .cmp-table tbody tr:last-child th,.cmp-table tbody tr:last-child td{border-bottom:0}
@@ -861,47 +873,52 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
     </div>
     <p class="sec-note">Every "other guys" fact below comes straight from that company's own website, linked on the card. We didn't make anything up. We didn't have to.</p>
   </div>
-  <div class="tv-grid">
-    <article class="card tv" data-tilt>
-      <div class="kick">What does it cost?</div>
-      <div class="tv-them"><b>The other guys</b><p>WebPT, Raintree, Prompt, Net Health and TheraOffice show no prices on the pages linked below. You book a demo to find out what you will pay.</p><span class="tv-src">Source: <a class="src" href="https://www.webpt.com/pricing" target="_blank" rel="noopener">WebPT</a> <a class="src" href="https://www.raintreeinc.com/" target="_blank" rel="noopener">Raintree</a> <a class="src" href="https://www.prompthealth.com/" target="_blank" rel="noopener">Prompt</a> <a class="src" href="https://www.nethealth.com/redoc-emr/" target="_blank" rel="noopener">Net Health</a> <a class="src" href="https://www.ntst.com/physical-therapy-software" target="_blank" rel="noopener">TheraOffice</a></span></div>
-      <div class="tv-us"><b>Cowboy</b><p>$249 a month for 2 providers. $499 for 5. No sales call just to see a number. No "let me check with my manager."</p></div>
-    </article>
-    <article class="card tv" data-tilt>
-      <div class="kick">The AI upcharge</div>
-      <div class="tv-them"><b>The other guys</b><p>SimplePractice charges $59 a month for its AI Care Aide, plus $49 for each added clinician. Jane charges $15 a month per practitioner for unlimited AI Scribe. SPRY keeps its AI Scribe in the higher Plus tier.</p><span class="tv-src">Source: <a class="src" href="https://www.simplepractice.com/pricing/" target="_blank" rel="noopener">SimplePractice</a> <a class="src" href="https://jane.app/pricing?locale=en-US" target="_blank" rel="noopener">Jane</a> <a class="src" href="https://www.sprypt.com/pricing" target="_blank" rel="noopener">SPRY</a></span></div>
-      <div class="tv-us"><b>Cowboy</b><p>In the plan. 100 AI notes a month on Starter, unlimited on Growth. We don't charge extra for the robot to do your homework.</p></div>
-    </article>
-    <article class="card tv" data-tilt>
-      <div class="kick">The initial eval</div>
-      <div class="tv-them"><b>The other guys</b><p>TheraOffice says its initial evals are done in under 7 minutes.</p><span class="tv-src">Source: <a class="src" href="https://www.ntst.com/physical-therapy-software" target="_blank" rel="noopener">TheraOffice</a></span></div>
-      <div class="tv-us"><b>Cowboy</b><p>About 6 minutes, timed in our clinic. Sign it and the HEP, flow sheet and claim show up on their own. Like magic, but with a BAA.</p></div>
-    </article>
-    <article class="card tv" data-tilt>
-      <div class="kick">Someone else does the billing</div>
-      <div class="tv-them"><b>The other guys</b><p>SPRY charges 4 to 6% of collections. WebPT does not publish its rate. A WebPT article puts typical billing services at 6 to 12%.</p><span class="tv-src">Source: <a class="src" href="https://www.sprypt.com/pricing" target="_blank" rel="noopener">SPRY</a> <a class="src" href="https://www.webpt.com/blog/billing-software-vs-rcm-service-whats-the-difference-and-whats-right-for-your-practice" target="_blank" rel="noopener">WebPT article</a></span></div>
-      <div class="tv-us"><b>Cowboy</b><p>4%. Keep the other 96. You treated the patients.</p></div>
-    </article>
-    <article class="card tv" data-tilt>
-      <div class="kick">Getting paid by insurance</div>
-      <div class="tv-them"><b>The other guys</b><p>Jane's insurance billing is a $20 a month add-on, plus $5 for each added full-time practitioner, and not available on its Balance plan.</p><span class="tv-src">Source: <a class="src" href="https://jane.app/pricing?locale=en-US" target="_blank" rel="noopener">Jane</a></span></div>
-      <div class="tv-us"><b>Cowboy</b><p>On every plan, with eligibility checks and batch submission through Availity. Getting paid shouldn't be an add-on.</p></div>
-    </article>
-    <article class="card tv" data-tilt>
-      <div class="kick">Reminder texts</div>
-      <div class="tv-them"><b>The other guys</b><p>Jane's Balance plan sends email reminders only. SimplePractice lists appointment reminders starting on its $79 Essential plan, not its $49 Starter.</p><span class="tv-src">Source: <a class="src" href="https://jane.app/pricing?locale=en-US" target="_blank" rel="noopener">Jane</a> <a class="src" href="https://www.simplepractice.com/pricing/" target="_blank" rel="noopener">SimplePractice</a></span></div>
-      <div class="tv-us"><b>Cowboy</b><p>Texts on Starter. Patients reply YES, the schedule says Confirmed, and your front desk drinks their coffee while it's still hot.</p></div>
-    </article>
-    <article class="card tv" data-tilt>
-      <div class="kick">The phone in your pocket</div>
-      <div class="tv-them"><b>The other guys</b><p>SPRY's therapist app is only in its higher Plus tier.</p><span class="tv-src">Source: <a class="src" href="https://www.sprypt.com/pricing" target="_blank" rel="noopener">SPRY</a></span></div>
-      <div class="tv-us"><b>Cowboy</b><p>Included. Write and sign notes, book visits, text patients and block your day off. Sign that last note from the couch. We won't tell.</p></div>
-    </article>
-    <article class="card tv" data-tilt>
-      <div class="kick">Your evenings</div>
-      <div class="tv-them"><b>The other guys</b><p>WebPT says "Document 3x faster." Prompt says "75% less documentation time."</p><span class="tv-src">Source: <a class="src" href="https://www.webpt.com/pricing" target="_blank" rel="noopener">WebPT</a> <a class="src" href="https://www.prompthealth.com/" target="_blank" rel="noopener">Prompt</a></span></div>
-      <div class="tv-us"><b>Cowboy</b><p>About 7 hours back a week per full-time therapist. That's basically a whole workday, or room for about 8 more visits. <a href="#savings" style="color:#c4a3ff;font-weight:600">See the math</a>.</p></div>
-    </article>
+  <div class="tv-wrap">
+    <table class="tv-table">
+      <thead><tr><th scope="col">&nbsp;</th><th scope="col">The other guys</th><th scope="col" class="tv-us-head">Cowboy</th></tr></thead>
+      <tbody>
+        <tr>
+          <th scope="row">What does it cost?</th>
+          <td class="tv-them-cell"><span class="tv-lab">The other guys</span>WebPT, Raintree, Prompt, Net Health and TheraOffice show no prices on the pages linked below. You book a demo to find out what you will pay.<span class="tv-src">Source: <a class="src" href="https://www.webpt.com/pricing" target="_blank" rel="noopener">WebPT</a> <a class="src" href="https://www.raintreeinc.com/" target="_blank" rel="noopener">Raintree</a> <a class="src" href="https://www.prompthealth.com/" target="_blank" rel="noopener">Prompt</a> <a class="src" href="https://www.nethealth.com/redoc-emr/" target="_blank" rel="noopener">Net Health</a> <a class="src" href="https://www.ntst.com/physical-therapy-software" target="_blank" rel="noopener">TheraOffice</a></span></td>
+          <td class="tv-us-cell"><span class="tv-lab">Cowboy</span>$249 a month for 2 providers. $499 for 5. No sales call just to see a number. No "let me check with my manager."</td>
+        </tr>
+        <tr>
+          <th scope="row">The AI upcharge</th>
+          <td class="tv-them-cell"><span class="tv-lab">The other guys</span>SimplePractice charges $59 a month for its AI Care Aide, plus $49 for each added clinician. Jane charges $15 a month per practitioner for unlimited AI Scribe. SPRY keeps its AI Scribe in the higher Plus tier.<span class="tv-src">Source: <a class="src" href="https://www.simplepractice.com/pricing/" target="_blank" rel="noopener">SimplePractice</a> <a class="src" href="https://jane.app/pricing?locale=en-US" target="_blank" rel="noopener">Jane</a> <a class="src" href="https://www.sprypt.com/pricing" target="_blank" rel="noopener">SPRY</a></span></td>
+          <td class="tv-us-cell"><span class="tv-lab">Cowboy</span>In the plan. 100 AI notes a month on Starter, unlimited on Growth. We don't charge extra for the robot to do your homework.</td>
+        </tr>
+        <tr>
+          <th scope="row">The initial eval</th>
+          <td class="tv-them-cell"><span class="tv-lab">The other guys</span>TheraOffice says its initial evals are done in under 7 minutes.<span class="tv-src">Source: <a class="src" href="https://www.ntst.com/physical-therapy-software" target="_blank" rel="noopener">TheraOffice</a></span></td>
+          <td class="tv-us-cell"><span class="tv-lab">Cowboy</span>About 6 minutes, timed in our clinic. Sign it and the HEP, flow sheet and claim show up on their own. Like magic, but with a BAA.</td>
+        </tr>
+        <tr>
+          <th scope="row">Someone else does the billing</th>
+          <td class="tv-them-cell"><span class="tv-lab">The other guys</span>SPRY charges 4 to 6% of collections. WebPT does not publish its rate. A WebPT article puts typical billing services at 6 to 12%.<span class="tv-src">Source: <a class="src" href="https://www.sprypt.com/pricing" target="_blank" rel="noopener">SPRY</a> <a class="src" href="https://www.webpt.com/blog/billing-software-vs-rcm-service-whats-the-difference-and-whats-right-for-your-practice" target="_blank" rel="noopener">WebPT article</a></span></td>
+          <td class="tv-us-cell"><span class="tv-lab">Cowboy</span>4%. Keep the other 96. You treated the patients.</td>
+        </tr>
+        <tr>
+          <th scope="row">Getting paid by insurance</th>
+          <td class="tv-them-cell"><span class="tv-lab">The other guys</span>Jane's insurance billing is a $20 a month add-on, plus $5 for each added full-time practitioner, and not available on its Balance plan.<span class="tv-src">Source: <a class="src" href="https://jane.app/pricing?locale=en-US" target="_blank" rel="noopener">Jane</a></span></td>
+          <td class="tv-us-cell"><span class="tv-lab">Cowboy</span>On every plan, with eligibility checks and batch submission through Availity. Getting paid shouldn't be an add-on.</td>
+        </tr>
+        <tr>
+          <th scope="row">Reminder texts</th>
+          <td class="tv-them-cell"><span class="tv-lab">The other guys</span>Jane's Balance plan sends email reminders only. SimplePractice lists appointment reminders starting on its $79 Essential plan, not its $49 Starter.<span class="tv-src">Source: <a class="src" href="https://jane.app/pricing?locale=en-US" target="_blank" rel="noopener">Jane</a> <a class="src" href="https://www.simplepractice.com/pricing/" target="_blank" rel="noopener">SimplePractice</a></span></td>
+          <td class="tv-us-cell"><span class="tv-lab">Cowboy</span>Texts on Starter. Patients reply YES, the schedule says Confirmed, and your front desk drinks their coffee while it's still hot.</td>
+        </tr>
+        <tr>
+          <th scope="row">The phone in your pocket</th>
+          <td class="tv-them-cell"><span class="tv-lab">The other guys</span>SPRY's therapist app is only in its higher Plus tier.<span class="tv-src">Source: <a class="src" href="https://www.sprypt.com/pricing" target="_blank" rel="noopener">SPRY</a></span></td>
+          <td class="tv-us-cell"><span class="tv-lab">Cowboy</span>Included. Write and sign notes, book visits, text patients and block your day off. Sign that last note from the couch. We won't tell.</td>
+        </tr>
+        <tr>
+          <th scope="row">Your evenings</th>
+          <td class="tv-them-cell"><span class="tv-lab">The other guys</span>WebPT says "Document 3x faster." Prompt says "75% less documentation time."<span class="tv-src">Source: <a class="src" href="https://www.webpt.com/pricing" target="_blank" rel="noopener">WebPT</a> <a class="src" href="https://www.prompthealth.com/" target="_blank" rel="noopener">Prompt</a></span></td>
+          <td class="tv-us-cell"><span class="tv-lab">Cowboy</span>About 7 hours back a week per full-time therapist. That's basically a whole workday, or room for about 8 more visits. <a href="#savings" style="color:#c4a3ff;font-weight:600">See the math</a>.</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
   <h3 class="tv-table-head">The receipts.</h3>
   <p class="cmp-hint">Swipe the table to see every system.</p>
