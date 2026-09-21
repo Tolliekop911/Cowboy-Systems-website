@@ -1,3 +1,15 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/index-legacy",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/index-legacy.html",
+      "destination": "/",
+      "permanent": true
+    }
+  ]
 }
