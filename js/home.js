@@ -115,13 +115,18 @@ document.querySelectorAll('.vid').forEach(v=>{
 /* Nav: dropdowns (click for touch, hover for mouse) and the mobile menu */
 (function(){
   const dds=[...document.querySelectorAll('.dd')], burger=document.querySelector('.nav-burger');
-  const closeAll=except=>dds.forEach(d=>{if(d!==except){d.classList.remove('open');d.querySelector('.dd-btn').setAttribute('aria-expanded','false');}});
-  dds.forEach(d=>d.querySelector('.dd-btn').addEventListener('click',e=>{e.stopPropagation();const o=!d.classList.contains('open');closeAll(d);
-    d.classList.toggle('open',o);e.currentTarget.setAttribute('aria-expanded',String(o));}));
+  const closeAll=except=>dds.forEach(d=>{if(d!==except){d.classList.remove('open');const b=d.querySelector('.dd-btn');
+    b.setAttribute('aria-expanded','false');if(b===document.activeElement)b.blur();}});
+  dds.forEach(d=>{const btn=d.querySelector('.dd-btn');
+    btn.addEventListener('click',e=>{e.stopPropagation();const o=!d.classList.contains('open');closeAll(d);
+      d.classList.toggle('open',o);btn.setAttribute('aria-expanded',String(o));if(!o)btn.blur();});
+    d.addEventListener('focusout',e=>{if(!d.contains(e.relatedTarget)){d.classList.remove('open');btn.setAttribute('aria-expanded','false');}});
+  });
   document.addEventListener('click',e=>{if(!e.target.closest('.dd'))closeAll();});
   burger&&burger.addEventListener('click',e=>{e.stopPropagation();const o=!nav.classList.contains('open');nav.classList.toggle('open',o);burger.setAttribute('aria-expanded',String(o));});
   document.querySelectorAll('#navLinks a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');burger&&burger.setAttribute('aria-expanded','false');closeAll();}));
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeAll();nav.classList.remove('open');}});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeAll();nav.classList.remove('open');burger&&burger.setAttribute('aria-expanded','false');}});
+  addEventListener('scroll',()=>{if(nav.querySelector('.dd.open'))closeAll();},{passive:true});
 })();
 
 /* Platform tab bar follows the stacking cards. Sticky cards report their stuck

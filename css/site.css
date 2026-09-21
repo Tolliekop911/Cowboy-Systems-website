@@ -234,7 +234,7 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px;li
 .nav-login-m{display:none}
 .dd{position:relative}
 .dd-btn{font:inherit;font-size:14px;font-weight:500;color:var(--ink-soft);background:none;border:0;cursor:pointer;display:flex;align-items:center;gap:6px;padding:6px 0}
-.dd-btn:hover,.dd.open .dd-btn,.dd:focus-within .dd-btn{color:var(--ink)}
+.dd-btn:hover,.dd.open .dd-btn{color:var(--ink)}
 .dd-btn svg{transition:transform .25s}
 .dd.open .dd-btn svg{transform:rotate(180deg)}
 .dd-menu{position:absolute;top:calc(100% + 16px);left:50%;transform:translate(-50%,8px);min-width:300px;padding:10px;line-height:1.45;
@@ -242,7 +242,7 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px;li
   opacity:0;visibility:hidden;transition:opacity .2s,transform .2s,visibility .2s}
 .dd-menu::before{content:"";position:absolute;left:0;right:0;top:-18px;height:18px}
 .dd-mega{display:grid;grid-template-columns:1fr 1fr;min-width:560px}
-.dd:hover .dd-menu,.dd.open .dd-menu,.dd:focus-within .dd-menu{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.dd:hover .dd-menu,.dd.open .dd-menu{opacity:1;visibility:visible;transform:translate(-50%,0)}
 .nav-links .dd-menu a{display:block;padding:11px 14px;border-radius:12px;transition:background .15s;color:var(--ink)}
 .nav-links .dd-menu a::after{display:none}
 .nav-links .dd-menu a:hover{background:var(--paper-2)}
@@ -267,7 +267,7 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px;li
   .nav-links>a::after{display:none}
   .nav-login-m{display:block;font-weight:700;color:var(--purple)!important}
   .dd-menu,.dd-mega{position:static;transform:none;min-width:0;display:none;opacity:1;visibility:visible;box-shadow:none;border:0;padding:0 0 6px 8px;grid-template-columns:1fr}
-  .dd:hover .dd-menu,.dd.open .dd-menu,.dd:focus-within .dd-menu{transform:none;left:auto}
+  .dd:hover .dd-menu,.dd.open .dd-menu{transform:none;left:auto}
   .dd.open .dd-menu{display:block}
   .dd-menu::before{display:none}
   .nav-links .dd-menu .dd-all{margin-top:2px}
