@@ -433,6 +433,183 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
 @media(max-width:1120px){.nav-links{gap:22px}}
 @media(max-width:1000px){.nav-links{display:none}}
 
+/* ══ REDESIGN ═══════════════════════════════════════════════════════════ */
+/* Floating pill nav */
+.nav{top:14px;left:50%;right:auto;transform:translateX(-50%);width:min(1240px,calc(100% - 24px));
+  padding:10px 10px 10px 24px;border-radius:100px;background:rgba(251,250,255,.78);
+  -webkit-backdrop-filter:saturate(180%) blur(16px);backdrop-filter:saturate(180%) blur(16px);
+  box-shadow:0 1px 0 rgba(22,15,46,.06),0 18px 40px -28px rgba(22,15,46,.45);border:1px solid rgba(22,15,46,.07)}
+.nav.solid{padding:10px 10px 10px 24px;background:rgba(251,250,255,.92)}
+.nav-links{align-items:center;gap:26px}
+.nav-right{display:flex;align-items:center;gap:8px}
+.nav-login{font-size:13px;font-weight:700;color:var(--ink);padding:10px 16px;border-radius:100px;border:1px solid rgba(22,15,46,.14)}
+.nav-login:hover{border-color:var(--purple);color:var(--purple)}
+.nav-login-m{display:none}
+.dd{position:relative}
+.dd-btn{font:inherit;font-size:14px;font-weight:500;color:var(--ink-soft);background:none;border:0;cursor:pointer;display:flex;align-items:center;gap:6px;padding:6px 0}
+.dd-btn:hover,.dd.open .dd-btn,.dd:focus-within .dd-btn{color:var(--ink)}
+.dd-btn svg{transition:transform .25s}
+.dd.open .dd-btn svg{transform:rotate(180deg)}
+.dd-menu{position:absolute;top:calc(100% + 16px);left:50%;transform:translate(-50%,8px);min-width:300px;padding:10px;
+  background:#fff;border:1px solid rgba(22,15,46,.09);border-radius:18px;box-shadow:0 30px 60px -30px rgba(22,15,46,.45);
+  opacity:0;visibility:hidden;transition:opacity .2s,transform .2s,visibility .2s}
+.dd-menu::before{content:"";position:absolute;left:0;right:0;top:-18px;height:18px}
+.dd-mega{display:grid;grid-template-columns:1fr 1fr;min-width:560px}
+.dd:hover .dd-menu,.dd.open .dd-menu,.dd:focus-within .dd-menu{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.dd-menu a{display:block;padding:11px 14px;border-radius:12px;transition:background .15s}
+.dd-menu a::after{display:none}
+.dd-menu a:hover{background:var(--paper-2)}
+.dd-menu b{display:block;font-size:14px;font-weight:700;color:var(--ink)}
+.dd-menu span{display:block;font-size:12.5px;color:var(--ink-soft);line-height:1.4;margin-top:2px}
+.dd-menu .dd-all{grid-column:1/-1;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--purple);border-top:1px solid rgba(22,15,46,.07);border-radius:0 0 12px 12px;margin-top:4px}
+.nav-burger{display:none;width:42px;height:42px;border-radius:50%;border:1px solid rgba(22,15,46,.14);background:#fff;cursor:pointer;
+  flex-direction:column;align-items:center;justify-content:center;gap:5px}
+.nav-burger span{display:block;width:16px;height:1.8px;background:var(--ink);transition:transform .25s}
+.nav.open .nav-burger span:first-child{transform:translateY(3.4px) rotate(45deg)}
+.nav.open .nav-burger span:last-child{transform:translateY(-3.4px) rotate(-45deg)}
+@media(max-width:1000px){
+  .nav{padding:8px 8px 8px 20px}
+  .nav-login{display:none}
+  .nav-burger{display:flex}
+  .nav-links{position:absolute;top:calc(100% + 10px);left:0;right:0;display:none;flex-direction:column;align-items:stretch;gap:0;
+    background:#fff;border:1px solid rgba(22,15,46,.09);border-radius:22px;padding:10px;box-shadow:0 30px 60px -30px rgba(22,15,46,.5);
+    max-height:calc(100vh - 110px);overflow-y:auto}
+  .nav.open .nav-links{display:flex}
+  .nav-links>a,.dd-btn{padding:13px 14px;font-size:15px;width:100%;justify-content:space-between}
+  .nav-links>a::after{display:none}
+  .nav-login-m{display:block;font-weight:700;color:var(--purple)!important}
+  .dd-menu,.dd-mega{position:static;transform:none;min-width:0;display:none;opacity:1;visibility:visible;box-shadow:none;border:0;padding:0 0 6px 8px;grid-template-columns:1fr}
+  .dd:hover .dd-menu,.dd.open .dd-menu,.dd:focus-within .dd-menu{transform:none;left:auto}
+  .dd.open .dd-menu{display:block}
+  .dd-menu .dd-all{margin-top:2px}
+  .dd-menu::before{display:none}
+}
+@media(max-width:420px){.nav-cta{padding:10px 14px;font-size:12px}}
+
+/* Centered hero */
+.hero.hero-c{min-height:auto;padding:170px 5vw 40px;align-items:center;text-align:center}
+.hero-c .hero-eyebrow{justify-content:center}
+.hero-c h1{max-width:none;margin:0 auto;font-size:min(clamp(46px,7.4vw,112px),9.2vw)}
+.hero-c h1 em{white-space:nowrap}
+.hero-c .hero-sub{margin:34px auto 0;max-width:56ch}
+.hero-c .hero-ctas{justify-content:center;margin-top:30px}
+.hero-c .hero-meta{justify-content:center;gap:44px;margin-top:40px}
+.hero-c .hero-meta div{align-items:center}
+@media(max-width:560px){.hero.hero-c{padding-top:130px}.hero-c h1{letter-spacing:-1.5px}.hero-c .hero-meta{gap:24px}}
+
+/* 3D product showcase */
+.showcase{padding:10px 0 70px;position:relative}
+.show-stage{position:relative;perspective:1600px;margin:0 auto;max-width:1180px}
+.show-3d{transform-origin:50% 0;transform:rotateX(18deg) scale(.94);will-change:transform;margin:0}
+.show-tabs{justify-content:center;margin:26px 0 0}
+.showcase .shot-cap{justify-content:center;text-align:center}
+.float{position:absolute;z-index:3;display:grid;grid-template-columns:auto 1fr;column-gap:10px;align-items:center;text-align:left;
+  background:#fff;border:1px solid rgba(22,15,46,.09);border-radius:16px;padding:12px 16px;
+  box-shadow:0 26px 50px -24px rgba(22,15,46,.45);min-width:230px}
+.float b{font-size:13.5px;font-weight:700;color:var(--ink);grid-column:2}
+.float span{font-size:12px;color:var(--ink-soft);grid-column:2}
+.fl-dot{grid-row:1/3;width:26px;height:26px;border-radius:50%;background:rgba(52,150,90,.14);position:relative}
+.fl-dot::after{content:"";position:absolute;left:9px;top:6px;width:6px;height:11px;border:solid #2f7a4a;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.f1{left:-3%;top:16%}.f2{right:-3%;top:9%}.f3{left:2%;bottom:14%}.f4{right:-1%;bottom:22%}
+@media(max-width:1100px){.f1{left:1%}.f2{right:1%}.f3{left:3%}.f4{right:2%}}
+@media(max-width:760px){.float{display:none}.show-3d{transform:rotateX(10deg) scale(.97)}}
+
+/* Works with strip */
+.works{display:flex;align-items:center;gap:24px;max-width:1280px;margin:0 auto;padding:0 5vw 20px;overflow:hidden}
+.works-lab{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap}
+.works-track{flex:1;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.works-row{display:flex;gap:48px;width:max-content;animation:works 32s linear infinite}
+.works-row span{font-family:var(--disp);font-weight:600;font-size:20px;letter-spacing:-.4px;color:rgba(22,15,46,.45);white-space:nowrap}
+@keyframes works{to{transform:translateX(-50%)}}
+
+/* Sticky tab bar + stacking cards */
+.stack-sec{padding-bottom:60px}
+.stack-tabs{position:sticky;top:82px;z-index:40;margin:0 0 30px}
+.stack-tabs nav{display:flex;gap:6px;justify-content:center;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+.stack-tabs nav::-webkit-scrollbar{display:none}
+.stack-tabs a{flex-shrink:0;font-size:13px;font-weight:600;color:var(--ink-soft);padding:9px 16px;border-radius:100px;
+  background:rgba(251,250,255,.85);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(22,15,46,.08);transition:background .2s,color .2s}
+.stack-tabs a:hover{color:var(--ink)}
+.stack-tabs a[aria-current="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.stack{display:flex;flex-direction:column;gap:28px}
+.stack-card{position:sticky;top:calc(146px + var(--i) * 12px);display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center;
+  min-height:min(560px,calc(100vh - 190px));padding:44px;border-radius:30px;background:#fff;
+  border:1px solid transparent;background-image:linear-gradient(#fff,#fff),linear-gradient(135deg,rgba(124,58,237,.55),rgba(147,102,240,.12) 45%,rgba(124,58,237,.45));
+  background-origin:border-box;background-clip:padding-box,border-box;box-shadow:0 40px 80px -50px rgba(76,29,149,.55);transform-origin:50% 0}
+.stack-copy .kick{font-size:11.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--purple)}
+.stack-copy h3{font-family:var(--disp);font-weight:600;font-size:clamp(28px,3.2vw,44px);letter-spacing:-1.4px;line-height:1.04;margin:12px 0 14px}
+.stack-copy h3 em{font-style:normal;color:var(--purple)}
+.stack-lede{font-size:16px;color:var(--ink-soft);line-height:1.6;max-width:46ch}
+.stack-copy ul{margin:18px 0;display:flex;flex-direction:column;gap:9px}
+.stack-copy li{font-size:14.5px;line-height:1.5;padding-left:26px;position:relative}
+.stack-copy li::before{content:"";position:absolute;left:0;top:3px;width:16px;height:16px;border-radius:50%;background:var(--lav)}
+.stack-copy li::after{content:"";position:absolute;left:6px;top:6px;width:4px;height:7px;border:solid var(--purple);border-width:0 1.8px 1.8px 0;transform:rotate(45deg)}
+.stack-close{font-size:14.5px;font-weight:700;color:var(--ink);margin-bottom:20px}
+.btn-out{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:14px;padding:12px 22px;border-radius:100px;
+  border:1.5px solid var(--purple);color:var(--purple);transition:background .25s,color .25s}
+.btn-out:hover{background:var(--purple);color:#fff}
+.stack-vis{border-radius:22px;align-self:stretch;display:flex;align-items:center;justify-content:center}
+.stack-vis>div:not(.phone){width:100%}
+.vis-dark{background:linear-gradient(150deg,#1E1047,#3B1580 60%,#4C1D95);color:#fff;border-radius:22px;padding:28px}
+.vis-dark h3{font-family:var(--disp);font-weight:600;font-size:22px;margin:8px 0 6px}
+.vis-dark .kick{color:var(--lav-2)}
+.vis-light{background:var(--paper-2);border:1px solid rgba(22,15,46,.06);border-radius:22px;padding:28px}
+.vis-light .kick{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--purple)}
+.vis-phone{background:linear-gradient(160deg,var(--paper-2),var(--lav))}
+.phone{width:250px;margin:24px auto;background:#fff;border-radius:34px;padding:26px 16px 18px;border:8px solid var(--ink);
+  box-shadow:0 40px 60px -30px rgba(22,15,46,.6);position:relative}
+.phone-notch{position:absolute;top:6px;left:50%;transform:translateX(-50%);width:70px;height:16px;border-radius:10px;background:var(--ink)}
+.ph-head{display:flex;justify-content:space-between;align-items:baseline;margin:8px 4px 12px}
+.ph-head b{font-family:var(--disp);font-size:22px}
+.ph-head span{font-size:12px;color:var(--ink-soft)}
+.ph-row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px;border-radius:12px;background:var(--paper-2);margin-bottom:7px}
+.ph-row b{font-size:12px}
+.ph-tag{font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;background:var(--lav);color:var(--purple-dark);white-space:nowrap}
+.ph-tag.ok{background:rgba(52,150,90,.14);color:#2f7a4a}
+.ph-btn{margin-top:10px;text-align:center;font-size:13px;font-weight:700;color:#fff;background:var(--purple);border-radius:12px;padding:11px}
+.audit{display:flex;flex-direction:column;gap:10px}
+.audit-row{display:flex;gap:12px;align-items:center;background:#fff;border:1px solid rgba(22,15,46,.07);border-radius:14px;padding:13px 14px}
+.audit-ic{width:34px;height:34px;flex-shrink:0;border-radius:10px;background:var(--lav);color:var(--purple);display:flex;align-items:center;justify-content:center;font-size:15px}
+.audit-row b{display:block;font-size:13.5px}
+.audit-row span{font-size:12px;color:var(--ink-soft)}
+@media(max-width:900px){
+  .stack-tabs{top:74px}
+  .stack-tabs nav{justify-content:flex-start;padding-right:5vw}
+  .stack-card{position:relative;top:auto;grid-template-columns:1fr;gap:26px;min-height:0;padding:28px}
+}
+@media(max-width:560px){.stack-card{padding:22px;border-radius:24px}.phone{width:230px}}
+
+/* Founder story */
+.story{display:grid;grid-template-columns:1.3fr 1fr;gap:56px;align-items:center}
+.story-copy .sec-title{max-width:none;margin-bottom:22px}
+.story-copy .sec-title em{font-style:normal;color:var(--purple)}
+.story-copy p{font-size:16.5px;color:var(--ink-soft);line-height:1.75;max-width:60ch;margin-bottom:16px}
+.story-copy .story-sign{font-family:var(--disp);font-weight:600;font-size:18px;color:var(--ink);margin-top:6px}
+.story-panel{background:var(--ink);color:#fff;border-radius:28px;padding:34px;position:relative;overflow:hidden}
+.story-panel::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 80% at 90% 0%,rgba(124,58,237,.55),transparent 60%)}
+.sp-row{position:relative;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+.sp-row:last-child{border-bottom:0}
+.sp-row b{display:block;font-family:var(--disp);font-weight:600;font-size:21px;letter-spacing:-.5px}
+.sp-row span{display:block;font-size:13.5px;color:rgba(237,233,254,.72);margin-top:4px;line-height:1.5}
+@media(max-width:900px){.story{grid-template-columns:1fr;gap:30px}}
+
+/* FAQ */
+.faq{display:grid;grid-template-columns:1fr 1.6fr;gap:56px;align-items:start}
+.faq-list{display:flex;flex-direction:column;gap:10px}
+.faq-item{background:#fff;border:1px solid rgba(22,15,46,.09);border-radius:18px;transition:border-color .25s,box-shadow .25s}
+.faq-item[open]{border-color:rgba(124,58,237,.45);box-shadow:0 24px 50px -36px rgba(76,29,149,.6)}
+.faq-item summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 24px;
+  font-size:16px;font-weight:700;color:var(--ink)}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-ic{position:relative;width:26px;height:26px;flex-shrink:0;border-radius:50%;background:var(--lav)}
+.faq-ic::before,.faq-ic::after{content:"";position:absolute;left:50%;top:50%;width:10px;height:1.8px;background:var(--purple);transform:translate(-50%,-50%);transition:transform .25s}
+.faq-ic::after{transform:translate(-50%,-50%) rotate(90deg)}
+.faq-item[open] .faq-ic::after{transform:translate(-50%,-50%) rotate(0deg)}
+.faq-item p{padding:0 24px 22px;font-size:14.5px;color:var(--ink-soft);line-height:1.65;max-width:68ch}
+@media(max-width:900px){.faq{grid-template-columns:1fr;gap:26px}}
+
+@media(prefers-reduced-motion:reduce){.show-3d{transform:none}.works-row{animation:none}}
+
 .reveal{opacity:1}
 .js .reveal{opacity:0}
 @media(prefers-reduced-motion:reduce){*{animation:none!important}}
@@ -443,58 +620,67 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
 <svg class="grain"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
 
 <!-- NAV -->
-<nav class="nav" id="nav">
+<nav class="nav" id="nav" aria-label="Main">
   <a href="/" class="brand">Cowboy <small>Systems</small></a>
-  <div class="nav-links">
-    <a href="#platform">Platform</a>
-    <a href="#services">Services</a>
+  <div class="nav-links" id="navLinks">
+    <div class="dd">
+      <button type="button" class="dd-btn" aria-expanded="false">Product <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 3.5l3 3 3-3"/></svg></button>
+      <div class="dd-menu dd-mega">
+        <a href="#stack-docs"><b>AI documentation</b><span>Evals in about six minutes, signed by your therapist</span></a>
+        <a href="#stack-sched"><b>Scheduling and reminders</b><span>Texts your patients confirm with a YES</span></a>
+        <a href="#stack-billing"><b>Billing and claims</b><span>Checked against the chart before they go out</span></a>
+        <a href="#stack-front"><b>AI front office</b><span>Calls answered while you treat</span></a>
+        <a href="#stack-apps"><b>Provider and patient apps</b><span>The clinic in your pocket</span></a>
+        <a href="#stack-growth"><b>Growth and compliance</b><span>Reviews, recalls and a tamper-evident audit log</span></a>
+        <a href="#services" class="dd-all">See every service <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M1 6h17M13 1l5 5-5 5"/></svg></a>
+      </div>
+    </div>
+    <div class="dd">
+      <button type="button" class="dd-btn" aria-expanded="false">Why Cowboy <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 3.5l3 3 3-3"/></svg></button>
+      <div class="dd-menu">
+        <a href="#compare"><b>Them vs. Cowboy</b><span>The other guys, from their own websites</span></a>
+        <a href="#story"><b>Built by clinicians</b><span>We run our own clinic on it</span></a>
+        <a href="#family"><b>We care about the family</b><span>The small things that save your evenings</span></a>
+        <a href="#security"><b>Trust and compliance</b><span>BAA, encryption and audit logs</span></a>
+      </div>
+    </div>
     <a href="#billing">Billing Service</a>
-    <a href="#compare">Compare</a>
     <a href="#pricing">Pricing</a>
     <a href="/addons">Add-ons</a>
-    <a href="#security">Security</a>
+    <a href="https://ehr.cowboy-systems.com" class="nav-login-m">Log in</a>
   </div>
-  <a href="#demo" class="nav-cta mag">Book a Demo</a>
+  <div class="nav-right">
+    <a href="https://ehr.cowboy-systems.com" class="nav-login">Log in</a>
+    <a href="#demo" class="nav-cta mag">Book a Demo</a>
+    <button type="button" class="nav-burger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span></button>
+  </div>
 </nav>
 
 <!-- HERO -->
-<header class="hero" id="top">
-  <div class="hero-eyebrow reveal"><span class="line"></span> Built for outpatient PT &amp; multi-service clinics</div>
-  <h1 aria-label="A full initial evaluation in six minutes.">
-    <span class="word"><span>A full</span></span> <span class="word"><span>initial</span></span> <span class="word"><span>evaluation</span></span><br>
-    <span class="word"><span>in</span></span> <span class="word"><span><em>six&nbsp;minutes</em></span></span>.
+<header class="hero hero-c" id="top">
+  <div class="hero-eyebrow reveal"><span class="line"></span> The EHR for outpatient PT and multi-service clinics <span class="line"></span></div>
+  <h1 aria-label="Six-minute evals. Fewer no-shows. Claims that get paid.">
+    <span class="word"><span>Six-minute</span></span> <span class="word"><span>evals.</span></span><br>
+    <span class="word"><span>Fewer</span></span> <span class="word"><span>no-shows.</span></span><br>
+    <span class="word"><span><em>Claims&nbsp;that&nbsp;get&nbsp;paid.</em></span></span>
   </h1>
-  <div class="hero-lower">
-    <p class="hero-sub reveal">Note, assessment, goals, and codes, billing-ready in <b>about six minutes of documentation time</b>, against roughly twenty on a legacy system. Your therapist reviews and signs every note.</p>
-    <div class="hero-ctas reveal">
-      <a href="#demo" class="btn mag"><span class="dot"></span> Book a Demo</a>
-      <a href="#product" class="btn-line">See the real product <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 6h17M13 1l5 5-5 5"/></svg></a>
-    </div>
+  <p class="hero-sub reveal">Documentation, scheduling and billing in one system, built by clinicians who run their own PT clinic. The AI drafts. <b>Your therapist reviews and signs every note.</b></p>
+  <div class="hero-ctas reveal">
+    <a href="#demo" class="btn mag"><span class="dot"></span> Book a Demo</a>
+    <a href="#pricing" class="btn ghost">See pricing</a>
   </div>
   <div class="hero-meta reveal">
-    <div><b>~6 min</b><span>Full initial eval, our clinic</span></div>
+    <div><b>~6 min</b><span>Full initial eval, timed at our clinic</span></div>
     <div><b>9</b><span>Documentation suites</span></div>
     <div><b>+4%</b><span>Billing done for you, on top of your plan</span></div>
   </div>
-  <div class="hero-scroll"><span class="bar"></span> Scroll</div>
 </header>
 
-<!-- REAL PRODUCT -->
-<section class="sec" id="product"><div class="wrap">
-  <div class="sec-head">
-    <div>
-      <div class="kicker"><span class="num">01</span> The real product</div>
-      <h2 class="sec-title">No mockups.<br>This is the EHR.</h2>
-    </div>
-    <p class="sec-note">Screens from the live Cowboy Systems EHR, shown on a test patient. Everything you see here ships today.</p>
-  </div>
-  <div class="shots-tabs" role="tablist" aria-label="Product screens">
-    <button type="button" role="tab" aria-selected="true" aria-controls="shot-stack" data-src="/assets/product/chart-signed-eval.webp" data-alt="Patient chart in Cowboy Systems showing a signed Lower Extremity Initial Evaluation for a test patient" data-cap="A signed Lower Extremity Initial Evaluation on the patient chart: diagnoses, history, and every section of the exam.">Signed initial eval</button>
-    <button type="button" role="tab" aria-selected="false" aria-controls="shot-stack" data-src="/assets/product/notes-billing.webp" data-alt="Notes tab in Cowboy Systems with initial evaluation, progress note, re-evaluation, discharge summary, and Send to Billing and Fax actions" data-cap="Every note type in one place. Send a signed note to billing, fax it, or print it in one click.">Notes and billing</button>
-    <button type="button" role="tab" aria-selected="false" aria-controls="shot-stack" data-src="/assets/product/hep-flowsheet.webp" data-alt="HEP and flowsheet screen in Cowboy Systems with an exercise library and a home exercise program builder" data-cap="Build home exercise programs and daily flowsheets from the exercise library, or quick-fill by diagnosis.">HEP and flowsheet</button>
-    <button type="button" role="tab" aria-selected="false" aria-controls="shot-stack" data-src="/assets/product/smart-forms.webp" data-alt="Smart Forms screen in Cowboy Systems listing 42 clinical templates across specialties" data-cap="42 ready-made templates: evaluations, re-evaluations, flowsheets, and charge sheets for nine specialties.">42 clinical templates</button>
-  </div>
-  <figure class="shot-frame" role="tabpanel">
+<!-- PRODUCT SHOWCASE (3D, flattens on scroll) -->
+<section class="showcase" id="product" aria-label="The real product">
+  <div class="wrap">
+    <div class="show-stage">
+  <figure class="shot-frame show-3d" role="tabpanel">
     <div class="shot-bar"><i></i><i></i><i></i><span>ehr.cowboy-systems.com</span></div>
     <div class="shot-stack" id="shot-stack">
       <img src="/assets/product/chart-signed-eval.webp" alt="Patient chart in Cowboy Systems showing a signed Lower Extremity Initial Evaluation for a test patient" width="1600" height="760" decoding="async" class="on"/>
@@ -503,14 +689,35 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
       <img src="/assets/product/smart-forms.webp" alt="Smart Forms screen in Cowboy Systems listing 42 clinical templates across specialties" width="1600" height="760" decoding="async" aria-hidden="true"/>
     </div>
   </figure>
+      <div class="float f1" aria-hidden="true"><i class="fl-dot" aria-hidden="true"></i><b>Claim sent to Billing</b><span>97162 · ready to submit</span></div>
+      <div class="float f2" aria-hidden="true"><i class="fl-dot" aria-hidden="true"></i><b>Home program updated</b><span>4 exercises added from this visit</span></div>
+      <div class="float f3" aria-hidden="true"><i class="fl-dot" aria-hidden="true"></i><b>Reminder reply: YES</b><span>Thursday 2:00 PM · Confirmed</span></div>
+      <div class="float f4" aria-hidden="true"><i class="fl-dot" aria-hidden="true"></i><b>Flow sheet synced</b><span>Linked to today's note</span></div>
+    </div>
+  <div class="shots-tabs show-tabs" role="tablist" aria-label="Product screens">
+    <button type="button" role="tab" aria-selected="true" aria-controls="shot-stack" data-src="/assets/product/chart-signed-eval.webp" data-alt="Patient chart in Cowboy Systems showing a signed Lower Extremity Initial Evaluation for a test patient" data-cap="A signed Lower Extremity Initial Evaluation on the patient chart: diagnoses, history, and every section of the exam.">Signed initial eval</button>
+    <button type="button" role="tab" aria-selected="false" aria-controls="shot-stack" data-src="/assets/product/notes-billing.webp" data-alt="Notes tab in Cowboy Systems with initial evaluation, progress note, re-evaluation, discharge summary, and Send to Billing and Fax actions" data-cap="Every note type in one place. Send a signed note to billing, fax it, or print it in one click.">Notes and billing</button>
+    <button type="button" role="tab" aria-selected="false" aria-controls="shot-stack" data-src="/assets/product/hep-flowsheet.webp" data-alt="HEP and flowsheet screen in Cowboy Systems with an exercise library and a home exercise program builder" data-cap="Build home exercise programs and daily flowsheets from the exercise library, or quick-fill by diagnosis.">HEP and flowsheet</button>
+    <button type="button" role="tab" aria-selected="false" aria-controls="shot-stack" data-src="/assets/product/smart-forms.webp" data-alt="Smart Forms screen in Cowboy Systems listing 42 clinical templates across specialties" data-cap="42 ready-made templates: evaluations, re-evaluations, flowsheets, and charge sheets for nine specialties.">42 clinical templates</button>
+  </div>
   <div class="shot-cap"><span id="shot-cap">A signed Lower Extremity Initial Evaluation on the patient chart: diagnoses, history, and every section of the exam.</span><span class="demo">Test patient · demo data</span></div>
-</div></section>
+  </div>
+</section>
+
+<!-- WORKS WITH -->
+<div class="works" aria-label="Works with">
+  <span class="works-lab">Works with</span>
+  <div class="works-track"><div class="works-row">
+    <span>Availity</span><span>Stripe</span><span>Google Calendar</span><span>eFax</span><span>Twilio texting</span><span>iPhone and Android</span>
+    <span aria-hidden="true">Availity</span><span aria-hidden="true">Stripe</span><span aria-hidden="true">Google Calendar</span><span aria-hidden="true">eFax</span><span aria-hidden="true">Twilio texting</span><span aria-hidden="true">iPhone and Android</span>
+  </div></div>
+</div>
 
 <!-- HOW IT WORKS -->
 <section class="sec" id="how"><div class="wrap">
   <div class="sec-head">
     <div>
-      <div class="kicker"><span class="num">02</span> How it works</div>
+      <div class="kicker"><span class="num">01</span> How it works</div>
       <h2 class="sec-title">From exam to<br>claim in four steps.</h2>
     </div>
     <p class="sec-note">The AI does the typing. Your therapist stays in charge: nothing is final until they review and sign it.</p>
@@ -523,18 +730,40 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
   </div>
 </div></section>
 
-<!-- PLATFORM / BENTO -->
-<section class="sec" id="platform"><div class="wrap">
-  <div class="sec-head">
-    <div>
-      <div class="kicker"><span class="num">03</span> The platform</div>
-      <h2 class="sec-title">One system that<br>actually does the work.</h2>
+<!-- PLATFORM: sticky tabs + stacking cards -->
+<section class="sec stack-sec" id="platform">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="kicker"><span class="num">02</span> The platform</div>
+        <h2 class="sec-title">Everything your<br>clinic runs on.</h2>
+      </div>
+      <p class="sec-note">Not a note-taker with integrations bolted on. Documentation, the front office and the revenue cycle share one patient record and one login.</p>
     </div>
-    <p class="sec-note">Not a note-taker with integrations bolted on. Documentation, the front office, and the revenue cycle share one patient record.</p>
   </div>
-  <div class="bento">
-    <article class="card c-soap" data-tilt>
-      <div class="soap-head"><div class="kick">AI Documentation · Live</div><div class="soap-rec"><i></i> Recording</div></div>
+  <div class="stack-tabs" id="stackTabs">
+    <nav class="wrap" aria-label="Platform sections">
+      <a href="#stack-docs" aria-current="true">Documentation</a>
+      <a href="#stack-sched">Scheduling</a>
+      <a href="#stack-billing">Billing</a>
+      <a href="#stack-front">Front office</a>
+      <a href="#stack-apps">Apps</a>
+      <a href="#stack-growth">Growth</a>
+    </nav>
+  </div>
+  <div class="wrap stack">
+    <article class="stack-card" id="stack-docs" style="--i:0">
+      <div class="stack-copy">
+        <div class="kick">AI documentation</div>
+        <h3>Chart in the room, <em>not at 9&nbsp;p.m.</em></h3>
+        <p class="stack-lede">The AI drafts the note from the visit and the chart. Your therapist reviews it, fixes what they want, and signs.</p>
+        <ul><li>Full initial eval in about six minutes, timed at our clinic</li><li>Signing builds the home exercise program, the flow sheet and the claim</li><li>Nine region suites and 42 ready-made templates</li></ul>
+        <p class="stack-close">Your notes are done before your patient reaches the parking lot.</p>
+        <a href="#services" class="btn-out">See the details <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M1 6h17M13 1l5 5-5 5"/></svg></a>
+      </div>
+      <div class="stack-vis ">
+        <div class="c-soap vis-dark">
+          <div class="soap-head"><div class="kick">AI Documentation · Live</div><div class="soap-rec"><i></i> Recording</div></div>
       <h3>The note writes itself.</h3>
       <p>Speak naturally. The AI builds the SOAP note and picks the codes as you go.</p>
       <div class="soap-note">
@@ -548,13 +777,22 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
         <span class="code-chip" data-code>CPT 97140</span>
         <span class="code-chip" data-code>ICD M75.41</span>
       </div>
+        </div>
+      </div>
     </article>
-
-    <article class="card c-sched" data-tilt>
-      <div class="kick">Scheduling</div>
-      <h3>A calendar that stays full.</h3>
-      <p>A shared waitlist books into an open slot in one click.</p>
-      <div class="cal">
+    <article class="stack-card" id="stack-sched" style="--i:1">
+      <div class="stack-copy">
+        <div class="kick">Scheduling and reminders</div>
+        <h3>A schedule that <em>confirms itself.</em></h3>
+        <p class="stack-lede">Reminder texts go out 24 hours ahead. Patients reply YES or NO, and the schedule shows who is coming.</p>
+        <ul><li>Recurring series booked in one step, with double-booking checks</li><li>A shared waitlist that books into an opening in one click</li><li>Online booking straight into your calendar</li></ul>
+        <p class="stack-close">Your front desk stops spending mornings on the phone.</p>
+        <a href="#services" class="btn-out">See the details <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M1 6h17M13 1l5 5-5 5"/></svg></a>
+      </div>
+      <div class="stack-vis ">
+        <div class="vis-light">
+          <div class="kick">This week</div>
+          <div class="cal">
         <div class="col"><div class="day">Mon</div><div class="slot b"></div><div class="slot"></div><div class="slot b"></div><div class="slot"></div></div>
         <div class="col"><div class="day">Tue</div><div class="slot"></div><div class="slot b"></div><div class="slot p"></div><div class="slot b"></div></div>
         <div class="col"><div class="day">Wed</div><div class="slot b"></div><div class="slot fill"></div><div class="slot"></div><div class="slot b"></div></div>
@@ -562,66 +800,95 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
         <div class="col"><div class="day">Fri</div><div class="slot b"></div><div class="slot"></div><div class="slot b"></div><div class="slot p"></div></div>
       </div>
       <div class="cal-cap"><b>&#9679;</b> Wed 10:00 opening, booked from waitlist</div>
+        </div>
+      </div>
     </article>
-
-    <article class="card c-rcm" data-tilt>
-      <div class="kick">Revenue Cycle</div>
-      <h3>We run your billing.</h3>
-      <div class="big-num">4%<small> of collections, on top of your plan</small></div>
-      <div class="ledger">
+    <article class="stack-card" id="stack-billing" style="--i:2">
+      <div class="stack-copy">
+        <div class="kick">Billing and claims</div>
+        <h3>Claims that <em>go out clean.</em></h3>
+        <p class="stack-lede">Every claim is filled in from the chart and checked before it leaves, so fewer come back.</p>
+        <ul><li>Real-time eligibility and authorization checks through Availity</li><li>Diagnosis, GP modifier and units checked against documented minutes</li><li>Batch submit, ERA posting, and denials sent to your Inbox with the fix</li></ul>
+        <p class="stack-close">Or hand us the whole thing: 4% of collections, on top of your plan.</p>
+        <a href="#services" class="btn-out">See the details <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M1 6h17M13 1l5 5-5 5"/></svg></a>
+      </div>
+      <div class="stack-vis ">
+        <div class="vis-light">
+          <div class="kick">Live revenue cycle</div>
+          <div class="ledger">
         <div class="lrow"><b>Aetna · 97110</b><span class="st">Paid</span></div>
         <div class="lrow"><b>BCBS · 97140</b><span class="st scr">Scrubbed</span></div>
         <div class="lrow"><b>Medicare · 97530</b><span class="st">Paid</span></div>
       </div>
-      <div class="anchor">Clinics pay legacy systems <s>$3,000+/mo</s> just to bill. We do it for 4% of collections on top of your plan, right inside the EHR you already use.</div>
-    </article>
-
-    <article class="card c-eval" data-tilt>
-      <div class="kick">The difference</div>
-      <div class="big-num">6<small> min</small></div>
-      <p>A full initial evaluation, versus about 20 on a legacy system.</p>
-      <span class="badge-own">At our own clinic, Cowboy Healthcare</span>
-    </article>
-
-    <article class="card c-suites" data-tilt>
-      <div class="kick">Nine documentation suites</div>
-      <h3>Depth, by region.</h3>
-      <div class="chips">
-        <span class="chip">Lower extremity</span><span class="chip">Upper extremity</span><span class="chip">Spine</span>
-        <span class="chip">Neuro</span><span class="chip">Cardiac</span><span class="chip">Pelvic</span>
-        <span class="chip">Vestibular</span><span class="chip">Bariatric</span><span class="chip">Wound</span>
+        </div>
       </div>
     </article>
-
-    <article class="card c-call" data-tilt>
-      <div class="kick">Pre-visit AI calls</div>
-      <h3>It calls ahead.</h3>
-      <div class="bubble">
+    <article class="stack-card" id="stack-front" style="--i:3">
+      <div class="stack-copy">
+        <div class="kick">AI front office</div>
+        <h3>The phone gets answered <em>while you treat.</em></h3>
+        <p class="stack-lede">Routine calls and insurance details are handled before the patient ever reaches the desk.</p>
+        <ul><li>AI receptionist answers questions, books visits and takes messages</li><li>AI pre-visit calls confirm the visit and check insurance</li><li>Scan an insurance card and the payer, member ID and plan fill in</li></ul>
+        <p class="stack-close">Fewer holds, fewer callbacks, fewer surprises at check-in.</p>
+        <a href="#services" class="btn-out">See the details <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M1 6h17M13 1l5 5-5 5"/></svg></a>
+      </div>
+      <div class="stack-vis ">
+        <div class="vis-light">
+          <div class="kick">Pre-visit call</div>
+          <div class="bubble">
         <div class="msg ai">Hi Marcus, confirming your PT eval Thursday at 2. Any change to your insurance?</div>
         <div class="msg pt">Nope, same Aetna plan.</div>
         <div class="msg ai">Verified, you are all set. See you then.</div>
       </div>
+        </div>
+      </div>
+    </article>
+    <article class="stack-card" id="stack-apps" style="--i:4">
+      <div class="stack-copy">
+        <div class="kick">Provider and patient apps</div>
+        <h3>The whole clinic, <em>in your pocket.</em></h3>
+        <p class="stack-lede">Check the day, sign a note or text a patient from your phone, without opening a laptop.</p>
+        <ul><li>Write and sign notes on your phone with the same forms as the web</li><li>Text patients from the clinic's number, never your personal phone</li><li>Patients book, message, pay and do their home exercises in the app</li></ul>
+        <p class="stack-close">Sign that last note from the couch. We won't tell.</p>
+        <a href="#services" class="btn-out">See the details <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M1 6h17M13 1l5 5-5 5"/></svg></a>
+      </div>
+      <div class="stack-vis vis-phone">
+        <div class="phone"><div class="phone-notch"></div>
+          <div class="ph-head"><b>Today</b><span>9 visits</span></div>
+          <div class="ph-row"><b>9:00 Treatment session</b><span class="ph-tag ok">Checked in</span></div>
+          <div class="ph-row"><b>Daily note</b><span class="ph-tag">Draft, finish</span></div>
+          <div class="ph-row"><b>Text sent</b><span class="ph-tag ok">Day and time</span></div>
+          <div class="ph-row"><b>Time off, Friday</b><span class="ph-tag">Blocked</span></div>
+          <div class="ph-btn">Sign &amp; Lock</div>
+        </div>
+      </div>
+    </article>
+    <article class="stack-card" id="stack-growth" style="--i:5">
+      <div class="stack-copy">
+        <div class="kick">Growth and compliance</div>
+        <h3>Grow the practice. <em>Sleep through the audit.</em></h3>
+        <p class="stack-lede">The follow-ups that bring patients back happen on their own, and the records an auditor asks for are already kept.</p>
+        <ul><li>Google review requests texted and emailed at discharge</li><li>Birthday and 6- and 12-month follow-ups on every chart</li><li>A tamper-evident audit log you can check with one click</li></ul>
+        <p class="stack-close">Marketing and compliance, minus the extra hires.</p>
+        <a href="#services" class="btn-out">See the details <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M1 6h17M13 1l5 5-5 5"/></svg></a>
+      </div>
+      <div class="stack-vis vis-light">
+        <div class="audit">
+          <div class="audit-row"><span class="audit-ic">&#10003;</span><div><b>Audit log intact</b><span>Every entry checked, nothing edited</span></div></div>
+          <div class="audit-row"><span class="audit-ic">&#9733;</span><div><b>Review request sent</b><span>Texted at discharge with your Google link</span></div></div>
+          <div class="audit-row"><span class="audit-ic">&#9829;</span><div><b>Birthday follow-up</b><span>On the chart, next month</span></div></div>
+          <div class="audit-row"><span class="audit-ic">&#9993;</span><div><b>6-month check-in</b><span>Graduated patient, due soon</span></div></div>
+        </div>
+      </div>
     </article>
   </div>
-
-  <div class="incl">
-    <div class="incl-head">
-      <h3>Everything in one system.</h3>
-      <p class="sec-note">Clinical, front office, and billing, sharing one patient record.</p>
-    </div>
-    <div class="incl-grid">
-      <div class="card incl-col"><div class="kick">Clinical</div><ul><li><b>AI notes and intake</b><span>Evals, daily notes, re-evals, and discharges drafted from the visit.</span></li><li><b>Assessment and goals</b><span>Grounded in findings, special tests, and outcome scores like LEFS.</span></li><li><b>Nine documentation suites</b><span>Lower and upper extremity, spine, neuro, cardiac, pelvic, vestibular, bariatric, wound.</span></li><li><b>Home exercise programs and flowsheets</b><span>Built from the plan of care and tracked visit to visit.</span></li></ul></div>
-      <div class="card incl-col"><div class="kick">Front office</div><ul><li><b>AI receptionist and pre-visit calls</b><span>Answers, books, confirms visits, and checks insurance before the patient arrives.</span></li><li><b>Intake and faxes</b><span>Referral faxes parsed straight into the patient record.</span></li><li><b>Scheduling and waitlist</b><span>Recurring visits, double-booking checks, and a shared waitlist that books in one click.</span></li><li><b>PT plus wellness, and telehealth</b><span>Run PT, Yoga, and studio services, plus video visits, from one schedule and record.</span></li></ul></div>
-      <div class="card incl-col"><div class="kick">Revenue</div><ul><li><b>Coding support</b><span>CPT and ICD codes suggested from the note and checked before the claim.</span></li><li><b>Prior auth and appeal letters</b><span>Drafted from the chart, so they are ready when payers ask.</span></li><li><b>Eligibility and claims</b><span>Eligibility checks, claim scrubbing, and submission through Availity.</span></li><li><b>Full billing at 4%</b><span>Optional add-on on top of your plan: we run your entire revenue cycle, ERA posting and denials included.</span></li></ul></div>
-    </div>
-  </div>
-</div></section>
+</section>
 
 <!-- SERVICES -->
 <section class="sec" id="services" style="padding-top:0"><div class="wrap">
   <div class="sec-head">
     <div>
-      <div class="kicker"><span class="num">04</span> Services</div>
+      <div class="kicker"><span class="num">03</span> Services</div>
       <h2 class="sec-title">What each part<br>does for you.</h2>
     </div>
     <p class="sec-note">Every service, what it takes off your plate, and how it stacks up. Competitor details come from their own public websites, checked September 2026, with the source linked.</p>
@@ -819,15 +1086,15 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
 <section class="sec" style="padding-top:0"><div class="wrap">
   <div class="band reveal"><div class="band-inner">
     <div class="lead">We time it in our own clinic. <span>Documentation time from start to signed note.</span></div>
-    <div class="bstat"><b>~6 min</b><span>Initial evaluation</span><em>Timed, our clinic</em></div>
-    <div class="bstat"><b>~5 min</b><span>Re-evaluation</span><em>Timed, our clinic</em></div>
-    <div class="bstat"><b>~3.5 min</b><span>Progress note</span><em>Timed, our clinic</em></div>
+    <div class="bstat"><b data-count="6" data-pre="~" data-suf=" min">~6 min</b><span>Initial evaluation</span><em>Timed, our clinic</em></div>
+    <div class="bstat"><b data-count="5" data-pre="~" data-suf=" min">~5 min</b><span>Re-evaluation</span><em>Timed, our clinic</em></div>
+    <div class="bstat"><b data-count="3.5" data-pre="~" data-suf=" min" data-dec="1">~3.5 min</b><span>Progress note</span><em>Timed, our clinic</em></div>
   </div></div>
   <div class="band band-gain reveal" id="savings"><div class="band-inner">
     <div class="lead">What that adds up to. <span>Per full-time provider.</span></div>
-    <div class="bstat"><b>~7 hrs</b><span>Back every week</span><em>About 340 hours a year</em></div>
-    <div class="bstat"><b>~8</b><span>More visits a week, if you fill the time</span><em>About 380 a year</em></div>
-    <div class="bstat"><b>~$840</b><span>More revenue a week</span><em>About $40,000 a year</em></div>
+    <div class="bstat"><b data-count="7" data-pre="~" data-suf=" hrs">~7 hrs</b><span>Back every week</span><em>About 340 hours a year</em></div>
+    <div class="bstat"><b data-count="8" data-pre="~">~8</b><span>More visits a week, if you fill the time</span><em>About 380 a year</em></div>
+    <div class="bstat"><b data-count="840" data-pre="~$">~$840</b><span>More revenue a week</span><em>About $40,000 a year</em></div>
   </div></div>
   <p class="gain-note">How we got there: a full-time therapist seeing 12 patients a day, 5 days a week, 48 weeks a year, where 10% of visits are initial evaluations and 5% are re-evaluations. Cowboy times are what we timed in our clinic (6:00, 5:00 and 3:38). The before times are 17 minutes for an initial evaluation, the pre-AI time Raintree reports for a client (<a href="https://www.raintreeinc.com/" target="_blank" rel="noopener">source</a>), and our estimates of 15 minutes for a re-evaluation and 10 minutes for a progress note. That saves about 421 minutes a week. Each extra visit is counted as a 45-minute session plus its note, rounded down to whole visits, at $105.33 net revenue per visit, the rate U.S. Physical Therapy reported for the second quarter of 2025 (<a href="https://www.businesswire.com/news/home/20250806559477/en" target="_blank" rel="noopener">source</a>). A 5-provider clinic gets about 35 hours back and room for about 40 more visits a week. Your numbers will differ with your caseload and payer mix. Building the home exercise program and flow sheet by hand is not counted.</p>
 </div></section>
@@ -836,7 +1103,7 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
 <section class="sec" id="billing"><div class="wrap">
   <div class="sec-head">
     <div>
-      <div class="kicker"><span class="num">05</span> Billing, done for you</div>
+      <div class="kicker"><span class="num">04</span> Billing, done for you</div>
       <h2 class="sec-title">Get your billing<br>off your desk.</h2>
     </div>
     <p class="sec-note">Most clinics pay a legacy vendor for the EHR, then pay a billing company on top. We do both, for less.</p>
@@ -860,6 +1127,24 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
         <div class="lrow"><b>Medicare · 97530</b><span class="st">Paid · 2d</span></div>
         <div class="lrow"><b>Cigna · Re-eval 97164</b><span class="st scr">Eligibility ✓</span></div>
       </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- STORY -->
+<section class="sec" id="story"><div class="wrap">
+  <div class="story">
+    <div class="story-copy">
+      <div class="kicker"><span class="num">05</span> Built by clinicians</div>
+      <h2 class="sec-title">Clinicians built us.<br><em>We still treat patients.</em></h2>
+      <p>Cowboy Systems grew out of Cowboy Healthcare, our own outpatient PT and yoga clinic. We believe therapists should spend their time treating patients, not wrestling with software, so we built the system we wanted to use ourselves.</p>
+      <p>Our own therapists document, schedule and bill in it every day. When something slows them down, we feel it first. That is how an initial evaluation got down to about six minutes, and why signing it now builds the home exercise program, the flow sheet and the claim.</p>
+      <p class="story-sign">The team at Cowboy Healthcare</p>
+    </div>
+    <div class="story-panel">
+      <div class="sp-row"><b>Used every day</b><span>In our own PT and yoga clinic, on real schedules and real claims.</span></div>
+      <div class="sp-row"><b>Therapist in charge</b><span>The AI drafts. Nothing is final until a therapist signs it.</span></div>
+      <div class="sp-row"><b>Updates every week</b><span>What slows our clinic down gets fixed, then ships to yours.</span></div>
     </div>
   </div>
 </div></section>
@@ -1041,9 +1326,30 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
   </div>
 </div></section>
 
+<!-- FAQ -->
+<section class="sec" id="faq"><div class="wrap">
+  <div class="faq">
+    <div>
+      <div class="kicker"><span class="num">10</span> Questions</div>
+      <h2 class="sec-title">Straight<br>answers.</h2>
+      <p class="sec-note" style="margin-top:18px">Anything else? <a href="/contact" style="color:var(--purple);font-weight:600">Send us a message</a>.</p>
+    </div>
+    <div class="faq-list">
+    <details class="faq-item"><summary>How much does Cowboy cost?<span class="faq-ic" aria-hidden="true"></span></summary><p>Starter is $249 a month for up to 2 providers. Growth is $499 a month for up to 5, with unlimited AI notes. Enterprise is custom. Every price is on this page, no sales call needed to see it.</p></details>
+    <details class="faq-item"><summary>Is there a contract?<span class="faq-ic" aria-hidden="true"></span></summary><p>Plans start with a 3-month minimum, billed monthly, or you can save 15% on a 12-month term.</p></details>
+    <details class="faq-item"><summary>What does the billing service cost?<span class="faq-ic" aria-hidden="true"></span></summary><p>It is optional: 4% of collections, on top of your plan, with a 6-month minimum. We run eligibility, coding review, claim scrubbing, submission, ERA posting, denials and appeals.</p></details>
+    <details class="faq-item"><summary>Does the AI write the note for my therapist?<span class="faq-ic" aria-hidden="true"></span></summary><p>It drafts it from the visit and the chart. Your therapist reviews it, changes what they want, and signs. Nothing is final until they do.</p></details>
+    <details class="faq-item"><summary>How long does a note take?<span class="faq-ic" aria-hidden="true"></span></summary><p>Timed in our own clinic: about six minutes for a full initial evaluation, about five for a re-evaluation, and 3 minutes 38 seconds for a progress note.</p></details>
+    <details class="faq-item"><summary>Is it HIPAA compliant?<span class="faq-ic" aria-hidden="true"></span></summary><p>Yes. Every paid plan includes a signed BAA, patient data is encrypted, and every access is recorded in an audit log that cannot be edited.</p></details>
+    <details class="faq-item"><summary>Can my therapists work from their phones?<span class="faq-ic" aria-hidden="true"></span></summary><p>Yes. The provider app opens the same note forms as the web, so therapists can write and sign notes, book visits, text patients and block time off.</p></details>
+    <details class="faq-item"><summary>How do I see it?<span class="faq-ic" aria-hidden="true"></span></summary><p>Book a 20-minute demo below. We will take one initial evaluation from exam to a signed, coded note, ready to bill.</p></details>
+    </div>
+  </div>
+</div></section>
+
 <!-- FINAL CTA -->
 <section class="final" id="demo">
-  <div class="kicker" style="justify-content:center"><span class="num">10</span> See it live</div>
+  <div class="kicker" style="justify-content:center"><span class="num">11</span> See it live</div>
   <h2>Twenty minutes.<br>Then you will get it.</h2>
   <p>Book a 20-minute live demo on a real note type. Watch an initial evaluation go from exam to a signed, coded note, ready to bill.</p>
   <div class="final-ctas">
@@ -1064,7 +1370,7 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
       <a href="/" class="brand" style="color:#fff">Cowboy <small>Systems</small></a>
       <p>The EHR for outpatient PT and multi-service clinics, built by clinicians who run their own PT and Yoga practice. One platform for documentation, scheduling, billing, and growth.</p>
     </div>
-    <div class="fcol"><h4>Product</h4><a href="#platform">Platform</a><a href="#services">Services</a><a href="#billing">Billing Service</a><a href="#compare">Compare</a><a href="#pricing">Pricing</a><a href="/addons">Add-ons</a><a href="#security">Security</a></div>
+    <div class="fcol"><h4>Product</h4><a href="#platform">Platform</a><a href="#services">Services</a><a href="#billing">Billing Service</a><a href="#compare">Compare</a><a href="#pricing">Pricing</a><a href="/addons">Add-ons</a><a href="#faq">FAQ</a><a href="https://ehr.cowboy-systems.com">Log in</a></div>
     <div class="fcol"><h4>Company</h4><a href="/about">About</a><a href="/blog">Blog</a><a href="/contact">Contact</a></div>
     <div class="fcol"><h4>Legal</h4><a href="/privacy-policy">Privacy</a><a href="/terms-of-service">Terms</a><a href="/hipaa-compliance">HIPAA</a><a href="/baa">BAA</a></div>
   </div>
@@ -1106,11 +1412,21 @@ if(window.Lenis && !reduce){const lenis=window.lenis=new Lenis({lerp:.09});
   (function raf(t){lenis.raf(t);requestAnimationFrame(raf);})();
   if(window.ScrollTrigger) lenis.on('scroll',ScrollTrigger.update);}
 
+/* Natural page position of a stacking card (sticky cards report where they are stuck) */
+window.stackY=el=>{const stack=el.parentElement;let y=stack.getBoundingClientRect().top+scrollY;const gap=parseFloat(getComputedStyle(stack).rowGap)||0;
+  for(const c of stack.children){if(c===el)break;y+=c.offsetHeight+gap;}return y;};
+
 /* Clean URLs: scroll to sections without a #hash in the address bar */
 const toSection=(id,smooth)=>{
   if(!id||id==='top'){window.lenis&&smooth?window.lenis.scrollTo(0):scrollTo({top:0,behavior:smooth&&!reduce?'smooth':'auto'});return true;}
   const el=document.getElementById(id); if(!el) return false;
-  if(window.lenis&&smooth) window.lenis.scrollTo(el); else el.scrollIntoView({behavior:smooth&&!reduce?'smooth':'auto'});
+  if(el.classList.contains('stack-card')){
+    const sticky=getComputedStyle(el).position==='sticky', i=[...el.parentElement.children].indexOf(el);
+    const y=Math.max(0,window.stackY(el)-(sticky?146+i*12:140));
+    if(window.lenis&&smooth) window.lenis.scrollTo(y); else scrollTo({top:y,behavior:smooth&&!reduce?'smooth':'auto'});
+    return true;
+  }
+  if(window.lenis&&smooth) window.lenis.scrollTo(el,{offset:-90}); else el.scrollIntoView({behavior:smooth&&!reduce?'smooth':'auto'});
   return true;
 };
 document.addEventListener('click',e=>{
@@ -1123,8 +1439,9 @@ const stripHash=()=>{const id=decodeURIComponent(location.hash.slice(1));
 if(location.hash){const id=stripHash(); addEventListener('load',()=>setTimeout(()=>toSection(id,false),50));}
 addEventListener('hashchange',()=>{if(location.hash) toSection(stripHash(),true);});
 
-/* Reveals */
-addEventListener('load',()=>{
+/* Reveals: the hero plays as soon as the page is parsed, not after every
+   image and the booking calendar have loaded */
+(()=>{
   const hero=document.querySelector('.hero');
   if(reduce||!window.gsap){document.querySelectorAll('.reveal').forEach(e=>e.style.opacity=1);hero.classList.add('lit');return;}
   gsap.set('.reveal',{opacity:1});
@@ -1136,10 +1453,11 @@ addEventListener('load',()=>{
     .from('.hero-meta',{y:20,opacity:0,duration:.8},'-=.7')
     .add(()=>hero.classList.add('lit'),'-=.5');
   if(window.ScrollTrigger){gsap.registerPlugin(ScrollTrigger);
-    gsap.utils.toArray('.card,.band,.rc,.pcard,.sitem,.sec-panel,.addon,.addon-feature').forEach(c=>{
+    gsap.utils.toArray('.card,.band,.rc,.pcard,.sitem,.sec-panel,.addon,.addon-feature,.faq-item,.story-panel').forEach(c=>{
       gsap.from(c,{y:38,opacity:0,duration:.85,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 90%'}});});
+    addEventListener('load',()=>ScrollTrigger.refresh());
   }
-});
+})();
 
 /* Real product screens: tab switcher (all screens preloaded, instant switch) */
 (function(){
@@ -1169,6 +1487,62 @@ document.querySelectorAll('.vid').forEach(v=>{
       :Object.assign(document.createElement('iframe'),{src:src+(src.includes('?')?'&':'?')+'autoplay=1',allow:'autoplay; fullscreen; picture-in-picture',title:v.querySelector('b')?.textContent||'Product video'});
     frame.innerHTML=''; frame.appendChild(el);
   });
+});
+
+/* Nav: dropdowns (click for touch, hover for mouse) and the mobile menu */
+(function(){
+  const dds=[...document.querySelectorAll('.dd')], burger=document.querySelector('.nav-burger');
+  const closeAll=except=>dds.forEach(d=>{if(d!==except){d.classList.remove('open');d.querySelector('.dd-btn').setAttribute('aria-expanded','false');}});
+  dds.forEach(d=>d.querySelector('.dd-btn').addEventListener('click',e=>{e.stopPropagation();const o=!d.classList.contains('open');closeAll(d);
+    d.classList.toggle('open',o);e.currentTarget.setAttribute('aria-expanded',String(o));}));
+  document.addEventListener('click',e=>{if(!e.target.closest('.dd'))closeAll();});
+  burger&&burger.addEventListener('click',e=>{e.stopPropagation();const o=!nav.classList.contains('open');nav.classList.toggle('open',o);burger.setAttribute('aria-expanded',String(o));});
+  document.querySelectorAll('#navLinks a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');burger&&burger.setAttribute('aria-expanded','false');closeAll();}));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeAll();nav.classList.remove('open');}});
+})();
+
+/* Platform tab bar follows the stacking cards. Sticky cards report their stuck
+   position, so positions come from the layout: the stack's top plus the cards
+   and gaps before each one. */
+(function(){
+  const links=[...document.querySelectorAll('#stackTabs a')], cards=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  if(!cards.length) return;
+  let last='';
+  const set=id=>{if(id===last)return;last=id;links.forEach(a=>{const on=a.getAttribute('href')==='#'+id;a.setAttribute('aria-current',on?'true':'false');
+    if(on&&matchMedia('(max-width:900px)').matches){const bar=a.parentElement;bar.scrollTo({left:a.offsetLeft-(bar.clientWidth-a.offsetWidth)/2,behavior:'smooth'});}});};
+  const spy=()=>{const y=scrollY+innerHeight*.45;let cur=cards[0].id;cards.forEach(c=>{if(window.stackY(c)<=y)cur=c.id;});set(cur);};
+  addEventListener('scroll',spy,{passive:true}); addEventListener('resize',spy); spy();
+})();
+
+/* Numbers count up when they scroll into view */
+(function(){
+  const els=[...document.querySelectorAll('[data-count]')]; if(!els.length) return;
+  const fmt=(el,v)=>{const d=+(el.dataset.dec||0);el.textContent=(el.dataset.pre||'')+v.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d})+(el.dataset.suf||'');};
+  if(reduce) return;
+  els.forEach(el=>fmt(el,0));
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;io.unobserve(e.target);
+    const el=e.target,to=parseFloat(el.dataset.count),t0=performance.now(),dur=1400;
+    (function step(t){const p=Math.min(1,(t-t0)/dur),k=1-Math.pow(1-p,3);fmt(el,to*k);if(p<1)requestAnimationFrame(step);else fmt(el,to);})(t0);
+    setTimeout(()=>fmt(el,to),dur+200);}),{threshold:.6});
+  els.forEach(el=>io.observe(el));
+})();
+
+/* 3D showcase flattens, floating cards drift, stacked cards settle back */
+addEventListener('load',()=>{
+  if(reduce||!window.gsap||!window.ScrollTrigger) return;
+  gsap.registerPlugin(ScrollTrigger);
+  const mobile=matchMedia('(max-width:760px)').matches;
+  gsap.fromTo('.show-3d',{rotateX:mobile?10:18,scale:mobile?.97:.94},{rotateX:0,scale:1,ease:'none',
+    scrollTrigger:{trigger:'.show-stage',start:'top 90%',end:'top 18%',scrub:true}});
+  gsap.utils.toArray('.float').forEach((f,i)=>{
+    gsap.from(f,{opacity:0,y:30,duration:.8,delay:.9+i*.15,ease:'power3.out'});
+    gsap.to(f,{y:i%2?-70:-40,ease:'none',scrollTrigger:{trigger:'.show-stage',start:'top bottom',end:'bottom top',scrub:true}});
+  });
+  if(matchMedia('(min-width:901px)').matches){
+    const cards=gsap.utils.toArray('.stack-card');
+    cards.forEach((c,i)=>{const next=cards[i+1];if(!next)return;
+      gsap.to(c,{scale:.94,ease:'none',scrollTrigger:{trigger:next,start:'top bottom',end:'top 180px',scrub:true}});});
+  }
 });
 
 /* SOAP typewriter */
