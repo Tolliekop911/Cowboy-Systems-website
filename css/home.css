@@ -97,7 +97,6 @@ ul{list-style:none}
 .sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:52px;flex-wrap:wrap}
 .kicker{font-size:12.5px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
   color:var(--purple-dark);display:flex;align-items:center;gap:12px;margin-bottom:18px}
-.kicker .num{font-family:var(--disp);color:var(--purple)}
 .sec-title{font-family:var(--disp);font-weight:600;font-size:clamp(32px,4.4vw,58px);
   line-height:1.02;letter-spacing:-1.8px;max-width:16ch}
 .sec-note{font-size:15px;color:var(--ink-soft);max-width:40ch;line-height:1.6}
@@ -645,3 +644,32 @@ body.nav-up .stack-tabs{top:14px}
 .switch .btn-line{color:#fff;border-color:#fff;margin-top:22px}
 @media(max-width:900px){.switch{grid-template-columns:1fr;padding:28px;gap:26px}}
 @media(max-width:560px){.switch{padding:22px;border-radius:22px}}
+
+/* Short windows (laptops, browser chrome eating height): keep the whole
+   stacking card on screen instead of letting its bottom run past the fold */
+@media(max-height:860px){
+  .stack-tabs{top:74px}
+  .stack-card{top:calc(98px + var(--i) * 7px);min-height:min(470px,calc(100vh - 130px));padding:32px;gap:30px}
+  .stack-copy h3{font-size:clamp(24px,2.7vw,36px);margin:10px 0 12px}
+  .stack-lede{font-size:15px}
+  .stack-copy ul{margin:14px 0;gap:7px}
+  .stack-copy li{font-size:14px}
+  .stack-close{font-size:14px;margin-bottom:14px}
+  .phone{width:212px;margin:6px auto;padding:20px 12px 14px}
+  .ph-head b{font-size:19px}
+  .ph-row{padding:8px 10px;margin-bottom:6px}
+}
+/* Very short windows: stop stacking the cards, just scroll them, so nothing
+   is ever cut off at the bottom */
+@media(max-height:700px){
+  .stack-tabs{top:66px}
+  .stack-card{position:relative;top:auto;min-height:0;padding:28px;gap:26px}
+  .stack{gap:22px}
+  .stack-copy h3{font-size:clamp(22px,2.4vw,30px);margin:8px 0 10px}
+  .stack-lede{font-size:14px}
+  .stack-copy ul{margin:12px 0;gap:6px}
+  .stack-copy li{font-size:13.5px}
+  .phone{width:190px;margin:2px auto;padding:16px 10px 12px}
+  .ph-head b{font-size:17px}
+  .ph-btn{padding:9px;font-size:12.5px}
+}
