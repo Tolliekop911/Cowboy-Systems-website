@@ -9,7 +9,7 @@
 <title>Contact, Cowboy Systems</title>
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin/>
 <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700,500&f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/css/site.css?v=2"/>
+<link rel="stylesheet" href="/css/site.css?v=3"/>
 </head>
 <body>
 <nav class="nav" id="nav" aria-label="Main">
@@ -24,20 +24,21 @@
         <a href="/#stack-front"><b>AI front office</b><span>Calls answered while you treat</span></a>
         <a href="/#stack-apps"><b>Provider and patient apps</b><span>The clinic in your pocket</span></a>
         <a href="/#stack-growth"><b>Growth and compliance</b><span>Reviews, recalls and a tamper-evident audit log</span></a>
-        <a href="/#services" class="dd-all">See every service <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M1 6h17M13 1l5 5-5 5"/></svg></a>
+        <a href="/features" class="dd-all">See every feature <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M1 6h17M13 1l5 5-5 5"/></svg></a>
       </div>
     </div>
     <div class="dd">
       <button type="button" class="dd-btn" aria-expanded="false">Why Cowboy <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 3.5l3 3 3-3"/></svg></button>
       <div class="dd-menu">
-        <a href="/#compare"><b>Them vs. Cowboy</b><span>The other guys, from their own websites</span></a>
         <a href="/#story"><b>Built by clinicians</b><span>We run our own clinic on it</span></a>
-        <a href="/#family"><b>We care about the family</b><span>The small things that save your evenings</span></a>
-        <a href="/#security"><b>Trust and compliance</b><span>BAA, encryption and audit logs</span></a>
+        <a href="/pricing#billing"><b>Billing done for you</b><span>4% of collections, on top of your plan</span></a>
+        <a href="/features#family"><b>We care about the family</b><span>The small things that save your evenings</span></a>
+        <a href="/features#security"><b>Trust and compliance</b><span>BAA, encryption and audit logs</span></a>
       </div>
     </div>
-    <a href="/#billing">Billing Service</a>
-    <a href="/#pricing">Pricing</a>
+    <a href="/features">Features</a>
+    <a href="/compare">Compare</a>
+    <a href="/pricing">Pricing</a>
     <a href="/addons">Add-ons</a>
     <a href="https://ehr.cowboy-systems.com" class="nav-login-m">Log in</a>
   </div>
@@ -62,7 +63,7 @@
     <div class="contact-card">
       <h3>Sales &amp; Demo</h3>
       <p>Ready to see Cowboy Systems in action? Book a personalized demo with our team.</p>
-      <p style="margin-top:12px"><a href="/#pricing">View Pricing</a> &nbsp;&middot;&nbsp; <a href="/#demo">Book Demo</a></p>
+      <p style="margin-top:12px"><a href="/pricing">View Pricing</a> &nbsp;&middot;&nbsp; <a href="/#demo">Book Demo</a></p>
     </div>
     <div class="contact-card">
       <h3>General Inquiries</h3>
@@ -102,7 +103,7 @@
       <a href="/" class="brand" style="color:#fff">Cowboy <small>Systems</small></a>
       <p>The EHR for outpatient PT and multi-service clinics, built by clinicians who run their own PT and Yoga practice. One platform for documentation, scheduling, billing, and growth.</p>
     </div>
-    <div class="fcol"><h4>Product</h4><a href="/#platform">Platform</a><a href="/#billing">Billing Service</a><a href="/#pricing">Pricing</a><a href="/addons">Add-ons</a><a href="/#security">Security</a></div>
+    <div class="fcol"><h4>Product</h4><a href="/features">Features</a><a href="/compare">Compare</a><a href="/pricing">Pricing</a><a href="/pricing#billing">Billing Service</a><a href="/addons">Add-ons</a><a href="/pricing#faq">FAQ</a><a href="https://ehr.cowboy-systems.com">Log in</a></div>
     <div class="fcol"><h4>Company</h4><a href="/about">About</a><a href="/blog">Blog</a><a href="/contact">Contact</a></div>
     <div class="fcol"><h4>Legal</h4><a href="/privacy-policy">Privacy</a><a href="/terms-of-service">Terms</a><a href="/hipaa-compliance">HIPAA</a><a href="/baa">BAA</a></div>
   </div>
@@ -120,6 +121,6 @@ document.getElementById('contactForm')?.addEventListener('submit', async e => {
   } catch { btn.textContent = 'Try again'; btn.disabled = false; }
 });
 </script>
-<script src="/js/nav.js?v=1" defer></script>
+<script src="/js/nav.js?v=2" defer></script>
 </body>
 </html>

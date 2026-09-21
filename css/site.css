@@ -273,3 +273,7 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px;li
   .nav-links .dd-menu .dd-all{margin-top:2px}
 }
 @media(max-width:420px){.nav-cta{padding:10px 14px;font-size:12px}}
+
+/* ---- nav tucks away while scrolling down ---- */
+.nav{transition:transform .35s cubic-bezier(.2,.7,.2,1),background .3s}
+.nav.nav-hide{transform:translate(-50%,calc(-100% - 24px))}

@@ -10,610 +10,7 @@
 <meta name="description" content="The EHR for outpatient PT and multi-service clinics, built by clinicians. A full initial evaluation in about six minutes of documentation time: note, assessment, goals, and codes, billing-ready."/>
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin/>
 <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700,500&f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet"/>
-<style>
-:root{
-  --paper:#FBFAFF; --paper-2:#F4F1FD; --paper-3:#ECE7FB;
-  --ink:#160F2E; --ink-2:#241A45; --ink-soft:#5C5473;
-  --lav:#EDE9FE; --lav-2:#DDD6FE;
-  --purple:#6D28D9; --purple-2:#7C3AED; --purple-3:#9366F0; --purple-dark:#4C1D95;
-  --disp:'Clash Display','Satoshi',sans-serif;
-  --body:'Satoshi',-apple-system,sans-serif;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--body);background:var(--paper);color:var(--ink);
-  line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
-img{max-width:100%}
-ul{list-style:none}
-::selection{background:var(--purple);color:#fff}
-
-.grain{position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.035;mix-blend-mode:multiply}
-.wrap{max-width:1280px;margin:0 auto;padding:0 5vw}
-
-/* ── NAV ── */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;
-  justify-content:space-between;padding:20px 5vw;transition:background .35s,box-shadow .35s,padding .35s}
-.nav.solid{background:rgba(251,250,255,.82);backdrop-filter:saturate(180%) blur(16px);
-  box-shadow:0 1px 0 rgba(22,15,46,.07);padding:14px 5vw}
-.brand{display:flex;align-items:baseline;gap:11px;font-family:var(--disp);font-weight:600;
-  font-size:21px;letter-spacing:-.5px;color:var(--ink)}
-.brand small{font-family:var(--body);font-weight:600;font-size:10px;letter-spacing:3px;
-  text-transform:uppercase;color:var(--purple)}
-.nav-links{display:flex;gap:32px;font-size:14px;font-weight:500;color:var(--ink-soft)}
-.nav-links a{position:relative}
-.nav-links a::after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:1.5px;
-  background:var(--purple);transition:width .3s}
-.nav-links a:hover{color:var(--ink)}
-.nav-links a:hover::after{width:100%}
-.nav-cta{font-size:13px;font-weight:700;background:var(--ink);color:#fff;padding:11px 20px;border-radius:100px;
-  transition:background .3s}
-.nav-cta:hover{background:var(--purple)}
-@media(max-width:860px){.nav-links{display:none}}
-
-/* ── BUTTONS ── */
-.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--body);font-weight:700;
-  font-size:15px;padding:16px 28px;border-radius:100px;border:none;cursor:pointer;
-  background:var(--purple);color:#fff;transition:background .3s,transform .2s,box-shadow .3s;will-change:transform}
-.btn:hover{background:var(--purple-dark);box-shadow:0 14px 30px -12px rgba(109,40,217,.6)}
-.btn .dot{width:7px;height:7px;border-radius:50%;background:#fff;opacity:.85}
-.btn-line{font-weight:700;font-size:15px;display:inline-flex;align-items:center;gap:9px;
-  color:var(--ink);border-bottom:1.5px solid var(--ink);padding-bottom:3px}
-.btn-line svg{transition:transform .3s}
-.btn-line:hover{color:var(--purple);border-color:var(--purple)}
-.btn-line:hover svg{transform:translateX(5px)}
-.btn.ghost{background:#fff;color:var(--purple-dark);box-shadow:0 1px 3px rgba(22,15,46,.12)}
-.btn.ghost:hover{background:var(--lav)}
-
-/* ── HERO ── */
-.hero{position:relative;min-height:100vh;padding:150px 5vw 70px;display:flex;flex-direction:column;
-  justify-content:center;overflow:hidden}
-.hero::before{content:"";position:absolute;inset:0;z-index:-1;
-  background:
-    radial-gradient(60% 55% at 88% 8%,rgba(124,58,237,.14),transparent 55%),
-    radial-gradient(50% 50% at 5% 95%,rgba(109,40,217,.10),transparent 55%),
-    linear-gradient(180deg,var(--paper),var(--paper))}
-.hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
-  background-image:linear-gradient(rgba(76,29,149,.05) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(76,29,149,.05) 1px,transparent 1px);
-  background-size:64px 64px;
-  -webkit-mask-image:radial-gradient(120% 90% at 50% 0%,#000 25%,transparent 75%);
-  mask-image:radial-gradient(120% 90% at 50% 0%,#000 25%,transparent 75%)}
-.hero-eyebrow{display:flex;align-items:center;gap:14px;font-size:12.5px;font-weight:700;
-  letter-spacing:3px;text-transform:uppercase;color:var(--purple-dark);margin-bottom:32px}
-.hero-eyebrow .line{width:46px;height:1.5px;background:var(--purple)}
-.hero h1{font-family:var(--disp);font-weight:600;font-size:clamp(50px,8vw,128px);
-  line-height:.95;letter-spacing:-3px;max-width:15ch}
-.hero h1 .word{display:inline-block;overflow:hidden;vertical-align:top}
-.hero h1 .word span{display:inline-block}
-.hero h1 em{font-style:normal;color:var(--purple);position:relative}
-.hero h1 em::after{content:"";position:absolute;left:0;right:0;bottom:.06em;height:.055em;
-  background:var(--purple-3);transform:scaleX(0);transform-origin:left;
-  transition:transform .9s .7s cubic-bezier(.7,0,.2,1)}
-.hero.lit h1 em::after{transform:scaleX(1)}
-.hero-lower{display:flex;justify-content:space-between;align-items:flex-end;gap:50px;
-  margin-top:50px;flex-wrap:wrap}
-.hero-sub{font-size:clamp(16px,1.35vw,19px);max-width:47ch;color:var(--ink-soft);line-height:1.65}
-.hero-sub b{color:var(--ink);font-weight:700}
-.hero-ctas{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
-.hero-meta{display:flex;gap:34px;margin-top:44px;font-size:12.5px;color:var(--ink-soft);flex-wrap:wrap}
-.hero-meta div{display:flex;flex-direction:column;gap:2px}
-.hero-meta b{font-family:var(--disp);font-weight:600;font-size:28px;color:var(--ink);letter-spacing:-.6px}
-.hero-scroll{position:absolute;bottom:24px;left:5vw;font-size:11px;letter-spacing:2px;
-  text-transform:uppercase;color:var(--ink-soft);display:flex;align-items:center;gap:10px}
-.hero-scroll .bar{width:1px;height:32px;background:rgba(92,84,115,.4);position:relative;overflow:hidden}
-.hero-scroll .bar::after{content:"";position:absolute;inset:0;background:var(--purple);animation:drop 2.2s infinite}
-@keyframes drop{0%{transform:translateY(-100%)}60%,100%{transform:translateY(100%)}}
-
-/* ── SECTION SCAFFOLD ── */
-.sec{padding:110px 0;position:relative}
-.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:52px;flex-wrap:wrap}
-.kicker{font-size:12.5px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
-  color:var(--purple-dark);display:flex;align-items:center;gap:12px;margin-bottom:18px}
-.kicker .num{font-family:var(--disp);color:var(--purple)}
-.sec-title{font-family:var(--disp);font-weight:600;font-size:clamp(32px,4.4vw,58px);
-  line-height:1.02;letter-spacing:-1.8px;max-width:16ch}
-.sec-note{font-size:15px;color:var(--ink-soft);max-width:40ch;line-height:1.6}
-
-/* ── BENTO ── */
-.bento{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(150px,auto);gap:16px}
-.card{position:relative;background:#fff;border:1px solid rgba(22,15,46,.09);border-radius:22px;
-  padding:30px;overflow:hidden;transform-style:preserve-3d;will-change:transform;
-  box-shadow:0 18px 44px -30px rgba(22,15,46,.45);transition:box-shadow .4s,border-color .4s}
-.card::before{content:"";position:absolute;inset:0;border-radius:22px;opacity:0;transition:opacity .4s;
-  background:radial-gradient(320px circle at var(--mx,50%) var(--my,50%),rgba(124,58,237,.10),transparent 60%)}
-.card:hover::before{opacity:1}
-.card:hover{border-color:rgba(124,58,237,.4);box-shadow:0 44px 70px -42px rgba(76,29,149,.55)}
-.card .kick{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--purple)}
-.card h3{font-family:var(--disp);font-weight:600;font-size:23px;letter-spacing:-.6px;margin:8px 0 6px;line-height:1.12}
-.card p{font-size:13.5px;color:var(--ink-soft);line-height:1.55}
-.c-soap{grid-column:span 4;grid-row:span 2;background:linear-gradient(150deg,#1E1047,#3B1580 60%,#4C1D95);
-  color:#fff;border-color:transparent}
-.c-soap .kick{color:var(--lav-2)}
-.c-soap p{color:rgba(237,233,254,.6)}
-.c-sched{grid-column:span 2;grid-row:span 2}
-.c-rcm{grid-column:span 2;grid-row:span 2}
-.c-eval{grid-column:span 2}
-.c-suites{grid-column:span 2}
-.c-call{grid-column:span 2}
-@media(max-width:900px){.bento{grid-template-columns:repeat(2,1fr)}
-  .c-soap,.c-sched,.c-rcm,.c-eval,.c-suites,.c-call{grid-column:span 2;grid-row:auto}}
-
-.soap-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
-.soap-rec{display:flex;align-items:center;gap:7px;font-size:11px;font-weight:700;color:#c4a3ff;
-  background:rgba(147,102,240,.18);border:1px solid rgba(147,102,240,.4);padding:4px 10px;border-radius:100px}
-.soap-rec i{width:6px;height:6px;border-radius:50%;background:#a78bfa;display:block;animation:rec 1.1s infinite}
-@keyframes rec{50%{opacity:.35}}
-.soap-note{font-size:13px;line-height:1.65;background:rgba(255,255,255,.05);
-  border:1px solid rgba(237,233,254,.14);border-radius:14px;padding:16px 18px;min-height:152px}
-.soap-note .ln{display:block;margin-bottom:7px;color:rgba(237,233,254,.9)}
-.soap-note .lbl{color:#b79bff;font-weight:700}
-.blink{display:inline-block;width:8px;height:15px;background:#b79bff;vertical-align:-2px;margin-left:2px;animation:blink .8s steps(1) infinite}
-@keyframes blink{50%{opacity:0}}
-.soap-codes{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
-.code-chip{font-size:11px;font-weight:700;padding:6px 11px;border-radius:8px;
-  background:rgba(147,102,240,.2);color:#d3bdff;border:1px solid rgba(147,102,240,.35);
-  opacity:0;transform:translateY(6px)}
-
-.cal{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin-top:16px}
-.cal .day{font-size:9px;font-weight:700;text-transform:uppercase;color:var(--ink-soft);text-align:center;padding-bottom:4px}
-.cal .col{display:flex;flex-direction:column;gap:5px}
-.slot{height:20px;border-radius:5px;background:var(--paper-2);border:1px solid rgba(22,15,46,.06)}
-.slot.b{background:var(--lav-2);border-color:rgba(124,58,237,.25)}
-.slot.p{background:rgba(124,58,237,.28);border-color:rgba(124,58,237,.5)}
-.slot.fill{position:relative;overflow:hidden}
-.slot.fill::after{content:"";position:absolute;inset:0;background:rgba(124,58,237,.4);
-  transform:scaleX(0);transform-origin:left;animation:fillslot 3s .5s infinite}
-@keyframes fillslot{0%,20%{transform:scaleX(0)}45%,80%{transform:scaleX(1)}100%{transform:scaleX(1);opacity:0}}
-.cal-cap{display:flex;align-items:center;gap:7px;margin-top:14px;font-size:12px;font-weight:600}
-.cal-cap b{color:var(--purple)}
-
-.big-num{font-family:var(--disp);font-weight:600;font-size:64px;letter-spacing:-3px;line-height:.9;color:var(--purple);margin-top:6px}
-.big-num small{font-family:var(--body);font-size:15px;font-weight:600;color:var(--ink-soft);letter-spacing:0}
-.ledger{margin-top:16px;display:flex;flex-direction:column;gap:7px}
-.lrow{display:flex;align-items:center;justify-content:space-between;font-size:12px;padding:8px 11px;
-  background:var(--paper-2);border-radius:9px;border:1px solid rgba(22,15,46,.05)}
-.lrow b{font-weight:700}
-.lrow .st{font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;background:rgba(52,150,90,.14);color:#2f7a4a}
-.lrow .st.scr{background:var(--lav);color:var(--purple-dark)}
-.anchor{margin-top:14px;font-size:12px;color:var(--ink-soft);border-top:1px dashed rgba(22,15,46,.15);padding-top:12px}
-.anchor s{color:var(--ink);text-decoration-color:var(--purple)}
-.c-eval .big-num{color:var(--ink)}
-.badge-own{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:700;
-  letter-spacing:.5px;text-transform:uppercase;color:var(--purple);margin-top:12px}
-.badge-own::before{content:"";width:5px;height:5px;background:var(--purple);transform:rotate(45deg)}
-.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
-.chip{font-size:12px;font-weight:600;padding:7px 12px;border-radius:100px;background:var(--paper-2);
-  border:1px solid rgba(22,15,46,.08);transition:.25s}
-.chip:hover{background:var(--purple);color:#fff;transform:translateY(-2px);border-color:var(--purple)}
-.bubble{margin-top:14px;display:flex;flex-direction:column;gap:8px}
-.msg{font-size:12.5px;padding:9px 13px;border-radius:13px;max-width:88%;line-height:1.45}
-.msg.ai{background:var(--ink);color:#fff;border-bottom-left-radius:4px;align-self:flex-start}
-.msg.pt{background:var(--paper-2);border:1px solid rgba(22,15,46,.08);border-bottom-right-radius:4px;align-self:flex-end}
-
-/* ── STATS BAND ── */
-.band{background:var(--ink);color:#fff;border-radius:28px;padding:60px 5vw;position:relative;overflow:hidden}
-.band::before{content:"";position:absolute;inset:0;
-  background:radial-gradient(50% 90% at 85% 10%,rgba(124,58,237,.5),transparent 60%)}
-.band-inner{position:relative;display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:36px;align-items:center}
-.band .lead{font-family:var(--disp);font-weight:600;font-size:clamp(26px,3vw,40px);letter-spacing:-1.2px;line-height:1.05}
-.band .lead span{color:var(--purple-3)}
-.band-gain{margin-top:16px;background:linear-gradient(150deg,#2A1560,#4C1D95)}
-.band-gain::before{background:radial-gradient(50% 90% at 10% 100%,rgba(196,163,255,.28),transparent 60%)}
-.gain-note{font-size:12.5px;color:var(--ink-soft);line-height:1.65;margin-top:16px;max-width:100ch}
-.gain-note a{color:var(--purple);font-weight:600}
-.bstat b{font-family:var(--disp);font-weight:600;font-size:48px;letter-spacing:-2px;display:block}
-.bstat span{font-size:13px;color:rgba(237,233,254,.65);margin-top:4px;display:block}
-.bstat em{font-style:normal;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--purple-3)}
-@media(max-width:1000px){.band-inner{grid-template-columns:1fr 1fr 1fr}.band .lead{grid-column:1/-1}}
-@media(max-width:560px){.band-inner{grid-template-columns:1fr;gap:24px}}
-
-/* ── RCM SECTION ── */
-.rcm{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
-.rcm-copy h2{font-family:var(--disp);font-weight:600;font-size:clamp(30px,3.6vw,50px);letter-spacing:-1.6px;line-height:1.04;margin-bottom:18px}
-.rcm-copy p{font-size:16px;color:var(--ink-soft);line-height:1.7;margin-bottom:26px;max-width:44ch}
-.rcm-compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:28px}
-.rc{border-radius:18px;padding:26px}
-.rc.legacy{background:var(--paper-2);border:1px solid rgba(22,15,46,.08)}
-.rc.us{background:linear-gradient(150deg,#1E1047,#4C1D95);color:#fff}
-.rc .lab{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:.7}
-.rc .amt{font-family:var(--disp);font-weight:600;font-size:38px;letter-spacing:-1.5px;margin-top:8px}
-.rc small{font-size:14px;font-weight:600;opacity:.6}
-.rc p{font-size:12.5px;line-height:1.5;margin-top:10px;opacity:.75}
-@media(max-width:820px){.rcm{grid-template-columns:1fr;gap:36px}}
-.rcm>*{min-width:0}
-@media(max-width:560px){.rcm-compare{grid-template-columns:1fr}}
-
-/* ── PRICING ── */
-.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}
-.pcard{background:#fff;border:1px solid rgba(22,15,46,.1);border-radius:22px;padding:34px;display:flex;flex-direction:column;transition:border-color .3s,transform .3s,box-shadow .3s}
-.pcard:hover{border-color:var(--purple);transform:translateY(-4px);box-shadow:0 40px 60px -40px rgba(76,29,149,.5)}
-.pcard.feat{background:linear-gradient(155deg,#2A1560,#4C1D95);color:#fff;border-color:transparent}
-.pcard .pname{font-size:15px;font-weight:700;letter-spacing:.3px}
-.pcard .pop{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--purple);
-  background:var(--lav);padding:4px 10px;border-radius:100px;float:right}
-.pcard.feat .pop{background:rgba(255,255,255,.16);color:#fff}
-.price{font-family:var(--disp);font-weight:600;font-size:46px;letter-spacing:-2px;margin:16px 0 2px}
-.price small{font-family:var(--body);font-size:14px;font-weight:600;color:var(--ink-soft);letter-spacing:0}
-.pcard.feat .price small{color:rgba(237,233,254,.6)}
-.pterm{font-size:12.5px;font-weight:600;color:var(--purple);margin-bottom:12px}
-.pcard.feat .pterm{color:#c4a3ff}
-.pdesc{font-size:13px;color:var(--ink-soft);margin-bottom:22px;line-height:1.5}
-.pcard.feat .pdesc{color:rgba(237,233,254,.65)}
-.pcta{display:block;text-align:center;font-weight:700;font-size:14px;padding:13px;border-radius:100px;
-  background:var(--purple);color:#fff;margin-bottom:24px;transition:background .3s}
-.pcta:hover{background:var(--purple-dark)}
-.pcard.feat .pcta{background:#fff;color:var(--purple-dark)}
-.pcard.feat .pcta:hover{background:var(--lav)}
-.pfeat{display:flex;flex-direction:column;gap:11px;font-size:13.5px;color:var(--ink-soft)}
-.pcard.feat .pfeat{color:rgba(237,233,254,.8)}
-.pfeat li{display:flex;gap:9px;align-items:flex-start}
-.pfeat svg{flex-shrink:0;margin-top:2px;color:var(--purple)}
-.pcard.feat .pfeat svg{color:#c4a3ff}
-.pnote{text-align:center;font-size:13px;color:var(--ink-soft);margin-top:24px}
-@media(max-width:820px){.pgrid{grid-template-columns:1fr}}
-
-/* ── REAL PRODUCT ── */
-.shots-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
-.shots-tabs button{font-family:var(--body);font-weight:600;font-size:13.5px;padding:10px 16px;border-radius:100px;cursor:pointer;
-  border:1px solid rgba(22,15,46,.12);background:#fff;color:var(--ink-soft);transition:background .2s,color .2s,border-color .2s}
-.shots-tabs button:hover{border-color:var(--purple);color:var(--ink)}
-.shots-tabs button[aria-selected="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
-.shot-frame{background:#fff;border:1px solid rgba(22,15,46,.1);border-radius:18px;overflow:hidden;
-  box-shadow:0 50px 90px -60px rgba(22,15,46,.6)}
-.shot-bar{display:flex;align-items:center;gap:6px;padding:10px 14px;background:var(--paper-2);border-bottom:1px solid rgba(22,15,46,.08)}
-.shot-bar i{width:9px;height:9px;border-radius:50%;background:rgba(22,15,46,.14)}
-.shot-bar span{margin-left:10px;font-size:11.5px;color:var(--ink-soft)}
-.shot-stack{display:grid;background:var(--paper-2)}
-.shot-stack img{grid-area:1/1;display:block;width:100%;height:auto;aspect-ratio:1600/760;object-fit:cover;object-position:top left;opacity:0;transition:opacity .22s ease}
-.shot-stack img.on{opacity:1}
-.shot-cap{display:flex;justify-content:space-between;align-items:baseline;gap:8px 24px;flex-wrap:wrap;margin-top:14px;font-size:14px;color:var(--ink-soft)}
-@media(max-width:640px){.shots-tabs{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;margin-right:-5vw;scrollbar-width:none}.shots-tabs button{flex-shrink:0}}
-.shot-cap .demo{font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--purple);white-space:nowrap}
-
-/* ── HOW IT WORKS ── */
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.card.step{padding:28px}
-.step .sn{font-family:var(--disp);font-weight:600;font-size:15px;color:var(--purple);letter-spacing:1px}
-.card.step h3{font-size:21px;margin:10px 0 8px}
-.step .out{display:inline-block;margin-top:14px;font-size:10.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
-  color:var(--purple-dark);background:var(--lav);padding:5px 10px;border-radius:100px}
-@media(max-width:980px){.steps{grid-template-columns:1fr 1fr}}
-@media(max-width:560px){.steps{grid-template-columns:1fr}}
-
-/* ── WHAT'S INCLUDED ── */
-.incl{margin-top:64px}
-.incl-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;margin-bottom:22px}
-.incl-head h3{font-family:var(--disp);font-weight:600;font-size:clamp(24px,2.6vw,34px);letter-spacing:-1px;line-height:1.05}
-.incl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.card.incl-col{padding:26px}
-.incl-col ul{margin-top:6px}
-.incl-col li{padding:12px 0;border-top:1px solid rgba(22,15,46,.07)}
-.incl-col li:first-child{border-top:none}
-.incl-col li b{display:block;font-size:14.5px;font-weight:700;color:var(--ink)}
-.incl-col li span{display:block;font-size:12.5px;color:var(--ink-soft);line-height:1.5;margin-top:2px}
-@media(max-width:900px){.incl-grid{grid-template-columns:1fr}}
-
-/* ── PRICING SPLIT ── */
-.psplit{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:22px}
-.ps{border-radius:18px;padding:22px 26px;border:1px solid rgba(22,15,46,.09);background:#fff}
-.ps.plus{background:linear-gradient(150deg,#1E1047,#4C1D95);color:#fff;border-color:transparent}
-.ps .lab{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--purple)}
-.ps.plus .lab{color:#c4a3ff}
-.ps .amt{font-family:var(--disp);font-weight:600;font-size:26px;letter-spacing:-.8px;margin:6px 0 4px}
-.ps p{font-size:13px;color:var(--ink-soft);line-height:1.55}
-.ps.plus p{color:rgba(237,233,254,.75)}
-@media(max-width:820px){.psplit{grid-template-columns:1fr}}
-
-/* ── TRUST ROW ── */
-.trust{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
-.card.titem{padding:24px}
-.titem svg{color:var(--purple);display:block;margin-bottom:12px}
-.titem b{display:block;font-size:14.5px;font-weight:700;line-height:1.3}
-.titem span{display:block;font-size:12.5px;color:var(--ink-soft);margin-top:4px;line-height:1.45}
-@media(max-width:1000px){.trust{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:560px){.trust{grid-template-columns:1fr}}
-
-/* ── FINAL CTA ── */
-.final{text-align:center;padding:130px 5vw}
-.final h2{font-family:var(--disp);font-weight:600;font-size:clamp(38px,6vw,86px);letter-spacing:-2.5px;line-height:.98;margin-bottom:22px}
-.final p{font-size:17px;color:var(--ink-soft);max-width:46ch;margin:0 auto 36px}
-.final-ctas{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
-.book{max-width:1060px;margin:48px auto 0;background:#fff;border:1px solid rgba(22,15,46,.1);border-radius:22px;overflow:hidden;
-  box-shadow:0 40px 70px -50px rgba(76,29,149,.5)}
-.book .calendly-inline-widget{min-width:300px;height:720px}
-.final .book-alt{font-size:14px;margin:18px auto 0}
-.final .book-alt a{color:var(--purple);font-weight:600}
-@media(max-width:640px){.final{padding:100px 16px}.book{margin-top:36px;border-radius:16px}.book .calendly-inline-widget{height:1000px}}
-
-/* ── FOOTER ── */
-footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
-.fgrid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:44px}
-.fbrand .brand{color:#fff;margin-bottom:14px}
-.fbrand p{font-size:13px;line-height:1.7;max-width:240px}
-.fcol h4{font-size:12px;font-weight:700;color:#fff;letter-spacing:1px;text-transform:uppercase;margin-bottom:16px}
-.fcol a{display:block;font-size:13.5px;margin-bottom:11px;transition:color .2s}
-.fcol a:hover{color:#fff}
-.fbot{max-width:1280px;margin:0 auto;border-top:1px solid rgba(255,255,255,.1);padding-top:22px;
-  display:flex;justify-content:space-between;font-size:12px;flex-wrap:wrap;gap:10px}
-@media(max-width:760px){.fgrid{grid-template-columns:1fr 1fr}}
-
-/* ── SERVICES ── */
-.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.card.svc{padding:28px;display:flex;flex-direction:column}
-.card.svc h3{font-size:21px}
-.svc ul{margin:12px 0 0;display:flex;flex-direction:column;gap:6px}
-.svc li{font-size:13px;color:var(--ink-soft);line-height:1.5;padding-left:14px;position:relative}
-.svc li::before{content:"";position:absolute;left:0;top:.62em;width:5px;height:5px;background:var(--purple);transform:rotate(45deg)}
-.vs{margin-top:auto;padding-top:16px}
-.vs div{border-top:1px dashed rgba(22,15,46,.15);padding-top:12px;font-size:12.5px;line-height:1.55;color:var(--ink)}
-.vs b{display:block;font-size:10.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--purple);margin-bottom:3px}
-.src{font-size:11px;font-weight:600;color:var(--purple);white-space:nowrap}
-.src:hover{text-decoration:underline}
-@media(max-width:1000px){.svc-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:640px){.svc-grid{grid-template-columns:1fr}}
-
-/* ── VIDEOS ── */
-.vids{margin-top:64px}
-.vid-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.vid{display:flex;flex-direction:column;gap:10px}
-.vid-frame{position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;border:1px solid rgba(22,15,46,.1);
-  background:linear-gradient(150deg,#1E1047,#3B1580 60%,#4C1D95);color:#fff}
-.vid-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top left;opacity:.35}
-.vid-frame iframe,.vid-frame video{position:absolute;inset:0;width:100%;height:100%;border:0}
-.vid-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;border:0;background:none;color:#fff;cursor:pointer;font:inherit}
-.vid-play[disabled]{cursor:default}
-.vid-play i{width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center}
-.vid-soon{position:absolute;left:10px;top:10px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
-  background:rgba(22,15,46,.55);padding:4px 9px;border-radius:100px}
-.vid b{font-size:14px;font-weight:700;line-height:1.3}
-.vid span{font-size:12.5px;color:var(--ink-soft);line-height:1.45}
-@media(max-width:1000px){.vid-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:560px){.vid-grid{grid-template-columns:1fr}}
-
-/* ── COMPARE ── */
-.cmp-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid rgba(22,15,46,.1);border-radius:22px;background:#fff;
-  box-shadow:0 18px 44px -30px rgba(22,15,46,.45)}
-.wrap.wide{max-width:1440px}
-.tv-wrap{border:1px solid rgba(22,15,46,.1);border-radius:22px;background:#fff;overflow:hidden;margin-bottom:56px;
-  box-shadow:0 18px 44px -30px rgba(22,15,46,.45)}
-.tv-table{width:100%;border-collapse:separate;border-spacing:0;text-align:left}
-.tv-table thead th{font-size:11px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--ink-soft);
-  background:var(--paper-2);padding:14px 22px;border-bottom:1px solid rgba(22,15,46,.08)}
-.tv-table thead th.tv-us-head{background:#2A1560;color:#c4a3ff}
-.tv-table tbody th{width:180px;font-family:var(--disp);font-weight:600;font-size:17px;letter-spacing:-.4px;color:var(--ink);
-  padding:20px 22px;vertical-align:top;border-bottom:1px solid rgba(22,15,46,.07)}
-.tv-table td{padding:20px 22px;vertical-align:top;font-size:13.5px;line-height:1.55;color:var(--ink-soft);
-  border-bottom:1px solid rgba(22,15,46,.07)}
-.tv-table td.tv-us-cell{background:linear-gradient(180deg,rgba(76,29,149,.96),rgba(30,16,71,.96));color:#fff;font-weight:600;font-size:14px;width:34%}
-.tv-table tbody tr:last-child th,.tv-table tbody tr:last-child td{border-bottom:0}
-.tv-table .tv-lab{display:none;font-size:10.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px}
-.tv-src{display:block;margin-top:8px;font-size:11px;color:rgba(92,84,115,.7)}
-.tv-src .src{margin-right:6px}
-.tv-table td.tv-us-cell a{color:#c4a3ff;font-weight:700}
-@media(max-width:820px){
-  .tv-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-  .tv-table tbody th,.tv-table td{display:block;width:auto;border-bottom:0}
-  .tv-table tbody th{padding:20px 20px 0;font-size:19px}
-  .tv-table td{padding:10px 20px 0}
-  .tv-table td.tv-us-cell{width:auto;margin:12px 0 0;padding:16px 20px 18px;border-radius:0}
-  .tv-table .tv-lab{display:block;color:var(--ink-soft)}
-  .tv-table td.tv-us-cell .tv-lab{color:#c4a3ff}
-  .tv-table tbody tr{display:block;border-bottom:1px solid rgba(22,15,46,.08)}
-  .tv-table tbody tr:last-child{border-bottom:0}
-}
-.cmp-table{width:100%;min-width:1130px;table-layout:fixed;border-collapse:separate;border-spacing:0;font-size:12.5px;line-height:1.45}
-.cmp-table th,.cmp-table td{padding:14px 12px;text-align:left;vertical-align:top;border-bottom:1px solid rgba(22,15,46,.07)}
-.cmp-table tbody tr:last-child th,.cmp-table tbody tr:last-child td{border-bottom:0}
-.cmp-table thead th{font-family:var(--disp);font-weight:600;font-size:15px;letter-spacing:-.2px;color:var(--ink);background:var(--paper-2);vertical-align:bottom}
-.cmp-table tbody th{font-size:10.5px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--purple-dark)}
-.cmp-table col.c-row{width:118px}.cmp-table col.c-us{width:156px}
-.cmp-table td{color:var(--ink-soft)}
-.cmp-table .rowh{position:sticky;left:0;z-index:1;background:#fff;box-shadow:1px 0 0 rgba(22,15,46,.08)}
-.cmp-table thead .rowh{background:var(--paper-2)}
-.cmp-table .us{background:linear-gradient(180deg,#2A1560,#4C1D95);color:#fff;font-weight:600}
-.cmp-table thead th.us{color:#fff}
-.cmp-table td.us{background:#3B1580;color:rgba(237,233,254,.95)}
-.cmp-table .ns{color:rgba(92,84,115,.6);font-style:italic}
-.cmp-table .src{display:inline-block;margin:0 8px 2px 0}
-.cmp-hint{display:none;font-size:12px;font-weight:600;color:var(--purple);margin-bottom:10px}
-.cmp-note{font-size:12.5px;color:var(--ink-soft);margin-top:22px;max-width:90ch;line-height:1.6}
-.cmp-hint.on{display:block}
-@media(max-width:640px){.cmp-table col.c-row{width:104px}.cmp-table tbody th{padding:12px 10px}}
-
-/* ── FAMILY ── */
-.fam{display:grid;grid-template-columns:1fr 2fr;gap:48px;align-items:start}
-.fam-lead h2{font-family:var(--disp);font-weight:600;font-size:clamp(32px,4.4vw,58px);line-height:1.02;letter-spacing:-1.8px;margin-bottom:18px}
-.fam-lead p{font-size:16px;color:var(--ink-soft);line-height:1.7;max-width:40ch}
-.fam-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.card.fitem{padding:22px 24px}
-.fitem b{display:block;font-size:15px;font-weight:700;line-height:1.3;margin-bottom:4px}
-.fitem span{display:block;font-size:13px;color:var(--ink-soft);line-height:1.55}
-@media(max-width:900px){.fam{grid-template-columns:1fr;gap:30px}}
-@media(max-width:560px){.fam-grid{grid-template-columns:1fr}}
-@media(max-width:1120px){.nav-links{gap:22px}}
-@media(max-width:1000px){.nav-links{display:none}}
-
-/* ══ REDESIGN ═══════════════════════════════════════════════════════════ */
-/* Floating pill nav */
-.nav{top:14px;left:50%;right:auto;transform:translateX(-50%);width:min(1240px,calc(100% - 24px));
-  padding:10px 10px 10px 24px;border-radius:100px;background:rgba(251,250,255,.78);
-  -webkit-backdrop-filter:saturate(180%) blur(16px);backdrop-filter:saturate(180%) blur(16px);
-  box-shadow:0 1px 0 rgba(22,15,46,.06),0 18px 40px -28px rgba(22,15,46,.45);border:1px solid rgba(22,15,46,.07)}
-.nav.solid{padding:10px 10px 10px 24px;background:rgba(251,250,255,.92)}
-.nav-links{align-items:center;gap:26px}
-.nav-right{display:flex;align-items:center;gap:8px}
-.nav-login{font-size:13px;font-weight:700;color:var(--ink);padding:10px 16px;border-radius:100px;border:1px solid rgba(22,15,46,.14)}
-.nav-login:hover{border-color:var(--purple);color:var(--purple)}
-.nav-login-m{display:none}
-.dd{position:relative}
-.dd-btn{font:inherit;font-size:14px;font-weight:500;color:var(--ink-soft);background:none;border:0;cursor:pointer;display:flex;align-items:center;gap:6px;padding:6px 0}
-.dd-btn:hover,.dd.open .dd-btn,.dd:focus-within .dd-btn{color:var(--ink)}
-.dd-btn svg{transition:transform .25s}
-.dd.open .dd-btn svg{transform:rotate(180deg)}
-.dd-menu{position:absolute;top:calc(100% + 16px);left:50%;transform:translate(-50%,8px);min-width:300px;padding:10px;
-  background:#fff;border:1px solid rgba(22,15,46,.09);border-radius:18px;box-shadow:0 30px 60px -30px rgba(22,15,46,.45);
-  opacity:0;visibility:hidden;transition:opacity .2s,transform .2s,visibility .2s}
-.dd-menu::before{content:"";position:absolute;left:0;right:0;top:-18px;height:18px}
-.dd-mega{display:grid;grid-template-columns:1fr 1fr;min-width:560px}
-.dd:hover .dd-menu,.dd.open .dd-menu,.dd:focus-within .dd-menu{opacity:1;visibility:visible;transform:translate(-50%,0)}
-.dd-menu a{display:block;padding:11px 14px;border-radius:12px;transition:background .15s}
-.dd-menu a::after{display:none}
-.dd-menu a:hover{background:var(--paper-2)}
-.dd-menu b{display:block;font-size:14px;font-weight:700;color:var(--ink)}
-.dd-menu span{display:block;font-size:12.5px;color:var(--ink-soft);line-height:1.4;margin-top:2px}
-.dd-menu .dd-all{grid-column:1/-1;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--purple);border-top:1px solid rgba(22,15,46,.07);border-radius:0 0 12px 12px;margin-top:4px}
-.nav-burger{display:none;width:42px;height:42px;border-radius:50%;border:1px solid rgba(22,15,46,.14);background:#fff;cursor:pointer;
-  flex-direction:column;align-items:center;justify-content:center;gap:5px}
-.nav-burger span{display:block;width:16px;height:1.8px;background:var(--ink);transition:transform .25s}
-.nav.open .nav-burger span:first-child{transform:translateY(3.4px) rotate(45deg)}
-.nav.open .nav-burger span:last-child{transform:translateY(-3.4px) rotate(-45deg)}
-@media(max-width:1000px){
-  .nav{padding:8px 8px 8px 20px}
-  .nav-login{display:none}
-  .nav-burger{display:flex}
-  .nav-links{position:absolute;top:calc(100% + 10px);left:0;right:0;display:none;flex-direction:column;align-items:stretch;gap:0;
-    background:#fff;border:1px solid rgba(22,15,46,.09);border-radius:22px;padding:10px;box-shadow:0 30px 60px -30px rgba(22,15,46,.5);
-    max-height:calc(100vh - 110px);overflow-y:auto}
-  .nav.open .nav-links{display:flex}
-  .nav-links>a,.dd-btn{padding:13px 14px;font-size:15px;width:100%;justify-content:space-between}
-  .nav-links>a::after{display:none}
-  .nav-login-m{display:block;font-weight:700;color:var(--purple)!important}
-  .dd-menu,.dd-mega{position:static;transform:none;min-width:0;display:none;opacity:1;visibility:visible;box-shadow:none;border:0;padding:0 0 6px 8px;grid-template-columns:1fr}
-  .dd:hover .dd-menu,.dd.open .dd-menu,.dd:focus-within .dd-menu{transform:none;left:auto}
-  .dd.open .dd-menu{display:block}
-  .dd-menu .dd-all{margin-top:2px}
-  .dd-menu::before{display:none}
-}
-@media(max-width:420px){.nav-cta{padding:10px 14px;font-size:12px}}
-
-/* Centered hero */
-.hero.hero-c{min-height:auto;padding:170px 5vw 40px;align-items:center;text-align:center}
-.hero-c .hero-eyebrow{justify-content:center}
-.hero-c h1{max-width:none;margin:0 auto;font-size:min(clamp(46px,7.4vw,112px),9.2vw)}
-.hero-c h1 em{white-space:nowrap}
-.hero-c .hero-sub{margin:34px auto 0;max-width:56ch}
-.hero-c .hero-ctas{justify-content:center;margin-top:30px}
-.hero-c .hero-meta{justify-content:center;gap:44px;margin-top:40px}
-.hero-c .hero-meta div{align-items:center}
-@media(max-width:560px){.hero.hero-c{padding-top:130px}.hero-c h1{letter-spacing:-1.5px}.hero-c .hero-meta{gap:24px}}
-
-/* 3D product showcase */
-.showcase{padding:10px 0 70px;position:relative}
-.show-stage{position:relative;perspective:1600px;margin:0 auto;max-width:1180px}
-.show-3d{transform-origin:50% 0;transform:rotateX(18deg) scale(.94);will-change:transform;margin:0}
-.show-tabs{justify-content:center;margin:26px 0 0}
-.showcase .shot-cap{justify-content:center;text-align:center}
-.float{position:absolute;z-index:3;display:grid;grid-template-columns:auto 1fr;column-gap:10px;align-items:center;text-align:left;
-  background:#fff;border:1px solid rgba(22,15,46,.09);border-radius:16px;padding:12px 16px;
-  box-shadow:0 26px 50px -24px rgba(22,15,46,.45);min-width:230px}
-.float b{font-size:13.5px;font-weight:700;color:var(--ink);grid-column:2}
-.float span{font-size:12px;color:var(--ink-soft);grid-column:2}
-.fl-dot{grid-row:1/3;width:26px;height:26px;border-radius:50%;background:rgba(52,150,90,.14);position:relative}
-.fl-dot::after{content:"";position:absolute;left:9px;top:6px;width:6px;height:11px;border:solid #2f7a4a;border-width:0 2px 2px 0;transform:rotate(45deg)}
-.f1{left:-3%;top:16%}.f2{right:-3%;top:9%}.f3{left:2%;bottom:14%}.f4{right:-1%;bottom:22%}
-@media(max-width:1100px){.f1{left:1%}.f2{right:1%}.f3{left:3%}.f4{right:2%}}
-@media(max-width:760px){.float{display:none}.show-3d{transform:rotateX(10deg) scale(.97)}}
-
-/* Works with strip */
-.works{display:flex;align-items:center;gap:24px;max-width:1280px;margin:0 auto;padding:0 5vw 20px;overflow:hidden}
-.works-lab{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap}
-.works-track{flex:1;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
-.works-row{display:flex;gap:48px;width:max-content;animation:works 32s linear infinite}
-.works-row span{font-family:var(--disp);font-weight:600;font-size:20px;letter-spacing:-.4px;color:rgba(22,15,46,.45);white-space:nowrap}
-@keyframes works{to{transform:translateX(-50%)}}
-
-/* Sticky tab bar + stacking cards */
-.stack-sec{padding-bottom:60px}
-.stack-tabs{position:sticky;top:82px;z-index:40;margin:0 0 30px}
-.stack-tabs nav{display:flex;gap:6px;justify-content:center;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
-.stack-tabs nav::-webkit-scrollbar{display:none}
-.stack-tabs a{flex-shrink:0;font-size:13px;font-weight:600;color:var(--ink-soft);padding:9px 16px;border-radius:100px;
-  background:rgba(251,250,255,.85);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(22,15,46,.08);transition:background .2s,color .2s}
-.stack-tabs a:hover{color:var(--ink)}
-.stack-tabs a[aria-current="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
-.stack{display:flex;flex-direction:column;gap:28px}
-.stack-card{position:sticky;top:calc(146px + var(--i) * 12px);display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center;
-  min-height:min(560px,calc(100vh - 190px));padding:44px;border-radius:30px;background:#fff;
-  border:1px solid transparent;background-image:linear-gradient(#fff,#fff),linear-gradient(135deg,rgba(124,58,237,.55),rgba(147,102,240,.12) 45%,rgba(124,58,237,.45));
-  background-origin:border-box;background-clip:padding-box,border-box;box-shadow:0 40px 80px -50px rgba(76,29,149,.55);transform-origin:50% 0}
-.stack-copy .kick{font-size:11.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--purple)}
-.stack-copy h3{font-family:var(--disp);font-weight:600;font-size:clamp(28px,3.2vw,44px);letter-spacing:-1.4px;line-height:1.04;margin:12px 0 14px}
-.stack-copy h3 em{font-style:normal;color:var(--purple)}
-.stack-lede{font-size:16px;color:var(--ink-soft);line-height:1.6;max-width:46ch}
-.stack-copy ul{margin:18px 0;display:flex;flex-direction:column;gap:9px}
-.stack-copy li{font-size:14.5px;line-height:1.5;padding-left:26px;position:relative}
-.stack-copy li::before{content:"";position:absolute;left:0;top:3px;width:16px;height:16px;border-radius:50%;background:var(--lav)}
-.stack-copy li::after{content:"";position:absolute;left:6px;top:6px;width:4px;height:7px;border:solid var(--purple);border-width:0 1.8px 1.8px 0;transform:rotate(45deg)}
-.stack-close{font-size:14.5px;font-weight:700;color:var(--ink);margin-bottom:20px}
-.btn-out{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:14px;padding:12px 22px;border-radius:100px;
-  border:1.5px solid var(--purple);color:var(--purple);transition:background .25s,color .25s}
-.btn-out:hover{background:var(--purple);color:#fff}
-.stack-vis{border-radius:22px;align-self:stretch;display:flex;align-items:center;justify-content:center}
-.stack-vis>div:not(.phone){width:100%}
-.vis-dark{background:linear-gradient(150deg,#1E1047,#3B1580 60%,#4C1D95);color:#fff;border-radius:22px;padding:28px}
-.vis-dark h3{font-family:var(--disp);font-weight:600;font-size:22px;margin:8px 0 6px}
-.vis-dark .kick{color:var(--lav-2)}
-.vis-light{background:var(--paper-2);border:1px solid rgba(22,15,46,.06);border-radius:22px;padding:28px}
-.vis-light .kick{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--purple)}
-.vis-phone{background:linear-gradient(160deg,var(--paper-2),var(--lav))}
-.phone{width:250px;margin:24px auto;background:#fff;border-radius:34px;padding:26px 16px 18px;border:8px solid var(--ink);
-  box-shadow:0 40px 60px -30px rgba(22,15,46,.6);position:relative}
-.phone-notch{position:absolute;top:6px;left:50%;transform:translateX(-50%);width:70px;height:16px;border-radius:10px;background:var(--ink)}
-.ph-head{display:flex;justify-content:space-between;align-items:baseline;margin:8px 4px 12px}
-.ph-head b{font-family:var(--disp);font-size:22px}
-.ph-head span{font-size:12px;color:var(--ink-soft)}
-.ph-row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px;border-radius:12px;background:var(--paper-2);margin-bottom:7px}
-.ph-row b{font-size:12px}
-.ph-tag{font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;background:var(--lav);color:var(--purple-dark);white-space:nowrap}
-.ph-tag.ok{background:rgba(52,150,90,.14);color:#2f7a4a}
-.ph-btn{margin-top:10px;text-align:center;font-size:13px;font-weight:700;color:#fff;background:var(--purple);border-radius:12px;padding:11px}
-.audit{display:flex;flex-direction:column;gap:10px}
-.audit-row{display:flex;gap:12px;align-items:center;background:#fff;border:1px solid rgba(22,15,46,.07);border-radius:14px;padding:13px 14px}
-.audit-ic{width:34px;height:34px;flex-shrink:0;border-radius:10px;background:var(--lav);color:var(--purple);display:flex;align-items:center;justify-content:center;font-size:15px}
-.audit-row b{display:block;font-size:13.5px}
-.audit-row span{font-size:12px;color:var(--ink-soft)}
-@media(max-width:900px){
-  .stack-tabs{top:74px}
-  .stack-tabs nav{justify-content:flex-start;padding-right:5vw}
-  .stack-card{position:relative;top:auto;grid-template-columns:1fr;gap:26px;min-height:0;padding:28px}
-}
-@media(max-width:560px){.stack-card{padding:22px;border-radius:24px}.phone{width:230px}}
-
-/* Founder story */
-.story{display:grid;grid-template-columns:1.3fr 1fr;gap:56px;align-items:center}
-.story-copy .sec-title{max-width:none;margin-bottom:22px}
-.story-copy .sec-title em{font-style:normal;color:var(--purple)}
-.story-copy p{font-size:16.5px;color:var(--ink-soft);line-height:1.75;max-width:60ch;margin-bottom:16px}
-.story-copy .story-sign{font-family:var(--disp);font-weight:600;font-size:18px;color:var(--ink);margin-top:6px}
-.story-panel{background:var(--ink);color:#fff;border-radius:28px;padding:34px;position:relative;overflow:hidden}
-.story-panel::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 80% at 90% 0%,rgba(124,58,237,.55),transparent 60%)}
-.sp-row{position:relative;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.12)}
-.sp-row:last-child{border-bottom:0}
-.sp-row b{display:block;font-family:var(--disp);font-weight:600;font-size:21px;letter-spacing:-.5px}
-.sp-row span{display:block;font-size:13.5px;color:rgba(237,233,254,.72);margin-top:4px;line-height:1.5}
-@media(max-width:900px){.story{grid-template-columns:1fr;gap:30px}}
-
-/* FAQ */
-.faq{display:grid;grid-template-columns:1fr 1.6fr;gap:56px;align-items:start}
-.faq-list{display:flex;flex-direction:column;gap:10px}
-.faq-item{background:#fff;border:1px solid rgba(22,15,46,.09);border-radius:18px;transition:border-color .25s,box-shadow .25s}
-.faq-item[open]{border-color:rgba(124,58,237,.45);box-shadow:0 24px 50px -36px rgba(76,29,149,.6)}
-.faq-item summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 24px;
-  font-size:16px;font-weight:700;color:var(--ink)}
-.faq-item summary::-webkit-details-marker{display:none}
-.faq-ic{position:relative;width:26px;height:26px;flex-shrink:0;border-radius:50%;background:var(--lav)}
-.faq-ic::before,.faq-ic::after{content:"";position:absolute;left:50%;top:50%;width:10px;height:1.8px;background:var(--purple);transform:translate(-50%,-50%);transition:transform .25s}
-.faq-ic::after{transform:translate(-50%,-50%) rotate(90deg)}
-.faq-item[open] .faq-ic::after{transform:translate(-50%,-50%) rotate(0deg)}
-.faq-item p{padding:0 24px 22px;font-size:14.5px;color:var(--ink-soft);line-height:1.65;max-width:68ch}
-@media(max-width:900px){.faq{grid-template-columns:1fr;gap:26px}}
-
-@media(prefers-reduced-motion:reduce){.show-3d{transform:none}.works-row{animation:none}}
-
-.reveal{opacity:1}
-.js .reveal{opacity:0}
-@media(prefers-reduced-motion:reduce){*{animation:none!important}}
-</style>
+<link rel="stylesheet" href="/css/home.css?v=1"/>
 </head>
 <body>
 
@@ -632,20 +29,21 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
         <a href="#stack-front"><b>AI front office</b><span>Calls answered while you treat</span></a>
         <a href="#stack-apps"><b>Provider and patient apps</b><span>The clinic in your pocket</span></a>
         <a href="#stack-growth"><b>Growth and compliance</b><span>Reviews, recalls and a tamper-evident audit log</span></a>
-        <a href="#services" class="dd-all">See every service <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M1 6h17M13 1l5 5-5 5"/></svg></a>
+        <a href="/features" class="dd-all">See every feature <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M1 6h17M13 1l5 5-5 5"/></svg></a>
       </div>
     </div>
     <div class="dd">
       <button type="button" class="dd-btn" aria-expanded="false">Why Cowboy <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 3.5l3 3 3-3"/></svg></button>
       <div class="dd-menu">
-        <a href="#compare"><b>Them vs. Cowboy</b><span>The other guys, from their own websites</span></a>
         <a href="#story"><b>Built by clinicians</b><span>We run our own clinic on it</span></a>
-        <a href="#family"><b>We care about the family</b><span>The small things that save your evenings</span></a>
-        <a href="#security"><b>Trust and compliance</b><span>BAA, encryption and audit logs</span></a>
+        <a href="/pricing#billing"><b>Billing done for you</b><span>4% of collections, on top of your plan</span></a>
+        <a href="/features#family"><b>We care about the family</b><span>The small things that save your evenings</span></a>
+        <a href="/features#security"><b>Trust and compliance</b><span>BAA, encryption and audit logs</span></a>
       </div>
     </div>
-    <a href="#billing">Billing Service</a>
-    <a href="#pricing">Pricing</a>
+    <a href="/features">Features</a>
+    <a href="/compare">Compare</a>
+    <a href="/pricing">Pricing</a>
     <a href="/addons">Add-ons</a>
     <a href="https://ehr.cowboy-systems.com" class="nav-login-m">Log in</a>
   </div>
@@ -667,7 +65,7 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
   <p class="hero-sub reveal">Documentation, scheduling and billing in one system, built by clinicians who run their own PT clinic. The AI drafts. <b>Your therapist reviews and signs every note.</b></p>
   <div class="hero-ctas reveal">
     <a href="#demo" class="btn mag"><span class="dot"></span> Book a Demo</a>
-    <a href="#pricing" class="btn ghost">See pricing</a>
+    <a href="/pricing#pricing" class="btn ghost">See pricing</a>
   </div>
   <div class="hero-meta reveal">
     <div><b>~6 min</b><span>Full initial eval, timed at our clinic</span></div>
@@ -759,7 +157,7 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
         <p class="stack-lede">The AI drafts the note from the visit and the chart. Your therapist reviews it, fixes what they want, and signs.</p>
         <ul><li>Full initial eval in about six minutes, timed at our clinic</li><li>Signing builds the home exercise program, the flow sheet and the claim</li><li>Nine region suites and 42 ready-made templates</li></ul>
         <p class="stack-close">Your notes are done before your patient reaches the parking lot.</p>
-        <a href="#services" class="btn-out">See the details <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M1 6h17M13 1l5 5-5 5"/></svg></a>
+        <a href="/features#services" class="btn-out">See the details <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M1 6h17M13 1l5 5-5 5"/></svg></a>
       </div>
       <div class="stack-vis ">
         <div class="c-soap vis-dark">
@@ -787,7 +185,7 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
         <p class="stack-lede">Reminder texts go out 24 hours ahead. Patients reply YES or NO, and the schedule shows who is coming.</p>
         <ul><li>Recurring series booked in one step, with double-booking checks</li><li>A shared waitlist that books into an opening in one click</li><li>Online booking straight into your calendar</li></ul>
         <p class="stack-close">Your front desk stops spending mornings on the phone.</p>
-        <a href="#services" class="btn-out">See the details <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M1 6h17M13 1l5 5-5 5"/></svg></a>
+        <a href="/features#services" class="btn-out">See the details <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M1 6h17M13 1l5 5-5 5"/></svg></a>
       </div>
       <div class="stack-vis ">
         <div class="vis-light">
@@ -810,7 +208,7 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
         <p class="stack-lede">Every claim is filled in from the chart and checked before it leaves, so fewer come back.</p>
         <ul><li>Real-time eligibility and authorization checks through Availity</li><li>Diagnosis, GP modifier and units checked against documented minutes</li><li>Batch submit, ERA posting, and denials sent to your Inbox with the fix</li></ul>
         <p class="stack-close">Or hand us the whole thing: 4% of collections, on top of your plan.</p>
-        <a href="#services" class="btn-out">See the details <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M1 6h17M13 1l5 5-5 5"/></svg></a>
+        <a href="/features#services" class="btn-out">See the details <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M1 6h17M13 1l5 5-5 5"/></svg></a>
       </div>
       <div class="stack-vis ">
         <div class="vis-light">
@@ -830,7 +228,7 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
         <p class="stack-lede">Routine calls and insurance details are handled before the patient ever reaches the desk.</p>
         <ul><li>AI receptionist answers questions, books visits and takes messages</li><li>AI pre-visit calls confirm the visit and check insurance</li><li>Scan an insurance card and the payer, member ID and plan fill in</li></ul>
         <p class="stack-close">Fewer holds, fewer callbacks, fewer surprises at check-in.</p>
-        <a href="#services" class="btn-out">See the details <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M1 6h17M13 1l5 5-5 5"/></svg></a>
+        <a href="/features#services" class="btn-out">See the details <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M1 6h17M13 1l5 5-5 5"/></svg></a>
       </div>
       <div class="stack-vis ">
         <div class="vis-light">
@@ -850,7 +248,7 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
         <p class="stack-lede">Check the day, sign a note or text a patient from your phone, without opening a laptop.</p>
         <ul><li>Write and sign notes on your phone with the same forms as the web</li><li>Text patients from the clinic's number, never your personal phone</li><li>Patients book, message, pay and do their home exercises in the app</li></ul>
         <p class="stack-close">Sign that last note from the couch. We won't tell.</p>
-        <a href="#services" class="btn-out">See the details <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M1 6h17M13 1l5 5-5 5"/></svg></a>
+        <a href="/features#services" class="btn-out">See the details <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M1 6h17M13 1l5 5-5 5"/></svg></a>
       </div>
       <div class="stack-vis vis-phone">
         <div class="phone"><div class="phone-notch"></div>
@@ -870,7 +268,7 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
         <p class="stack-lede">The follow-ups that bring patients back happen on their own, and the records an auditor asks for are already kept.</p>
         <ul><li>Google review requests texted and emailed at discharge</li><li>Birthday and 6- and 12-month follow-ups on every chart</li><li>A tamper-evident audit log you can check with one click</li></ul>
         <p class="stack-close">Marketing and compliance, minus the extra hires.</p>
-        <a href="#services" class="btn-out">See the details <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M1 6h17M13 1l5 5-5 5"/></svg></a>
+        <a href="/features#services" class="btn-out">See the details <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M1 6h17M13 1l5 5-5 5"/></svg></a>
       </div>
       <div class="stack-vis vis-light">
         <div class="audit">
@@ -883,204 +281,6 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
     </article>
   </div>
 </section>
-
-<!-- SERVICES -->
-<section class="sec" id="services" style="padding-top:0"><div class="wrap">
-  <div class="sec-head">
-    <div>
-      <div class="kicker"><span class="num">03</span> Services</div>
-      <h2 class="sec-title">What each part<br>does for you.</h2>
-    </div>
-    <p class="sec-note">Every service, what it takes off your plate, and how it stacks up. Competitor details come from their own public websites, checked September 2026, with the source linked.</p>
-  </div>
-  <div class="svc-grid">
-    <article class="card svc" data-tilt>
-      <div class="kick">AI documentation</div>
-      <h3>Finish the note before the next patient.</h3>
-      <p>The AI drafts the note from the visit and the chart. Your therapist reviews and signs, so charting stops following them home.</p>
-      <ul>
-        <li>Sign the initial eval and the home exercise program, flow sheet and claim are already built from it</li>
-        <li>Evals, daily notes, re-evals and discharges with carry-forward</li>
-        <li>AI assessment and goals grounded in chart findings</li>
-        <li>AI check for goals met on re-evaluations, marked for review</li>
-        <li>Text snippets that expand anywhere in a note</li>
-      </ul>
-      <div class="vs"><div><b>Cheaper</b>AI notes come in the base plan: 100 a month on Starter, unlimited on Growth. SimplePractice sells its AI Care Aide as a $59/month add-on, and Jane charges $15/month per practitioner for unlimited AI Scribe. <a class="src" href="https://www.simplepractice.com/pricing/" target="_blank" rel="noopener">SimplePractice</a> <a class="src" href="https://jane.app/pricing?locale=en-US" target="_blank" rel="noopener">Jane</a></div></div>
-    </article>
-
-    <article class="card svc" data-tilt>
-      <div class="kick">Clinical and plan of care</div>
-      <h3>Never miss a recert or a progress report.</h3>
-      <p>The chart tells you what is due, so nothing slips and no visit goes unbillable.</p>
-      <ul>
-        <li>Nine region suites and 42 ready-made templates</li>
-        <li>Alerts for recertification, physician certification, progress reports every 10 visits and the Medicare therapy threshold</li>
-        <li>Outcome measures scored against MCID, printed as scorecards</li>
-        <li>PTA co-sign, and home exercise programs and flow sheets that fill in from signed notes</li>
-      </ul>
-      <div class="vs"><div><b>Better value</b>Template depth on par with enterprise PT systems (TheraOffice lists 40+ templates), with a flat price published on this page. WebPT, Raintree, Prompt, Net Health and TheraOffice list no prices on the pages we checked. <a class="src" href="https://www.ntst.com/physical-therapy-software" target="_blank" rel="noopener">TheraOffice</a> <a class="src" href="https://www.webpt.com/pricing" target="_blank" rel="noopener">WebPT</a></div></div>
-    </article>
-
-    <article class="card svc" data-tilt>
-      <div class="kick">Scheduling and reminders</div>
-      <h3>Fewer no-shows. Fewer phone calls.</h3>
-      <p>Patients confirm by text, and the schedule shows who is coming without anyone picking up the phone.</p>
-      <ul>
-        <li>Reminder texts 24 hours ahead; a YES or NO reply shows as Confirmed or Wants to reschedule</li>
-        <li>Recurring series booked in one step, with provider hours and double-booking checks</li>
-        <li>Shared waitlist that books into an opening in one click</li>
-        <li>Online booking straight into your schedule</li>
-      </ul>
-      <div class="vs"><div><b>More included</b>Text reminders are on the Starter plan. Jane's entry Balance plan sends email reminders only; unlimited SMS reminders start on its Practice plan. <a class="src" href="https://jane.app/pricing?locale=en-US" target="_blank" rel="noopener">Jane</a></div></div>
-    </article>
-
-    <article class="card svc" data-tilt>
-      <div class="kick">Billing and claims software</div>
-      <h3>Clean claims without a billing department.</h3>
-      <p>Claims are filled in from the chart and checked before they go, so fewer come back.</p>
-      <ul>
-        <li>Real-time eligibility and authorization checks through Availity</li>
-        <li>Diagnosis, GP modifier and units checked against documented minutes</li>
-        <li>Batch submit, ERA posting, and denials sent to the Inbox with the fix</li>
-        <li>The right Medicare contractor and payer IDs for your state</li>
-      </ul>
-      <div class="vs"><div><b>More included</b>Claims tools are part of every plan. Jane's insurance billing is a $20/month add-on, plus $5 for each added full-time practitioner. <a class="src" href="https://jane.app/pricing?locale=en-US" target="_blank" rel="noopener">Jane</a></div></div>
-    </article>
-
-    <article class="card svc" data-tilt>
-      <div class="kick">Full-service billing</div>
-      <h3>Hand us the whole revenue cycle.</h3>
-      <p>We work the claims inside the EHR your team already uses. You treat patients; we chase the money.</p>
-      <ul>
-        <li>Eligibility, coding review and claim scrubbing</li>
-        <li>Submission, ERA posting, denials and appeals</li>
-        <li>One monthly statement showing exactly what was collected</li>
-      </ul>
-      <div class="vs"><div><b>Cheaper</b>4% of collections, on top of your monthly plan. SPRY publishes 4 to 6% for its billing service, and a WebPT article puts typical RCM services at 6 to 12% of collections. <a class="src" href="https://www.sprypt.com/pricing" target="_blank" rel="noopener">SPRY</a> <a class="src" href="https://www.webpt.com/blog/billing-software-vs-rcm-service-whats-the-difference-and-whats-right-for-your-practice" target="_blank" rel="noopener">WebPT</a></div></div>
-    </article>
-
-    <article class="card svc" data-tilt>
-      <div class="kick">AI front office</div>
-      <h3>The phone gets answered while you treat.</h3>
-      <p>Routine calls and insurance details are handled before the patient reaches the front desk.</p>
-      <ul>
-        <li>AI receptionist answers FAQs, books visits and takes messages</li>
-        <li>AI pre-visit calls confirm the visit and check insurance</li>
-        <li>Scan an insurance card and the payer, member ID and plan fill in</li>
-      </ul>
-      <div class="vs"><div><b>Pay for what you use</b>Pre-visit calls come in packs from $49 for 50 calls, not another front-desk salary.</div></div>
-    </article>
-
-    <article class="card svc" data-tilt>
-      <div class="kick">Intake, fax and referrals</div>
-      <h3>Referrals into charts, not piles.</h3>
-      <p>Faxes and referrals land in one inbox and get filed to the right patient in a few clicks.</p>
-      <ul>
-        <li>eFax inbox with a full-screen viewer and filing to the chart</li>
-        <li>Referral hub and digital intake forms</li>
-        <li>Batch fax to referring providers, with opt-outs handled</li>
-      </ul>
-      <div class="vs"><div><b>One inbox</b>Faxes arrive and get filed inside the chart, with no separate fax portal to check.</div></div>
-    </article>
-
-    <article class="card svc" data-tilt>
-      <div class="kick">Provider mobile app</div>
-      <h3>The clinic in your pocket.</h3>
-      <p>Check the day, sign a note, or text a patient from your phone, without opening a laptop.</p>
-      <ul>
-        <li>Today's schedule, charts, and notes written and signed with the web forms</li>
-        <li>Book visits, add patients, and text patients from the clinic number</li>
-        <li>Unsigned notes, plan-of-care and authorization alerts in one list</li>
-        <li>Face ID lock and access logging</li>
-      </ul>
-      <div class="vs"><div><b>More included</b>The provider app comes with Cowboy. SPRY puts its companion mobile app in its higher SPRY Plus tier. <a class="src" href="https://www.sprypt.com/pricing" target="_blank" rel="noopener">SPRY</a></div></div>
-    </article>
-
-    <article class="card svc" data-tilt>
-      <div class="kick">Patient app and portal</div>
-      <h3>Patients handle the small stuff themselves.</h3>
-      <p>Fewer calls to reschedule, fewer paper handouts, and balances paid from home.</p>
-      <ul>
-        <li>Book, message the clinic and pay a balance</li>
-        <li>Home exercises with demo videos and check-offs</li>
-        <li>Progress screen with the patient's real scores and visits</li>
-      </ul>
-      <div class="vs"><div><b>Your brand</b>Your clinic's own app on the App Store and Google Play for $99/month.</div></div>
-    </article>
-
-    <article class="card svc" data-tilt>
-      <div class="kick">Telehealth</div>
-      <h3>Video visits without another subscription.</h3>
-      <p>Book, see and document a video visit from the same schedule and chart.</p>
-      <ul>
-        <li>Built-in video visits with private, random room links</li>
-        <li>50 sessions a month on Starter</li>
-      </ul>
-      <div class="vs"><div><b>One login</b>No separate video tool to buy, sign a BAA for, or train staff on.</div></div>
-    </article>
-
-    <article class="card svc" data-tilt>
-      <div class="kick">Payments</div>
-      <h3>Get paid at the desk and from home.</h3>
-      <p>Card and cash payments are tied to the chart with a receipt, so the day closes out cleanly.</p>
-      <ul>
-        <li>Card payments go straight to your own bank through Stripe</li>
-        <li>Cash with change due, and patient portal payments</li>
-      </ul>
-      <div class="vs"><div><b>No markup</b>Cowboy takes no platform fee on card payments.</div></div>
-    </article>
-
-    <article class="card svc" data-tilt>
-      <div class="kick">Security and compliance</div>
-      <h3>Ready when the auditor calls.</h3>
-      <p>The records an auditor asks for are already kept, and you can check them yourself.</p>
-      <ul>
-        <li>Signed BAA, two-step sign-in and sign-in lockout</li>
-        <li>Tamper-evident audit log with a one-click integrity check</li>
-        <li>Your clinic's own trail of who opened, printed, faxed or exported records</li>
-      </ul>
-      <div class="vs"><div><b>See it yourself</b>One button confirms the audit log has not been edited.</div></div>
-    </article>
-
-    <article class="card svc" data-tilt>
-      <div class="kick">Growth and marketing</div>
-      <h3>Turn discharges into reviews and referrals.</h3>
-      <p>The follow-ups that bring patients back happen without a marketing hire.</p>
-      <ul>
-        <li>Google review request texted and emailed at discharge</li>
-        <li>Birthday and 6- and 12-month follow-up reminders on the chart</li>
-        <li>Marketing studio, plus a custom website with booking built in</li>
-      </ul>
-      <div class="vs"><div><b>No monthly website bill</b>A custom website with online booking for $599, one time.</div></div>
-    </article>
-  </div>
-
-  <!-- VIDEOS: set data-video to a YouTube/Vimeo embed URL or an .mp4 path to switch a placeholder on -->
-  <div class="vids" id="videos">
-    <div class="incl-head">
-      <h3>Watch it work.</h3>
-      <p class="sec-note">Short clips of the real product on a test patient.</p>
-    </div>
-    <div class="vid-grid">
-      <div class="vid" data-video="">
-        <div class="vid-frame"><img src="/assets/product/chart-signed-eval.webp" alt="" loading="lazy"/><span class="vid-soon">Coming soon</span><button type="button" class="vid-play" aria-label="Play: initial evaluation, exam to signed note" disabled><i><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></i></button></div>
-        <b>Initial evaluation, exam to signed note</b><span>About 90 seconds</span>
-      </div>
-      <div class="vid" data-video="">
-        <div class="vid-frame"><img src="/assets/product/notes-billing.webp" alt="" loading="lazy"/><span class="vid-soon">Coming soon</span><button type="button" class="vid-play" aria-label="Play: from signed note to submitted claim" disabled><i><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></i></button></div>
-        <b>From signed note to submitted claim</b><span>About 60 seconds</span>
-      </div>
-      <div class="vid" data-video="">
-        <div class="vid-frame"><span class="vid-soon">Coming soon</span><button type="button" class="vid-play" aria-label="Play: sign a note on your phone" disabled><i><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></i></button></div>
-        <b>Sign a note on your phone</b><span>About 60 seconds</span>
-      </div>
-      <div class="vid" data-video="">
-        <div class="vid-frame"><span class="vid-soon">Coming soon</span><button type="button" class="vid-play" aria-label="Play: reminder texts and confirmations" disabled><i><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></i></button></div>
-        <b>Reminder texts and confirmations</b><span>About 45 seconds</span>
-      </div>
-    </div>
-  </div>
-</div></section>
 
 <!-- STATS BAND -->
 <section class="sec" style="padding-top:0"><div class="wrap">
@@ -1099,43 +299,11 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
   <p class="gain-note">How we got there: a full-time therapist seeing 12 patients a day, 5 days a week, 48 weeks a year, where 10% of visits are initial evaluations and 5% are re-evaluations. Cowboy times are what we timed in our clinic (6:00, 5:00 and 3:38). The before times are 17 minutes for an initial evaluation, the pre-AI time Raintree reports for a client (<a href="https://www.raintreeinc.com/" target="_blank" rel="noopener">source</a>), and our estimates of 15 minutes for a re-evaluation and 10 minutes for a progress note. That saves about 421 minutes a week. Each extra visit is counted as a 45-minute session plus its note, rounded down to whole visits, at $105.33 net revenue per visit, the rate U.S. Physical Therapy reported for the second quarter of 2025 (<a href="https://www.businesswire.com/news/home/20250806559477/en" target="_blank" rel="noopener">source</a>). A 5-provider clinic gets about 35 hours back and room for about 40 more visits a week. Your numbers will differ with your caseload and payer mix. Building the home exercise program and flow sheet by hand is not counted.</p>
 </div></section>
 
-<!-- BILLING / RCM -->
-<section class="sec" id="billing"><div class="wrap">
-  <div class="sec-head">
-    <div>
-      <div class="kicker"><span class="num">04</span> Billing, done for you</div>
-      <h2 class="sec-title">Get your billing<br>off your desk.</h2>
-    </div>
-    <p class="sec-note">Most clinics pay a legacy vendor for the EHR, then pay a billing company on top. We do both, for less.</p>
-  </div>
-  <div class="rcm">
-    <div class="rcm-copy">
-      <div class="rcm-compare">
-        <div class="rc legacy"><div class="lab">The legacy way</div><div class="amt">$3,000+<small>/mo</small></div><p>A legacy EHR subscription plus a separate billing service taking 5 to 6% of collections.</p></div>
-        <div class="rc us"><div class="lab">The Cowboy way</div><div class="amt">4%<small> of collections</small></div><p>On top of your monthly plan. Full revenue cycle run for you, inside the EHR you already use. One team, one platform.</p></div>
-      </div>
-      <p>We run eligibility, coding review, claim scrubbing, submission through Availity, ERA posting, and denial appeals, on the same platform your clinicians already document in.</p>
-      <a href="#demo" class="btn mag"><span class="dot"></span> See what we would charge you</a>
-    </div>
-    <div class="card" data-tilt style="grid-row:auto">
-      <div class="kick">Live revenue cycle</div>
-      <h3>Claims that clear themselves.</h3>
-      <div class="ledger" style="margin-top:18px">
-        <div class="lrow"><b>Aetna · Eval 97161</b><span class="st">Paid · 2d</span></div>
-        <div class="lrow"><b>UHC · 97110 x3</b><span class="st">Paid · 3d</span></div>
-        <div class="lrow"><b>BCBS · 97140</b><span class="st scr">Scrubbed</span></div>
-        <div class="lrow"><b>Medicare · 97530</b><span class="st">Paid · 2d</span></div>
-        <div class="lrow"><b>Cigna · Re-eval 97164</b><span class="st scr">Eligibility ✓</span></div>
-      </div>
-    </div>
-  </div>
-</div></section>
-
 <!-- STORY -->
 <section class="sec" id="story"><div class="wrap">
   <div class="story">
     <div class="story-copy">
-      <div class="kicker"><span class="num">05</span> Built by clinicians</div>
+      <div class="kicker"><span class="num">03</span> Built by clinicians</div>
       <h2 class="sec-title">Clinicians built us.<br><em>We still treat patients.</em></h2>
       <p>Cowboy Systems grew out of Cowboy Healthcare, our own outpatient PT and yoga clinic. We believe therapists should spend their time treating patients, not wrestling with software, so we built the system we wanted to use ourselves.</p>
       <p>Our own therapists document, schedule and bill in it every day. When something slows them down, we feel it first. That is how an initial evaluation got down to about six minutes, and why signing it now builds the home exercise program, the flow sheet and the claim.</p>
@@ -1149,212 +317,30 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
   </div>
 </div></section>
 
-<!-- COMPARE -->
-<section class="sec" id="compare"><div class="wrap wide">
+<!-- KEEP EXPLORING -->
+<section class="sec" id="explore"><div class="wrap">
   <div class="sec-head">
     <div>
-      <div class="kicker"><span class="num">06</span> Them vs. Cowboy</div>
-      <h2 class="sec-title">Howdy. Here's how<br>the other guys stack up.</h2>
+      <div class="kicker"><span class="num">04</span> Keep exploring</div>
+      <h2 class="sec-title">Dig into<br>the details.</h2>
     </div>
-    <p class="sec-note">Every "other guys" fact below comes straight from that company's own website, linked on the card. We didn't make anything up. We didn't have to.</p>
+    <p class="sec-note">Every feature, the other guys side by side, and every price. One click each.</p>
   </div>
-  <div class="tv-wrap">
-    <table class="tv-table">
-      <thead><tr><th scope="col">&nbsp;</th><th scope="col">The other guys</th><th scope="col" class="tv-us-head">Cowboy</th></tr></thead>
-      <tbody>
-        <tr>
-          <th scope="row">What does it cost?</th>
-          <td class="tv-them-cell"><span class="tv-lab">The other guys</span>WebPT, Raintree, Prompt, Net Health and TheraOffice show no prices on the pages linked below. You book a demo to find out what you will pay.<span class="tv-src">Source: <a class="src" href="https://www.webpt.com/pricing" target="_blank" rel="noopener">WebPT</a> <a class="src" href="https://www.raintreeinc.com/" target="_blank" rel="noopener">Raintree</a> <a class="src" href="https://www.prompthealth.com/" target="_blank" rel="noopener">Prompt</a> <a class="src" href="https://www.nethealth.com/redoc-emr/" target="_blank" rel="noopener">Net Health</a> <a class="src" href="https://www.ntst.com/physical-therapy-software" target="_blank" rel="noopener">TheraOffice</a></span></td>
-          <td class="tv-us-cell"><span class="tv-lab">Cowboy</span>$249 a month for 2 providers. $499 for 5. No sales call just to see a number. No "let me check with my manager."</td>
-        </tr>
-        <tr>
-          <th scope="row">The AI upcharge</th>
-          <td class="tv-them-cell"><span class="tv-lab">The other guys</span>SimplePractice charges $59 a month for its AI Care Aide, plus $49 for each added clinician. Jane charges $15 a month per practitioner for unlimited AI Scribe. SPRY keeps its AI Scribe in the higher Plus tier.<span class="tv-src">Source: <a class="src" href="https://www.simplepractice.com/pricing/" target="_blank" rel="noopener">SimplePractice</a> <a class="src" href="https://jane.app/pricing?locale=en-US" target="_blank" rel="noopener">Jane</a> <a class="src" href="https://www.sprypt.com/pricing" target="_blank" rel="noopener">SPRY</a></span></td>
-          <td class="tv-us-cell"><span class="tv-lab">Cowboy</span>In the plan. 100 AI notes a month on Starter, unlimited on Growth. We don't charge extra for the robot to do your homework.</td>
-        </tr>
-        <tr>
-          <th scope="row">The initial eval</th>
-          <td class="tv-them-cell"><span class="tv-lab">The other guys</span>TheraOffice says its initial evals are done in under 7 minutes.<span class="tv-src">Source: <a class="src" href="https://www.ntst.com/physical-therapy-software" target="_blank" rel="noopener">TheraOffice</a></span></td>
-          <td class="tv-us-cell"><span class="tv-lab">Cowboy</span>About 6 minutes, timed in our clinic. Sign it and the HEP, flow sheet and claim show up on their own. Like magic, but with a BAA.</td>
-        </tr>
-        <tr>
-          <th scope="row">Someone else does the billing</th>
-          <td class="tv-them-cell"><span class="tv-lab">The other guys</span>SPRY charges 4 to 6% of collections. WebPT does not publish its rate. A WebPT article puts typical billing services at 6 to 12%.<span class="tv-src">Source: <a class="src" href="https://www.sprypt.com/pricing" target="_blank" rel="noopener">SPRY</a> <a class="src" href="https://www.webpt.com/blog/billing-software-vs-rcm-service-whats-the-difference-and-whats-right-for-your-practice" target="_blank" rel="noopener">WebPT article</a></span></td>
-          <td class="tv-us-cell"><span class="tv-lab">Cowboy</span>4% of collections, on top of your plan. Keep the other 96. You treated the patients.</td>
-        </tr>
-        <tr>
-          <th scope="row">Getting paid by insurance</th>
-          <td class="tv-them-cell"><span class="tv-lab">The other guys</span>Jane's insurance billing is a $20 a month add-on, plus $5 for each added full-time practitioner, and not available on its Balance plan.<span class="tv-src">Source: <a class="src" href="https://jane.app/pricing?locale=en-US" target="_blank" rel="noopener">Jane</a></span></td>
-          <td class="tv-us-cell"><span class="tv-lab">Cowboy</span>On every plan, with eligibility checks and batch submission through Availity. Getting paid shouldn't be an add-on.</td>
-        </tr>
-        <tr>
-          <th scope="row">Reminder texts</th>
-          <td class="tv-them-cell"><span class="tv-lab">The other guys</span>Jane's Balance plan sends email reminders only. SimplePractice lists appointment reminders starting on its $79 Essential plan, not its $49 Starter.<span class="tv-src">Source: <a class="src" href="https://jane.app/pricing?locale=en-US" target="_blank" rel="noopener">Jane</a> <a class="src" href="https://www.simplepractice.com/pricing/" target="_blank" rel="noopener">SimplePractice</a></span></td>
-          <td class="tv-us-cell"><span class="tv-lab">Cowboy</span>Texts on Starter. Patients reply YES, the schedule says Confirmed, and your front desk drinks their coffee while it's still hot.</td>
-        </tr>
-        <tr>
-          <th scope="row">The phone in your pocket</th>
-          <td class="tv-them-cell"><span class="tv-lab">The other guys</span>SPRY's therapist app is only in its higher Plus tier.<span class="tv-src">Source: <a class="src" href="https://www.sprypt.com/pricing" target="_blank" rel="noopener">SPRY</a></span></td>
-          <td class="tv-us-cell"><span class="tv-lab">Cowboy</span>Included. Write and sign notes, book visits, text patients and block your day off. Sign that last note from the couch. We won't tell.</td>
-        </tr>
-        <tr>
-          <th scope="row">Your evenings</th>
-          <td class="tv-them-cell"><span class="tv-lab">The other guys</span>WebPT says "Document 3x faster." Prompt says "75% less documentation time."<span class="tv-src">Source: <a class="src" href="https://www.webpt.com/pricing" target="_blank" rel="noopener">WebPT</a> <a class="src" href="https://www.prompthealth.com/" target="_blank" rel="noopener">Prompt</a></span></td>
-          <td class="tv-us-cell"><span class="tv-lab">Cowboy</span>About 7 hours back a week per full-time therapist. That's basically a whole workday, or room for about 8 more visits. <a href="#savings" style="color:#c4a3ff;font-weight:600">See the math</a>.</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <h3 class="tv-table-head">The receipts.</h3>
-  <p class="cmp-hint">Swipe the table to see every system.</p>
-  <div class="cmp-scroll" role="region" aria-label="Comparison table" tabindex="0">
-    <table class="cmp-table">
-      <colgroup><col class="c-row"/><col class="c-us"/><col span="8"/></colgroup>
-      <thead><tr><th class="rowh" scope="col">&nbsp;</th><th class="us" scope="col">Cowboy Systems</th><th scope="col">WebPT</th><th scope="col">Prompt Health</th><th scope="col">Raintree</th><th scope="col">Net Health</th><th scope="col">SPRY</th><th scope="col">Jane</th><th scope="col">SimplePractice</th><th scope="col">TheraOffice</th></tr></thead>
-      <tbody>
-        <tr><th class="rowh" scope="row">Published pricing</th><td class="us">Yes. Starter $249/mo for up to 2 providers; Growth $499/mo for up to 5</td><td>No. Set up per provider per month or per visit</td><td>No</td><td>No</td><td>No</td><td>No. Based on visits per full-time provider</td><td>Yes. $54, $79 or $99/mo, plus fees per added practitioner</td><td>Yes. Solo $49, $79 or $99/mo; group Plus $99/mo plus $74 per added practitioner</td><td>No</td></tr>
-        <tr><th class="rowh" scope="row">Documentation time (each company's claim)</th><td class="us">Timed at our clinic: initial evaluation about 6 min, re-evaluation about 5, progress note about 3.5. Signing also builds the HEP, flow sheet and claim</td><td>"Document 3x faster"</td><td>"75% less documentation time"</td><td>Evaluation note time cut "from 17 min to 90 sec"</td><td>Cuts documentation time "by 20-30 minutes"</td><td>AI Scribe drafts SOAP notes "within a few minutes"</td><td><span class="ns">Not stated</span></td><td>AI Note Taker drafts progress notes "in moments"</td><td>Initial evals "done in under 7" minutes; daily notes 1 to 2 minutes</td></tr>
-        <tr><th class="rowh" scope="row">AI documentation</th><td class="us">Included. 100 AI notes/mo on Starter, unlimited on Growth</td><td>AI note generation and coding guidance</td><td>AI scribe with ambient listening and real-time CPT coding</td><td>NoteIQ AI documentation</td><td>Native ambient AI documentation in ReDoc</td><td>AI Scribe in the SPRY Plus tier</td><td>Unlimited AI Scribe add-on, $15/mo per practitioner</td><td>Care Aide add-on, $59/mo plus $49 per added clinician</td><td>AI speech-to-text documentation</td></tr>
-        <tr><th class="rowh" scope="row">Insurance billing software</th><td class="us">Included on every plan, with Availity eligibility and claim checks</td><td>Billing software in the Enhanced and Ultimate plans</td><td>Built-in billing with clearinghouse integration</td><td>Therapy-specific billing and RCM</td><td>Billing safeguards in ReDoc</td><td>Claim scrubbing, clearinghouse and ERA auto-posting in Essentials</td><td>Add-on on Practice and Thrive: $20/mo plus $5 per added full-time practitioner</td><td>Insurance Essentials in every plan</td><td>Integrated ERA and denial organizer</td></tr>
-        <tr><th class="rowh" scope="row">Billing done for you</th><td class="us">Optional add-on, 4% of collections on top of your plan</td><td>RCM service offered; rate not published</td><td><span class="ns">Not stated</span></td><td>Managed RCM services; rate not published</td><td><span class="ns">Not stated</span></td><td>4 to 6% of collections</td><td><span class="ns">Not stated</span></td><td><span class="ns">Not stated</span></td><td><span class="ns">Not stated</span></td></tr>
-        <tr><th class="rowh" scope="row">Reminders</th><td class="us">Text reminders with YES or NO confirmation on the schedule</td><td>Automated appointment reminders</td><td>Automated reminders to book</td><td><span class="ns">Not stated</span></td><td><span class="ns">Not stated</span></td><td>Appointment reminders; two-way messaging is an add-on</td><td>Email on Balance; unlimited SMS from Practice</td><td>Appointment reminders from the $79 Essential plan</td><td><span class="ns">Not stated</span></td></tr>
-        <tr><th class="rowh" scope="row">Mobile apps</th><td class="us">Provider app included; branded patient app $99/mo</td><td><span class="ns">Not stated</span></td><td>Custom patient app (Engage) and kiosk check-in</td><td><span class="ns">Not stated</span></td><td><span class="ns">Not stated</span></td><td>Therapist companion app in SPRY Plus</td><td><span class="ns">Not stated</span></td><td>EHR mobile app and client portal app in every plan</td><td>Touchless mobile check-in</td></tr>
-        <tr><th class="rowh" scope="row">Worth knowing</th><td class="us">Built and used in our own PT clinic</td><td>Supports over 20,000 clinics</td><td>Results based on over 1,000 practices</td><td>3,500+ locations</td><td>Built for hospital outpatient rehab</td><td>G2 rating 4.8 out of 5</td><td>Multi-discipline clinic software</td><td>Private practice EHR</td><td>ONC-certified; 175+ built-in reports</td></tr>
-        <tr><th class="rowh" scope="row">Source</th><td class="us">This page</td><td><a class="src" href="https://www.webpt.com/pricing" target="_blank" rel="noopener">Pricing</a><a class="src" href="https://www.webpt.com/products/rcm-service" target="_blank" rel="noopener">RCM service</a></td><td><a class="src" href="https://www.prompthealth.com/" target="_blank" rel="noopener">Homepage</a></td><td><a class="src" href="https://www.raintreeinc.com/" target="_blank" rel="noopener">Homepage</a></td><td><a class="src" href="https://www.nethealth.com/redoc-emr/" target="_blank" rel="noopener">ReDoc page</a></td><td><a class="src" href="https://www.sprypt.com/pricing" target="_blank" rel="noopener">Pricing</a></td><td><a class="src" href="https://jane.app/pricing?locale=en-US" target="_blank" rel="noopener">Pricing (US)</a></td><td><a class="src" href="https://www.simplepractice.com/pricing/" target="_blank" rel="noopener">Pricing</a></td><td><a class="src" href="https://www.ntst.com/physical-therapy-software" target="_blank" rel="noopener">Product page</a></td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p class="cmp-note">Checked and double-checked September 17, 2026 on each company's public website. Documentation times are each company's own claim, not our measurement. "Not stated" means the page we checked does not say; it does not mean the product lacks it. Products and prices change; if something here is out of date, <a href="/contact" style="color:var(--purple);font-weight:600">tell us</a> and we will fix it. Company names are trademarks of their owners and are used here only to identify their products.</p>
-</div></section>
-
-<!-- FAMILY -->
-<section class="sec" id="family" style="padding-top:0"><div class="wrap">
-  <div class="fam">
-    <div class="fam-lead">
-      <div class="kicker"><span class="num">07</span> We care about the family</div>
-      <h2>The small things that get your evenings back.</h2>
-      <p>We run our own clinic, so we built the little details that save a text, a phone call, or a trip back to the office. Your team, and the families waiting at home, notice.</p>
-    </div>
-    <div class="fam-grid">
-      <div class="card fitem"><b>Your schedule in your Google Calendar</b><span>Each provider sends their visits to their own Google Calendar with one click, without patient names, next to school pickups and family plans.</span></div>
-      <div class="card fitem"><b>Time off, blocked in seconds</b><span>Block a provider's time off from the web or the phone, or close the whole clinic for a holiday in one step. No one gets booked on a day off.</span></div>
-      <div class="card fitem"><b>Patients confirm by text</b><span>Reminders go out 24 hours ahead. A YES or NO reply shows on the schedule, so no one spends the morning calling to confirm.</span></div>
-      <div class="card fitem"><b>Text patients from the clinic number</b><span>Staff text a patient from the chart or the app. It comes from the clinic's number, never a therapist's personal phone.</span></div>
-      <div class="card fitem"><b>Sign the last note from the couch</b><span>The provider app opens the same note forms as the web. Sign on your phone and the claim and appointment update on their own.</span></div>
-      <div class="card fitem"><b>Reach a colleague fast</b><span>Call, text or email anyone on staff from the app's staff list, without hunting for a number.</span></div>
-      <div class="card fitem"><b>Book the whole plan of care at once</b><span>Pick the days and the number of weeks, and every visit is booked with conflicts checked.</span></div>
-      <div class="card fitem"><b>Remembering the people</b><span>Birthday and 6- and 12-month follow-ups show on each chart, and discharged patients are asked for a Google review automatically.</span></div>
-    </div>
-  </div>
-</div></section>
-
-<!-- PRICING -->
-<section class="sec" id="pricing"><div class="wrap">
-  <div class="sec-head">
-    <div>
-      <div class="kicker"><span class="num">08</span> Pricing</div>
-      <h2 class="sec-title">Flat plans. No<br>per-seat games.</h2>
-    </div>
-    <p class="sec-note">Start with a 3-month minimum, billed monthly, or save 15% on a 12-month term. Every paid plan includes a signed BAA and onboarding.</p>
-  </div>
-  <div class="psplit">
-    <div class="ps"><div class="lab">Software</div><div class="amt">Your plan, flat monthly</div><p>The full EHR, including billing and claims tools. Your own team submits and works the claims.</p></div>
-    <div class="ps plus"><div class="lab">Software + full billing</div><div class="amt">Your plan + 4% of collections</div><p>We run all of your billing: eligibility, coding review, claim scrubbing, submission, ERA posting, and denials and appeals. 6-month minimum.</p></div>
-  </div>
-  <div class="pgrid">
-    <div class="pcard">
-      <div class="pname">Starter</div>
-      <div class="price">$249 <small>/ mo</small></div>
-      <div class="pterm">or $211/mo on a 12-month term</div>
-      <div class="pdesc">One flat price for up to 2 providers. Everything to run a modern practice.</div>
-      <a href="https://buy.stripe.com/9B66oGcipgN81RH0TPg7e00" target="_blank" rel="noopener" class="pcta">Get started</a>
-      <ul class="pfeat">
-        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> AI SOAP notes (100/mo)</li>
-        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Scheduling and patient records</li>
-        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Waitlist, reminders, eligibility</li>
-        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Referral intake and analytics</li>
-        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Telehealth (50 sessions/mo)</li>
-        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Basic billing and claims</li>
-        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Signed BAA included</li>
-      </ul>
-    </div>
-    <div class="pcard feat">
-      <span class="pop">Most popular</span>
-      <div class="pname">Growth</div>
-      <div class="price">$499 <small>/ mo</small></div>
-      <div class="pterm">or $424/mo on a 12-month term</div>
-      <div class="pdesc">One flat price for up to 5 providers, with higher AI limits.</div>
-      <a href="https://buy.stripe.com/aFa14m6Y5aoK9k9fOJg7e01" target="_blank" rel="noopener" class="pcta">Get started</a>
-      <ul class="pfeat">
-        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Everything in Starter</li>
-        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Up to 5 providers</li>
-        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Unlimited AI SOAP notes</li>
-      </ul>
-    </div>
-    <div class="pcard">
-      <div class="pname">Enterprise</div>
-      <div class="price">Custom</div>
-      <div class="pdesc">Multi-location practices and health systems.</div>
-      <a href="/contact" class="pcta">Contact sales</a>
-      <ul class="pfeat">
-        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Everything in Growth</li>
-        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Marketing and website builder</li>
-        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Custom integrations and API</li>
-        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Dedicated account manager</li>
-        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Staff training and onboarding</li>
-      </ul>
-    </div>
-  </div>
-  <p class="pnote">Start with a plan, then <a href="/addons">add what you need</a>: full-service billing at 4% of collections on top of your plan, a custom website, a branded patient app, and more. Prices in USD, excluding applicable taxes.</p>
-</div></section>
-
-<!-- TRUST -->
-<section class="sec" id="security"><div class="wrap">
-  <div class="sec-head">
-    <div>
-      <div class="kicker"><span class="num">09</span> Trust and compliance</div>
-      <h2 class="sec-title">Compliant by default.<br>Clinician in control.</h2>
-    </div>
-    <p class="sec-note">Built for HIPAA from the first line of code. <a href="/hipaa-compliance" style="color:var(--purple);font-weight:600">Read our HIPAA statement</a>.</p>
-  </div>
-  <div class="trust">
-    <div class="card titem"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg><b>HIPAA and signed BAA</b><span>A signed BAA comes with every paid plan.</span></div>
-    <div class="card titem"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><b>256-bit encryption</b><span>Patient data encrypted at rest and in transit.</span></div>
-    <div class="card titem"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/></svg><b>Audit logs</b><span>Every access recorded, with role-based permissions.</span></div>
-    <div class="card titem"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18h10a4 4 0 0 0 .5-8A6 6 0 0 0 6 9.5 4.3 4.3 0 0 0 7 18z"/><path d="M12 11v5M9.5 13.5 12 16l2.5-2.5"/></svg><b>Daily encrypted backups</b><span>Automated, every day.</span></div>
-    <div class="card titem"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg><b>Therapist signs off</b><span>The AI drafts. Nothing is final until your therapist reviews and signs.</span></div>
-  </div>
-</div></section>
-
-<!-- FAQ -->
-<section class="sec" id="faq"><div class="wrap">
-  <div class="faq">
-    <div>
-      <div class="kicker"><span class="num">10</span> Questions</div>
-      <h2 class="sec-title">Straight<br>answers.</h2>
-      <p class="sec-note" style="margin-top:18px">Anything else? <a href="/contact" style="color:var(--purple);font-weight:600">Send us a message</a>.</p>
-    </div>
-    <div class="faq-list">
-    <details class="faq-item"><summary>How much does Cowboy cost?<span class="faq-ic" aria-hidden="true"></span></summary><p>Starter is $249 a month for up to 2 providers. Growth is $499 a month for up to 5, with unlimited AI notes. Enterprise is custom. Every price is on this page, no sales call needed to see it.</p></details>
-    <details class="faq-item"><summary>Is there a contract?<span class="faq-ic" aria-hidden="true"></span></summary><p>Plans start with a 3-month minimum, billed monthly, or you can save 15% on a 12-month term.</p></details>
-    <details class="faq-item"><summary>What does the billing service cost?<span class="faq-ic" aria-hidden="true"></span></summary><p>It is optional: 4% of collections, on top of your plan, with a 6-month minimum. We run eligibility, coding review, claim scrubbing, submission, ERA posting, denials and appeals.</p></details>
-    <details class="faq-item"><summary>Does the AI write the note for my therapist?<span class="faq-ic" aria-hidden="true"></span></summary><p>It drafts it from the visit and the chart. Your therapist reviews it, changes what they want, and signs. Nothing is final until they do.</p></details>
-    <details class="faq-item"><summary>How long does a note take?<span class="faq-ic" aria-hidden="true"></span></summary><p>Timed in our own clinic: about six minutes for a full initial evaluation, about five for a re-evaluation, and 3 minutes 38 seconds for a progress note.</p></details>
-    <details class="faq-item"><summary>Is it HIPAA compliant?<span class="faq-ic" aria-hidden="true"></span></summary><p>Yes. Every paid plan includes a signed BAA, patient data is encrypted, and every access is recorded in an audit log that cannot be edited.</p></details>
-    <details class="faq-item"><summary>Can my therapists work from their phones?<span class="faq-ic" aria-hidden="true"></span></summary><p>Yes. The provider app opens the same note forms as the web, so therapists can write and sign notes, book visits, text patients and block time off.</p></details>
-    <details class="faq-item"><summary>How do I see it?<span class="faq-ic" aria-hidden="true"></span></summary><p>Book a 20-minute demo below. We will take one initial evaluation from exam to a signed, coded note, ready to bill.</p></details>
-    </div>
+  <div class="explore">
+    <a class="card xcard" href="/features" data-tilt><div class="kick">Features</div><h3>Every tool, and what it takes off your plate.</h3><p>Thirteen services, product videos, the small things for the family, and security.</p><span class="btn-line">See features <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M1 6h17M13 1l5 5-5 5"/></svg></span></a>
+    <a class="card xcard" href="/compare" data-tilt><div class="kick">Compare</div><h3>The other guys, from their own websites.</h3><p>WebPT, Jane, SimplePractice, SPRY and more, side by side, every fact linked to its source.</p><span class="btn-line">See how we stack up <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M1 6h17M13 1l5 5-5 5"/></svg></span></a>
+    <a class="card xcard" href="/pricing" data-tilt><div class="kick">Pricing</div><h3>$249 a month for 2 providers.</h3><p>Flat plans, the 4% billing service on top if you want it, and straight answers.</p><span class="btn-line">See pricing <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M1 6h17M13 1l5 5-5 5"/></svg></span></a>
   </div>
 </div></section>
 
 <!-- FINAL CTA -->
 <section class="final" id="demo">
-  <div class="kicker" style="justify-content:center"><span class="num">11</span> See it live</div>
+  <div class="kicker" style="justify-content:center"><span class="num">05</span> See it live</div>
   <h2>Twenty minutes.<br>Then you will get it.</h2>
   <p>Book a 20-minute live demo on a real note type. Watch an initial evaluation go from exam to a signed, coded note, ready to bill.</p>
   <div class="final-ctas">
     <a href="#book" class="btn mag"><span class="dot"></span> Pick a time below</a>
-    <a href="#pricing" class="btn-line">View pricing <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 6h17M13 1l5 5-5 5"/></svg></a>
+    <a href="/pricing#pricing" class="btn-line">View pricing <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 6h17M13 1l5 5-5 5"/></svg></a>
   </div>
   <div class="book" id="book">
     <div class="calendly-inline-widget" data-url="https://calendly.com/snyman4d/cowboy-systems-discovery?hide_gdpr_banner=1&amp;primary_color=6d28d9"></div>
@@ -1370,7 +356,7 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
       <a href="/" class="brand" style="color:#fff">Cowboy <small>Systems</small></a>
       <p>The EHR for outpatient PT and multi-service clinics, built by clinicians who run their own PT and Yoga practice. One platform for documentation, scheduling, billing, and growth.</p>
     </div>
-    <div class="fcol"><h4>Product</h4><a href="#platform">Platform</a><a href="#services">Services</a><a href="#billing">Billing Service</a><a href="#compare">Compare</a><a href="#pricing">Pricing</a><a href="/addons">Add-ons</a><a href="#faq">FAQ</a><a href="https://ehr.cowboy-systems.com">Log in</a></div>
+    <div class="fcol"><h4>Product</h4><a href="/features">Features</a><a href="/compare">Compare</a><a href="/pricing">Pricing</a><a href="/pricing#billing">Billing Service</a><a href="/addons">Add-ons</a><a href="/pricing#faq">FAQ</a><a href="https://ehr.cowboy-systems.com">Log in</a></div>
     <div class="fcol"><h4>Company</h4><a href="/about">About</a><a href="/blog">Blog</a><a href="/contact">Contact</a></div>
     <div class="fcol"><h4>Legal</h4><a href="/privacy-policy">Privacy</a><a href="/terms-of-service">Terms</a><a href="/hipaa-compliance">HIPAA</a><a href="/baa">BAA</a></div>
   </div>
@@ -1382,178 +368,6 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-<script>
-document.documentElement.classList.add('js');
-const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-/* Nav solidify */
-const nav=document.getElementById('nav');
-const navScroll=()=>nav.classList.toggle('solid',scrollY>40); navScroll();
-addEventListener('scroll',navScroll,{passive:true});
-
-/* Magnetic buttons */
-if(!reduce) document.querySelectorAll('.mag').forEach(el=>{
-  el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect();
-    el.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.25}px,${(e.clientY-r.top-r.height/2)*.35}px)`;});
-  el.addEventListener('pointerleave',()=>el.style.transform='');
-});
-
-/* Card tilt + spotlight */
-document.querySelectorAll('[data-tilt]').forEach(card=>{
-  card.addEventListener('pointermove',e=>{const r=card.getBoundingClientRect();
-    const px=(e.clientX-r.left)/r.width, py=(e.clientY-r.top)/r.height;
-    card.style.setProperty('--mx',px*100+'%');card.style.setProperty('--my',py*100+'%');
-    if(!reduce) card.style.transform=`perspective(950px) rotateX(${(py-.5)*-4}deg) rotateY(${(px-.5)*5}deg)`;});
-  card.addEventListener('pointerleave',()=>card.style.transform='');
-});
-
-/* Lenis */
-if(window.Lenis && !reduce){const lenis=window.lenis=new Lenis({lerp:.09});
-  (function raf(t){lenis.raf(t);requestAnimationFrame(raf);})();
-  if(window.ScrollTrigger) lenis.on('scroll',ScrollTrigger.update);}
-
-/* Natural page position of a stacking card (sticky cards report where they are stuck) */
-window.stackY=el=>{const stack=el.parentElement;let y=stack.getBoundingClientRect().top+scrollY;const gap=parseFloat(getComputedStyle(stack).rowGap)||0;
-  for(const c of stack.children){if(c===el)break;y+=c.offsetHeight+gap;}return y;};
-
-/* Clean URLs: scroll to sections without a #hash in the address bar */
-const toSection=(id,smooth)=>{
-  if(!id||id==='top'){window.lenis&&smooth?window.lenis.scrollTo(0):scrollTo({top:0,behavior:smooth&&!reduce?'smooth':'auto'});return true;}
-  const el=document.getElementById(id); if(!el) return false;
-  if(el.classList.contains('stack-card')){
-    const sticky=getComputedStyle(el).position==='sticky', i=[...el.parentElement.children].indexOf(el);
-    const y=Math.max(0,window.stackY(el)-(sticky?146+i*12:140));
-    if(window.lenis&&smooth) window.lenis.scrollTo(y); else scrollTo({top:y,behavior:smooth&&!reduce?'smooth':'auto'});
-    return true;
-  }
-  if(window.lenis&&smooth) window.lenis.scrollTo(el,{offset:-90}); else el.scrollIntoView({behavior:smooth&&!reduce?'smooth':'auto'});
-  return true;
-};
-document.addEventListener('click',e=>{
-  const a=e.target.closest('a[href^="#"],a[href^="/#"],a[href="/"]'); if(!a||e.metaKey||e.ctrlKey||e.shiftKey) return;
-  const h=a.getAttribute('href'); if(h==='#') return;
-  if(toSection(h.includes('#')?h.split('#')[1]:'',true)) e.preventDefault();
-});
-const stripHash=()=>{const id=decodeURIComponent(location.hash.slice(1));
-  history.replaceState(null,'',location.pathname+location.search); return id;};
-if(location.hash){const id=stripHash(); addEventListener('load',()=>setTimeout(()=>toSection(id,false),50));}
-addEventListener('hashchange',()=>{if(location.hash) toSection(stripHash(),true);});
-
-/* Reveals: the hero plays as soon as the page is parsed, not after every
-   image and the booking calendar have loaded */
-(()=>{
-  const hero=document.querySelector('.hero');
-  if(reduce||!window.gsap){document.querySelectorAll('.reveal').forEach(e=>e.style.opacity=1);hero.classList.add('lit');return;}
-  gsap.set('.reveal',{opacity:1});
-  const tl=gsap.timeline({defaults:{ease:'power4.out'}});
-  tl.from('.hero h1 .word span',{yPercent:115,duration:1.05,stagger:.08})
-    .from('.hero-eyebrow',{y:16,opacity:0,duration:.7},.2)
-    .from('.hero-sub',{y:20,opacity:0,duration:.8},'-=.6')
-    .from('.hero-ctas',{y:20,opacity:0,duration:.8},'-=.7')
-    .from('.hero-meta',{y:20,opacity:0,duration:.8},'-=.7')
-    .add(()=>hero.classList.add('lit'),'-=.5');
-  if(window.ScrollTrigger){gsap.registerPlugin(ScrollTrigger);
-    gsap.utils.toArray('.card,.band,.rc,.pcard,.sitem,.sec-panel,.addon,.addon-feature,.faq-item,.story-panel').forEach(c=>{
-      gsap.from(c,{y:38,opacity:0,duration:.85,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 90%'}});});
-    addEventListener('load',()=>ScrollTrigger.refresh());
-  }
-})();
-
-/* Real product screens: tab switcher (all screens preloaded, instant switch) */
-(function(){
-  const tabs=[...document.querySelectorAll('.shots-tabs [role="tab"]')], imgs=[...document.querySelectorAll('#shot-stack img')], cap=document.getElementById('shot-cap');
-  if(!tabs.length||tabs.length!==imgs.length) return;
-  const show=i=>{tabs.forEach((b,j)=>b.setAttribute('aria-selected',String(i===j)));
-    imgs.forEach((im,j)=>{im.classList.toggle('on',i===j);i===j?im.removeAttribute('aria-hidden'):im.setAttribute('aria-hidden','true');});
-    cap.textContent=tabs[i].dataset.cap;};
-  tabs.forEach((t,i)=>{
-    t.addEventListener('click',()=>show(i));
-    t.addEventListener('keydown',e=>{if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft')return;e.preventDefault();
-      const n=(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;tabs[n].focus();show(n);});
-  });
-})();
-
-/* Comparison table: show the swipe hint only when the table is wider than its box */
-(function(){const s=document.querySelector('.cmp-scroll'),h=document.querySelector('.cmp-hint');if(!s||!h)return;
-  const f=()=>h.classList.toggle('on',s.scrollWidth>s.clientWidth+2);f();addEventListener('resize',f,{passive:true});})();
-
-/* Product videos: a slot with data-video set becomes playable; empty slots stay "Coming soon" */
-document.querySelectorAll('.vid').forEach(v=>{
-  const src=(v.dataset.video||'').trim(), btn=v.querySelector('.vid-play'), frame=v.querySelector('.vid-frame');
-  if(!src||!btn) return;
-  v.querySelector('.vid-soon')?.remove(); btn.disabled=false;
-  btn.addEventListener('click',()=>{
-    const el=/\.(mp4|webm)(\?|$)/i.test(src)?Object.assign(document.createElement('video'),{src,controls:true,autoplay:true,playsInline:true})
-      :Object.assign(document.createElement('iframe'),{src:src+(src.includes('?')?'&':'?')+'autoplay=1',allow:'autoplay; fullscreen; picture-in-picture',title:v.querySelector('b')?.textContent||'Product video'});
-    frame.innerHTML=''; frame.appendChild(el);
-  });
-});
-
-/* Nav: dropdowns (click for touch, hover for mouse) and the mobile menu */
-(function(){
-  const dds=[...document.querySelectorAll('.dd')], burger=document.querySelector('.nav-burger');
-  const closeAll=except=>dds.forEach(d=>{if(d!==except){d.classList.remove('open');d.querySelector('.dd-btn').setAttribute('aria-expanded','false');}});
-  dds.forEach(d=>d.querySelector('.dd-btn').addEventListener('click',e=>{e.stopPropagation();const o=!d.classList.contains('open');closeAll(d);
-    d.classList.toggle('open',o);e.currentTarget.setAttribute('aria-expanded',String(o));}));
-  document.addEventListener('click',e=>{if(!e.target.closest('.dd'))closeAll();});
-  burger&&burger.addEventListener('click',e=>{e.stopPropagation();const o=!nav.classList.contains('open');nav.classList.toggle('open',o);burger.setAttribute('aria-expanded',String(o));});
-  document.querySelectorAll('#navLinks a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');burger&&burger.setAttribute('aria-expanded','false');closeAll();}));
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeAll();nav.classList.remove('open');}});
-})();
-
-/* Platform tab bar follows the stacking cards. Sticky cards report their stuck
-   position, so positions come from the layout: the stack's top plus the cards
-   and gaps before each one. */
-(function(){
-  const links=[...document.querySelectorAll('#stackTabs a')], cards=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
-  if(!cards.length) return;
-  let last='';
-  const set=id=>{if(id===last)return;last=id;links.forEach(a=>{const on=a.getAttribute('href')==='#'+id;a.setAttribute('aria-current',on?'true':'false');
-    if(on&&matchMedia('(max-width:900px)').matches){const bar=a.parentElement;bar.scrollTo({left:a.offsetLeft-(bar.clientWidth-a.offsetWidth)/2,behavior:'smooth'});}});};
-  const spy=()=>{const y=scrollY+innerHeight*.45;let cur=cards[0].id;cards.forEach(c=>{if(window.stackY(c)<=y)cur=c.id;});set(cur);};
-  addEventListener('scroll',spy,{passive:true}); addEventListener('resize',spy); spy();
-})();
-
-/* Numbers count up when they scroll into view */
-(function(){
-  const els=[...document.querySelectorAll('[data-count]')]; if(!els.length) return;
-  const fmt=(el,v)=>{const d=+(el.dataset.dec||0);el.textContent=(el.dataset.pre||'')+v.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d})+(el.dataset.suf||'');};
-  if(reduce) return;
-  els.forEach(el=>fmt(el,0));
-  const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;io.unobserve(e.target);
-    const el=e.target,to=parseFloat(el.dataset.count),t0=performance.now(),dur=1400;
-    (function step(t){const p=Math.min(1,(t-t0)/dur),k=1-Math.pow(1-p,3);fmt(el,to*k);if(p<1)requestAnimationFrame(step);else fmt(el,to);})(t0);
-    setTimeout(()=>fmt(el,to),dur+200);}),{threshold:.6});
-  els.forEach(el=>io.observe(el));
-})();
-
-/* 3D showcase flattens, floating cards drift, stacked cards settle back */
-addEventListener('load',()=>{
-  if(reduce||!window.gsap||!window.ScrollTrigger) return;
-  gsap.registerPlugin(ScrollTrigger);
-  const mobile=matchMedia('(max-width:760px)').matches;
-  gsap.fromTo('.show-3d',{rotateX:mobile?10:18,scale:mobile?.97:.94},{rotateX:0,scale:1,ease:'none',
-    scrollTrigger:{trigger:'.show-stage',start:'top 90%',end:'top 18%',scrub:true}});
-  gsap.utils.toArray('.float').forEach((f,i)=>{
-    gsap.from(f,{opacity:0,y:30,duration:.8,delay:.9+i*.15,ease:'power3.out'});
-    gsap.to(f,{y:i%2?-70:-40,ease:'none',scrollTrigger:{trigger:'.show-stage',start:'top bottom',end:'bottom top',scrub:true}});
-  });
-  if(matchMedia('(min-width:901px)').matches){
-    const cards=gsap.utils.toArray('.stack-card');
-    cards.forEach((c,i)=>{const next=cards[i+1];if(!next)return;
-      gsap.to(c,{scale:.94,ease:'none',scrollTrigger:{trigger:next,start:'top bottom',end:'top 180px',scrub:true}});});
-  }
-});
-
-/* SOAP typewriter */
-(function(){
-  const spans=[...document.querySelectorAll('[data-type]')];let started=false;
-  const type=(el,t)=>new Promise(res=>{let i=0;(function s(){el.textContent=t.slice(0,i++);i<=t.length?setTimeout(s,15+Math.random()*22):res();})();});
-  async function run(){for(const s of spans){await type(s,s.dataset.type);}
-    document.querySelectorAll('[data-code]').forEach((c,i)=>setTimeout(()=>{c.style.transition='.4s';c.style.opacity=1;c.style.transform='translateY(0)';},i*180));}
-  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&!started){started=true;run();io.disconnect();}}),{threshold:.35});
-  const card=document.querySelector('.c-soap');if(card)io.observe(card);
-})();
-</script>
+<script src="/js/home.js?v=1"></script>
 </body>
 </html>

@@ -10,6 +10,13 @@
   if(burger) burger.addEventListener('click',e=>{e.stopPropagation();const o=!nav.classList.contains('open');nav.classList.toggle('open',o);burger.setAttribute('aria-expanded',String(o));});
   nav.querySelectorAll('#navLinks a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');if(burger)burger.setAttribute('aria-expanded','false');closeAll();}));
   document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeAll();nav.classList.remove('open');}});
-  const solid=()=>nav.classList.toggle('solid',scrollY>40); solid();
-  addEventListener('scroll',solid,{passive:true});
+  let lastY=scrollY;
+  const onScroll=()=>{
+    const y=scrollY; nav.classList.toggle('solid',y>40);
+    const busy=nav.classList.contains('open')||nav.querySelector('.dd.open');
+    if(busy||y<140){nav.classList.remove('nav-hide');lastY=y;return;}
+    if(y>lastY+6){nav.classList.add('nav-hide');lastY=y;}
+    else if(y<lastY-6){nav.classList.remove('nav-hide');lastY=y;}
+  };
+  onScroll(); addEventListener('scroll',onScroll,{passive:true});
 })();
