@@ -9,19 +9,43 @@
 <title>Terms of Service, Cowboy Systems</title>
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin/>
 <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700,500&f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/css/site.css"/>
+<link rel="stylesheet" href="/css/site.css?v=2"/>
 </head>
 <body>
-<nav class="nav" id="nav">
+<nav class="nav" id="nav" aria-label="Main">
   <a href="/" class="brand">Cowboy <small>Systems</small></a>
-  <div class="nav-links">
-    <a href="/#platform">Platform</a>
+  <div class="nav-links" id="navLinks">
+    <div class="dd">
+      <button type="button" class="dd-btn" aria-expanded="false">Product <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 3.5l3 3 3-3"/></svg></button>
+      <div class="dd-menu dd-mega">
+        <a href="/#stack-docs"><b>AI documentation</b><span>Evals in about six minutes, signed by your therapist</span></a>
+        <a href="/#stack-sched"><b>Scheduling and reminders</b><span>Texts your patients confirm with a YES</span></a>
+        <a href="/#stack-billing"><b>Billing and claims</b><span>Checked against the chart before they go out</span></a>
+        <a href="/#stack-front"><b>AI front office</b><span>Calls answered while you treat</span></a>
+        <a href="/#stack-apps"><b>Provider and patient apps</b><span>The clinic in your pocket</span></a>
+        <a href="/#stack-growth"><b>Growth and compliance</b><span>Reviews, recalls and a tamper-evident audit log</span></a>
+        <a href="/#services" class="dd-all">See every service <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M1 6h17M13 1l5 5-5 5"/></svg></a>
+      </div>
+    </div>
+    <div class="dd">
+      <button type="button" class="dd-btn" aria-expanded="false">Why Cowboy <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 3.5l3 3 3-3"/></svg></button>
+      <div class="dd-menu">
+        <a href="/#compare"><b>Them vs. Cowboy</b><span>The other guys, from their own websites</span></a>
+        <a href="/#story"><b>Built by clinicians</b><span>We run our own clinic on it</span></a>
+        <a href="/#family"><b>We care about the family</b><span>The small things that save your evenings</span></a>
+        <a href="/#security"><b>Trust and compliance</b><span>BAA, encryption and audit logs</span></a>
+      </div>
+    </div>
     <a href="/#billing">Billing Service</a>
     <a href="/#pricing">Pricing</a>
     <a href="/addons">Add-ons</a>
-    <a href="/#security">Security</a>
+    <a href="https://ehr.cowboy-systems.com" class="nav-login-m">Log in</a>
   </div>
-  <a href="/#demo" class="nav-cta">Book a Demo</a>
+  <div class="nav-right">
+    <a href="https://ehr.cowboy-systems.com" class="nav-login">Log in</a>
+    <a href="/#demo" class="nav-cta">Book a Demo</a>
+    <button type="button" class="nav-burger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span></button>
+  </div>
 </nav>
 
 <div class="doc-header">
@@ -155,5 +179,6 @@
   </div>
   <div class="fbot"><span>© 2026 Cowboy Systems. All rights reserved.</span><span>Built by clinicians, for practice owners.</span></div>
 </footer>
+<script src="/js/nav.js?v=1" defer></script>
 </body>
 </html>

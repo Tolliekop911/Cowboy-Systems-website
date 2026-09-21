@@ -220,3 +220,56 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px;li
 .addon-intro{max-width:640px;margin-bottom:36px;font-size:17px;color:var(--ink-2);line-height:1.6}
 @media(max-width:900px){.addon-feature{grid-template-columns:1fr;gap:28px}.addon-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:640px){.addon-grid{grid-template-columns:1fr}}
+
+/* ---- pill nav with dropdowns (matches the homepage) ---- */
+.nav{top:14px;left:50%;right:auto;transform:translateX(-50%);width:min(1240px,calc(100% - 24px));
+  padding:10px 10px 10px 24px;border-radius:100px;background:rgba(251,250,255,.8);
+  box-shadow:0 1px 0 rgba(22,15,46,.06),0 18px 40px -28px rgba(22,15,46,.45);border:1px solid rgba(22,15,46,.07)}
+.nav.solid{background:rgba(251,250,255,.94)}
+.nav-links{align-items:center;gap:26px}
+.nav-right{display:flex;align-items:center;gap:8px}
+.nav-login{font-size:13px;font-weight:700;color:var(--ink);padding:10px 16px;border-radius:100px;border:1px solid rgba(22,15,46,.14);line-height:1.2}
+.nav-login:hover{border-color:var(--purple);color:var(--purple)}
+.nav-cta{line-height:1.2}
+.nav-login-m{display:none}
+.dd{position:relative}
+.dd-btn{font:inherit;font-size:14px;font-weight:500;color:var(--ink-soft);background:none;border:0;cursor:pointer;display:flex;align-items:center;gap:6px;padding:6px 0}
+.dd-btn:hover,.dd.open .dd-btn,.dd:focus-within .dd-btn{color:var(--ink)}
+.dd-btn svg{transition:transform .25s}
+.dd.open .dd-btn svg{transform:rotate(180deg)}
+.dd-menu{position:absolute;top:calc(100% + 16px);left:50%;transform:translate(-50%,8px);min-width:300px;padding:10px;line-height:1.45;
+  background:#fff;border:1px solid rgba(22,15,46,.09);border-radius:18px;box-shadow:0 30px 60px -30px rgba(22,15,46,.45);
+  opacity:0;visibility:hidden;transition:opacity .2s,transform .2s,visibility .2s}
+.dd-menu::before{content:"";position:absolute;left:0;right:0;top:-18px;height:18px}
+.dd-mega{display:grid;grid-template-columns:1fr 1fr;min-width:560px}
+.dd:hover .dd-menu,.dd.open .dd-menu,.dd:focus-within .dd-menu{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.nav-links .dd-menu a{display:block;padding:11px 14px;border-radius:12px;transition:background .15s;color:var(--ink)}
+.nav-links .dd-menu a::after{display:none}
+.nav-links .dd-menu a:hover{background:var(--paper-2)}
+.dd-menu b{display:block;font-size:14px;font-weight:700;color:var(--ink)}
+.dd-menu span{display:block;font-size:12.5px;color:var(--ink-soft);margin-top:2px}
+.nav-links .dd-menu .dd-all{grid-column:1/-1;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--purple);
+  border-top:1px solid rgba(22,15,46,.07);border-radius:0 0 12px 12px;margin-top:4px}
+.nav-burger{display:none;width:42px;height:42px;border-radius:50%;border:1px solid rgba(22,15,46,.14);background:#fff;cursor:pointer;
+  flex-direction:column;align-items:center;justify-content:center;gap:5px}
+.nav-burger span{display:block;width:16px;height:1.8px;background:var(--ink);transition:transform .25s}
+.nav.open .nav-burger span:first-child{transform:translateY(3.4px) rotate(45deg)}
+.nav.open .nav-burger span:last-child{transform:translateY(-3.4px) rotate(-45deg)}
+@media(max-width:1000px){
+  .nav{padding:8px 8px 8px 20px}
+  .nav-login{display:none}
+  .nav-burger{display:flex}
+  .nav-links{position:absolute;top:calc(100% + 10px);left:0;right:0;display:none;flex-direction:column;align-items:stretch;gap:0;
+    background:#fff;border:1px solid rgba(22,15,46,.09);border-radius:22px;padding:10px;box-shadow:0 30px 60px -30px rgba(22,15,46,.5);
+    max-height:calc(100vh - 110px);overflow-y:auto}
+  .nav.open .nav-links{display:flex}
+  .nav-links>a,.dd-btn{padding:13px 14px;font-size:15px;width:100%;justify-content:space-between}
+  .nav-links>a::after{display:none}
+  .nav-login-m{display:block;font-weight:700;color:var(--purple)!important}
+  .dd-menu,.dd-mega{position:static;transform:none;min-width:0;display:none;opacity:1;visibility:visible;box-shadow:none;border:0;padding:0 0 6px 8px;grid-template-columns:1fr}
+  .dd:hover .dd-menu,.dd.open .dd-menu,.dd:focus-within .dd-menu{transform:none;left:auto}
+  .dd.open .dd-menu{display:block}
+  .dd-menu::before{display:none}
+  .nav-links .dd-menu .dd-all{margin-top:2px}
+}
+@media(max-width:420px){.nav-cta{padding:10px 14px;font-size:12px}}
