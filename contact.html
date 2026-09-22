@@ -5,13 +5,18 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=5"/>
 <link rel="alternate icon" href="/favicon.ico?v=5" sizes="any"/>
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=5"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Contact, Cowboy Systems</title>
+<meta name="description" content="Contact Cowboy Systems: book a 20-minute demo, email info@cowboy-systems.com, or send us a message."/>
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin/>
 <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700,500&f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/css/site.css?v=4"/>
+<link rel="stylesheet" href="/css/home.css?v=7"/>
 </head>
 <body>
+
+<svg class="grain"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
+
+<!-- NAV -->
 <nav class="nav" id="nav" aria-label="Main">
   <a href="/" class="brand">Cowboy <small>Systems</small></a>
   <div class="nav-links" id="navLinks">
@@ -44,59 +49,52 @@
   </div>
   <div class="nav-right">
     <a href="https://ehr.cowboy-systems.com" class="nav-login">Log in</a>
-    <a href="/#demo" class="nav-cta">Book a Demo</a>
+    <a href="/#demo" class="nav-cta mag">Book a Demo</a>
     <button type="button" class="nav-burger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span></button>
   </div>
 </nav>
 
-<div class="doc-header">
-  <h1>Contact Us</h1>
-  <div class="meta">We'd love to hear from you</div>
-</div>
-<div class="doc-body">
-  <div class="highlight-box">
-    <p>Whether you're a PT clinic ready to switch, a practice owner with questions, or a partner looking to integrate, we're here to help.</p>
-  </div>
 
-  <h2>Get in Touch</h2>
-  <div class="contact-grid">
-    <div class="contact-card">
-      <h3>Sales &amp; Demo</h3>
-      <p>Ready to see Cowboy Systems in action? Book a personalized demo with our team.</p>
-      <p style="margin-top:12px"><a href="/pricing">View Pricing</a> &nbsp;&middot;&nbsp; <a href="/#demo">Book Demo</a></p>
-    </div>
-    <div class="contact-card">
-      <h3>General Inquiries</h3>
-      <p>Questions about the platform, integrations, or your practice's fit?</p>
-      <p style="margin-top:12px"><a href="mailto:info@cowboy-systems.com">info@cowboy-systems.com</a></p>
-    </div>
-    <div class="contact-card">
-      <h3>HIPAA &amp; Legal</h3>
-      <p>BAA requests, compliance questions, and legal matters.</p>
-      <p style="margin-top:12px"><a href="mailto:info@cowboy-systems.com">info@cowboy-systems.com</a></p>
-    </div>
-    <div class="contact-card">
-      <h3>Security</h3>
-      <p>To report a security concern or data incident.</p>
-      <p style="margin-top:12px"><a href="mailto:info@cowboy-systems.com">info@cowboy-systems.com</a></p>
-    </div>
+<!-- PAGE HERO -->
+<header class="hero hero-c page-hero" id="top">
+  <div class="hero-eyebrow reveal"><span class="line"></span> Contact <span class="line"></span></div>
+  <h1 aria-label="Talk to a person.">
+    <span class="word"><span>Talk</span></span> <span class="word"><span>to</span></span> <span class="word"><span><em>a&nbsp;person.</em></span></span>
+  </h1>
+  <p class="hero-sub reveal">Questions about the platform, pricing, switching or HIPAA? One inbox reaches the whole team.</p>
+  <div class="hero-ctas reveal">
+    <a href="/#demo" class="btn mag"><span class="dot"></span> Book a Demo</a>
+    <a href="mailto:info@cowboy-systems.com" class="btn ghost">Email us</a>
   </div>
+</header>
 
-  <div class="contact-form">
-    <h2 style="margin-bottom:20px;font-size:20px">Send us a message</h2>
-    <form action="https://formspree.io/f/mzdqlnng" method="POST" id="contactForm">
-      <input type="hidden" name="_subject" value="Contact Form, Cowboy Systems"/>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-        <div class="fgroup"><label>First Name</label><input type="text" name="first_name" placeholder="Sarah" required/></div>
-        <div class="fgroup"><label>Last Name</label><input type="text" name="last_name" placeholder="Mitchell" required/></div>
-      </div>
-      <div class="fgroup"><label>Email</label><input type="email" name="email" placeholder="you@yourclinic.com" required/></div>
-      <div class="fgroup"><label>Practice Name</label><input type="text" name="practice" placeholder="Summit Physical Therapy"/></div>
-      <div class="fgroup"><label>Message</label><textarea name="message" placeholder="Tell us what you're looking for..." required></textarea></div>
-      <button type="submit" class="btn btn-primary">Send Message &rsaquo;</button>
-    </form>
+<!-- CONTACT -->
+<section class="sec" id="contact" style="padding-top:20px"><div class="wrap">
+  <div class="contact2">
+    <div class="c-cards">
+      <a class="card c-card" href="/#demo" data-tilt><div class="kick">See it live</div><h3>Book a 20-minute demo</h3><p>Pick a time and watch an initial evaluation go from exam to a signed, coded note.</p><span class="btn-line">Pick a time <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M1 6h17M13 1l5 5-5 5"/></svg></span></a>
+      <a class="card c-card" href="mailto:info@cowboy-systems.com" data-tilt><div class="kick">Email</div><h3>info@cowboy-systems.com</h3><p>Sales, support, switching from another system, BAA requests and security reports all reach the team here.</p><span class="btn-line">Write to us <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M1 6h17M13 1l5 5-5 5"/></svg></span></a>
+      <a class="card c-card" href="https://ehr.cowboy-systems.com" data-tilt><div class="kick">Already a customer?</div><h3>Log in to the EHR</h3><p>Your clinic's schedule, charts and billing, at ehr.cowboy-systems.com.</p><span class="btn-line">Log in <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M1 6h17M13 1l5 5-5 5"/></svg></span></a>
+    </div>
+    <div class="card c-form">
+      <div class="kick">Send us a message</div>
+      <h3>We reply within one business day.</h3>
+      <form action="https://formspree.io/f/mzdqlnng" method="POST" id="contactForm">
+        <input type="hidden" name="_subject" value="Contact Form, Cowboy Systems"/>
+        <div class="c-row">
+          <label>First name<input type="text" name="first_name" autocomplete="given-name" required/></label>
+          <label>Last name<input type="text" name="last_name" autocomplete="family-name" required/></label>
+        </div>
+        <label>Email<input type="email" name="email" placeholder="you@yourclinic.com" autocomplete="email" required/></label>
+        <label>Practice name<input type="text" name="practice" placeholder="Your clinic's name" autocomplete="organization"/></label>
+        <label>Message<textarea name="message" rows="5" placeholder="Tell us what you are looking for" required></textarea></label>
+        <button type="submit" class="btn">Send message</button>
+      </form>
+    </div>
   </div>
-</div>
+</div></section>
+
+<!-- FOOTER -->
 <footer>
   <div class="fgrid">
     <div class="fbrand">
@@ -109,6 +107,12 @@
   </div>
   <div class="fbot"><span>© 2026 Cowboy Systems. All rights reserved.</span><span>Built by clinicians, for practice owners.</span></div>
 </footer>
+
+<!-- LIBS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="/js/home.js?v=4"></script>
 <script>
 document.getElementById('contactForm')?.addEventListener('submit', async e => {
   e.preventDefault();
@@ -116,11 +120,10 @@ document.getElementById('contactForm')?.addEventListener('submit', async e => {
   btn.textContent = 'Sending...'; btn.disabled = true;
   try {
     const r = await fetch(e.target.action, { method:'POST', body: new FormData(e.target), headers:{ Accept:'application/json' } });
-    if (r.ok) { e.target.innerHTML = '<div style="text-align:center;padding:40px 0"><div style="font-size:40px;margin-bottom:16px">&#10003;</div><h3 style="color:#1e1047;margin-bottom:8px">Message sent!</h3><p>We\'ll be in touch within one business day.</p></div>'; }
+    if (r.ok) { e.target.innerHTML = '<div class="c-sent"><b>Message sent.</b><span>We will be in touch within one business day.</span></div>'; }
     else { btn.textContent = 'Try again'; btn.disabled = false; }
   } catch { btn.textContent = 'Try again'; btn.disabled = false; }
 });
 </script>
-<script src="/js/nav.js?v=3" defer></script>
 </body>
 </html>
