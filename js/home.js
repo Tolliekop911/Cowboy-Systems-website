@@ -163,7 +163,7 @@ addEventListener('load',()=>{
   if(document.querySelector('.show-stage')){
   gsap.fromTo('.show-3d',{rotateX:mobile?10:18,scale:mobile?.97:.94},{rotateX:0,scale:1,ease:'none',
     scrollTrigger:{trigger:'.show-stage',start:'top 90%',end:'top 18%',scrub:true}});
-  gsap.utils.toArray('.float').forEach((f,i)=>{
+  gsap.utils.toArray('.show-stage .float').forEach((f,i)=>{
     gsap.from(f,{opacity:0,y:30,duration:.8,delay:.9+i*.15,ease:'power3.out'});
     gsap.to(f,{y:i%2?-70:-40,ease:'none',scrollTrigger:{trigger:'.show-stage',start:'top bottom',end:'bottom top',scrub:true}});
   });
@@ -183,4 +183,21 @@ addEventListener('load',()=>{
     document.querySelectorAll('[data-code]').forEach((c,i)=>setTimeout(()=>{c.style.transition='.4s';c.style.opacity=1;c.style.transform='translateY(0)';},i*180));}
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&!started){started=true;run();io.disconnect();}}),{threshold:.35});
   const card=document.querySelector('.c-soap');if(card)io.observe(card);
+})();
+
+/* People photos: a slow zoom as they scroll through, chips drift in.
+   Runs right away, not on load, so nothing waits on the booking calendar. */
+(()=>{
+  if(reduce||!window.gsap||!window.ScrollTrigger) return;
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.utils.toArray('.ph img,.diff-photo img,.ps img,.fam-photo img').forEach(im=>{
+    gsap.fromTo(im,{scale:1.16},{scale:1,ease:'none',scrollTrigger:{trigger:im.parentElement,start:'top bottom',end:'bottom top',scrub:true}});
+  });
+  gsap.utils.toArray('.ph .float,.diff-photo .float').forEach((c,i)=>{
+    gsap.from(c,{y:24,opacity:0,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c.parentElement,start:'top 75%'}});
+    gsap.to(c,{y:i%2?-26:-14,ease:'none',scrollTrigger:{trigger:c.parentElement,start:'top bottom',end:'bottom top',scrub:true}});
+  });
+  gsap.utils.toArray('.diff-items li').forEach(li=>{
+    gsap.from(li,{y:26,opacity:0,duration:.8,ease:'power3.out',scrollTrigger:{trigger:li,start:'top 88%'}});
+  });
 })();
