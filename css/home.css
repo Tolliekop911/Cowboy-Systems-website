@@ -686,7 +686,7 @@ body.nav-up .stack-tabs{top:14px}
 .diff-media{position:sticky;top:110px}
 .diff-photo{aspect-ratio:4/5;box-shadow:0 50px 90px -50px rgba(0,0,0,.8)}
 .diff-photo .float{min-width:0;max-width:78%}
-.diff-photo .d1{left:18px;top:18px}
+.diff-photo .d1{left:18px;top:auto;bottom:96px}
 .diff-photo .d2{right:18px;bottom:18px}
 .diff .kicker{color:#c4a3ff}
 .diff .sec-title{color:#fff;margin-bottom:34px}
@@ -710,7 +710,7 @@ body.nav-up .stack-tabs{top:14px}
 .ph figcaption b{display:block;font-family:var(--disp);font-weight:600;font-size:20px;letter-spacing:-.4px}
 .ph figcaption span{display:block;font-size:13.5px;color:rgba(255,255,255,.85);margin-top:2px}
 .ph .p1{left:20px;top:20px}
-.ph .p2{left:16px;top:18px;min-width:0;max-width:86%}
+.ph .p2{left:16px;top:auto;bottom:118px;min-width:0;max-width:86%}
 @media(max-width:900px){.mosaic{grid-template-columns:1fr 1fr;grid-template-rows:300px 380px 230px 230px;grid-template-areas:"a a" "b c" "b d" "e e"}}
 @media(max-width:560px){.mosaic{grid-template-columns:1fr;grid-template-rows:none;grid-auto-rows:260px;grid-template-areas:"a" "b" "c" "d" "e"}.pb{min-height:380px}}
 
