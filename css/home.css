@@ -753,3 +753,18 @@ body.nav-up .stack-tabs{top:14px}
 .c-sent{text-align:center;padding:40px 0}.c-sent b{display:block;font-family:var(--disp);font-size:26px;color:var(--purple-dark);margin-bottom:6px}
 @media(max-width:900px){.contact2{grid-template-columns:1fr}}
 @media(max-width:480px){.c-row{grid-template-columns:1fr}.card.c-form{padding:24px}}
+
+/* ══ FAMILY IN THE BACKGROUND ═══════════════════════════════════════════ */
+.diff-bg,.band-bg,.final-bg{position:absolute;inset:0;background-size:cover;background-position:center;pointer-events:none}
+.diff-bg{z-index:0;opacity:.2;filter:saturate(.85)}
+.diff::before{z-index:1}
+.diff .wrap{z-index:2}
+.diff-family{margin-top:22px;font-family:var(--disp);font-weight:600;font-size:clamp(18px,1.6vw,22px);letter-spacing:-.4px;color:#c4a3ff;max-width:34ch}
+.band-gain{isolation:isolate}
+.band-bg{z-index:-1;opacity:.28;filter:saturate(.9)}
+.band-gain::before{z-index:0}
+.band-gain .band-inner{z-index:1}
+.gain-home{position:relative;z-index:1;margin-top:26px;font-family:var(--disp);font-weight:600;font-size:clamp(20px,2vw,28px);letter-spacing:-.6px;color:#fff}
+.final.final-photo{position:relative;overflow:hidden;isolation:isolate}
+.final-bg{z-index:-1;opacity:.16;background-position:50% 35%;
+  -webkit-mask-image:linear-gradient(180deg,transparent,#000 22%,#000 70%,transparent);mask-image:linear-gradient(180deg,transparent,#000 22%,#000 70%,transparent)}
