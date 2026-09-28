@@ -10,7 +10,7 @@
 <meta name="description" content="The EHR for outpatient PT and multi-service clinics, built by clinicians. A full initial evaluation in about six minutes of documentation time: note, assessment, goals, and codes, billing-ready."/>
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin/>
 <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700,500&f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/css/home.css?v=11"/>
+<link rel="stylesheet" href="/css/home.css?v=13"/>
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -105,7 +105,7 @@
         <a href="#stack-front"><b>AI front office</b><span>Calls answered while you treat</span></a>
         <a href="#stack-apps"><b>Provider and patient apps</b><span>The clinic in your pocket</span></a>
         <a href="#stack-growth"><b>Growth and compliance</b><span>Reviews, recalls and a tamper-evident audit log</span></a>
-        <a href="/features" class="dd-all">See every feature <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M1 6h17M13 1l5 5-5 5"/></svg></a>
+        <a href="/#everything" class="dd-all">See everything we run <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M1 6h17M13 1l5 5-5 5"/></svg></a>
       </div>
     </div>
     <div class="dd">
@@ -175,6 +175,17 @@
     <figcaption>Watch a real initial evaluation run start to signed note, uncut and on the clock. You decide whether it is thorough.</figcaption>
   </figure>
 
+  <div class="ev-more reveal">
+    <figure class="ev-small">
+      <div class="ev-frame sm"><div class="ev-badge">Video coming soon</div><div class="ev-play" aria-hidden="true"><svg width="18" height="21" viewBox="0 0 26 30" fill="currentColor" aria-hidden="true"><path d="M0 0l26 15L0 30z"/></svg></div></div>
+      <figcaption><b>The agent on the phone</b><span>The reminder goes out, the patient replies YES, the schedule updates itself.</span></figcaption>
+    </figure>
+    <figure class="ev-small">
+      <div class="ev-frame sm"><div class="ev-badge">Video coming soon</div><div class="ev-play" aria-hidden="true"><svg width="18" height="21" viewBox="0 0 26 30" fill="currentColor" aria-hidden="true"><path d="M0 0l26 15L0 30z"/></svg></div></div>
+      <figcaption><b>The agent on a claim</b><span>Scrubbed against the chart, submitted, and the ERA posted when it comes back.</span></figcaption>
+    </figure>
+  </div>
+
 </header>
 
 <!-- PRODUCT SHOWCASE (3D, flattens on scroll) -->
@@ -184,7 +195,27 @@
   <figure class="shot-frame show-3d" role="tabpanel">
     <div class="shot-bar"><i></i><i></i><i></i><span>ehr.cowboy-systems.com</span></div>
     <div class="shot-stack" id="shot-stack">
-      <img src="/assets/product/chart-signed-eval.webp" alt="Patient chart in Cowboy Systems showing a signed Lower Extremity Initial Evaluation for a test patient" width="1600" height="760" decoding="async" class="on"/>
+      <div class="shot-live on" id="shot-live">
+        <div class="sl-rail">
+          <div class="sl-pt"><span class="sl-av">RM</span><b>Rivera, M.</b><span class="sl-sub">Test patient</span></div>
+          <div class="sl-chip">Right knee pain</div>
+          <div class="sl-chip">Auth: 8 of 12 visits</div>
+          <div class="sl-chip">Next: Thu 2:00 PM</div>
+        </div>
+        <div class="sl-main">
+          <div class="sl-head"><b>Lower Extremity Initial Evaluation</b><span class="sl-stamp" id="sl-stamp">Draft</span></div>
+          <div class="sl-body">
+            <p><b>Subjective.</b> Reports right anterior knee pain for six weeks, worse on stairs and after sitting. Denies giving way or locking. Pain 6 of 10 at worst.</p>
+            <p><b>Objective.</b> Knee flexion 118 degrees, extension -2. Quad strength 4 of 5. Patellar grind positive. Single leg squat with dynamic valgus.</p>
+            <p><b>Assessment.</b> Patellofemoral pain syndrome, right. Deficits in quadriceps strength and hip control limiting stairs and squatting.</p>
+            <p><b>Plan.</b> 2x per week for 6 weeks. Quad and hip strengthening, patellar taping trial, home program.</p>
+          </div>
+          <div class="sl-codes"><span>97162</span><span>97110</span><span>97530</span><span class="sl-dx">M22.2X1</span></div>
+          <button type="button" class="sl-sign" id="sl-sign">Sign the evaluation</button>
+          <ul class="sl-out" id="sl-out" aria-live="polite"></ul>
+        </div>
+      </div>
+      <img src="/assets/product/chart-signed-eval.webp" alt="Patient chart in Cowboy Systems showing a signed Lower Extremity Initial Evaluation for a test patient" width="1600" height="760" decoding="async" aria-hidden="true"/>
       <img src="/assets/product/notes-billing.webp" alt="Notes tab in Cowboy Systems with initial evaluation, progress note, re-evaluation, discharge summary, and Send to Billing and Fax actions" width="1600" height="760" decoding="async" aria-hidden="true"/>
       <img src="/assets/product/hep-flowsheet.webp" alt="HEP and flowsheet screen in Cowboy Systems with an exercise library and a home exercise program builder" width="1600" height="760" decoding="async" aria-hidden="true"/>
       <img src="/assets/product/smart-forms.webp" alt="Smart Forms screen in Cowboy Systems listing 42 clinical templates across specialties" width="1600" height="760" decoding="async" aria-hidden="true"/>
@@ -196,23 +227,68 @@
       <div class="float f4" aria-hidden="true"><i class="fl-dot" aria-hidden="true"></i><b>Flow sheet synced</b><span>Linked to today's note</span></div>
     </div>
   <div class="shots-tabs show-tabs" role="tablist" aria-label="Product screens">
-    <button type="button" role="tab" aria-selected="true" aria-controls="shot-stack" data-src="/assets/product/chart-signed-eval.webp" data-alt="Patient chart in Cowboy Systems showing a signed Lower Extremity Initial Evaluation for a test patient" data-cap="A signed Lower Extremity Initial Evaluation on the patient chart: diagnoses, history, and every section of the exam.">Signed initial eval</button>
+    <button type="button" role="tab" aria-selected="true" aria-controls="shot-stack" data-live="1" data-cap="Click Sign the evaluation. This is the part everyone asks to see: one signature, and the claim, the home program, the flow sheet and the audit entry are all built.">Sign a note <span class="tab-live">Interactive</span></button>
+    <button type="button" role="tab" aria-selected="false" aria-controls="shot-stack" data-src="/assets/product/chart-signed-eval.webp" data-alt="Patient chart in Cowboy Systems showing a signed Lower Extremity Initial Evaluation for a test patient" data-cap="A signed Lower Extremity Initial Evaluation on the patient chart: diagnoses, history, and every section of the exam.">Signed initial eval</button>
     <button type="button" role="tab" aria-selected="false" aria-controls="shot-stack" data-src="/assets/product/notes-billing.webp" data-alt="Notes tab in Cowboy Systems with initial evaluation, progress note, re-evaluation, discharge summary, and Send to Billing and Fax actions" data-cap="Every note type in one place. Send a signed note to billing, fax it, or print it in one click.">Notes and billing</button>
     <button type="button" role="tab" aria-selected="false" aria-controls="shot-stack" data-src="/assets/product/hep-flowsheet.webp" data-alt="HEP and flowsheet screen in Cowboy Systems with an exercise library and a home exercise program builder" data-cap="Build home exercise programs and daily flowsheets from the exercise library, or quick-fill by diagnosis.">HEP and flowsheet</button>
     <button type="button" role="tab" aria-selected="false" aria-controls="shot-stack" data-src="/assets/product/smart-forms.webp" data-alt="Smart Forms screen in Cowboy Systems listing 42 clinical templates across specialties" data-cap="42 ready-made templates: evaluations, re-evaluations, flowsheets, and charge sheets for nine specialties.">42 clinical templates</button>
   </div>
-  <div class="shot-cap"><span id="shot-cap">A signed Lower Extremity Initial Evaluation on the patient chart: diagnoses, history, and every section of the exam.</span><span class="demo">Test patient · demo data</span></div>
+  <div class="shot-cap"><span id="shot-cap">Click Sign the evaluation. This is the part everyone asks to see: one signature, and the claim, the home program, the flow sheet and the audit entry are all built.</span><span class="demo">Test patient · demo data</span></div>
   </div>
 </section>
 
 <!-- WORKS WITH -->
 <div class="works" aria-label="Works with">
   <span class="works-lab">Works with</span>
+  <div class="works-lab">Working with</div>
   <div class="works-track"><div class="works-row">
     <span>Availity</span><span>Stripe</span><span>Google Calendar</span><span>eFax</span><span>Twilio texting</span><span>iPhone and Android</span>
     <span aria-hidden="true">Availity</span><span aria-hidden="true">Stripe</span><span aria-hidden="true">Google Calendar</span><span aria-hidden="true">eFax</span><span aria-hidden="true">Twilio texting</span><span aria-hidden="true">iPhone and Android</span>
   </div></div>
 </div>
+
+
+<!-- THE ORBIT: everything the agent runs -->
+<section class="sec orbit-sec" id="everything">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kick">More than an EHR</div>
+      <h2>One agent. <em>The whole business.</em></h2>
+      <p class="sec-note">Most software here does documentation and stops. The physical therapy AI agent runs the front desk, the classes, the claims and the paperwork nobody wants, for every service you sell, not just the physical therapy side.</p>
+    </div>
+    <div class="orbit reveal">
+      <div class="orbit-core">
+        <span class="oc-kick">Trained by doctors of physical therapy</span>
+        <b>The physical therapy<br>AI agent</b>
+      </div>
+      <ul class="orbit-ring">
+        <li><b>Your website and booking page</b><span>We build it, and the booking widget writes straight into your schedule.</span></li>
+        <li><b>The whole schedule, not just PT</b><span>Physical therapy, yoga, Pilates, dance, classes and memberships on one calendar.</span></li>
+        <li><b>Documentation</b><span>Nine region suites and 42 templates. The therapist reviews and signs.</span></li>
+        <li><b>Billing for the whole clinic</b><span>Insurance claims and cash services on the same books, not two systems.</span></li>
+        <li><b>Prior authorizations</b><span>Visits used against visits approved, the expiry date watched, and the request drafted from the chart.</span></li>
+        <li><b>The front office</b><span>Calls answered, reminders sent, YES replies confirmed, referrals filed into charts.</span></li>
+        <li><b>Provider and patient apps</b><span>iPhone and Android, so the clinic is in your pocket.</span></li>
+        <li><b>Revenue you are not billing yet</b><span>Missed units, unbilled visits, denials worth appealing, and discharges turned into reviews and referrals.</span></li>
+      </ul>
+    </div>
+    <p class="orbit-foot reveal">If you run a clinic and a studio out of the same building, this is the part nobody else does. You stop paying for one system for the therapy side and another for everything else.</p>
+  </div>
+</section>
+
+
+<!-- ROADMAP -->
+<section class="sec roadmap-sec" id="roadmap"><div class="wrap">
+  <div class="sec-head reveal">
+    <div class="kick">In the build</div>
+    <h2>What the agent learns <em>next.</em></h2>
+    <p class="sec-note">We would rather tell you what is coming than pretend it already shipped. These are being built now, and they are not on your invoice until they work.</p>
+  </div>
+  <ul class="road-list reveal">
+    <li><span class="road-tag">Building</span><b>Payer policy watch</b><span>The agent reads the Medicare, MAC and Medicaid policy pages and tells you when a rule that touches your claims changes, instead of you finding out through a denial.</span></li>
+    <li><span class="road-tag">Building</span><b>A news panel in the platform</b><span>Physical therapy and payer news, read and summarized, on the screen you already have open.</span></li>
+  </ul>
+</div></section>
 
 <!-- THE COWBOY DIFFERENCE -->
 <section class="diff" id="difference"><div class="diff-bg" aria-hidden="true" style="background-image:url(/assets/people/family-sunset-1400.webp)"><video class="bg-vid" data-src="/assets/video/family-lake-sunset.mp4" poster="/assets/people/family-sunset-720.webp" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video></div><div class="wrap">
@@ -284,7 +360,7 @@
       <div class="stack-copy">
         <div class="kick">AI documentation</div>
         <h3>Chart in the room, <em>not at 9&nbsp;p.m.</em></h3>
-        <p class="stack-lede">The AI drafts the note from the visit and the chart. Your therapist reviews it, fixes what they want, and signs.</p>
+        <p class="stack-lede">The physical therapy AI agent drafts the note from the visit and the chart. Your therapist reviews it, fixes what they want, and signs.</p>
         <ul><li>A full initial evaluation, timed end to end at about six minutes</li><li>Signing builds the home exercise program, the flow sheet and the claim</li><li>Nine region suites and 42 ready-made templates</li></ul>
         <p class="stack-close">Your notes are done before your patient reaches the parking lot.</p>
         <a href="/features#services" class="btn-out">See the details <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M1 6h17M13 1l5 5-5 5"/></svg></a>
@@ -293,7 +369,7 @@
         <div class="c-soap vis-dark">
           <div class="soap-head"><div class="kick">AI Documentation · Live</div><div class="soap-rec"><i></i> Recording</div></div>
       <h3>The note writes itself.</h3>
-      <p>Speak naturally. The AI builds the SOAP note and picks the codes as you go.</p>
+      <p>Speak naturally. The physical therapy AI agent builds the SOAP note and picks the codes as you go.</p>
       <div class="soap-note">
         <span class="ln"><span class="lbl">S:</span> <span data-type="Pt reports R shoulder pain 4/10, improving since last visit. Denies night pain."></span></span>
         <span class="ln"><span class="lbl">O:</span> <span data-type="AROM flexion 155°, abduction 140°. MMT 4/5 supraspinatus. (+) Hawkins-Kennedy."></span></span>
@@ -426,6 +502,13 @@
     <div class="bstat"><b data-count="8" data-pre="~">~8</b><span>More visits a week, if you fill the time</span><em>About 380 a year</em></div>
     <div class="bstat"><b data-count="840" data-pre="~$">~$840</b><span>More revenue a week</span><em>About $40,000 a year</em></div>
   </div><p class="gain-home">That is dinner at home, not charting at 9 p.m.</p></div>
+
+  <div class="band band-grow reveal" id="growth"><div class="band-inner">
+    <div class="lead">And what you can add. <span>The same system, more of the business.</span></div>
+    <div class="bstat"><b>One calendar</b><span>Classes, memberships and cash services beside the therapy schedule</span><em>No second system to buy</em></div>
+    <div class="bstat"><b>One set of books</b><span>Insurance claims and cash services billed together</span><em>One place to see what the business made</em></div>
+    <div class="bstat"><b>Found revenue</b><span>Missed units, unbilled visits and denials worth appealing, surfaced</span><em>Money you already earned</em></div>
+  </div></div>
   <p class="gain-note">How we got there: a full-time therapist seeing 12 patients a day, 5 days a week, 48 weeks a year, where 10% of visits are initial evaluations and 5% are re-evaluations. Cowboy times are what we clocked end to end (6:00, 5:00 and 3:38). The before times are 17 minutes for an initial evaluation, the pre-AI time Raintree reports for a client (<a href="https://www.raintreeinc.com/" target="_blank" rel="noopener">source</a>), and our estimates of 15 minutes for a re-evaluation and 10 minutes for a progress note. That saves about 421 minutes a week. Each extra visit is counted as a 45-minute session plus its note, rounded down to whole visits, at $105.33 net revenue per visit, the rate U.S. Physical Therapy reported for the second quarter of 2025 (<a href="https://www.businesswire.com/news/home/20250806559477/en" target="_blank" rel="noopener">source</a>). A 5-provider clinic gets about 35 hours back and room for about 40 more visits a week. Your numbers will differ with your caseload and payer mix. Building the home exercise program and flow sheet by hand is not counted.</p>
 </div></section>
 
@@ -515,6 +598,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-<script src="/js/home.js?v=5"></script>
+<script src="/js/home.js?v=6"></script>
 </body>
 </html>

@@ -84,10 +84,12 @@ addEventListener('hashchange',()=>{if(location.hash) toSection(stripHash(),true)
 
 /* Real product screens: tab switcher (all screens preloaded, instant switch) */
 (function(){
-  const tabs=[...document.querySelectorAll('.shots-tabs [role="tab"]')], imgs=[...document.querySelectorAll('#shot-stack img')], cap=document.getElementById('shot-cap');
-  if(!tabs.length||tabs.length!==imgs.length) return;
+  const tabs=[...document.querySelectorAll('.shots-tabs [role="tab"]')], cap=document.getElementById('shot-cap');
+  const live=document.getElementById('shot-live'), imgs=[...document.querySelectorAll('#shot-stack img')];
+  const panels=live?[live,...imgs]:imgs;
+  if(!tabs.length||tabs.length!==panels.length) return;
   const show=i=>{tabs.forEach((b,j)=>b.setAttribute('aria-selected',String(i===j)));
-    imgs.forEach((im,j)=>{im.classList.toggle('on',i===j);i===j?im.removeAttribute('aria-hidden'):im.setAttribute('aria-hidden','true');});
+    panels.forEach((p,j)=>{p.classList.toggle('on',i===j);i===j?p.removeAttribute('aria-hidden'):p.setAttribute('aria-hidden','true');});
     cap.textContent=tabs[i].dataset.cap;};
   tabs.forEach((t,i)=>{
     t.addEventListener('click',()=>show(i));
@@ -225,4 +227,21 @@ addEventListener('load',()=>{
   addEventListener('scroll',onScroll,{passive:true});
   addEventListener('resize',onScroll);
   check();
+})();
+
+/* The signature cascade: one click, and the five things the clinic never has to do */
+(()=>{
+  const btn=document.getElementById('sl-sign'), out=document.getElementById('sl-out'), stamp=document.getElementById('sl-stamp');
+  if(!btn||!out) return;
+  const steps=['Claim 97162 built and queued','Home exercise program built, 4 exercises','Flow sheet created and linked','Visit marked Completed','Audit log entry written'];
+  btn.addEventListener('click',()=>{
+    btn.disabled=true; btn.textContent='Signed by the therapist'; out.innerHTML='';
+    if(stamp){stamp.textContent='Signed';stamp.classList.add('signed');}
+    steps.forEach((t,i)=>{
+      const li=document.createElement('li');
+      li.innerHTML='<i>&#10003;</i><span></span>'; li.querySelector('span').textContent=t;
+      out.appendChild(li);
+      setTimeout(()=>li.classList.add('in'), reduce?0:120+i*190);
+    });
+  });
 })();
