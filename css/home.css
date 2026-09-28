@@ -483,6 +483,8 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
 .hero-c .hero-eyebrow{justify-content:center}
 .hero-c h1{max-width:none;margin:0 auto;font-size:min(clamp(46px,7.4vw,112px),9.2vw)}
 .hero-c h1 em{white-space:nowrap}
+/* The underline runs through the spaces, so a split phrase still reads as one line */
+.hero-c h1 .word:not(:last-child) em::after{right:-.3em}
 .hero-c .hero-sub{margin:34px auto 0;max-width:56ch}
 .hero-c .hero-ctas{justify-content:center;margin-top:30px}
 .hero-c .hero-meta{justify-content:center;gap:44px;margin-top:40px}
