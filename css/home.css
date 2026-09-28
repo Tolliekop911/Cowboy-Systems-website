@@ -864,7 +864,6 @@ body.nav-up .stack-tabs{top:14px}
 .pn-tx span{display:block;font-size:12px;color:var(--ink-soft);line-height:1.3;margin-top:1px}
 .pn-note{margin:22px auto 0;max-width:62ch;font-size:11.5px;line-height:1.6;color:var(--ink-soft);opacity:.75}
 @media(max-width:600px){.pn{padding:11px 15px;gap:9px}.pn-tx b{font-size:13px}.pn-tx span{font-size:11px}}
-.orbit-sec{background:linear-gradient(180deg,#fff,#f7f5ff)}
 .orbit-foot{margin:34px auto 0;max-width:70ch;text-align:center;font-size:15.5px;line-height:1.7;color:var(--ink-soft)}
 
 /* ══ THE SYSTEM MAP ═════════════════════════════════════════════════════ */
@@ -900,3 +899,66 @@ body.nav-up .stack-tabs{top:14px}
 @media(max-width:1040px){.sysmap{grid-template-columns:1fr;gap:18px}
   .sm-hub{position:static;order:-1}.sm-col{gap:18px}}
 @media(max-width:600px){.sm-group{padding:20px 18px 18px}}
+
+/* ══ THE GALAXY: the product in the middle, every feature in orbit ══════ */
+.orbit-sec{background:radial-gradient(130% 100% at 50% 8%,#141024 0%,#0a0817 55%,#060510 100%);color:#fff;
+  position:relative;overflow:hidden}
+.orbit-sec .sec-head h2,.orbit-sec .sm-gh b{color:#fff}
+.orbit-sec .sec-head .kick{color:#a78bfa}
+.orbit-sec .sec-note,.orbit-sec .orbit-foot,.orbit-sec .sm-group li{color:rgba(255,255,255,.62)}
+.galaxy2{position:relative;margin:34px auto 0;max-width:1240px}
+.g2-stars{position:absolute;inset:-4% -12%;pointer-events:none;z-index:0}
+.g2-stars i{position:absolute;width:var(--s);height:var(--s);border-radius:50%;background:#fff;opacity:var(--o);
+  animation:g2-tw var(--d) ease-in-out infinite alternate}
+@keyframes g2-tw{from{opacity:calc(var(--o) * .2)}to{opacity:var(--o)}}
+.g2-field{position:relative;width:1240px;height:1240px;margin:0 auto;transform-origin:50% 50%}
+.g2-paths{position:absolute;inset:0;width:100%;height:100%}
+.g2-ring{position:absolute;inset:0;list-style:none;margin:0;padding:0;
+  animation:g2-turn var(--t) linear infinite;animation-direction:var(--dir)}
+@keyframes g2-turn{to{transform:rotate(360deg)}}
+.g2-node{position:absolute;left:50%;top:50%;
+  transform:translate(-50%,-50%) rotate(var(--a)) translateY(calc(var(--r) * -1)) rotate(calc(var(--a) * -1))}
+.g2-chip{display:block;width:max-content;max-width:190px;padding:7px 14px 7px 12px;border-radius:999px;
+  font-size:11.5px;line-height:1.3;color:rgba(255,255,255,.82);white-space:nowrap;
+  background:rgba(10,8,23,.82);border:1px solid color-mix(in srgb,var(--c) 34%,transparent);
+  box-shadow:0 0 18px color-mix(in srgb,var(--c) 14%,transparent);
+  animation:g2-turn var(--t) linear infinite;animation-direction:var(--dir);
+  transition:border-color .25s ease,box-shadow .25s ease,color .25s ease}
+.g2-chip::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--c);
+  margin-right:8px;vertical-align:middle;box-shadow:0 0 8px var(--c)}
+.g2-node:hover .g2-chip{color:#fff;border-color:var(--c);box-shadow:0 0 26px color-mix(in srgb,var(--c) 50%,transparent)}
+.g2-core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:330px;text-align:center;
+  display:flex;flex-direction:column;align-items:center;gap:12px;z-index:3}
+.g2-core::before{content:"";position:absolute;left:50%;top:50%;width:560px;height:560px;transform:translate(-50%,-50%);
+  border-radius:50%;background:radial-gradient(circle,rgba(167,139,250,.24),transparent 62%);pointer-events:none}
+.g2-screen{position:relative;width:100%;border-radius:14px;overflow:hidden;background:#fff;text-align:left;
+  box-shadow:0 0 0 1px rgba(255,255,255,.14),0 30px 70px -20px rgba(0,0,0,.8)}
+.g2-bar{display:flex;align-items:center;gap:5px;padding:9px 11px;background:#f4f2fa;border-bottom:1px solid #e8e4f5}
+.g2-bar i{width:7px;height:7px;border-radius:50%;background:#d6d0e8}
+.g2-bar span{margin-left:8px;font-size:9.5px;color:#8a83a3}
+.g2-body{padding:15px 15px 17px;display:flex;flex-direction:column;gap:7px}
+.g2-l{height:7px;border-radius:4px;background:#ece8f8}
+.g2-l.w1{width:92%}.g2-l.w2{width:74%}.g2-l.w3{width:84%}
+.g2-tag{align-self:flex-start;margin:3px 0;font-size:10.5px;font-weight:700;color:#0b7a4b;background:#eefaf3;
+  border:1px solid #bfe6d2;border-radius:999px;padding:4px 10px}
+.g2-core b{position:relative;font-family:var(--disp);font-weight:600;font-size:27px;letter-spacing:-.9px;color:#fff}
+.g2-core>span{position:relative;font-size:13px;line-height:1.55;color:rgba(255,255,255,.66);max-width:26ch}
+.g2-legend{position:relative;z-index:2;list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;
+  justify-content:center;gap:10px 22px;margin-top:-40px}
+.g2-legend li{display:flex;align-items:center;gap:9px;font-size:12.5px;color:rgba(255,255,255,.72)}
+.g2-legend i{width:8px;height:8px;border-radius:50%;background:var(--c);box-shadow:0 0 10px var(--c)}
+.g2-legend b{color:#fff;font-weight:700}
+@media(prefers-reduced-motion:reduce){.g2-ring,.g2-chip,.g2-stars i{animation:none}}
+@media(max-width:1300px){.g2-field{transform:scale(.82);margin:-112px auto}}
+@media(max-width:1100px){.g2-field{transform:scale(.66);margin:-211px auto}}
+@media(max-width:920px){.galaxy2{display:none}}
+/* The detailed list sits under the map, on the dark */
+.sysmap{margin-top:30px}
+.orbit-sec .sm-group{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1);box-shadow:none;
+  backdrop-filter:blur(6px)}
+.orbit-sec .sm-gh{border-bottom-color:rgba(255,255,255,.12)}
+.orbit-sec .sm-gh i{background:rgba(167,139,250,.16);color:#c4b5fd}
+.orbit-sec .sm-gh em{background:rgba(167,139,250,.16);color:#c4b5fd}
+.orbit-sec .sm-group li::before{background:#a78bfa;opacity:.5}
+.orbit-sec .sm-hub{background:linear-gradient(170deg,#1b1533,#2a1f52 60%,#352566);
+  box-shadow:0 0 0 1px rgba(255,255,255,.08)}
