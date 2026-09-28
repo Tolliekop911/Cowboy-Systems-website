@@ -761,10 +761,16 @@ body.nav-up .stack-tabs{top:14px}
 .diff .wrap{z-index:2}
 .diff-family{margin-top:22px;font-family:var(--disp);font-weight:600;font-size:clamp(18px,1.6vw,22px);letter-spacing:-.4px;color:#c4a3ff;max-width:34ch}
 .band-gain{isolation:isolate}
-.band-bg{z-index:-1;opacity:.28;filter:saturate(.9)}
+.band-bg{z-index:-1;opacity:.22;filter:saturate(.9)}
 .band-gain::before{z-index:0}
 .band-gain .band-inner{z-index:1}
 .gain-home{position:relative;z-index:1;margin-top:26px;font-family:var(--disp);font-weight:600;font-size:clamp(20px,2vw,28px);letter-spacing:-.6px;color:#fff}
 .final.final-photo{position:relative;overflow:hidden;isolation:isolate}
 .final-bg{z-index:-1;opacity:.16;background-position:50% 35%;
   -webkit-mask-image:linear-gradient(180deg,transparent,#000 22%,#000 70%,transparent);mask-image:linear-gradient(180deg,transparent,#000 22%,#000 70%,transparent)}
+
+/* Background video: the photo underneath stays as the fallback */
+.bg-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.4s ease;pointer-events:none;filter:blur(2px) saturate(.9);transform:scale(1.03)}
+.bg-vid.on{opacity:1}
+@media(max-width:900px){.bg-vid{display:none}}
+@media(prefers-reduced-motion:reduce){.bg-vid{display:none}}

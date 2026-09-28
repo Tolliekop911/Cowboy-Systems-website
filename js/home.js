@@ -201,3 +201,28 @@ addEventListener('load',()=>{
     gsap.from(li,{y:26,opacity:0,duration:.8,ease:'power3.out',scrollTrigger:{trigger:li,start:'top 88%'}});
   });
 })();
+
+/* Dimmed background clips: desktop only, loaded when the section is in view,
+   never on data saver or with reduced motion. The photo behind stays visible. */
+(()=>{
+  const vids=[...document.querySelectorAll('.bg-vid')]; if(!vids.length) return;
+  const conn=navigator.connection||{};
+  if(reduce||conn.saveData||/2g/.test(conn.effectiveType||'')||!matchMedia('(min-width:901px)').matches) return;
+  let queued=false;
+  const check=()=>{
+    queued=false;
+    vids.forEach(v=>{
+      const r=v.getBoundingClientRect();
+      const near=r.bottom>-200&&r.top<innerHeight+200;
+      if(near){
+        if(!v.src&&v.dataset.src){v.src=v.dataset.src;
+          v.addEventListener('playing',()=>v.classList.add('on'),{once:true});}
+        if(v.paused){const go=v.play(); if(go&&go.catch)go.catch(()=>{});}
+      } else if(!v.paused){ v.pause(); }
+    });
+  };
+  const onScroll=()=>{if(!queued){queued=true;requestAnimationFrame(check);}};
+  addEventListener('scroll',onScroll,{passive:true});
+  addEventListener('resize',onScroll);
+  check();
+})();
