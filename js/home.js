@@ -246,15 +246,3 @@ addEventListener('load',()=>{
   });
 })();
 
-/* The core answers whichever part of the orbit you point at */
-(()=>{
-  const desc=document.getElementById('gx-desc'); if(!desc) return;
-  const base=desc.textContent;
-  const set=t=>{if(desc.textContent===t) return;
-    desc.classList.add('swap');
-    setTimeout(()=>{desc.textContent=t;desc.classList.remove('swap');},reduce?0:180);};
-  document.querySelectorAll('.gx-node').forEach(n=>{
-    n.addEventListener('mouseenter',()=>set(n.dataset.desc));
-    n.addEventListener('mouseleave',()=>set(base));
-  });
-})();
