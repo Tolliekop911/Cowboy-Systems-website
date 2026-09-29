@@ -1201,3 +1201,6 @@ body.nav-up .stack-tabs{top:14px}
 .hero-offer-foot a{color:var(--purple);font-weight:700}
 @media(max-width:1040px){.hero-offer{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:680px){.hero-offer{grid-template-columns:1fr}.hero-offer-head{margin-top:38px}}
+/* The second layer the playlist crossfades into */
+.scene-bg .bg-vid,.pn-bg .bg-vid{transition:opacity 1.4s ease}
+.bg-vid-b{z-index:1}

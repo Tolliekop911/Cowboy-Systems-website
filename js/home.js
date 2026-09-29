@@ -204,28 +204,77 @@ addEventListener('load',()=>{
   });
 })();
 
-/* Dimmed background clips: desktop only, loaded when the section is in view,
-   never on data saver or with reduced motion. The photo behind stays visible. */
+/* Background clips: a playlist per scene, crossfading between two layers.
+   Desktop only, only while the scene is on screen, never on data saver. */
 (()=>{
-  const vids=[...document.querySelectorAll('.bg-vid')]; if(!vids.length) return;
+  const holders=[...document.querySelectorAll('.bg-vid[data-playlist], .bg-vid[data-src]')]
+    .filter(v=>!v.classList.contains('bg-vid-b'));
+  if(!holders.length) return;
   const conn=navigator.connection||{};
   if(reduce||conn.saveData||/2g/.test(conn.effectiveType||'')||!matchMedia('(min-width:901px)').matches) return;
+
+  const rigs=holders.map(a=>{
+    const b=a.nextElementSibling&&a.nextElementSibling.classList.contains('bg-vid-b')?a.nextElementSibling:null;
+    const list=(a.dataset.playlist||a.dataset.src||'').split(',').filter(Boolean);
+    return {a,b,list,i:0,cur:a,armed:false,live:false};
+  }).filter(r=>r.list.length);
+
+  const load=(el,src)=>{ if(el.getAttribute('src')!==src){ el.setAttribute('src',src); el.load(); } };
+
+  const advance=r=>{
+    if(r.list.length<2||!r.b) return;
+    const nxt=r.cur===r.a?r.b:r.a;
+    r.i=(r.i+1)%r.list.length;
+    load(nxt,r.list[r.i]);
+    const go=()=>{
+      const p=nxt.play(); if(p&&p.catch)p.catch(()=>{});
+      nxt.classList.add('on'); r.cur.classList.remove('on');
+      const old=r.cur; r.cur=nxt; r.armed=false;
+      setTimeout(()=>{ if(old!==r.cur) old.pause(); },1500);
+      arm(r);
+    };
+    nxt.readyState>=3?go():nxt.addEventListener('canplay',go,{once:true});
+  };
+
+  /* Swap a beat before the clip ends, so the cut is never visible */
+  const arm=r=>{
+    if(r.armed||r.list.length<2||!r.b) return;
+    r.armed=true;
+    const tick=()=>{
+      if(!r.live) return;
+      const d=r.cur.duration;
+      if(d&&isFinite(d)&&d-r.cur.currentTime<1.6){ advance(r); return; }
+      setTimeout(tick,250);
+    };
+    setTimeout(tick,250);
+  };
+
+  const start=r=>{
+    r.live=true;
+    load(r.cur,r.list[r.i]);
+    const p=r.cur.play(); if(p&&p.catch)p.catch(()=>{});
+    r.cur.addEventListener('playing',()=>r.cur.classList.add('on'),{once:true});
+    if(r.list.length>1&&r.b) r.cur.loop=false, arm(r); else r.cur.loop=true;
+  };
+
+  const io=new IntersectionObserver(es=>es.forEach(e=>{
+    const r=rigs.find(x=>x.a===e.target); if(!r) return;
+    if(e.isIntersecting) start(r);
+    else { r.live=false; r.armed=false; [r.a,r.b].forEach(v=>{ if(v&&!v.paused) v.pause(); }); }
+  }),{rootMargin:'250px 0px'});
+
   let queued=false;
   const check=()=>{
     queued=false;
-    vids.forEach(v=>{
-      const r=v.getBoundingClientRect();
-      const near=r.bottom>-200&&r.top<innerHeight+200;
-      if(near){
-        if(!v.src&&v.dataset.src){v.src=v.dataset.src;
-          v.addEventListener('playing',()=>v.classList.add('on'),{once:true});}
-        if(v.paused){const go=v.play(); if(go&&go.catch)go.catch(()=>{});}
-      } else if(!v.paused){ v.pause(); }
+    rigs.forEach(r=>{
+      const q=r.a.getBoundingClientRect();
+      const near=q.bottom>-250&&q.top<innerHeight+250;
+      if(near&&!r.live) start(r);
+      else if(!near&&r.live){ r.live=false; r.armed=false; [r.a,r.b].forEach(v=>{ if(v&&!v.paused) v.pause(); }); }
     });
   };
-  const onScroll=()=>{if(!queued){queued=true;requestAnimationFrame(check);}};
-  addEventListener('scroll',onScroll,{passive:true});
-  addEventListener('resize',onScroll);
+  rigs.forEach(r=>io.observe(r.a));
+  addEventListener('scroll',()=>{ if(!queued){ queued=true; setTimeout(check,60); } },{passive:true});
   check();
 })();
 
