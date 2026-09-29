@@ -1137,3 +1137,9 @@ body.nav-up .stack-tabs{top:14px}
 .scene-evening .scene-pts li::before{background:#e0709c}
 .scene-evening .scene-close{color:#fff}
 .scene-vis .vis-light{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px}
+/* The treatment room gets a room behind it */
+.scene-room{position:relative;isolation:isolate}
+.scene-room .scene-bg{position:absolute;inset:0;z-index:-1;background-size:cover;background-position:50% 30%;
+  overflow:hidden;pointer-events:none}
+.scene-room .scene-veil{position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(250,249,255,.97) 0%,rgba(250,249,255,.88) 30%,rgba(250,249,255,.9) 70%,rgba(250,249,255,.98) 100%)}
