@@ -1036,3 +1036,104 @@ body.nav-up .stack-tabs{top:14px}
   .pn-row{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
   .pn-row li{grid-column:auto!important;grid-row:auto!important}}
 @media(max-width:560px){.pn-row{grid-template-columns:1fr}}
+
+/* ══ THE DAY: SCENES ════════════════════════════════════════════════════ */
+.scene{position:relative;isolation:isolate;padding:104px 0 100px;overflow:hidden}
+.scene-bg{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.scene-bg .bg-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;
+  transition:opacity 1.6s ease}
+.scene-bg .bg-vid.on{opacity:1}
+.scene-veil{position:absolute;inset:0}
+.scene-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:56px;align-items:center}
+.scene-clock{display:inline-flex;align-items:center;gap:11px;font-size:11.5px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;margin-bottom:20px}
+.scene-clock i{font-style:normal;letter-spacing:.06em;opacity:.7}
+.sc-dial{width:13px;height:13px;border-radius:50%;box-shadow:0 0 0 3px rgba(255,255,255,.14)}
+.scene h2{font-family:var(--disp);font-weight:600;font-size:clamp(34px,4.4vw,62px);letter-spacing:-2px;
+  line-height:1.04;margin:0}
+.scene h2 em{font-style:normal}
+.scene-lede{margin:22px 0 0;max-width:46ch;font-size:clamp(16px,1.35vw,19px);line-height:1.65;text-wrap:balance}
+.scene-pts{list-style:none;margin:26px 0 0;padding:0;display:flex;flex-direction:column;gap:11px}
+.scene-pts li{position:relative;padding-left:26px;font-size:14.5px;line-height:1.55}
+.scene-pts li::before{content:"";position:absolute;left:2px;top:.5em;width:8px;height:8px;border-radius:50%}
+.scene-close{margin:26px 0 0;font-family:var(--disp);font-weight:600;font-size:clamp(17px,1.6vw,21px);
+  letter-spacing:-.5px}
+
+/* Sunrise */
+.scene-dawn{color:#fff}
+.scene-dawn .scene-veil{background:
+  linear-gradient(180deg,rgba(10,7,22,.9) 0%,rgba(24,14,34,.66) 32%,rgba(46,22,42,.6) 62%,rgba(12,8,24,.92) 100%)}
+.scene-dawn .scene-clock{color:#ffc89a}
+.scene-dawn .sc-dial{background:linear-gradient(180deg,#ffd9a8,#ff9d5c)}
+.scene-dawn .scene-lede{color:rgba(255,255,255,.76)}
+.scene-dawn .scene-pts li{color:rgba(255,255,255,.74)}
+.scene-dawn .scene-pts li::before{background:#ffb070}
+.scene-dawn .scene-close{color:#fff}
+
+/* The overnight log */
+.dayvis{background:rgba(16,11,28,.72);border:1px solid rgba(255,255,255,.13);border-radius:22px;
+  padding:20px 20px 18px;backdrop-filter:blur(14px);box-shadow:0 40px 90px -40px rgba(0,0,0,.9)}
+.dv-head{display:flex;align-items:center;justify-content:space-between;padding-bottom:14px;
+  border-bottom:1px solid rgba(255,255,255,.1)}
+.dv-lab{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#ffc89a}
+.dv-live{display:flex;align-items:center;gap:7px;font-size:11.5px;color:rgba(255,255,255,.5)}
+.dv-live i{width:6px;height:6px;border-radius:50%;background:#ffb070;box-shadow:0 0 8px #ffb070}
+.dv-list{list-style:none;margin:0;padding:6px 0 0}
+.dv-row{display:grid;grid-template-columns:74px 1fr;gap:12px;align-items:start;padding:11px 0;
+  border-bottom:1px solid rgba(255,255,255,.06)}
+.dv-row:last-child{border-bottom:0}
+.dv-t{font-size:11.5px;color:rgba(255,255,255,.42);padding-top:2px;font-variant-numeric:tabular-nums}
+.dv-x b{display:block;font-size:14px;font-weight:600;color:#fff;letter-spacing:-.2px}
+.dv-x span{display:block;font-size:12.5px;color:rgba(255,255,255,.55);margin-top:2px}
+.dv-x b::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:9px;
+  vertical-align:middle}
+.dv-sent b::before{background:#8a7fd6}
+.dv-yes b::before{background:#4ade80}
+.dv-no b::before{background:#f59e0b}
+.dv-call b::before{background:#60a5fa}
+.dv-foot{display:flex;align-items:baseline;gap:10px;margin-top:14px;padding-top:14px;
+  border-top:1px solid rgba(255,255,255,.1)}
+.dv-foot b{font-family:var(--disp);font-weight:600;font-size:19px;letter-spacing:-.5px;color:#fff}
+.dv-foot span{font-size:12.5px;color:rgba(255,255,255,.55)}
+@media(max-width:900px){.scene{padding:74px 0 70px}.scene-grid{grid-template-columns:1fr;gap:34px}}
+
+/* Scene: morning, evening, lunch, and the clock on existing sections */
+.scene-clock-solo{display:inline-flex;align-items:center;gap:11px;font-size:11.5px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--purple);margin-bottom:26px}
+.scene-clock-solo .sc-dial{background:linear-gradient(180deg,#c4a3ff,#7a5af5)}
+.partners .scene-clock{color:var(--purple);justify-content:center}
+.partners .scene-clock .sc-dial{background:linear-gradient(180deg,#ffd9a8,#ff9d5c)}
+.orbit-sec .scene-clock{color:#a78bfa}
+.orbit-sec .scene-clock .sc-dial{background:linear-gradient(180deg,#c4b5fd,#6d4df0);box-shadow:0 0 0 3px rgba(167,139,250,.18)}
+.scene-copy-wide{max-width:none;text-align:center;margin-bottom:34px}
+.scene-copy-wide .scene-clock{justify-content:center}
+.scene-copy-wide .scene-lede{margin-left:auto;margin-right:auto}
+
+/* You walk in */
+.scene-open{color:var(--ink);background:linear-gradient(180deg,#fbf8ff,#fff 46%,#f8f6ff)}
+.scene-open .scene-clock{color:#c2703a}
+.scene-open .sc-dial{background:linear-gradient(180deg,#ffd0a0,#e08c46);box-shadow:0 0 0 3px rgba(224,140,70,.14)}
+.scene-open .scene-lede,.scene-open .scene-pts li{color:var(--ink-soft)}
+.scene-open .scene-pts li::before{background:#e08c46}
+.scene-open .scene-close{color:var(--ink)}
+
+/* Lunch */
+.scene-lunch{color:#fff}
+.scene-lunch .scene-veil{background:linear-gradient(180deg,rgba(14,10,26,.9),rgba(30,20,48,.7) 40%,rgba(14,10,26,.92))}
+.scene-lunch .scene-clock{color:#ffd9a8}
+.scene-lunch .sc-dial{background:linear-gradient(180deg,#fff0d6,#ffc16b)}
+.scene-lunch .scene-lede{color:rgba(255,255,255,.76)}
+.scene-lunch .band-gain{margin-top:6px}
+.scene-lunch .gain-note{background:rgba(255,255,255,.055);border-color:rgba(255,255,255,.12)}
+.scene-lunch .gn-lab{color:#ffd9a8}
+.scene-lunch .gain-note p{color:rgba(255,255,255,.66)}
+
+/* Evening */
+.scene-evening{color:#fff}
+.scene-evening .scene-veil{background:linear-gradient(180deg,rgba(12,9,24,.9),rgba(44,24,54,.66) 42%,rgba(10,7,20,.94))}
+.scene-evening .scene-clock{color:#ffb3d0}
+.scene-evening .sc-dial{background:linear-gradient(180deg,#ffd0e2,#e0709c)}
+.scene-evening .scene-lede,.scene-evening .scene-pts li{color:rgba(255,255,255,.74)}
+.scene-evening .scene-pts li::before{background:#e0709c}
+.scene-evening .scene-close{color:#fff}
+.scene-vis .vis-light{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px}
