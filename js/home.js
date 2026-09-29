@@ -246,3 +246,30 @@ addEventListener('load',()=>{
   });
 })();
 
+/* Draw a line from the hub to each partner, and send a pulse down it */
+(()=>{
+  const net=document.querySelector('.pnet'); if(!net) return;
+  const svg=net.querySelector('.pnet-lines'), hub=net.querySelector('.pnet-hub');
+  const cards=[...net.querySelectorAll('.pn-row li')];
+  if(!svg||!hub||!cards.length) return;
+  const draw=()=>{
+    if(getComputedStyle(svg).display==='none'){svg.innerHTML='';return;}
+    const b=net.getBoundingClientRect(), hb=hub.getBoundingClientRect();
+    svg.setAttribute('viewBox','0 0 '+b.width+' '+b.height);
+    let out='';
+    cards.forEach((li,i)=>{
+      const r=li.getBoundingClientRect(), left=i<4;
+      const x1=(left?hb.left:hb.right)-b.left, y1=hb.top+hb.height/2-b.top;
+      const x2=(left?r.right:r.left)-b.left, y2=r.top+r.height/2-b.top;
+      const mx=(x1+x2)/2;
+      const d='M'+x1+' '+y1+'C'+mx+' '+y1+','+mx+' '+y2+','+x2+' '+y2;
+      const col=li.querySelector('.pn').style.getPropertyValue('--brand').trim()||'#7a5af5';
+      out+='<path class="pnet-line" d="'+d+'"/>'
+         + '<path class="pnet-pulse" d="'+d+'" stroke="'+col+'" style="animation-delay:'+(-i*0.62)+'s"/>';
+    });
+    svg.innerHTML=out;
+  };
+  draw();
+  addEventListener('resize',()=>{clearTimeout(window.__pnetT);window.__pnetT=setTimeout(draw,150);});
+  addEventListener('load',draw);
+})();
