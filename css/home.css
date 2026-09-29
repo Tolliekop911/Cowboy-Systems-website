@@ -103,7 +103,7 @@ ul{list-style:none}
   text-wrap:balance}
 .sec-note b,.pn-sub b{color:var(--ink);font-weight:600}
 .shine{font-style:normal;font-weight:600;
-  background:linear-gradient(96deg,var(--ink) 4%,#7a5af5 42%,#b48cff 62%,var(--ink) 96%);
+  background:linear-gradient(96deg,currentColor 4%,#7a5af5 42%,#b48cff 62%,currentColor 96%);
   background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
   animation:shine 7s ease-in-out infinite}
 @keyframes shine{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
@@ -194,7 +194,12 @@ ul{list-style:none}
 .band .lead span{color:var(--purple-3)}
 .band-gain{margin-top:16px;background:linear-gradient(150deg,#2A1560,#4C1D95)}
 .band-gain::before{background:radial-gradient(50% 90% at 10% 100%,rgba(196,163,255,.28),transparent 60%)}
-.gain-note{font-size:12.5px;color:var(--ink-soft);line-height:1.65;margin-top:16px;max-width:100ch}
+.gain-note{margin:26px 0 0;padding:22px 26px;border-radius:18px;background:#fff;
+  border:1px solid var(--line);border-left:3px solid var(--purple);max-width:none;
+  box-shadow:0 1px 2px rgba(16,12,40,.03)}
+.gn-lab{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--purple);margin-bottom:10px}
+.gain-note p{margin:0;font-size:13.5px;line-height:1.75;color:var(--ink-soft);columns:2;column-gap:38px}
+@media(max-width:860px){.gain-note p{columns:1}.gain-note{padding:18px 20px}}
 .gain-note a{color:var(--purple);font-weight:600}
 .bstat b{font-family:var(--disp);font-weight:600;font-size:48px;letter-spacing:-2px;display:block}
 .bstat span{font-size:13px;color:rgba(237,233,254,.65);margin-top:4px;display:block}
@@ -853,7 +858,9 @@ body.nav-up .stack-tabs{top:14px}
   .ev-more{grid-template-columns:1fr}.road-list{grid-template-columns:1fr}}
 
 
-.orbit-foot{margin:34px auto 0;max-width:70ch;text-align:center;font-size:15.5px;line-height:1.7;color:var(--ink-soft)}
+.orbit-foot{margin:40px auto 0;max-width:44ch;text-align:center;
+  font-family:var(--disp);font-weight:500;font-size:clamp(20px,2.1vw,29px);letter-spacing:-.8px;
+  line-height:1.3;color:rgba(255,255,255,.82);text-wrap:balance}
 
 /* ══ THE SYSTEM MAP ═════════════════════════════════════════════════════ */
 .sysmap{display:grid;grid-template-columns:1fr minmax(300px,340px) 1fr;gap:20px;align-items:start;margin-top:44px}
@@ -891,7 +898,7 @@ body.nav-up .stack-tabs{top:14px}
 
 /* ══ THE GALAXY: the product in the middle, every feature in orbit ══════ */
 .orbit-sec{background:radial-gradient(130% 100% at 50% 8%,#141024 0%,#0a0817 55%,#060510 100%);color:#fff;
-  position:relative;overflow:hidden}
+  position:relative;overflow:hidden;padding-bottom:82px}
 .orbit-sec .sec-head h2,.orbit-sec .sm-gh b{color:#fff}
 .orbit-sec .sec-head .kick{color:#a78bfa}
 .orbit-sec .sec-note,.orbit-sec .orbit-foot,.orbit-sec .sm-group li{color:rgba(255,255,255,.62)}
