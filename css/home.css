@@ -99,7 +99,15 @@ ul{list-style:none}
   color:var(--purple-dark);display:flex;align-items:center;gap:12px;margin-bottom:18px}
 .sec-title{font-family:var(--disp);font-weight:600;font-size:clamp(32px,4.4vw,58px);
   line-height:1.02;letter-spacing:-1.8px;max-width:16ch}
-.sec-note{font-size:15px;color:var(--ink-soft);max-width:40ch;line-height:1.6}
+.sec-note{font-size:clamp(16px,1.25vw,18px);color:var(--ink-soft);max-width:42ch;line-height:1.62;
+  text-wrap:balance}
+.sec-note b,.pn-sub b{color:var(--ink);font-weight:600}
+.shine{font-style:normal;font-weight:600;
+  background:linear-gradient(96deg,var(--ink) 4%,#7a5af5 42%,#b48cff 62%,var(--ink) 96%);
+  background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:shine 7s ease-in-out infinite}
+@keyframes shine{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@media(prefers-reduced-motion:reduce){.shine{animation:none}}
 
 /* ── BENTO ── */
 .bento{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(150px,auto);gap:16px}
@@ -951,7 +959,8 @@ body.nav-up .stack-tabs{top:14px}
 .pn-head h2{font-family:var(--disp);font-weight:600;font-size:clamp(30px,3.6vw,50px);letter-spacing:-1.6px;
   line-height:1.06;margin:14px 0 0}
 .pn-head h2 em{font-style:normal;color:var(--purple)}
-.pn-sub{margin:18px auto 0;max-width:60ch;font-size:15.5px;line-height:1.7;color:var(--ink-soft)}
+.pn-sub{margin:20px auto 0;max-width:46ch;font-size:clamp(17px,1.45vw,21px);line-height:1.6;
+  color:var(--ink-soft);text-wrap:balance}
 .pn-row{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .pn{display:flex;align-items:center;gap:15px;height:100%;padding:20px 22px;border-radius:18px;text-decoration:none;
   background:#fff;border:1px solid var(--line);
