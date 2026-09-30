@@ -10,7 +10,7 @@
 <meta name="description" content="The EHR for outpatient PT and multi-service clinics, built by clinicians. A full initial evaluation in about six minutes of documentation time: note, assessment, goals, and codes, billing-ready."/>
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin/>
 <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700,500&f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/css/home.css?v=64"/>
+<link rel="stylesheet" href="/css/home.css?v=65"/>
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -372,7 +372,10 @@
 
 <!-- YOU WALK IN -->
 <section class="scene scene-open" id="open">
-  <div class="scene-bg" aria-hidden="true"><span class="scene-veil"></span></div>
+  <div class="scene-bg" aria-hidden="true">
+    <video class="bg-vid" data-src="/assets/video/walk-in.mp4" muted loop playsinline preload="none" tabindex="-1"></video>
+    <span class="scene-veil"></span>
+  </div>
   <div class="wrap scene-grid">
     <div class="scene-copy reveal">
       <div class="scene-clock"><span class="sc-dial" aria-hidden="true"></span>You walk in<i>8:05 a.m.</i></div>
@@ -454,16 +457,6 @@
     <figcaption>Watch a real initial evaluation run start to signed note, uncut and on the clock. You decide whether it is thorough.</figcaption>
   </figure>
 
-  <div class="ev-more reveal">
-    <figure class="ev-small">
-      <div class="ev-frame sm"><div class="ev-badge">Video coming soon</div><div class="ev-play" aria-hidden="true"><svg width="18" height="21" viewBox="0 0 26 30" fill="currentColor" aria-hidden="true"><path d="M0 0l26 15L0 30z"/></svg></div></div>
-      <figcaption><b>The agent on the phone</b><span>The reminder goes out, the patient replies YES, the schedule updates itself.</span></figcaption>
-    </figure>
-    <figure class="ev-small">
-      <div class="ev-frame sm"><div class="ev-badge">Video coming soon</div><div class="ev-play" aria-hidden="true"><svg width="18" height="21" viewBox="0 0 26 30" fill="currentColor" aria-hidden="true"><path d="M0 0l26 15L0 30z"/></svg></div></div>
-      <figcaption><b>The agent on a claim</b><span>Scrubbed against the chart, submitted, and the ERA posted when it comes back.</span></figcaption>
-    </figure>
-  </div>
   </div>
   <div class="shot-cap"><span id="shot-cap">Click Sign the evaluation. This is the part everyone asks to see: one signature, and the claim, the home program, the flow sheet and the audit entry are all built.</span><span class="demo">Test patient · demo data</span></div>
   </div>
