@@ -1183,7 +1183,7 @@ body.nav-up .stack-tabs{top:14px}
 .of-card.of-lead{border-color:rgba(31,111,115,.5);
   box-shadow:0 1px 2px rgba(14,26,43,.04),0 20px 44px -24px rgba(31,111,115,.6)}
 .of-top{display:grid;grid-template-columns:auto 1fr;gap:13px;align-items:start;
-  padding-bottom:14px;margin-bottom:13px;border-bottom:1px solid var(--line)}
+  padding-bottom:14px;margin-bottom:13px;border-bottom:1px solid rgba(14,26,43,.12)}
 .of-top i{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;
   color:var(--purple);background:#E4EEED}
 .of-top i svg{width:19px;height:19px}
