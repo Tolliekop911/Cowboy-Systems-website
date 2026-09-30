@@ -10,7 +10,7 @@
 <meta name="description" content="The EHR for outpatient PT and multi-service clinics, built by clinicians. A full initial evaluation in about six minutes of documentation time: note, assessment, goals, and codes, billing-ready."/>
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin/>
 <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700,500&f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/css/home.css?v=60"/>
+<link rel="stylesheet" href="/css/home.css?v=61"/>
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -130,27 +130,82 @@
   </div>
 </nav>
 
-<!-- HERO -->
-<header class="hero hero-c" id="top">
+<!-- SCENE ONE: THE SEVEN -->
+<header class="hero hero-c seven-hero" id="top">
+  <div class="hero-bg" aria-hidden="true">
+    <video class="bg-vid hero-vid" data-src="/assets/video/sunrise-hero.mp4" data-playlist="/assets/video/sunrise-hero.mp4,/assets/video/hero-a.mp4,/assets/video/hero-b.mp4,/assets/video/hero-c.mp4,/assets/video/hero-d.mp4" muted loop playsinline preload="none" tabindex="-1"></video>
+    <video class="bg-vid hero-vid hero-vid-b bg-vid-b" muted loop playsinline preload="none" tabindex="-1"></video>
+    <span class="hero-sun"></span>
+    <span class="hero-veil"></span>
+  </div>
+  <div class="hero-eyebrow reveal"><span class="line"></span> One system &middot; Seven products <span class="line"></span></div>
+  <h1 class="seven-h1" aria-label="Seven products. One login.">
+    <span class="word"><span>Seven</span></span> <span class="word"><span>products.</span></span><br>
+    <span class="word"><span><em>One&nbsp;login.</em></span></span>
+  </h1>
+  <p class="hero-sub reveal">Everything a clinic pays seven vendors for, built to fit together as one. Each piece below is its own product. Together they run the whole business.</p>
+  <ul class="combx reveal" aria-label="The seven products">
+    <li class="hx hx-core" style="--x:0px;--y:0px">
+      <div class="hx-in">
+        <i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6"/></svg></i>
+        <b>Documentation</b><span>Notes that sign themselves off</span>
+      </div>
+    </li>
+    <li class="hx" style="--x:0px;--y:-132px">
+      <div class="hx-in">
+        <i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></i>
+        <b>Scheduling</b><span>The whole business on one calendar</span>
+      </div>
+    </li>
+    <li class="hx" style="--x:114px;--y:-66px">
+      <div class="hx-in">
+        <i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19M6 15h4"/></svg></i>
+        <b>Billing</b><span>Claims and collections, done for you</span>
+      </div>
+    </li>
+    <li class="hx" style="--x:114px;--y:66px">
+      <div class="hx-in">
+        <i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h2l1.7 4-2 1.3a12 12 0 0 0 5.5 5.5l1.3-2 4 1.7v2a2.5 2.5 0 0 1-2.7 2.5A16.5 16.5 0 0 1 4 5.7 2.5 2.5 0 0 1 6.5 3z"/></svg></i>
+        <b>Front office</b><span>Calls, reminders and referrals</span>
+      </div>
+    </li>
+    <li class="hx" style="--x:0px;--y:132px">
+      <div class="hx-in">
+        <i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5.5-5.5 3.5 3.5L21 6"/><path d="M15 6h6v6"/></svg></i>
+        <b>Growth</b><span>Reviews, recalls and compliance</span>
+      </div>
+    </li>
+    <li class="hx" style="--x:-114px;--y:66px">
+      <div class="hx-in">
+        <i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg></i>
+        <b>Apps</b><span>Provider and patient, in your pocket</span>
+      </div>
+    </li>
+    <li class="hx" style="--x:-114px;--y:-66px">
+      <div class="hx-in">
+        <i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7-2.5 15.3 0 18"/></svg></i>
+        <b>Websites</b><span>Your site and booking page</span>
+      </div>
+    </li>
+  </ul>
+  <a href="#agent" class="seven-cue reveal"><span>And the agent that runs it</span><i aria-hidden="true"><svg width="18" height="11" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l8 8 8-8"/></svg></i></a>
+</header>
+
+<!-- SCENE TWO: THE AGENT -->
+<header class="hero hero-c" id="agent">
   <div class="hero-bg" aria-hidden="true">
     <video class="bg-vid hero-vid" data-src="/assets/video/sunrise-hero.mp4" data-playlist="/assets/video/sunrise-hero.mp4,/assets/video/hero-a.mp4,/assets/video/hero-b.mp4,/assets/video/hero-c.mp4,/assets/video/hero-d.mp4" muted loop playsinline preload="none" tabindex="-1"></video><video class="bg-vid hero-vid hero-vid-b bg-vid-b" muted loop playsinline preload="none" tabindex="-1"></video>
     <span class="hero-sun"></span>
     <span class="hero-veil"></span>
   </div>
   <a class="announce reveal" href="/philly"><b>New</b> Meet us in Philadelphia, February 2027 <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M1 6h17M13 1l5 5-5 5"/></svg></a>
-  <div class="hero-eyebrow reveal"><span class="line"></span> <span class="rotor" aria-label="What Cowboy does for your clinic"><span class="rot-line is-on">The website that fills your schedule</span><span class="rot-line">Notes done before the parking lot</span><span class="rot-line">Billing that gets you paid</span><span class="rot-line">The phone answered while you treat</span><span class="rot-line">Apps that keep patients on track</span><span class="rot-line">One system for the whole clinic</span></span> <span class="line"></span></div>
+  <div class="hero-eyebrow reveal"><span class="line"></span> The physical therapy AI agent <span class="line"></span></div>
   <h1 aria-label="A physical therapy AI agent for the whole business.">
     <span class="word"><span>A</span></span> <span class="word"><span>physical</span></span> <span class="word"><span>therapy</span></span><br>
     <span class="word"><span>AI</span></span> <span class="word"><span>agent</span></span> <span class="word"><span>for</span></span><br>
     <span class="word"><span><em>the</em></span></span> <span class="word"><span><em>whole</em></span></span> <span class="word"><span><em>business.</em></span></span>
   </h1>
-  <p class="hero-sub reveal"><b>Seven products in one.</b> Everything a clinic pays seven vendors for &mdash; the website, the schedule, the notes, the billing, the front office, the apps and the growth tools &mdash; on one login, run by an agent that a licensed therapist signs off.</p>
-  <div class="seven reveal" aria-label="Seven services, one system">
-    <ul class="sv-row">
-      <li class="sv-node" style="--i:0">Website</li><li class="sv-node" style="--i:1">Schedule</li><li class="sv-node" style="--i:2">Notes</li><li class="sv-node" style="--i:3">Billing</li><li class="sv-node" style="--i:4">Front office</li><li class="sv-node" style="--i:5">Apps</li><li class="sv-node" style="--i:6">Growth</li>
-    </ul>
-    <span class="sv-eq">= one&nbsp;system</span>
-  </div>
+  <p class="hero-sub reveal">Not a general purpose chatbot. A physical therapy AI agent, built and trained by doctors of physical therapy, that runs all seven and follows up. <b>A licensed therapist reviews and signs every note.</b></p>
   <div class="hero-ctas reveal">
     <a href="#demo" class="btn mag"><span class="dot"></span> Book a Demo</a>
     <a href="/pricing#pricing" class="btn ghost">See pricing</a>

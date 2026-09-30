@@ -1266,3 +1266,40 @@ body.nav-up .stack-tabs{top:14px}
 @media(prefers-reduced-motion:reduce){.sv-node{animation:none}}
 @media(max-width:640px){.sv-node{font-size:12.5px;padding:7px 12px}.sv-node+.sv-node{margin-left:18px}
   .sv-node+.sv-node::before{left:-19px;width:19px}}
+
+/* ══ SCENE ONE: THE SEVEN PRODUCTS ══════════════════════════════════════ */
+.seven-hero{min-height:100vh;padding-bottom:60px}
+.seven-h1{font-size:min(clamp(44px,6.6vw,104px),9vw)}
+.combx{list-style:none;position:relative;width:392px;height:452px;margin:44px auto 0;padding:0}
+.combx .hx{position:absolute;left:50%;top:50%;width:150px;height:132px;
+  transform:translate(-50%,-50%) translate(var(--x),var(--y));
+  opacity:0;animation:hx-lock .7s cubic-bezier(.5,1.5,.4,1) forwards}
+.combx .hx:nth-child(1){animation-delay:.05s}
+.combx .hx:nth-child(2){animation-delay:.18s}
+.combx .hx:nth-child(3){animation-delay:.28s}
+.combx .hx:nth-child(4){animation-delay:.38s}
+.combx .hx:nth-child(5){animation-delay:.48s}
+.combx .hx:nth-child(6){animation-delay:.58s}
+.combx .hx:nth-child(7){animation-delay:.68s}
+@keyframes hx-lock{
+  from{opacity:0;transform:translate(-50%,-50%) translate(calc(var(--x) * 2.4),calc(var(--y) * 2.4)) scale(.6) rotate(8deg)}
+  to{opacity:1;transform:translate(-50%,-50%) translate(var(--x),var(--y)) scale(1) rotate(0)}}
+.hx-in{width:100%;height:100%;
+  clip-path:polygon(25% 1%,75% 1%,99% 50%,75% 99%,25% 99%,1% 50%);
+  background:rgba(255,255,255,.62);-webkit-backdrop-filter:blur(12px) saturate(1.2);backdrop-filter:blur(12px) saturate(1.2);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;text-align:center;padding:0 20px;
+  transition:transform .25s ease}
+.combx .hx:hover .hx-in{transform:scale(1.05)}
+.hx-in i{width:26px;height:26px;color:var(--purple);margin-bottom:2px}
+.hx-in i svg{width:100%;height:100%}
+.hx-in b{font-family:var(--disp);font-weight:600;font-size:14.5px;letter-spacing:-.3px;color:var(--ink);line-height:1.1}
+.hx-in span{font-size:10.5px;line-height:1.25;color:var(--ink-soft);max-width:15ch}
+.hx-core .hx-in{background:linear-gradient(160deg,#1F6F73,#164E52);box-shadow:0 20px 46px -22px rgba(22,78,82,.8)}
+.hx-core .hx-in i,.hx-core .hx-in b{color:#fff}
+.hx-core .hx-in span{color:rgba(255,255,255,.8)}
+.seven-cue{display:inline-flex;align-items:center;gap:9px;margin:38px auto 0;text-decoration:none;color:var(--ink);
+  font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;text-shadow:0 1px 12px rgba(250,248,244,.9)}
+.seven-cue i{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.72);
+  border:1px solid rgba(14,26,43,.12);color:var(--purple);animation:hero-bob 1.8s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){.combx .hx{animation:none;opacity:1}.seven-cue i{animation:none}}
+@media(max-width:520px){.combx{transform:scale(.82)}}
