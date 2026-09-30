@@ -339,3 +339,16 @@ addEventListener('load',()=>{
   opts.forEach(function(o){o.addEventListener('click',function(){apply(o.dataset.term);});});
   apply('m');
 })();
+
+/* Rotating eyebrow: cycle the human lines */
+(function(){
+  var rot=document.querySelector('.rotor'); if(!rot) return;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var lines=[].slice.call(rot.querySelectorAll('.rot-line')); if(lines.length<2) return;
+  var i=0;
+  setInterval(function(){
+    lines[i].classList.remove('is-on');
+    i=(i+1)%lines.length;
+    lines[i].classList.add('is-on');
+  },3200);
+})();

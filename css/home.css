@@ -1241,3 +1241,9 @@ body.nav-up .stack-tabs{top:14px}
 .bt-opt em{font-style:normal;font-size:11px;font-weight:700;background:var(--purple);color:#fff;padding:3px 7px;border-radius:999px}
 .bt-opt.is-on em{background:rgba(255,255,255,.22)}
 @media(max-width:520px){.bt-opt{padding:9px 14px;font-size:13px}}
+/* Rotating eyebrow: each line is a person, not a feature */
+.rotor{position:relative;display:inline-grid}
+.rotor .rot-line{grid-area:1/1;opacity:0;transform:translateY(6px);
+  transition:opacity .5s ease,transform .5s ease;white-space:nowrap}
+.rotor .rot-line.is-on{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rotor .rot-line{transition:none}}
