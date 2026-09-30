@@ -25,10 +25,10 @@ ul{list-style:none}
   justify-content:space-between;padding:20px 5vw;transition:background .35s,box-shadow .35s,padding .35s}
 .nav.solid{background:rgba(251,250,255,.82);backdrop-filter:saturate(180%) blur(16px);
   box-shadow:0 1px 0 rgba(14,26,43,.07);padding:14px 5vw}
-.brand{display:flex;align-items:baseline;gap:11px;font-family:var(--disp);font-weight:600;
-  font-size:21px;letter-spacing:-.5px;color:var(--ink)}
-.brand small{font-family:var(--body);font-weight:600;font-size:10px;letter-spacing:3px;
-  text-transform:uppercase;color:var(--purple)}
+.brand{display:flex;align-items:baseline;gap:9px;font-family:var(--disp);font-weight:700;
+  font-size:27px;letter-spacing:-1px;color:var(--ink)}
+.brand small{font-family:var(--body);font-weight:700;font-size:10px;letter-spacing:2.5px;
+  text-transform:uppercase;color:var(--purple);align-self:center;transform:translateY(1px)}
 .nav-links{display:flex;gap:32px;font-size:14px;font-weight:500;color:var(--ink-soft)}
 .nav-links a{position:relative}
 .nav-links a::after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:1.5px;
@@ -63,9 +63,10 @@ ul{list-style:none}
     radial-gradient(50% 50% at 5% 95%,rgba(31,111,115,.10),transparent 55%),
     linear-gradient(180deg,var(--paper),var(--paper))}
 .hero::after{display:none}
-.hero-eyebrow{display:flex;align-items:center;gap:14px;font-size:12.5px;font-weight:700;
-  letter-spacing:3px;text-transform:uppercase;color:var(--purple-dark);margin-bottom:32px}
-.hero-eyebrow .line{width:46px;height:1.5px;background:var(--purple)}
+.hero-eyebrow{display:flex;align-items:center;gap:14px;font-size:13px;font-weight:800;
+  letter-spacing:2.6px;text-transform:uppercase;color:var(--ink);margin-bottom:32px;
+  text-shadow:0 1px 14px rgba(250,248,244,.95),0 0 4px rgba(250,248,244,.9)}
+.hero-eyebrow .line{width:46px;height:2px;background:var(--purple);box-shadow:0 0 8px rgba(250,248,244,.9)}
 .hero h1{font-family:var(--disp);font-weight:600;font-size:clamp(50px,8vw,128px);
   line-height:.95;letter-spacing:-3px;max-width:15ch}
 .hero h1 .word{display:inline-block;overflow:hidden;vertical-align:top}
