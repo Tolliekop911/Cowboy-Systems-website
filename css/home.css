@@ -1110,7 +1110,7 @@ body.nav-up .stack-tabs{top:14px}
 .scene-open{color:var(--ink);background:linear-gradient(180deg,#FAF8F4,#fff 46%,#F7F4EF)}
 .scene-open .scene-clock{color:#c2703a}
 .scene-open .sc-dial{background:linear-gradient(180deg,#ffd0a0,#e08c46);box-shadow:0 0 0 3px rgba(224,140,70,.14)}
-.scene-open .scene-lede,.scene-open .scene-pts li{color:var(--ink-soft)}
+.scene-open .scene-lede,.scene-open .scene-pts li{color:#2a3540}
 .scene-open .scene-pts li::before{background:#e08c46}
 .scene-open .scene-close{color:var(--ink)}
 
