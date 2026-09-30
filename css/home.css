@@ -1222,3 +1222,13 @@ body.nav-up .stack-tabs{top:14px}
   50%{text-shadow:0 1px 0 rgba(255,255,255,.4),0 -16px 46px rgba(255,196,120,.42)}}
 @media(prefers-reduced-motion:reduce){.hero-sun,.hero-c.lit h1 .word span{animation:none}}
 @media(max-width:900px){.hero-bg .hero-vid.on{opacity:.62}.hero-sun{height:320px}}
+/* Scroll cue: pull them into the services */
+.hero-scroll{display:inline-flex;flex-direction:column;align-items:center;gap:8px;margin:30px auto 0;
+  text-decoration:none;color:var(--ink);cursor:pointer;
+  text-shadow:0 1px 12px rgba(250,248,244,.9)}
+.hero-scroll span{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+.hero-scroll i{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;
+  background:rgba(255,255,255,.7);border:1px solid rgba(14,26,43,.12);color:var(--purple);
+  box-shadow:0 6px 20px -8px rgba(14,26,43,.4);animation:hero-bob 1.8s ease-in-out infinite}
+@keyframes hero-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+@media(prefers-reduced-motion:reduce){.hero-scroll i{animation:none}}
