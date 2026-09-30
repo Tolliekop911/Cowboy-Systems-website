@@ -1306,3 +1306,16 @@ body.nav-up .stack-tabs{top:14px}
   border:1px solid rgba(14,26,43,.12);color:var(--purple);animation:hero-bob 1.8s ease-in-out infinite}
 @media(prefers-reduced-motion:reduce){.combx .hx{animation:none;opacity:1}.seven-cue i{animation:none}}
 @media(max-width:520px){.combx{transform:scale(.82)}}
+
+/* Floating space objects for character in the galaxy */
+.g2-floaters{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.gf{position:absolute;top:var(--top);left:-8%;width:52px;height:auto;opacity:.85;
+  filter:drop-shadow(0 4px 12px rgba(0,0,0,.5));
+  animation:gf-drift var(--dur) linear infinite;animation-delay:var(--delay)}
+.gf-saucer{width:58px}.gf-rocket{width:30px}.gf-sat{width:64px}.gf-astro{width:40px}.gf-planet{width:60px}.gf-comet{width:74px}
+@keyframes gf-drift{
+  0%{transform:translateX(0) translateY(0) rotate(0)}
+  50%{transform:translateX(58vw) translateY(-16px) rotate(8deg)}
+  100%{transform:translateX(116vw) translateY(0) rotate(0)}}
+@media(prefers-reduced-motion:reduce){.gf{animation:none;opacity:.5}}
+@media(max-width:900px){.g2-floaters{display:none}}
