@@ -1232,3 +1232,12 @@ body.nav-up .stack-tabs{top:14px}
   box-shadow:0 6px 20px -8px rgba(14,26,43,.4);animation:hero-bob 1.8s ease-in-out infinite}
 @keyframes hero-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
 @media(prefers-reduced-motion:reduce){.hero-scroll i{animation:none}}
+/* Monthly / yearly billing toggle */
+.bill-toggle{display:inline-flex;gap:4px;margin:0 auto 30px;padding:5px;border-radius:999px;
+  background:var(--paper-2);border:1px solid var(--line);justify-content:center}
+.bt-opt{border:0;background:none;cursor:pointer;font:inherit;font-size:14px;font-weight:700;color:var(--ink-soft);
+  padding:10px 22px;border-radius:999px;display:flex;align-items:center;gap:8px;transition:background .2s,color .2s}
+.bt-opt.is-on{background:var(--purple);color:#fff}
+.bt-opt em{font-style:normal;font-size:11px;font-weight:700;background:var(--purple);color:#fff;padding:3px 7px;border-radius:999px}
+.bt-opt.is-on em{background:rgba(255,255,255,.22)}
+@media(max-width:520px){.bt-opt{padding:9px 14px;font-size:13px}}

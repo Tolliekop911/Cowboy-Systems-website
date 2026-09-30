@@ -322,3 +322,20 @@ addEventListener('load',()=>{
   addEventListener('resize',()=>{clearTimeout(window.__pnetT);window.__pnetT=setTimeout(draw,150);});
   addEventListener('load',draw);
 })();
+
+/* Pricing: monthly vs 12-month toggle */
+(function(){
+  var tog=document.querySelector('.bill-toggle'); if(!tog) return;
+  var opts=[].slice.call(tog.querySelectorAll('.bt-opt'));
+  function apply(term){
+    tog.setAttribute('data-on',term);
+    opts.forEach(function(o){var on=o.dataset.term===term;o.classList.toggle('is-on',on);o.setAttribute('aria-pressed',String(on));});
+    document.querySelectorAll('.price[data-'+term+']').forEach(function(p){
+      var val=p.getAttribute('data-'+term); var small=p.querySelector('small');
+      p.firstChild.textContent=val+' '; if(small)p.appendChild(small);
+    });
+    document.querySelectorAll('.pterm[data-'+term+']').forEach(function(t){t.innerHTML=t.getAttribute('data-'+term);});
+  }
+  opts.forEach(function(o){o.addEventListener('click',function(){apply(o.dataset.term);});});
+  apply('m');
+})();
