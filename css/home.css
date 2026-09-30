@@ -1206,7 +1206,7 @@ body.nav-up .stack-tabs{top:14px}
 .hero-bg .hero-vid.on{opacity:1}
 .hero-bg .hero-vid-b{z-index:1}
 .hero-veil{position:absolute;inset:0;background:
-  linear-gradient(180deg,rgba(250,248,244,.12) 0%,rgba(250,248,244,.3) 52%,rgba(250,248,244,.72) 82%,var(--paper) 100%)}
+  linear-gradient(180deg,rgba(250,248,244,.04) 0%,rgba(250,248,244,.16) 50%,rgba(250,248,244,.6) 84%,var(--paper) 100%)}
 .hero-sun{position:absolute;left:50%;top:-6%;width:min(760px,88vw);height:460px;transform:translateX(-50%);
   background:radial-gradient(circle at 50% 40%,rgba(255,214,150,.55),rgba(255,193,120,.24) 34%,transparent 66%);
   filter:blur(10px);animation:hero-breathe 8s ease-in-out infinite}
