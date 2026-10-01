@@ -1325,25 +1325,101 @@ body.nav-up .stack-tabs{top:14px}
 @media(max-width:900px){.g2-floaters{display:none}}
 .fbrand .brand{background:none!important;box-shadow:none!important;padding:0!important;backdrop-filter:none!important}
 
-/* A bee for each cell */
+/* Bees fill the honeycomb, cells glow, bees leave, repeat */
 .combx{overflow:visible}
-.hx-in{position:relative}
-.hx-honey{position:absolute;left:0;right:0;bottom:0;height:0;z-index:0;pointer-events:none;background:linear-gradient(180deg,rgba(247,183,49,0),rgba(247,183,49,.5) 45%,rgba(224,150,30,.68));animation:honey-fill 6s ease-out forwards}
+.hx-in{position:relative;animation:combglow 16s ease-in-out infinite}
+.hx-honey{position:absolute;left:0;right:0;bottom:0;height:0;z-index:0;pointer-events:none;background:linear-gradient(180deg,rgba(247,183,49,0),rgba(247,183,49,.5) 45%,rgba(224,150,30,.68))}
 .hx-core .hx-honey{background:linear-gradient(180deg,rgba(255,210,120,0),rgba(255,198,88,.42) 45%,rgba(255,186,64,.58))}
 .hx-in>*:not(.hx-honey){position:relative;z-index:1}
-@keyframes honey-fill{from{height:0}to{height:78%}}
-.combx .hx:nth-child(1) .hx-honey{animation-delay:.2s}
-.combx .hx:nth-child(2) .hx-honey{animation-delay:.5s}
-.combx .hx:nth-child(3) .hx-honey{animation-delay:.8s}
-.combx .hx:nth-child(4) .hx-honey{animation-delay:1.1s}
-.combx .hx:nth-child(5) .hx-honey{animation-delay:1.4s}
-.combx .hx:nth-child(6) .hx-honey{animation-delay:1.7s}
-.combx .hx:nth-child(7) .hx-honey{animation-delay:2s}
-.bee{position:absolute;left:50%;top:50%;width:42px;z-index:4;pointer-events:none;filter:drop-shadow(0 4px 6px rgba(0,0,0,.3));transform:translate(var(--bx),var(--by));animation:bee-bob 2.6s ease-in-out infinite}
+@keyframes honeycyc{0%{height:0}22%{height:0}48%{height:80%}72%{height:80%}90%{height:0}100%{height:0}}
+@keyframes combglow{0%,46%{box-shadow:inset 0 0 0 1.5px rgba(31,111,115,.22),0 10px 26px -16px rgba(14,26,43,.5)}56%{box-shadow:inset 0 0 0 1.5px rgba(245,183,49,.9),0 0 26px rgba(245,183,49,.55),0 10px 26px -16px rgba(14,26,43,.5)}72%{box-shadow:inset 0 0 0 1.5px rgba(245,183,49,.9),0 0 26px rgba(245,183,49,.55),0 10px 26px -16px rgba(14,26,43,.5)}88%,100%{box-shadow:inset 0 0 0 1.5px rgba(31,111,115,.22),0 10px 26px -16px rgba(14,26,43,.5)}}
+.combx .hx:nth-child(1) .hx-honey{animation:honeycyc 16s ease-in-out infinite;animation-delay:0.0s}
+.combx .hx:nth-child(2) .hx-honey{animation:honeycyc 16s ease-in-out infinite;animation-delay:0.0s}
+.combx .hx:nth-child(3) .hx-honey{animation:honeycyc 16s ease-in-out infinite;animation-delay:0.0s}
+.combx .hx:nth-child(4) .hx-honey{animation:honeycyc 16s ease-in-out infinite;animation-delay:0.0s}
+.combx .hx:nth-child(5) .hx-honey{animation:honeycyc 16s ease-in-out infinite;animation-delay:0.0s}
+.combx .hx:nth-child(6) .hx-honey{animation:honeycyc 16s ease-in-out infinite;animation-delay:0.0s}
+.combx .hx:nth-child(7) .hx-honey{animation:honeycyc 16s ease-in-out infinite;animation-delay:0.0s}
+.bee{position:absolute;left:50%;top:50%;width:40px;z-index:4;pointer-events:none;filter:drop-shadow(0 4px 6px rgba(0,0,0,.3))}
 .bee svg{width:100%;height:auto;display:block}
-.bee-w{transform-origin:34px 10px;animation:bee-w .12s linear infinite alternate}
-@keyframes bee-w{from{transform:scaleY(1)}to{transform:scaleY(.42)}}
-@keyframes bee-bob{0%,100%{transform:translate(var(--bx),var(--by))}50%{transform:translate(calc(var(--bx) + 6px),calc(var(--by) - 7px))}}
-.bee-1{animation-delay:-.3s}.bee-2{animation-delay:-.8s}.bee-3{animation-delay:-1.3s}.bee-4{animation-delay:-1.8s}.bee-5{animation-delay:-.6s}.bee-6{animation-delay:-2.1s}
-@media(prefers-reduced-motion:reduce){.bee{animation:none}.bee-w{animation:none}}
-@media(max-width:620px){.bee{display:none}.hx-honey{display:none}}
+.bee-w{transform-origin:34px 10px;animation:beew .12s linear infinite alternate}
+@keyframes beew{from{transform:scaleY(1)}to{transform:scaleY(.42)}}
+.bee-0{animation:bee0 16s ease-in-out infinite}
+@keyframes bee0{
+  0%{transform:translate(0px,-440px);opacity:0}
+  4%{opacity:1}
+  22%{transform:translate(30px,-30px);opacity:1}
+  30%{transform:translate(35px,-36px)}
+  44%{transform:translate(26px,-26px)}
+  58%{transform:translate(30px,-33px);opacity:1}
+  76%{transform:translate(0px,-440px);opacity:0}
+  100%{transform:translate(0px,-440px);opacity:0}
+}
+.bee-1{animation:bee1 16s ease-in-out infinite}
+@keyframes bee1{
+  0%{transform:translate(0px,-440px);opacity:0}
+  4%{opacity:1}
+  22%{transform:translate(30px,-162px);opacity:1}
+  30%{transform:translate(35px,-168px)}
+  44%{transform:translate(26px,-158px)}
+  58%{transform:translate(30px,-165px);opacity:1}
+  76%{transform:translate(0px,-440px);opacity:0}
+  100%{transform:translate(0px,-440px);opacity:0}
+}
+.bee-2{animation:bee2 16s ease-in-out infinite}
+@keyframes bee2{
+  0%{transform:translate(520px,-106px);opacity:0}
+  4%{opacity:1}
+  22%{transform:translate(144px,-96px);opacity:1}
+  30%{transform:translate(149px,-102px)}
+  44%{transform:translate(140px,-92px)}
+  58%{transform:translate(144px,-99px);opacity:1}
+  76%{transform:translate(520px,-106px);opacity:0}
+  100%{transform:translate(520px,-106px);opacity:0}
+}
+.bee-3{animation:bee3 16s ease-in-out infinite}
+@keyframes bee3{
+  0%{transform:translate(520px,26px);opacity:0}
+  4%{opacity:1}
+  22%{transform:translate(144px,36px);opacity:1}
+  30%{transform:translate(149px,30px)}
+  44%{transform:translate(140px,40px)}
+  58%{transform:translate(144px,33px);opacity:1}
+  76%{transform:translate(520px,26px);opacity:0}
+  100%{transform:translate(520px,26px);opacity:0}
+}
+.bee-4{animation:bee4 16s ease-in-out infinite}
+@keyframes bee4{
+  0%{transform:translate(0px,440px);opacity:0}
+  4%{opacity:1}
+  22%{transform:translate(30px,102px);opacity:1}
+  30%{transform:translate(35px,96px)}
+  44%{transform:translate(26px,106px)}
+  58%{transform:translate(30px,99px);opacity:1}
+  76%{transform:translate(0px,440px);opacity:0}
+  100%{transform:translate(0px,440px);opacity:0}
+}
+.bee-5{animation:bee5 16s ease-in-out infinite}
+@keyframes bee5{
+  0%{transform:translate(-520px,26px);opacity:0}
+  4%{opacity:1}
+  22%{transform:translate(-84px,36px);opacity:1}
+  30%{transform:translate(-79px,30px)}
+  44%{transform:translate(-88px,40px)}
+  58%{transform:translate(-84px,33px);opacity:1}
+  76%{transform:translate(-520px,26px);opacity:0}
+  100%{transform:translate(-520px,26px);opacity:0}
+}
+.bee-6{animation:bee6 16s ease-in-out infinite}
+@keyframes bee6{
+  0%{transform:translate(-520px,-106px);opacity:0}
+  4%{opacity:1}
+  22%{transform:translate(-84px,-96px);opacity:1}
+  30%{transform:translate(-79px,-102px)}
+  44%{transform:translate(-88px,-92px)}
+  58%{transform:translate(-84px,-99px);opacity:1}
+  76%{transform:translate(-520px,-106px);opacity:0}
+  100%{transform:translate(-520px,-106px);opacity:0}
+}
+@media(prefers-reduced-motion:reduce){.bee{display:none}.hx-honey{height:45%;animation:none}.hx-in{animation:none}}
+@media(max-width:620px){.bee{display:none}.hx-honey{display:none}.hx-in{animation:none}}
