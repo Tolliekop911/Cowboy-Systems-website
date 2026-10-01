@@ -1207,7 +1207,9 @@ body.nav-up .stack-tabs{top:14px}
 .scene-bg .bg-vid,.pn-bg .bg-vid{transition:opacity 1.4s ease}
 .bg-vid-b{z-index:1}
 /* Sunrise behind the hero, and the light catching the letters */
-.hero-bg{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.hero-bg{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none;-webkit-mask-image:linear-gradient(180deg,#000 0,#000 80%,transparent 100%);mask-image:linear-gradient(180deg,#000 0,#000 80%,transparent 100%)}
+/* second hero (agent) fades in at its top too */
+#agent .hero-bg{-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 16%,#000 82%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 16%,#000 82%,transparent 100%)}
 .hero-bg .hero-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
   opacity:0;transition:opacity 2s ease;filter:none;transform:none}
 .hero-bg .hero-vid.on{opacity:1}
@@ -1353,3 +1355,8 @@ body.nav-up .stack-tabs{top:14px}
 .scene::after{content:"";position:absolute;left:0;right:0;bottom:0;height:120px;z-index:-1;pointer-events:none}
 .scene-lunch::after,.scene-evening::after{background:linear-gradient(0deg,rgba(10,7,18,.85),transparent)}
 .scene-open::after,.scene-dayone::after{background:linear-gradient(0deg,rgba(250,248,244,.9),transparent)}
+/* Blend hero scene seams */
+.hero-c::after{content:"";position:absolute;left:0;right:0;bottom:0;height:160px;z-index:-1;pointer-events:none;
+  background:linear-gradient(0deg,var(--paper),transparent)}
+#agent::before{content:"";position:absolute;left:0;right:0;top:0;height:160px;z-index:-1;pointer-events:none;
+  background:linear-gradient(180deg,var(--paper),transparent)}
