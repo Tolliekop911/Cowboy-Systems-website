@@ -1312,7 +1312,7 @@ body.nav-up .stack-tabs{top:14px}
 .gf{position:absolute;top:var(--top);left:-8%;width:52px;height:auto;opacity:.85;
   filter:drop-shadow(0 4px 12px rgba(0,0,0,.5));
   animation:gf-drift var(--dur) linear infinite;animation-delay:var(--delay)}
-.gf-car{width:62px}.gf-car2{width:64px}.gf-saucer{width:58px}.gf-rocket{width:30px}.gf-sat{width:64px}.gf-astro{width:40px}.gf-planet{width:60px}.gf-comet{width:74px}
+.gf-car{width:62px}.gf-car2{width:64px}.gf-saucer{width:70px}.gf-van{width:72px}.gf-rocket{width:30px}.gf-sat{width:64px}.gf-astro{width:40px}.gf-planet{width:60px}.gf-comet{width:74px}
 @keyframes gf-drift{
   0%{transform:translateX(0) translateY(0) rotate(0)}
   50%{transform:translateX(58vw) translateY(-16px) rotate(8deg)}
