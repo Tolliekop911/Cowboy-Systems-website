@@ -287,7 +287,7 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px;li
 @media(max-width:700px){.photo-strip{grid-template-columns:1fr 1fr}.photo-strip .ps{height:180px}.photo-strip .ps3{display:none}}
 
 /* Bumblebee cursor */
-html{cursor:url(/assets/brand/bee-cursor.png) 10 8,auto}
-a,button,[role="button"],.btn,summary,label,select,input[type="submit"],input[type="button"]{cursor:url(/assets/brand/bee-cursor.png) 10 8,pointer}
+html{cursor:url(/assets/brand/bat-cursor.png) 10 8,auto}
+a,button,[role="button"],.btn,summary,label,select,input[type="submit"],input[type="button"]{cursor:url(/assets/brand/bat-cursor.png) 10 8,pointer}
 input[type="text"],input[type="email"],input[type="tel"],input[type="password"],input[type="search"],input[type="number"],input[type="url"],textarea{cursor:text}
 @media(hover:none),(pointer:coarse){html,a,button,[role="button"],.btn,summary,label,select{cursor:auto}}
