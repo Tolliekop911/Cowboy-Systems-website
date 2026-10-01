@@ -438,8 +438,7 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
 /* Floating pill nav */
 .nav{top:14px;left:50%;right:auto;transform:translateX(-50%);width:min(1240px,calc(100% - 24px));
   padding:0;border-radius:0;background:transparent;gap:22px;
-  -webkit-backdrop-filter:saturate(180%) blur(16px);backdrop-filter:saturate(180%) blur(16px);
-  box-shadow:0 1px 0 rgba(14,26,43,.06),0 18px 40px -28px rgba(14,26,43,.45);border:1px solid rgba(14,26,43,.07)}
+  -webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:none;border:0}
 .nav.solid{padding:0;background:transparent}
 .nav .brand,.navbar-group{background:rgba(251,250,255,.82);-webkit-backdrop-filter:saturate(180%) blur(16px);backdrop-filter:saturate(180%) blur(16px);border-radius:100px;box-shadow:0 1px 0 rgba(14,26,43,.06),0 10px 30px -18px rgba(14,26,43,.35);transition:background .3s}
 .nav.solid .brand,.nav.solid .navbar-group{background:rgba(251,250,255,.95)}
