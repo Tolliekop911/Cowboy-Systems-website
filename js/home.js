@@ -402,6 +402,7 @@ addEventListener('load',()=>{
       p.firstChild.textContent=val+' '; if(small)p.appendChild(small);
     });
     document.querySelectorAll('.pterm[data-'+term+']').forEach(function(t){t.innerHTML=t.getAttribute('data-'+term);});
+    document.querySelectorAll('.pcta[data-'+term+'-link]').forEach(function(a){a.href=a.getAttribute('data-'+term+'-link');});
   }
   opts.forEach(function(o){o.addEventListener('click',function(){apply(o.dataset.term);});});
   apply('m');
