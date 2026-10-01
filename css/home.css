@@ -1392,3 +1392,9 @@ body.nav-up .stack-tabs{top:14px}
   background:linear-gradient(0deg,var(--paper) 0,var(--paper) 18%,transparent)}
 #agent::before{content:"";position:absolute;left:0;right:0;top:-2px;height:280px;z-index:-1;pointer-events:none;
   background:linear-gradient(180deg,var(--paper) 0,var(--paper) 18%,transparent)}
+
+/* Bumblebee cursor */
+html{cursor:url(/assets/brand/bee-cursor.png) 10 8,auto}
+a,button,[role="button"],.btn,summary,label,select,input[type="submit"],input[type="button"]{cursor:url(/assets/brand/bee-cursor.png) 10 8,pointer}
+input[type="text"],input[type="email"],input[type="tel"],input[type="password"],input[type="search"],input[type="number"],input[type="url"],textarea{cursor:text}
+@media(hover:none),(pointer:coarse){html,a,button,[role="button"],.btn,summary,label,select{cursor:auto}}
