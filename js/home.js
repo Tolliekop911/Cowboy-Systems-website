@@ -114,6 +114,20 @@ document.querySelectorAll('.vid').forEach(v=>{
   });
 });
 
+/* Eval video: poster until clicked, then swap in the real player with controls + sound */
+document.querySelectorAll('.eval-video .ev-frame').forEach(frame=>{
+  const src=(frame.dataset.video||'').trim(), poster=(frame.dataset.poster||'').trim();
+  if(poster){frame.style.backgroundImage=`linear-gradient(140deg,rgba(14,26,43,.28),rgba(26,74,78,.28)),url("${poster}")`;
+    frame.style.backgroundSize='cover';frame.style.backgroundPosition='center';}
+  const btn=frame.querySelector('.ev-play'); if(!src||!btn) return;
+  btn.addEventListener('click',()=>{
+    const v=Object.assign(document.createElement('video'),{src,controls:true,autoplay:true,playsInline:true});
+    v.style.cssText='position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000';
+    frame.innerHTML=''; frame.style.backgroundImage='none'; frame.appendChild(v);
+    v.play?.().catch(()=>{});
+  });
+});
+
 /* Nav: dropdowns (click for touch, hover for mouse) and the mobile menu */
 (function(){
   const dds=[...document.querySelectorAll('.dd')], burger=document.querySelector('.nav-burger');
