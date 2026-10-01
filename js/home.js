@@ -128,6 +128,30 @@ document.querySelectorAll('.eval-video .ev-frame').forEach(frame=>{
   });
 });
 
+/* Eval note: match the video's height, and let people zoom the document */
+(function(){
+  const show=document.querySelector('.eval-showcase'); if(!show) return;
+  const frame=show.querySelector('.ev-frame'), scroll=show.querySelector('.note-scroll'),
+        pages=show.querySelector('.note-pages'), level=show.querySelector('.nz-level'),
+        zoomOut=show.querySelector('[data-zoom="out"]'), zoomIn=show.querySelector('[data-zoom="in"]');
+  /* Keep the note panel the same height as the video frame on wide screens */
+  if(frame&&scroll){
+    const sync=()=>{ if(matchMedia('(max-width:900px)').matches){scroll.style.removeProperty('--note-h');return;}
+      const h=Math.round(frame.getBoundingClientRect().height); if(h>120) scroll.style.setProperty('--note-h',h+'px'); };
+    if('ResizeObserver'in window){new ResizeObserver(sync).observe(frame);} addEventListener('resize',sync,{passive:true}); sync();
+  }
+  /* Zoom: step the page width; container scrolls when larger than the viewport */
+  if(pages&&zoomIn&&zoomOut){
+    let z=1; const MIN=1,MAX=3,STEP=.25;
+    const apply=()=>{ pages.style.setProperty('--note-zoom',z);
+      if(level) level.textContent=Math.round(z*100)+'%';
+      zoomOut.disabled=z<=MIN+1e-9; zoomIn.disabled=z>=MAX-1e-9; };
+    zoomIn.addEventListener('click',()=>{z=Math.min(MAX,+(z+STEP).toFixed(2));apply();});
+    zoomOut.addEventListener('click',()=>{z=Math.max(MIN,+(z-STEP).toFixed(2));apply();});
+    apply();
+  }
+})();
+
 /* Nav: dropdowns (click for touch, hover for mouse) and the mobile menu */
 (function(){
   const dds=[...document.querySelectorAll('.dd')], burger=document.querySelector('.nav-burger');
