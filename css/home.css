@@ -438,10 +438,14 @@ footer{background:var(--ink);color:rgba(237,233,254,.6);padding:70px 5vw 34px}
 /* ══ REDESIGN ═══════════════════════════════════════════════════════════ */
 /* Floating pill nav */
 .nav{top:14px;left:50%;right:auto;transform:translateX(-50%);width:min(1240px,calc(100% - 24px));
-  padding:10px 10px 10px 24px;border-radius:100px;background:rgba(251,250,255,.78);
+  padding:0;border-radius:0;background:transparent;gap:12px;
   -webkit-backdrop-filter:saturate(180%) blur(16px);backdrop-filter:saturate(180%) blur(16px);
   box-shadow:0 1px 0 rgba(14,26,43,.06),0 18px 40px -28px rgba(14,26,43,.45);border:1px solid rgba(14,26,43,.07)}
-.nav.solid{padding:10px 10px 10px 24px;background:rgba(251,250,255,.92)}
+.nav.solid{padding:0;background:transparent}
+.brand,.navbar-group{background:rgba(251,250,255,.82);-webkit-backdrop-filter:saturate(180%) blur(16px);backdrop-filter:saturate(180%) blur(16px);border-radius:100px;box-shadow:0 1px 0 rgba(14,26,43,.06),0 10px 30px -18px rgba(14,26,43,.35);transition:background .3s}
+.nav.solid .brand,.nav.solid .navbar-group{background:rgba(251,250,255,.95)}
+.brand{padding:12px 24px;flex:none}
+.navbar-group{display:flex;align-items:center;gap:26px;padding:10px 10px 10px 26px;flex:1;justify-content:space-between}
 .nav-links{align-items:center;gap:26px}
 .nav-right{display:flex;align-items:center;gap:8px}
 .nav-login{font-size:13px;font-weight:700;color:var(--ink);padding:10px 16px;border-radius:100px;border:1px solid rgba(14,26,43,.14)}
