@@ -1324,3 +1324,29 @@ body.nav-up .stack-tabs{top:14px}
 @media(prefers-reduced-motion:reduce){.gf{animation:none;opacity:.5}}
 @media(max-width:900px){.g2-floaters{display:none}}
 .fbrand .brand{background:none!important;box-shadow:none!important;padding:0!important;backdrop-filter:none!important}
+
+/* Bees visiting the honeycomb */
+.combx{overflow:visible}
+.bee{position:absolute;left:50%;top:50%;height:auto;z-index:4;pointer-events:none;
+  filter:drop-shadow(0 0 10px rgba(80,200,255,.5))}
+.bee-1{width:58px;animation:bee-path1 18s ease-in-out infinite}
+.bee-2{width:44px;animation:bee-path2 23s ease-in-out infinite;animation-delay:-7s}
+@keyframes bee-path1{
+  0%{transform:translate(-360px,-130px) rotate(8deg);opacity:0}
+  6%{opacity:1}
+  24%{transform:translate(-70px,-120px) rotate(4deg)}
+  42%{transform:translate(60px,-15px) rotate(-6deg)}
+  60%{transform:translate(-50px,85px) rotate(6deg)}
+  78%{transform:translate(110px,125px) rotate(-4deg)}
+  93%{opacity:1}
+  100%{transform:translate(380px,160px) rotate(-10deg);opacity:0}}
+@keyframes bee-path2{
+  0%{transform:translate(380px,130px) rotate(-8deg) scaleX(-1);opacity:0}
+  7%{opacity:1}
+  28%{transform:translate(95px,95px) rotate(-4deg) scaleX(-1)}
+  48%{transform:translate(-85px,25px) rotate(6deg) scaleX(-1)}
+  68%{transform:translate(45px,-95px) rotate(-6deg) scaleX(-1)}
+  88%{transform:translate(-130px,-125px) rotate(8deg) scaleX(-1);opacity:1}
+  100%{transform:translate(-380px,-150px) rotate(10deg) scaleX(-1);opacity:0}}
+@media(prefers-reduced-motion:reduce){.bee{display:none}}
+@media(max-width:620px){.bee{display:none}}
