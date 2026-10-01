@@ -1046,10 +1046,12 @@ body.nav-up .stack-tabs{top:14px}
 .scene-bg .bg-vid.on{opacity:1}
 .scene-veil{position:absolute;inset:0}
 .scene-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:56px;align-items:center}
-.scene-clock{display:inline-flex;align-items:center;gap:11px;font-size:11.5px;font-weight:700;
-  letter-spacing:.18em;text-transform:uppercase;margin-bottom:20px}
-.scene-clock i{font-style:normal;letter-spacing:.06em;opacity:.7}
-.sc-dial{width:13px;height:13px;border-radius:50%;box-shadow:0 0 0 3px rgba(255,255,255,.14)}
+.scene-clock{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:800;
+  letter-spacing:.16em;text-transform:uppercase;margin-bottom:20px;padding:8px 16px 8px 11px;border-radius:100px;
+  background:rgba(14,26,43,.42);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  box-shadow:0 8px 24px -14px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.14)}
+.scene-clock i{font-style:normal;letter-spacing:.06em;opacity:.9;font-weight:700}
+.sc-dial{width:14px;height:14px;border-radius:50%;box-shadow:0 0 0 3px rgba(255,255,255,.14),0 0 12px 1px currentColor}
 .scene h2{font-family:var(--disp);font-weight:600;font-size:clamp(34px,4.4vw,62px);letter-spacing:-2px;
   line-height:1.04;margin:0}
 .scene h2 em{font-style:normal}
@@ -1323,3 +1325,23 @@ body.nav-up .stack-tabs{top:14px}
 .agent-eyebrow .line{width:54px}
 .sub-more{color:var(--purple);font-weight:700;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
 .sub-more:hover{color:var(--purple-dark)}
+/* Energized time chips + punchier cards + readable scene-one sub */
+.scene-open .scene-clock,.scene-dayone .scene-clock,.scene-clock-solo{background:rgba(255,255,255,.82);border-color:rgba(14,26,43,.08);color:#b4612a}
+.scene-open .scene-clock i,.scene-dayone .scene-clock i{color:var(--ink-soft)}
+.partners .scene-clock{background:rgba(255,255,255,.82);border-color:rgba(14,26,43,.08)}
+
+/* Scene-one sub: readable over the bright sky */
+.seven-hero .hero-sub{color:#1a2630;font-weight:500;text-shadow:0 1px 14px rgba(250,248,244,.95)}
+.seven-hero .hero-sub b{color:var(--ink)}
+
+/* Bigger honeycomb */
+.combx{transform:scale(.98)!important;margin-top:4px!important}
+
+/* Punchier feature cards */
+.of-card{background:rgba(255,255,255,.96)!important}
+.of-top i{background:linear-gradient(145deg,#2A8589,#1F6F73)!important;color:#fff!important;
+  box-shadow:0 8px 18px -10px rgba(22,78,82,.7)}
+.of-card{border-top:3px solid rgba(31,111,115,.25)}
+.of-card.of-lead{border-top-color:var(--purple)}
+.of-card.of-lead .of-top i{background:linear-gradient(145deg,#C4A574,#a9843f)!important}
+.of-card:hover{transform:translateY(-4px);border-color:rgba(31,111,115,.4);transition:transform .2s,border-color .2s}
