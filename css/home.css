@@ -1040,7 +1040,7 @@ body.nav-up .stack-tabs{top:14px}
 
 /* ══ THE DAY: SCENES ════════════════════════════════════════════════════ */
 .scene{position:relative;isolation:isolate;padding:104px 0 100px;overflow:hidden}
-.scene-bg{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.scene-bg{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 15%,#000 85%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 15%,#000 85%,transparent 100%)}
 .scene-bg .bg-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;
   transition:opacity 1.6s ease}
 .scene-bg .bg-vid.on{opacity:1}
@@ -1345,3 +1345,11 @@ body.nav-up .stack-tabs{top:14px}
 .of-card.of-lead{border-top-color:var(--purple)}
 .of-card.of-lead .of-top i{background:linear-gradient(145deg,#C4A574,#a9843f)!important}
 .of-card:hover{transform:translateY(-4px);border-color:rgba(31,111,115,.4);transition:transform .2s,border-color .2s}
+/* Blend scene boundaries: videos fade at their edges, sections ease into each other */
+.scene{position:relative}
+.scene::before{content:"";position:absolute;left:0;right:0;top:0;height:120px;z-index:-1;pointer-events:none}
+.scene-lunch::before,.scene-evening::before{background:linear-gradient(180deg,rgba(10,7,18,.85),transparent)}
+.scene-open::before,.scene-dayone::before{background:linear-gradient(180deg,rgba(250,248,244,.9),transparent)}
+.scene::after{content:"";position:absolute;left:0;right:0;bottom:0;height:120px;z-index:-1;pointer-events:none}
+.scene-lunch::after,.scene-evening::after{background:linear-gradient(0deg,rgba(10,7,18,.85),transparent)}
+.scene-open::after,.scene-dayone::after{background:linear-gradient(0deg,rgba(250,248,244,.9),transparent)}
