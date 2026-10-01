@@ -732,9 +732,9 @@ body.nav-up .stack-tabs{top:14px}
 @media(prefers-reduced-motion:reduce){.ph img,.diff-photo img,.ps img,.fam-photo img{transform:none!important}}
 
 /* ══ PHILLY / ABOUT / CONTACT ═══════════════════════════════════════════ */
-.announce{display:inline-flex;align-items:center;gap:10px;margin:0 auto 26px;padding:7px 16px 7px 8px;border-radius:100px;
-  background:#fff;border:1px solid rgba(31,111,115,.25);box-shadow:0 12px 30px -20px rgba(22,78,82,.6);font-size:13.5px;font-weight:600;color:var(--ink)}
-.announce b{background:var(--purple);color:#fff;font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:100px}
+.announce{display:inline-flex;align-items:center;gap:12px;margin:-14px auto 30px;padding:10px 22px 10px 11px;border-radius:100px;
+  background:#fff;border:1px solid rgba(31,111,115,.25);box-shadow:0 14px 34px -18px rgba(22,78,82,.6);font-size:15px;font-weight:600;color:var(--ink)}
+.announce b{background:var(--purple);color:#fff;font-size:12px;letter-spacing:1px;text-transform:uppercase;padding:5px 12px;border-radius:100px}
 .announce svg{transition:transform .25s}.announce:hover svg{transform:translateX(4px)}
 .story-side{display:flex;flex-direction:column;gap:16px}
 .story-photo{position:relative;margin:0;border-radius:28px;overflow:hidden;background:var(--lav);aspect-ratio:4/5;max-height:520px}
@@ -1218,13 +1218,7 @@ body.nav-up .stack-tabs{top:14px}
 @keyframes hero-breathe{0%,100%{opacity:.7;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.06)}}
 .hero-c h1{position:relative}
 .hero-c .hero-sub,.hero-c .hero-eyebrow{position:relative;text-shadow:0 1px 12px rgba(250,248,244,.9)}
-.hero-c h1 span span{
-  text-shadow:0 1px 0 rgba(255,255,255,.4),0 -14px 40px rgba(255,196,120,.28);
-}
-.hero-c.lit h1 .word span{animation:hero-glow 6s ease-in-out infinite}
-@keyframes hero-glow{0%,100%{text-shadow:0 1px 0 rgba(255,255,255,.4),0 -12px 34px rgba(255,196,120,.20)}
-  50%{text-shadow:0 1px 0 rgba(255,255,255,.4),0 -16px 46px rgba(255,196,120,.42)}}
-@media(prefers-reduced-motion:reduce){.hero-sun,.hero-c.lit h1 .word span{animation:none}}
+@media(prefers-reduced-motion:reduce){.hero-sun{animation:none}}
 @media(max-width:900px){.hero-bg .hero-vid.on{opacity:.62}.hero-sun{height:320px}}
 /* Scroll cue: pull them into the services */
 .hero-scroll{display:inline-flex;flex-direction:column;align-items:center;gap:8px;margin:30px auto 0;
@@ -1324,4 +1318,8 @@ body.nav-up .stack-tabs{top:14px}
 @media(prefers-reduced-motion:reduce){.gf{animation:none;opacity:.5}}
 @media(max-width:900px){.g2-floaters{display:none}}
 .fbrand .brand{background:none!important;box-shadow:none!important;padding:0!important;backdrop-filter:none!important}
-
+/* Agent scene: bigger eyebrow, read-more link */
+.agent-eyebrow{font-size:clamp(14px,1.5vw,18px);letter-spacing:3.5px;margin-top:-10px;margin-bottom:22px}
+.agent-eyebrow .line{width:54px}
+.sub-more{color:var(--purple);font-weight:700;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.sub-more:hover{color:var(--purple-dark)}
