@@ -152,6 +152,35 @@ document.querySelectorAll('.eval-video .ev-frame').forEach(frame=>{
   }
 })();
 
+/* Honeycomb bee: tours the cells, leaving a honey glow on each */
+(function(){
+  const comb=document.querySelector('.combx'); if(!comb) return;
+  const bee=comb.querySelector('.comb-bee'); if(!bee) return;
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches){bee.remove();return;}
+  const pos=[...comb.querySelectorAll('.hx')].map(h=>({el:h,
+    x:parseFloat(getComputedStyle(h).getPropertyValue('--x'))||0,
+    y:parseFloat(getComputedStyle(h).getPropertyValue('--y'))||0,
+    core:h.classList.contains('hx-core')}));
+  if(!pos.length){bee.remove();return;}
+  const core=pos.find(p=>p.core), outer=pos.filter(p=>!p.core)
+    .sort((a,b)=>Math.atan2(a.y,a.x)-Math.atan2(b.y,b.x));
+  const order=[]; outer.forEach((p,i)=>{order.push(p); if(i%2===1&&core)order.push(core);});
+  const OY=-30, DUR=1150; let i=0, last={x:0,y:-180};
+  function step(){
+    const t=order[i%order.length]; i++;
+    const tx=t.x, ty=t.y+OY;
+    const deg=Math.atan2(ty-last.y,tx-last.x)*180/Math.PI+90;
+    bee.style.transform=`translate(-50%,-50%) translate(${tx}px,${ty}px) rotate(${deg}deg)`;
+    last={x:tx,y:ty};
+    setTimeout(()=>{t.el.classList.add('honeyed');setTimeout(()=>t.el.classList.remove('honeyed'),1200);},DUR*0.75);
+  }
+  let started=false;
+  const io=new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting&&!started){started=true;setTimeout(()=>{bee.classList.add('on');step();setInterval(step,DUR+750);},500);}
+  }),{threshold:.35});
+  io.observe(comb);
+})();
+
 /* Nav: dropdowns (click for touch, hover for mouse) and the mobile menu */
 (function(){
   const dds=[...document.querySelectorAll('.dd')], burger=document.querySelector('.nav-burger');
