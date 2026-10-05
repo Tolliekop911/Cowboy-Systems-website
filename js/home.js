@@ -114,6 +114,73 @@ document.querySelectorAll('.vid').forEach(v=>{
   });
 });
 
+/* Eval video: poster until clicked, then swap in the real player with controls + sound */
+document.querySelectorAll('.eval-video .ev-frame').forEach(frame=>{
+  const src=(frame.dataset.video||'').trim(), poster=(frame.dataset.poster||'').trim();
+  if(poster){frame.style.backgroundImage=`linear-gradient(140deg,rgba(14,26,43,.28),rgba(26,74,78,.28)),url("${poster}")`;
+    frame.style.backgroundSize='cover';frame.style.backgroundPosition='center';}
+  const btn=frame.querySelector('.ev-play'); if(!src||!btn) return;
+  btn.addEventListener('click',()=>{
+    const v=Object.assign(document.createElement('video'),{src,controls:true,autoplay:true,playsInline:true});
+    v.style.cssText='position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000';
+    frame.innerHTML=''; frame.style.backgroundImage='none'; frame.appendChild(v);
+    v.play?.().catch(()=>{});
+  });
+});
+
+/* Eval note: match the video's height, and let people zoom the document */
+(function(){
+  const show=document.querySelector('.eval-showcase'); if(!show) return;
+  const frame=show.querySelector('.ev-frame'), scroll=show.querySelector('.note-scroll'),
+        pages=show.querySelector('.note-pages'), level=show.querySelector('.nz-level'),
+        zoomOut=show.querySelector('[data-zoom="out"]'), zoomIn=show.querySelector('[data-zoom="in"]');
+  /* Keep the note panel the same height as the video frame on wide screens */
+  if(frame&&scroll){
+    const sync=()=>{ if(matchMedia('(max-width:900px)').matches){scroll.style.removeProperty('--note-h');return;}
+      const h=Math.round(frame.getBoundingClientRect().height); if(h>120) scroll.style.setProperty('--note-h',h+'px'); };
+    if('ResizeObserver'in window){new ResizeObserver(sync).observe(frame);} addEventListener('resize',sync,{passive:true}); sync();
+  }
+  /* Zoom: step the page width; container scrolls when larger than the viewport */
+  if(pages&&zoomIn&&zoomOut){
+    let z=1; const MIN=1,MAX=3,STEP=.25;
+    const apply=()=>{ pages.style.setProperty('--note-zoom',z);
+      if(level) level.textContent=Math.round(z*100)+'%';
+      zoomOut.disabled=z<=MIN+1e-9; zoomIn.disabled=z>=MAX-1e-9; };
+    zoomIn.addEventListener('click',()=>{z=Math.min(MAX,+(z+STEP).toFixed(2));apply();});
+    zoomOut.addEventListener('click',()=>{z=Math.max(MIN,+(z-STEP).toFixed(2));apply();});
+    apply();
+  }
+})();
+
+/* Honeycomb bee: tours the cells, leaving a honey glow on each */
+(function(){
+  const comb=document.querySelector('.combx'); if(!comb) return;
+  const bee=comb.querySelector('.comb-bee'); if(!bee) return;
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches){bee.remove();return;}
+  const pos=[...comb.querySelectorAll('.hx')].map(h=>({el:h,
+    x:parseFloat(getComputedStyle(h).getPropertyValue('--x'))||0,
+    y:parseFloat(getComputedStyle(h).getPropertyValue('--y'))||0,
+    core:h.classList.contains('hx-core')}));
+  if(!pos.length){bee.remove();return;}
+  const core=pos.find(p=>p.core), outer=pos.filter(p=>!p.core)
+    .sort((a,b)=>Math.atan2(a.y,a.x)-Math.atan2(b.y,b.x));
+  const order=[]; outer.forEach((p,i)=>{order.push(p); if(i%2===1&&core)order.push(core);});
+  const OY=-30, DUR=1150; let i=0, last={x:0,y:-180};
+  function step(){
+    const t=order[i%order.length]; i++;
+    const tx=t.x, ty=t.y+OY;
+    const deg=Math.atan2(ty-last.y,tx-last.x)*180/Math.PI+90;
+    bee.style.transform=`translate(-50%,-50%) translate(${tx}px,${ty}px) rotate(${deg}deg)`;
+    last={x:tx,y:ty};
+    setTimeout(()=>{t.el.classList.add('honeyed');setTimeout(()=>t.el.classList.remove('honeyed'),1200);},DUR*0.75);
+  }
+  let started=false;
+  const io=new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting&&!started){started=true;setTimeout(()=>{bee.classList.add('on');step();setInterval(step,DUR+750);},500);}
+  }),{threshold:.35});
+  io.observe(comb);
+})();
+
 /* Nav: dropdowns (click for touch, hover for mouse) and the mobile menu */
 (function(){
   const dds=[...document.querySelectorAll('.dd')], burger=document.querySelector('.nav-burger');
@@ -335,6 +402,7 @@ addEventListener('load',()=>{
       p.firstChild.textContent=val+' '; if(small)p.appendChild(small);
     });
     document.querySelectorAll('.pterm[data-'+term+']').forEach(function(t){t.innerHTML=t.getAttribute('data-'+term);});
+    document.querySelectorAll('.pcta[data-'+term+'-link]').forEach(function(a){a.href=a.getAttribute('data-'+term+'-link');});
   }
   opts.forEach(function(o){o.addEventListener('click',function(){apply(o.dataset.term);});});
   apply('m');
