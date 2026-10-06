@@ -446,7 +446,7 @@ addEventListener('load',()=>{
   function setShape(s){ if(s===curShape)return; curShape=s; SHAPES.forEach(function(x){ring.classList.remove(x);}); if(s&&s!=='circle')ring.classList.add('sh-'+s); }
   var secs=[].slice.call(document.querySelectorAll('[data-cur]'));
   function pickShape(){
-    if(!secs.length)return; var mid=innerHeight/2, found='circle';
+    if(!secs.length)return; var vh=innerHeight||document.documentElement.clientHeight||800; var mid=vh/2, found='circle';
     for(var i=0;i<secs.length;i++){ var r=secs[i].getBoundingClientRect(); if(r.top<=mid&&r.bottom>=mid){ found=secs[i].getAttribute('data-cur'); break; } }
     setShape(found);
   }
