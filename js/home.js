@@ -450,8 +450,11 @@ addEventListener('load',()=>{
     for(var i=0;i<secs.length;i++){ var r=secs[i].getBoundingClientRect(); if(r.top<=mid&&r.bottom>=mid){ found=secs[i].getAttribute('data-cur'); break; } }
     setShape(found);
   }
-  var cq=false;
-  addEventListener('scroll',function(){ if(!cq){cq=true;requestAnimationFrame(function(){cq=false;pickShape();});} },{passive:true});
+  var cq=null;
+  function onScroll(){ if(cq)return; cq=setTimeout(function(){cq=null;pickShape();},80); }
+  addEventListener('scroll',onScroll,{passive:true});
+  if(window.lenis&&window.lenis.on) window.lenis.on('scroll',onScroll);
+  setInterval(pickShape,400);
   pickShape();
 
   (function loop(){ rx+=(mx-rx)*0.18; ry+=(my-ry)*0.18;
