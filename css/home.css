@@ -1413,11 +1413,6 @@ body.nav-up .stack-tabs{top:14px}
 .of-card.of-lead .of-top i{background:linear-gradient(145deg,#C4A574,#a9843f)!important}
 .of-card:hover{transform:translateY(-4px);border-color:rgba(31,111,115,.4);transition:transform .2s,border-color .2s}
 
-/* Bumblebee cursor */
-html{cursor:url(/assets/brand/bat-cursor.png) 10 8,auto}
-a,button,[role="button"],.btn,summary,label,select,input[type="submit"],input[type="button"]{cursor:url(/assets/brand/bat-cursor.png) 10 8,pointer}
-input[type="text"],input[type="email"],input[type="tel"],input[type="password"],input[type="search"],input[type="number"],input[type="url"],textarea{cursor:text}
-@media(hover:none),(pointer:coarse){html,a,button,[role="button"],.btn,summary,label,select{cursor:auto}}
 
 /* Product pages */
 .hx-in{text-decoration:none;cursor:pointer}
@@ -1465,3 +1460,17 @@ input[type="text"],input[type="email"],input[type="tel"],input[type="password"],
 .pp-cta{text-align:center;margin-top:36px}
 @media(max-width:900px){.pf-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.pf-grid{grid-template-columns:1fr}}
+
+/* ══ SHAPE-SHIFTING CURSOR ══════════════════════════════════════════════ */
+@media(hover:hover) and (pointer:fine){
+  html.has-cur, html.has-cur *{cursor:none !important}
+  .cur-ring,.cur-dot{position:fixed;top:0;left:0;z-index:99999;pointer-events:none;border-radius:50%;
+    transform:translate(-50%,-50%);will-change:transform,width,height}
+  .cur-dot{width:7px;height:7px;background:var(--purple);transition:width .18s,height .18s,opacity .2s}
+  .cur-ring{width:34px;height:34px;border:1.6px solid var(--purple);opacity:.55;
+    transition:width .22s cubic-bezier(.4,1.3,.4,1),height .22s cubic-bezier(.4,1.3,.4,1),border-radius .22s,opacity .2s,background .2s,border-color .2s}
+  .cur-ring.hovering{width:58px;height:58px;opacity:.9;background:rgba(31,111,115,.12);border-color:var(--purple)}
+  .cur-dot.hovering{width:0;height:0;opacity:0}
+  .cur-ring.pressed{width:26px;height:26px}
+  .cur-ring.hidden,.cur-dot.hidden{opacity:0}
+}

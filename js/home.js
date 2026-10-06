@@ -420,3 +420,27 @@ addEventListener('load',()=>{
     lines[i].classList.add('is-on');
   },3200);
 })();
+
+/* Shape-shifting cursor: a dot that leads and a ring that eases behind,
+   the ring swells over anything clickable. Desktop fine-pointer only. */
+(function(){
+  if(!matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var html=document.documentElement; html.classList.add('has-cur');
+  var dot=document.createElement('div'); dot.className='cur-dot';
+  var ring=document.createElement('div'); ring.className='cur-ring';
+  document.body.appendChild(ring); document.body.appendChild(dot);
+  var mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my,shown=false;
+  addEventListener('mousemove',function(e){ mx=e.clientX;my=e.clientY;
+    dot.style.transform='translate('+mx+'px,'+my+'px) translate(-50%,-50%)';
+    if(!shown){shown=true;dot.classList.remove('hidden');ring.classList.remove('hidden');}
+  },{passive:true});
+  addEventListener('mouseout',function(e){ if(!e.relatedTarget){dot.classList.add('hidden');ring.classList.add('hidden');shown=false;} });
+  addEventListener('mousedown',function(){ring.classList.add('pressed');});
+  addEventListener('mouseup',function(){ring.classList.remove('pressed');});
+  var SEL='a,button,[role="button"],.btn,summary,label,select,input,.hx-in,.of-card,.pf-card,.pn,.bt-opt,.uf-table tr';
+  addEventListener('mouseover',function(e){ if(e.target.closest&&e.target.closest(SEL)){ring.classList.add('hovering');dot.classList.add('hovering');}});
+  addEventListener('mouseout',function(e){ if(e.target.closest&&e.target.closest(SEL)){ring.classList.remove('hovering');dot.classList.remove('hovering');}});
+  (function loop(){ rx+=(mx-rx)*0.18; ry+=(my-ry)*0.18;
+    ring.style.transform='translate('+rx+'px,'+ry+'px) translate(-50%,-50%)'; requestAnimationFrame(loop); })();
+})();
