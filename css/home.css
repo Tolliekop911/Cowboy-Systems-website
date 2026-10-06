@@ -1473,4 +1473,9 @@ body.nav-up .stack-tabs{top:14px}
   .cur-dot.hovering{width:0;height:0;opacity:0}
   .cur-ring.pressed{width:26px;height:26px}
   .cur-ring.hidden,.cur-dot.hidden{opacity:0}
+  .cur-ring{clip-path:none}
+  .cur-ring.sh-square{border-radius:9px}
+  .cur-ring.sh-hex{border-radius:0;clip-path:polygon(25% 3%,75% 3%,98% 50%,75% 97%,25% 97%,2% 50%)}
+  .cur-ring.sh-diamond{border-radius:0;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
+  .cur-ring.sh-star{border-radius:0;clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
 }

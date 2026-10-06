@@ -441,6 +441,17 @@ addEventListener('load',()=>{
   var SEL='a,button,[role="button"],.btn,summary,label,select,input,.hx-in,.of-card,.pf-card,.pn,.bt-opt,.uf-table tr';
   addEventListener('mouseover',function(e){ if(e.target.closest&&e.target.closest(SEL)){ring.classList.add('hovering');dot.classList.add('hovering');}});
   addEventListener('mouseout',function(e){ if(e.target.closest&&e.target.closest(SEL)){ring.classList.remove('hovering');dot.classList.remove('hovering');}});
+
+  var SHAPES=['sh-square','sh-hex','sh-diamond','sh-star'];
+  function setShape(s){ SHAPES.forEach(function(x){ring.classList.remove(x);}); if(s&&s!=='circle')ring.classList.add('sh-'+s); }
+  var secs=[].slice.call(document.querySelectorAll('[data-cur]'));
+  if(secs.length){
+    var cio=new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting&&e.intersectionRatio>0.5) setShape(e.target.getAttribute('data-cur')); });
+    },{threshold:[0.5],rootMargin:'-30% 0px -30% 0px'});
+    secs.forEach(function(s){cio.observe(s);});
+  }
+
   (function loop(){ rx+=(mx-rx)*0.18; ry+=(my-ry)*0.18;
     ring.style.transform='translate('+rx+'px,'+ry+'px) translate(-50%,-50%)'; requestAnimationFrame(loop); })();
 })();
