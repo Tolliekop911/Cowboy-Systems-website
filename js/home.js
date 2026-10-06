@@ -443,7 +443,7 @@ addEventListener('load',()=>{
   addEventListener('mouseout',function(e){ if(e.target.closest&&e.target.closest(SEL)){ring.classList.remove('hovering');dot.classList.remove('hovering');}});
 
   var SHAPES=['sh-square','sh-hex','sh-diamond','sh-star'],curShape='';
-  function setShape(s){ if(s===curShape)return; curShape=s; SHAPES.forEach(function(x){ring.classList.remove(x);}); if(s&&s!=='circle')ring.classList.add('sh-'+s); }
+  function setShape(s){ if(s===curShape)return; curShape=s; SHAPES.forEach(function(x){ring.classList.remove(x);}); if(s&&s!=='circle')ring.classList.add('sh-'+s); ring.classList.remove('cur-morph'); void ring.offsetWidth; ring.classList.add('cur-morph'); }
   var secs=[].slice.call(document.querySelectorAll('[data-cur]'));
   function pickShape(){
     if(!secs.length)return; var vh=innerHeight||document.documentElement.clientHeight||800; var mid=vh/2, found='circle';
