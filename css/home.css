@@ -1434,3 +1434,34 @@ input[type="text"],input[type="email"],input[type="tel"],input[type="password"],
 .final-h{font-family:var(--disp);font-weight:600;font-size:clamp(30px,4vw,56px);letter-spacing:-2px;text-align:center}
 .final-sub{text-align:center;max-width:52ch;margin:16px auto 30px;color:var(--ink-soft);font-size:16px}
 @media(max-width:860px){.pp-grid{grid-template-columns:1fr;gap:30px}}
+/* Ambient drift */
+@keyframes amb-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@media(prefers-reduced-motion:no-preference){
+.pn{animation:amb-float 6s ease-in-out infinite}
+.pn:nth-child(2){animation-delay:-1s}.pn:nth-child(3){animation-delay:-2s}.pn:nth-child(4){animation-delay:-3s}
+.pn:nth-child(5){animation-delay:-1.5s}.pn:nth-child(6){animation-delay:-2.5s}.pn:nth-child(7){animation-delay:-3.5s}
+.pn:nth-child(8){animation-delay:-4s}.pn:nth-child(9){animation-delay:-2s}.pn:nth-child(10){animation-delay:-3s}
+.pn:hover{animation-play-state:paused}
+.of-card{animation:amb-float 7s ease-in-out infinite}
+.of-card:nth-child(2){animation-delay:-1.2s}.of-card:nth-child(3){animation-delay:-2.4s}
+.of-card:nth-child(4){animation-delay:-3.6s}.of-card:nth-child(5){animation-delay:-1.8s}.of-card:nth-child(6){animation-delay:-3s}
+.of-card:hover{animation-play-state:paused}
+.pp-ic{animation:amb-float 5s ease-in-out infinite}
+}
+
+/* Product page: feature cards */
+.pp-what{padding-top:70px}
+.pp-head{text-align:center;max-width:680px;margin:0 auto 44px}
+.pp-head .pp-ic{margin:0 auto 20px}
+.pp-head h2{font-family:var(--disp);font-weight:600;font-size:clamp(28px,3.4vw,46px);letter-spacing:-1.6px;margin:0 0 14px}
+.pp-head .pp-close{font-family:var(--disp);font-weight:500;font-size:clamp(17px,1.7vw,22px);letter-spacing:-.5px;line-height:1.45;color:var(--ink-soft);margin:0 auto;max-width:46ch}
+.pf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1120px;margin:0 auto}
+.pf-card{position:relative;background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px 22px 24px;
+  box-shadow:0 1px 2px rgba(14,26,43,.04),0 14px 34px -26px rgba(14,26,43,.34);transition:transform .2s,border-color .2s}
+.pf-card:hover{transform:translateY(-4px);border-color:rgba(31,111,115,.4)}
+.pf-n{font-family:var(--disp);font-weight:700;font-size:13px;color:var(--purple);letter-spacing:.06em;
+  display:inline-block;margin-bottom:12px;padding:4px 10px;background:rgba(31,111,115,.1);border-radius:8px}
+.pf-card p{margin:0;font-size:15px;line-height:1.6;color:var(--ink)}
+.pp-cta{text-align:center;margin-top:36px}
+@media(max-width:900px){.pf-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.pf-grid{grid-template-columns:1fr}}
