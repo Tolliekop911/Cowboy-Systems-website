@@ -1482,3 +1482,26 @@ body.nav-up .stack-tabs{top:14px}
   .cur-ring.cur-morph{animation:cur-bounce .5s cubic-bezier(.34,1.56,.64,1)}
   @keyframes cur-bounce{0%{scale:1;rotate:0deg}35%{scale:1.45;rotate:-12deg}65%{scale:.85;rotate:6deg}100%{scale:1;rotate:0deg}}
 }
+
+/* Long-form product (sales) pages */
+.sp-punch{padding:76px 0 30px}
+.sp-lead{font-family:var(--disp);font-weight:500;font-size:clamp(21px,2.5vw,33px);letter-spacing:-.8px;line-height:1.4;
+  max-width:24ch;max-width:min(78ch,100%);color:var(--ink)}
+.sp-lead::first-letter{color:var(--purple)}
+.sp-body{padding-top:20px}
+.sp-sec{display:grid;grid-template-columns:120px 1fr;gap:28px;align-items:start;padding:40px 0;border-top:1px solid var(--line)}
+.sp-num{font-family:var(--disp);font-weight:700;font-size:40px;letter-spacing:-2px;color:var(--purple);opacity:.5}
+.sp-txt{max-width:70ch}
+.sp-txt h2{font-family:var(--disp);font-weight:600;font-size:clamp(23px,2.4vw,34px);letter-spacing:-1px;line-height:1.1;margin:0 0 14px}
+.sp-txt p{font-size:clamp(15px,1.25vw,17px);line-height:1.75;color:var(--ink-soft);margin:0}
+.sp-why{padding:40px 5vw 90px}
+.sp-why-in{max-width:1000px;margin:0 auto;background:linear-gradient(150deg,#17122b,#173044 55%,#1a4a4e);color:#fff;
+  border-radius:28px;padding:clamp(32px,5vw,64px);text-align:center;position:relative;overflow:hidden}
+.sp-why-in::before{content:"";position:absolute;left:50%;top:-40%;width:120%;height:120%;transform:translateX(-50%);
+  background:radial-gradient(circle,rgba(31,111,115,.4),transparent 60%);pointer-events:none}
+.sp-why-k{position:relative;font-size:11.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#C4A574;margin-bottom:18px}
+.sp-why-in p{position:relative;font-family:var(--disp);font-weight:500;font-size:clamp(21px,2.4vw,32px);letter-spacing:-.8px;
+  line-height:1.4;max-width:30ch;margin:0 auto 30px;color:#fff}
+.sp-why-ctas{position:relative;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.sp-why-ctas .btn.ghost{color:#fff;border-color:rgba(255,255,255,.3)}
+@media(max-width:700px){.sp-sec{grid-template-columns:1fr;gap:10px;padding:32px 0}.sp-num{font-size:30px}}
