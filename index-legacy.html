@@ -2065,7 +2065,7 @@ header.scrolled .hamburger span{background:var(--gray-700)}
       <div class="pcard featured fade-in stagger-2">
         <div class="popular-tag">Most Popular</div>
         <h3>Growth</h3>
-        <div class="price" id="growthPrice">$499 <span class="per">/ mo · up to 5 providers</span></div>
+        <div class="price" id="growthPrice">$449 <span class="per">/ mo · up to 5 providers</span></div>
         <p class="desc">For growing practices <strong>up to 5 providers</strong> that need full automation and advanced revenue tools.</p>
         <a id="growthBtn" href="https://buy.stripe.com/aFa14m6Y5aoK9k9fOJg7e01" target="_blank" class="pcard-btn">Get Started &rsaquo;</a>
         <ul class="pcard-features">
@@ -2420,7 +2420,7 @@ const toggle = document.getElementById('annualToggle');
 toggle?.addEventListener('change', () => {
   const a = toggle.checked;
   document.getElementById('starterPrice').innerHTML = (a ? '$211' : '$249') + ' <span class="per">/ mo · up to 2 providers</span>';
-  document.getElementById('growthPrice').innerHTML = (a ? '$424' : '$499') + ' <span class="per">/ mo · up to 5 providers</span>';
+  document.getElementById('growthPrice').innerHTML = (a ? '$382' : '$449') + ' <span class="per">/ mo · up to 5 providers</span>';
   document.getElementById('starterBtn').href = a ? STRIPE.starter.annual : STRIPE.starter.monthly;
   document.getElementById('growthBtn').href  = a ? STRIPE.growth.annual  : STRIPE.growth.monthly;
 });
