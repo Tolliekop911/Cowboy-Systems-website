@@ -54,7 +54,7 @@
     "@keyframes hw-flap{from{transform:scaleY(1)}to{transform:scaleY(.42)}}" +
     ".hw-web{position:fixed;width:150px;height:150px;z-index:9996;pointer-events:none;opacity:.6}" +
     ".hw-web.tl{top:0;left:0}.hw-web.tr{top:0;right:0;transform:scaleX(-1)}" +
-    ".hw-fly{position:fixed;width:46px;height:30px;z-index:9995;pointer-events:none;opacity:.85;will-change:transform;animation:hw-cross linear infinite}" +
+    ".hw-fly{position:fixed;top:0;left:0;width:46px;height:30px;z-index:9995;pointer-events:none;opacity:.8;will-change:transform}" +
     "@keyframes hw-cross{from{transform:translateX(-80px)}to{transform:translateX(calc(100vw + 80px))}}" +
     ".hw-spider{position:fixed;top:0;z-index:9997;pointer-events:none;display:flex;flex-direction:column;align-items:center;transform:translateY(-320px);transition:transform 2.4s cubic-bezier(.5,0,.5,1)}" +
     ".hw-spider .thr{width:1px;height:300px;background:linear-gradient(rgba(14,26,43,.0),rgba(14,26,43,.45))}" +
@@ -95,15 +95,36 @@
 
     if (reduce) return; // keep it calm: no motion/scares for reduced-motion
 
-    // drifting background bats
-    for (var i = 0; i < 4; i++) {
+    // drifting bats — each on its own flight path (drift + wobble + turns)
+    var VW = innerWidth, VH = innerHeight;
+    addEventListener("resize", function () { VW = innerWidth; VH = innerHeight; });
+    var flock = [];
+    for (var i = 0; i < 6; i++) {
       var f = document.createElement("div"); f.className = "hw-fly"; f.innerHTML = BAT;
-      f.style.top = (8 + Math.random() * 60) + "%";
-      f.style.animationDuration = (9 + Math.random() * 9) + "s";
-      f.style.animationDelay = (-Math.random() * 12) + "s";
-      f.style.transform = "scale(" + (0.6 + Math.random() * 0.8) + ")";
-      body.appendChild(f);
+      var b = { el: f,
+        x: Math.random() * VW, y: 50 + Math.random() * (VH * 0.55),
+        sp: 0.4 + Math.random() * 1.0, dir: Math.random() < 0.5 ? -1 : 1,
+        ph: Math.random() * 6.28, vy: (Math.random() - 0.5) * 0.3,
+        sc: 0.55 + Math.random() * 0.75 };
+      f.querySelector(".hw-wings").style.animationDuration = (0.2 + Math.random() * 0.18) + "s";
+      flock.push(b); body.appendChild(f);
     }
+    (function fly() {
+      for (var k = 0; k < flock.length; k++) {
+        var b = flock[k];
+        b.ph += 0.035;
+        b.x += b.sp * b.dir;
+        b.y += b.vy + Math.sin(b.ph) * 0.7;                 // gentle up/down wobble
+        if (Math.random() < 0.005) b.vy = (Math.random() - 0.5) * 0.5; // occasional turn
+        if (b.y < 36) { b.y = 36; b.vy = Math.abs(b.vy); }
+        if (b.y > VH * 0.82) { b.y = VH * 0.82; b.vy = -Math.abs(b.vy); }
+        if (b.dir > 0 && b.x > VW + 70) { b.x = -70; b.y = 40 + Math.random() * (VH * 0.55); }
+        if (b.dir < 0 && b.x < -70) { b.x = VW + 70; b.y = 40 + Math.random() * (VH * 0.55); }
+        var tilt = Math.sin(b.ph) * 12;
+        b.el.style.transform = "translate(" + b.x.toFixed(1) + "px," + b.y.toFixed(1) + "px) scale(" + (b.dir * b.sc) + "," + b.sc + ") rotate(" + tilt + "deg)";
+      }
+      requestAnimationFrame(fly);
+    })();
 
     // dropping spider (periodic)
     var sp = document.createElement("div"); sp.className = "hw-spider";
