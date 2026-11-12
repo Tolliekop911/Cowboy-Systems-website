@@ -424,6 +424,7 @@ addEventListener('load',()=>{
 /* Shape-shifting cursor: a dot that leads and a ring that eases behind,
    the ring swells over anything clickable. Desktop fine-pointer only. */
 (function(){
+  return; /* custom shape-shifting cursor removed — use the native pointer */
   if(!matchMedia('(hover:hover) and (pointer:fine)').matches) return;
   if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var html=document.documentElement; html.classList.add('has-cur');
